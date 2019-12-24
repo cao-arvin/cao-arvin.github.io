@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>PicGo的安装 - Wenhui&#39;s Rotten Pen</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="文辉" />
+  <meta name="description" content="本文 主要介绍图床工具PicGo和记录PicGo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 PicGo版本： picgo-2.1.2-x86_64.AppImage 参考 在Li" />
+
+  <meta name="keywords" content="Hugo, linux, emacs, CPU" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3" />
+
+
+<link rel="canonical" href="https://cao-arvin.github.io/post/work_platform/install_picgo/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="PicGo的安装" />
+<meta property="og:description" content="本文 主要介绍图床工具PicGo和记录PicGo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 PicGo版本： picgo-2.1.2-x86_64.AppImage 参考 在Li" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cao-arvin.github.io/post/work_platform/install_picgo/" />
+<meta property="article:published_time" content="2019-12-23T13:18:00+08:00" />
+<meta property="article:modified_time" content="2019-12-24T10:34:40+08:00" />
+<meta itemprop="name" content="PicGo的安装">
+<meta itemprop="description" content="本文 主要介绍图床工具PicGo和记录PicGo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 PicGo版本： picgo-2.1.2-x86_64.AppImage 参考 在Li">
+
+
+<meta itemprop="datePublished" content="2019-12-23T13:18:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-24T10:34:40&#43;08:00" />
+<meta itemprop="wordCount" content="918">
+
+
+
+<meta itemprop="keywords" content="计算机,软件安装,picgo,博客站点搭建," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PicGo的安装"/>
+<meta name="twitter:description" content="本文 主要介绍图床工具PicGo和记录PicGo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 PicGo版本： picgo-2.1.2-x86_64.AppImage 参考 在Li"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">文辉的烂笔头</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/about/">关于</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/links/">友链</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/index.xml">订阅</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css" integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css" integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin="anonymous">
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      文辉的烂笔头
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/links/">友链</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://cao-arvin.github.io/index.xml">订阅</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">PicGo的安装</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-12-23" class="post-time">
+          2019-12-23
+        </time>
+        <div class="post-category">
+            <a href="https://cao-arvin.github.io/categories/%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0/"> 我的工作平台 </a>
+            
+          </div>
+        <span class="more-meta"> 约 918 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#本文">本文</a></li>
+<li><a href="#背景">背景</a></li>
+<li><a href="#参考">参考</a></li>
+<li><a href="#什么是picgo">什么是PicGo？</a></li>
+<li><a href="#为什么安装picgo">为什么安装PicGo？</a></li>
+<li><a href="#安装过程">安装过程</a>
+<ul>
+<li><a href="#下载picgo">下载PicGo</a></li>
+<li><a href="#安装">安装</a></li>
+<li><a href="#添加到启动器">添加到启动器</a></li>
+<li><a href="#安装依赖">安装依赖</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h2 id="本文">本文</h2>
+
+<p>主要介绍图床工具PicGo和记录PicGo的安装过程。</p>
+
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0.1</td>
+<td>初版发布</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="背景">背景</h2>
+
+<ul>
+<li>主机： Thinkpad S2</li>
+<li>系统： Deepin GNU/Linux 15.11</li>
+<li>内核： Debian 6.3.0-18+deb9u1</li>
+<li>PicGo版本： picgo-2.1.2-x86_64.AppImage</li>
+</ul>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+<li><a href="https://blog.owow.cc/linux/108.md">在Linux上安装PicGO</a></li>
+</ul>
+
+<h2 id="什么是picgo">什么是PicGo？</h2>
+
+<p>PicGo是一款功能实用、操作简捷的图床工具，图床工具简单来说就是本地图片上传自动转换成链接的一款工具。网络上的图床工具有很多，PicGo算得上一款比较优秀的图床工具了，它可以支持微博， 七牛云， 腾讯云COS， 又拍云， GitHub， 阿里云OSS， SM.MS， imgur 等8种常用图床，功能强大，简单易用。</p>
+
+<h2 id="为什么安装picgo">为什么安装PicGo？</h2>
+
+<p>写博客内容时，常常会用到图片，最初是将图片放在本地并随博客public一同上传至github，但是在本地网址显示好好的图片，上传至github就打不开了，其主要原因还是因为填写的是相对地址，上传github后，往往地址会发生变化，导致图片索引不到，所以只好通过图床工具转化为链接，作为全路径添加到博客内容，这样就可以解决了。网上搜索了一下图床工具，好像PicGo有点独步天下的意思，网上评价PicGo是最好的图床工具，没有之一。所以，开始折腾起来，下载安装。</p>
+
+<h2 id="安装过程">安装过程</h2>
+
+<h3 id="下载picgo">下载PicGo</h3>
+
+<ul>
+<li>去<a href="https://github.com/Molunerfinn/PicGo/releases">PicGo官方github页面</a>下载最新版本的PicGo，我这里选择的是picgo-2.1.2-x86_64.AppImage</li>
+<li>采用我的百度资源分享 <strong>链接：<a href="https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A">https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A</a> 密码：4zvy</strong> ，另附有一张logo图</li>
+</ul>
+
+<h3 id="安装">安装</h3>
+
+<p>安装很简单，其实下载的就是一个可执行程序，放到自己的 <strong>系统变量PATH</strong> 即可，我习惯是放在 <strong><em>“/usr/local/bin/”</em></strong> 。打开终端进入下载解压后的picgo目录，执行以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#查看系统变量</span>
+<span class="nb">echo</span> <span class="nv">$PATH</span>
+
+<span class="c1">#更改文件属性为可执行</span>
+chmod <span class="m">755</span> ./picgo-2.1.2-x86_64.AppImage
+
+<span class="c1">#复制到/usr/local/bin/目录，也可以选择自己$PATH的某一路径</span>
+sudo cp ./picgo-2.1.2-x86_64.AppImage /usr/local/bin/picgo</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="添加到启动器">添加到启动器</h3>
+
+<p>可参考另一篇帖子 <strong>将软件添加到deepin启动器</strong> 。</p>
+
+<h3 id="安装依赖">安装依赖</h3>
+
+<p>虽然PicGo已经开始运行了，可是有些功能需要依赖其他程序来实现。在程序内实现粘贴板上传需要用到xclip，不装的话会报 <strong>&ldquo;xclip not found&rdquo;</strong> 的错误。可以通过包管理器安装，命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install xclip -y</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">文辉</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2019-12-24
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content">文辉原创文章，如需转载请注明出处，谢谢！！！</span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://cao-arvin.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+          <a href="https://cao-arvin.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a>
+          <a href="https://cao-arvin.github.io/tags/picgo/">picgo</a>
+          <a href="https://cao-arvin.github.io/tags/%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA/">博客站点搭建</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/work_platform/install_hugo/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">hugo的安装</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/other_tools_tips/add_software_to_deepin_launcher/">
+            <span class="next-text nav-default">将软件添加到deepin启动器</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+ 
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        文辉
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.js" integrity="sha256-AC9ChpELidrhGHX23ZU53vmRdz3FhKaN9E28+BbcWBw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js" integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

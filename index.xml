@@ -1,0 +1,1480 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wenhui&#39;s Rotten Pen</title>
+    <link>https://cao-arvin.github.io/</link>
+    <description>Recent content on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 23 Dec 2019 15:54:00 +0800</lastBuildDate>
+    
+        <atom:link href="https://cao-arvin.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hugo的安装</title>
+      <link>https://cao-arvin.github.io/post/work_platform/install_hugo/</link>
+      <pubDate>Mon, 23 Dec 2019 15:54:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/post/work_platform/install_hugo/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍hugo和记录hugo的安装过程。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;hugo版本： hugo 0.58&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.gohugo.org/&#34;&gt;Hugo中文文档&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是hugo&#34;&gt;什么是hugo？&lt;/h2&gt;
+
+&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。简单来说就是你可以用它来生成自己的博客站点，而且安装极简单，无依赖。类似此功能的工具还有Hexo，， Jekyll, Ghost，我强烈推荐Hugo。更多内容可以查看&lt;a href=&#34;https://www.gohugo.org/&#34;&gt;Hugo中文文档&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装hugo&#34;&gt;安装hugo&lt;/h2&gt;
+
+&lt;h3 id=&#34;下载&#34;&gt;下载&lt;/h3&gt;
+
+&lt;p&gt;推荐二进制安装，也就是直接下载可执行程序，方便简单。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;到 &lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;Hugo Releases&lt;/a&gt; 下载对应的操作系统版本的Hugo二进制文件（hugo或者hugo.exe）&lt;/li&gt;
+&lt;li&gt;采用我的百度网盘分享资源（里面包含hugo_0.58和extend_hugo_0.61两个版本，选其一即可） &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1ub-6LSw9VABaf0GNe7oeGQ&#34;&gt;https://pan.baidu.com/s/1ub-6LSw9VABaf0GNe7oeGQ&lt;/a&gt; 密码：pvb4&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+
+&lt;p&gt;将下载的文件解压，找到hugo文件，将其放入 &lt;strong&gt;&lt;em&gt;“/usr/local/bin/”&lt;/em&gt;&lt;/strong&gt; 目录，若其为非可执行文件，请更改文件属性。可参考以下执行命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看系统变量&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;#更改文件属性为可执行&lt;/span&gt;
+chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./hugo
+
+&lt;span class=&#34;c1&#34;&gt;#复制到/usr/local/bin/目录，也可以选择自己$PATH的某一路径&lt;/span&gt;
+sudo cp ./hugo /usr/local/bin/hugo&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>PicGo的安装</title>
+      <link>https://cao-arvin.github.io/post/work_platform/install_picgo/</link>
+      <pubDate>Mon, 23 Dec 2019 13:18:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/post/work_platform/install_picgo/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍图床工具PicGo和记录PicGo的安装过程。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;PicGo版本： picgo-2.1.2-x86_64.AppImage&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.owow.cc/linux/108.md&#34;&gt;在Linux上安装PicGO&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是picgo&#34;&gt;什么是PicGo？&lt;/h2&gt;
+
+&lt;p&gt;PicGo是一款功能实用、操作简捷的图床工具，图床工具简单来说就是本地图片上传自动转换成链接的一款工具。网络上的图床工具有很多，PicGo算得上一款比较优秀的图床工具了，它可以支持微博， 七牛云， 腾讯云COS， 又拍云， GitHub， 阿里云OSS， SM.MS， imgur 等8种常用图床，功能强大，简单易用。&lt;/p&gt;
+
+&lt;h2 id=&#34;为什么安装picgo&#34;&gt;为什么安装PicGo？&lt;/h2&gt;
+
+&lt;p&gt;写博客内容时，常常会用到图片，最初是将图片放在本地并随博客public一同上传至github，但是在本地网址显示好好的图片，上传至github就打不开了，其主要原因还是因为填写的是相对地址，上传github后，往往地址会发生变化，导致图片索引不到，所以只好通过图床工具转化为链接，作为全路径添加到博客内容，这样就可以解决了。网上搜索了一下图床工具，好像PicGo有点独步天下的意思，网上评价PicGo是最好的图床工具，没有之一。所以，开始折腾起来，下载安装。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装过程&#34;&gt;安装过程&lt;/h2&gt;
+
+&lt;h3 id=&#34;下载picgo&#34;&gt;下载PicGo&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;去&lt;a href=&#34;https://github.com/Molunerfinn/PicGo/releases&#34;&gt;PicGo官方github页面&lt;/a&gt;下载最新版本的PicGo，我这里选择的是picgo-2.1.2-x86_64.AppImage&lt;/li&gt;
+&lt;li&gt;采用我的百度资源分享 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A&#34;&gt;https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A&lt;/a&gt; 密码：4zvy&lt;/strong&gt; ，另附有一张logo图&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+
+&lt;p&gt;安装很简单，其实下载的就是一个可执行程序，放到自己的 &lt;strong&gt;系统变量PATH&lt;/strong&gt; 即可，我习惯是放在 &lt;strong&gt;&lt;em&gt;“/usr/local/bin/”&lt;/em&gt;&lt;/strong&gt; 。打开终端进入下载解压后的picgo目录，执行以下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看系统变量&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;#更改文件属性为可执行&lt;/span&gt;
+chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./picgo-2.1.2-x86_64.AppImage
+
+&lt;span class=&#34;c1&#34;&gt;#复制到/usr/local/bin/目录，也可以选择自己$PATH的某一路径&lt;/span&gt;
+sudo cp ./picgo-2.1.2-x86_64.AppImage /usr/local/bin/picgo&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;添加到启动器&#34;&gt;添加到启动器&lt;/h3&gt;
+
+&lt;p&gt;可参考另一篇帖子 &lt;strong&gt;将软件添加到deepin启动器&lt;/strong&gt; 。&lt;/p&gt;
+
+&lt;h3 id=&#34;安装依赖&#34;&gt;安装依赖&lt;/h3&gt;
+
+&lt;p&gt;虽然PicGo已经开始运行了，可是有些功能需要依赖其他程序来实现。在程序内实现粘贴板上传需要用到xclip，不装的话会报 &lt;strong&gt;&amp;ldquo;xclip not found&amp;rdquo;&lt;/strong&gt; 的错误。可以通过包管理器安装，命令如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install xclip -y&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>将软件添加到deepin启动器</title>
+      <link>https://cao-arvin.github.io/post/other_tools_tips/add_software_to_deepin_launcher/</link>
+      <pubDate>Mon, 23 Dec 2019 12:51:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/post/other_tools_tips/add_software_to_deepin_launcher/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍了如何将手动安装的软件添加到deepin启动器中显示。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;操纵过程&#34;&gt;操纵过程&lt;/h2&gt;
+
+&lt;p&gt;手动安装的工具可在终端运行，但对于某些软件来说使用不方便，也可以将可执行程序放在桌面，但是又使桌面不整洁美观，也可以添加至任务栏，但会导致任务栏工具繁多杂乱，最好的方式就是将其加入到deepin的启动器，以firefox为例，方法如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;打开终端，进入 &lt;em&gt;”/usr/share/applications/“&lt;/em&gt; 目录&lt;/li&gt;
+&lt;li&gt;新建 &lt;strong&gt;”firefox.desktop“&lt;/strong&gt; 文件(需要root权限)&lt;/li&gt;
+&lt;li&gt;打开新建的文件，输入如下内容：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Desktop Entry&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Application &lt;span class=&#34;c1&#34;&gt;#类型，一般不改动&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Firefox &lt;span class=&#34;c1&#34;&gt;#显示在启动器中的名字&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Icon&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/home/caowenhui/Treasury/tools_and_drives/firefox/browser/chrome/icons/default/default128.png &lt;span class=&#34;c1&#34;&gt;#firefox的图标路径&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Exec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/bin/firefox &lt;span class=&#34;c1&#34;&gt;#firefox的可执行程序路径&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Terminal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#是否在终端运行&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Categories&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Network&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;WebBrowser&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#分类&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;a web browser &lt;span class=&#34;c1&#34;&gt;#说明&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意，需要修改的就只有Name、Icon、Exec、Categories、Comment，其他建议不要修改，并且，保存前 &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; ，否则不会生效。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;完成保存，打开启动器查看并运行程序。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>友链</title>
+      <link>https://cao-arvin.github.io/links/</link>
+      <pubDate>Sun, 22 Dec 2019 20:55:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/links/</guid>
+      
+        <description>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.xianmin.org/&#34;&gt;贤民的比特记忆： Hugo jane主题作者 &amp;amp; 丽江白沙那里国际青年旅舍的掌柜 &amp;amp; emacs使用者&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.fuzihao.org/blog/&#34;&gt;切问录： emacs使用者&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/tylinux/&#34;&gt;博客园之暖壶塞儿的自留地： emacs使用者&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>为firefox安装flash player插件</title>
+      <link>https://cao-arvin.github.io/post/other_tools_tips/install_flash_player_for_firefox/</link>
+      <pubDate>Sun, 15 Dec 2019 21:22:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/post/other_tools_tips/install_flash_player_for_firefox/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍了如何为firefox手动安装flash player插件。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;firefox版本： Mozilla Firefox 71.0&lt;/li&gt;
+&lt;li&gt;flash player版本：32.0&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://support.mozilla.org/zh-CN/kb/%25E5%25AE%2589%25E8%25A3%2585%2520Flash%2520%25E6%258F%2592%25E4%25BB%25B6#w%5Foooegoce-flash-acki&#34;&gt;firefox帮助：安装 Flash 插件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://jingyan.baidu.com/article/9f7e7ec09f58966f281554a9.html&#34;&gt;百度经验：deepin linux下firefox怎么升级flash player&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;安装过程&#34;&gt;安装过程&lt;/h2&gt;
+
+&lt;h3 id=&#34;为什么安装flash插件&#34;&gt;为什么安装Flash插件&lt;/h3&gt;
+
+&lt;p&gt;由于deepin没有发现简单易用的图片处理软件，比如调整大小、拼图、裁剪等等，最佳选择就是使用美图秀秀网页版了，但是发现缺少可用的Flash插件，于是开始了安装过程。&lt;/p&gt;
+
+&lt;h3 id=&#34;下载flash插件&#34;&gt;下载Flash插件&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;你可以到官网下载，请进入&lt;a href=&#34;https://get.adobe.com/cn/flashplayer/&#34;&gt;Adobe Flash Player下载页面&lt;/a&gt;，选择要下载的版本，我这里选择的是 &lt;strong&gt;&lt;em&gt;.tar.gz 适用于 Linux&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;也可以选择我的百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/18FLcCARtjnogcBB%5F950s-Q&#34;&gt;https://pan.baidu.com/s/18FLcCARtjnogcBB%5F950s-Q&lt;/a&gt; 密码：xbcu&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;解压安装&#34;&gt;解压安装&lt;/h3&gt;
+
+&lt;p&gt;将下载的安装包解压，放到自己合适的位置，比如我的 &lt;strong&gt;&lt;em&gt;“~/Treasury/tools_and_drives/flash_player/”&lt;/em&gt;&lt;/strong&gt; ，“Treasure”的意思就是财富宝藏了，没错，我的所有“财富”都在这里。然后将下载的文件包中 &lt;strong&gt;libflashplayer.so&lt;/strong&gt; 复制到firefox的插件目录 &lt;strong&gt;&lt;em&gt;“/usr/lib/mozilla/plugins/”&lt;/em&gt;&lt;/strong&gt; 。打开终端进入下载的文件包目录，输入如下命令(中途会提示输入用户密码)：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo cp ./libflashplayer.so /usr/lib/mozilla/plugins/&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果没有firefox的插件目录，需要自己创建：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo mkdir -p /usr/lib/mozilla/plugins/&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;查看&#34;&gt;查看&lt;/h3&gt;
+
+&lt;p&gt;重启firefox，点击菜单打开 &lt;strong&gt;附加组件&lt;/strong&gt; 或快捷键 &lt;strong&gt;Ctrl+Shift+A&lt;/strong&gt; ，点击左侧的“插件”即可看到flash palyer的版本。
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://cao-arvin.github.io/image/other-tools-tips/firefox1.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; flash player版本为32.0 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+如果还没有的话，可以试试点击 &lt;strong&gt;齿轮图标&lt;/strong&gt; 选择 &lt;strong&gt;从文件安装附加组件&lt;/strong&gt; 。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>GoldenDict的安装</title>
+      <link>https://cao-arvin.github.io/post/work_platform/install_goldendict/</link>
+      <pubDate>Sun, 15 Dec 2019 15:35:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/post/work_platform/install_goldendict/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍词典工具GoldenDict和记录GoldenDict的安装过程。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;GoldenDict版本：1.5.0-RC2+git&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jianshu.com/p/b6b2c1d78d7c&#34;&gt;安装使用 GoldenDict 查词神器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是goldendict&#34;&gt;什么是GoldenDict？&lt;/h2&gt;
+
+&lt;p&gt;GoldenDict是一款优秀的的词典软件，其特点如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;免费&lt;/li&gt;
+&lt;li&gt;纯净无广告&lt;/li&gt;
+&lt;li&gt;跨平台：Windows / Mac / Linux&lt;/li&gt;
+&lt;li&gt;支持多种词典格式&lt;/li&gt;
+&lt;li&gt;支持查维基百科 / 支持在线翻译（需配置）&lt;/li&gt;
+&lt;li&gt;支持屏幕取词&lt;/li&gt;
+&lt;li&gt;支持听取 forvo.com 上的发音&lt;/li&gt;
+&lt;li&gt;更多特点可详见&lt;a href=&#34;http://www.goldendict.org/&#34;&gt;GoldenDict 官网&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;500&#34; src=&#34;https://cao-arvin.github.io/image/GoldenDict/GoldenDict1.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; GoldenDict就是它了 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;安装goldendict&#34;&gt;安装GoldenDict&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;可选择使用deepin软件商店安装，操作简单&lt;/li&gt;
+&lt;li&gt;可通过软件包管理工具下载（版本不一定是最新的，但应该比软件商店提供的版本新，安装后按需手动添加到启动器），命令如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Ubuntu / Debian&lt;/span&gt;
+sudo apt install goldendict -y
+
+&lt;span class=&#34;c1&#34;&gt;# CentOS&lt;/span&gt;
+sudo yum install goldendict -y&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;添加离线词典&#34;&gt;添加离线词典&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;下载词典&lt;/strong&gt; ，我这里使用的是三个词典，百度网盘分享资源 &lt;strong&gt;链接： &lt;a href=&#34;https://pan.baidu.com/s/1wXbxsUlLLsGl9namvO4q-g&#34;&gt;https://pan.baidu.com/s/1wXbxsUlLLsGl9namvO4q-g&lt;/a&gt; 密码：45o3&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;en-zh：牛津现代英汉双解词典&lt;/li&gt;
+&lt;li&gt;zh-en：朗道汉英字典&lt;/li&gt;
+&lt;li&gt;zh-zh：新华字典&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;存放词典&lt;/strong&gt; ，解压后根据个人喜好选择存放位置，且后续不能移动，我这里放在 &lt;em&gt;“~/Treasury/tools_and_drives/GoldenDict/”&lt;/em&gt; 下&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;导入词典&lt;/strong&gt; ，菜单栏选择 &lt;strong&gt;【编辑】&amp;gt;【词典】&amp;gt;【词典来源】&amp;gt;【文件】&amp;gt;【添加】&lt;/strong&gt; ，选择上一步的词典位置打开，并勾选上递归搜索，点击 &lt;strong&gt;“重新扫描”&lt;/strong&gt; 完成后点击 &lt;strong&gt;【应用】&lt;/strong&gt; 即可&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;功能测试&lt;/strong&gt; ，在搜索栏分别输入“you”和“你”，回车，查看翻译结果。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;添加网页翻译-有道&#34;&gt;添加网页翻译（有道）&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;菜单栏选择 &lt;strong&gt;【编辑】&amp;gt;【词典】&amp;gt;【词典来源】&amp;gt;【网站】&amp;gt; 【添加】&lt;/strong&gt; ，输入名称为“youdao”，输入地址， 勾选已启用，点击 &lt;strong&gt;【应用】&lt;/strong&gt; 。&lt;/li&gt;
+&lt;li&gt;地址内容为“&lt;a href=&#34;http://dict.youdao.com/search?q=%GDWORD%&amp;amp;ue=utf8&#34;&gt;http://dict.youdao.com/search?q=%GDWORD%&amp;amp;ue=utf8&lt;/a&gt;”&lt;/li&gt;
+&lt;li&gt;功能测试，在搜索栏输入“you”，回车，查看youdao翻译结果&lt;/li&gt;
+&lt;li&gt;也可以使用其他网页翻译以及搜索引擎&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;添加google翻译-translate-shell&#34;&gt;添加google翻译（translate-shell）&lt;/h2&gt;
+
+&lt;p&gt;以上添加的离线词典只能翻译词典里存在的词汇，不能对整句整段进行翻译，而有道翻译的页面广告多，让人不舒服，所以我们为词典添加一个google翻译。translate-shell是命令行版google翻译，在终端命令行可以直接通过 &lt;strong&gt;“trans”&lt;/strong&gt; 命令使用，也可以将命令添加到GoldenDict使用。&lt;/p&gt;
+
+&lt;h3 id=&#34;下载安装-translate-shell&#34;&gt;下载安装 translate-shell&lt;/h3&gt;
+
+&lt;p&gt;安装方法有三种：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;直接下载可执行文件，百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1kQYl%5F%5FhptxA5X0k9h7ZYcg&#34;&gt;https://pan.baidu.com/s/1kQYl%5F%5FhptxA5X0k9h7ZYcg&lt;/a&gt; 密码：sxeq&lt;/strong&gt; ，打开终端进入下载目录，执行以下命令：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./trans
+sudo mv trans /usr/local/bin/&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;手动安装，下载trans_shell安装包，以下是使用git工具进行下载，也可以登录网址通过浏览器下载压缩包，或使用我的百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1aHXNwKm6QYcXMtuk77roPg&#34;&gt;https://pan.baidu.com/s/1aHXNwKm6QYcXMtuk77roPg&lt;/a&gt; 密码：yzxu&lt;/strong&gt; ，安装命令如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/soimort/translate-shell
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; translate-shell
+make
+sudo make install&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;通过包管理器安装，命令如下：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install translate-shell
+which trans&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;trans-shell的使用&#34;&gt;trans_shell的使用&lt;/h3&gt;
+
+&lt;p&gt;本文目的主要是安装trans_shell给GoldenDictionary使用，不过在终端也可以使用，使用方法如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;trans en:zh &lt;span class=&#34;s1&#34;&gt;&amp;#39;Hello World&amp;#39;&lt;/span&gt;
+trans zh:en &lt;span class=&#34;s2&#34;&gt;&amp;#34;你好&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;为goldendict添加trans-shell&#34;&gt;为GoldenDict添加trans_shell&lt;/h3&gt;
+
+&lt;p&gt;菜单栏选择 &lt;strong&gt;【编辑】&amp;gt;【词典】&amp;gt;【词典来源】&amp;gt;【程序】&amp;gt; 【添加】&lt;/strong&gt; ，类型选择纯文本，勾选已启用，名字（可以自己命名）与命令行内容如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;名字：google_2_en
+
+&lt;ul&gt;
+&lt;li&gt;命令行：trans -e google -s auto -t en-US -show-original y -show-original-phonetics n -show-translation y -no-ansi -show-translation-phonetics n -show-prompt-message n -show-languages y -show-original-dictionary n -show-dictionary n -show-alternatives n “%GDWORD%”&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;名字：google_2_zh
+
+&lt;ul&gt;
+&lt;li&gt;命令行：trans -e google -s auto -t zh-CN -show-original y -show-original-phonetics n -show-translation y -no-ansi -show-translation-phonetics n -show-prompt-message n -show-languages n -show-original-dictionary n -show-dictionary n -show-alternatives n “%GDWORD%”&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;填写完之后点击 &lt;strong&gt;【应用】&lt;/strong&gt; 即可。&lt;/p&gt;
+
+&lt;h2 id=&#34;为goldendict分组&#34;&gt;为GoldenDict分组&lt;/h2&gt;
+
+&lt;p&gt;分组的目的是为了方便快速翻译，更加快速准确的找到自己想要的内容。菜单栏选择 &lt;strong&gt;【编辑】&amp;gt;【词典】&amp;gt;【群组】&lt;/strong&gt; ，此时左栏会看到已启用的词典（牛津现代英汉双解词典、google_2_zh、youdao、新华字典、朗道汉英字典5.0、google-2-en）。点击 &lt;strong&gt;【添加群组】&lt;/strong&gt; ，进行命名，选择词典加入该群组，并且可以在群组内调整词典的优先级，也可以根据个人需求为群组设置快捷键。我的分组如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;en_zh： google-2-zh、牛津现代英汉双解词典&lt;/li&gt;
+&lt;li&gt;zh_en： google-2-en、朗道汉英字典5.0&lt;/li&gt;
+&lt;li&gt;zh_zh： 新华字典&lt;/li&gt;
+&lt;li&gt;youdao： youdao&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;500&#34; src=&#34;https://cao-arvin.github.io/image/GoldenDict/GoldenDict2.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; 给词典进行分组 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;使用技巧&#34;&gt;使用技巧&lt;/h2&gt;
+
+&lt;p&gt;快捷键 &lt;strong&gt;Ctrl+C+C&lt;/strong&gt; ，翻译剪切板中的内容，通过鼠标或快捷键选择群组，快速找到想要的内容。更多快捷键、屏幕取词以及其他使用技巧，可查看 &lt;strong&gt;【编辑】&amp;gt; 【首选项】&lt;/strong&gt; 。（个人不太喜欢屏幕取词，工具会自动调用 &lt;strong&gt;Ctrl-C&lt;/strong&gt; 命令，在终端中会误杀死进程）&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>firefox的安装</title>
+      <link>https://cao-arvin.github.io/post/work_platform/install_firefox/</link>
+      <pubDate>Sun, 08 Dec 2019 20:15:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/post/work_platform/install_firefox/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍firefox浏览器和记录firefox浏览器的安装过程。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;firefox版本： Mozilla Firefox 71.0&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://jingyan.baidu.com/article/2c8c281db4f7940009252a7f.html&#34;&gt;deepin linux如何安装最新版firefox火狐浏览器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://support.mozilla.org/zh-CN/products/firefox&#34;&gt;firefox帮助中心&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.firefox.com.cn/&#34;&gt;firefox官网&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是firefox&#34;&gt;什么是firefox？&lt;/h2&gt;
+
+&lt;p&gt;Mozilla Firefox，中文俗称 &lt;strong&gt;“火狐”&lt;/strong&gt; ，是一个自由及开放源代码的网页浏览器，使用Gecko排版引擎，支持多种操作系统，如Windows、Mac OS X及GNU/Linux等。&lt;/p&gt;
+
+&lt;h2 id=&#34;为什么选择firefox&#34;&gt;为什么选择firefox？&lt;/h2&gt;
+
+&lt;p&gt;firefox浏览器有如下特点：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;风格简洁，同时支持多主题，可自行选择&lt;/li&gt;
+&lt;li&gt;据说相对其他浏览器，启动速度慢（这一点我没有明显体验，大多数用户的浏览器处于常开状态，启动速度也就无关紧要了）&lt;/li&gt;
+&lt;li&gt;安全性高，有隐私保护机制，拦截多种常见的跟踪器和有害的脚本，减少第三方搜集浏览行为数据的能力&lt;/li&gt;
+&lt;li&gt;拓展性强，有丰富的拓展性插件支持&lt;/li&gt;
+&lt;li&gt;多平台支持，同步数据无障碍&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;选择firefox主要因为其两个特点，一是丰富的插件，虽然谷歌插件也很丰富，但国内环境无法访问应用商店，导致安装起插件来比较麻烦，所以放弃；二是多平台支持，支持Linux、Windows、Mac OS以及移动端，同步数据无障碍。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装firefox&#34;&gt;安装firefox&lt;/h2&gt;
+
+&lt;p&gt;deepin的软件商店自带firefox浏览器，不过不是最新版的，通过软件商店安装firefox就不介绍了，只介绍手动安装过程。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;打开&lt;a href=&#34;https://www.firefox.com.cn/download/&#34;&gt;firefox下载中心&lt;/a&gt;，不要点击 &lt;strong&gt;“立即下载”&lt;/strong&gt; ，而是点击下方 &lt;strong&gt;“高级安装选项和其他平台”&lt;/strong&gt; ，选择 &lt;strong&gt;“Linux 64-bit”&lt;/strong&gt; 进行下载&lt;/li&gt;
+&lt;li&gt;将下载的最新版的firefox压缩包进行解压&lt;/li&gt;
+&lt;li&gt;打开文件管理器，并进入刚刚解压后的目录，双击运行目录下的 &lt;strong&gt;&amp;ldquo;firefox&amp;rdquo;&lt;/strong&gt; 可执行文件，firefox浏览器就启动了&lt;/li&gt;
+&lt;li&gt;在任务栏中右键点击firefox，选择驻留可添加至任务栏，也可以将执行程序发送到桌面&lt;/li&gt;
+&lt;li&gt;将firefox可执行文件放在 &lt;em&gt;&amp;rdquo;/usr/local/bin/”&lt;/em&gt; 目录，可以在终端命令打开firefox，命令就是 &lt;strong&gt;“firefox”&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;如何将firefox添加至deepin的启动器&#34;&gt;如何将firefox添加至deepin的启动器&lt;/h2&gt;
+
+&lt;p&gt;如果不想将firefox的可执行程序放在桌面，影响美观，又不想添加至任务栏，导致任务栏工具繁多，可以选择将其加入到deepin的启动器，方法如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;打开终端，进入 &lt;em&gt;”/usr/share/applications/“&lt;/em&gt; 目录&lt;/li&gt;
+&lt;li&gt;新建 &lt;strong&gt;”firefox.desktop“&lt;/strong&gt; 文件(需要root权限)&lt;/li&gt;
+&lt;li&gt;打开新建的文件，输入如下内容：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Desktop Entry&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Application &lt;span class=&#34;c1&#34;&gt;#类型，一般不改动&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Firefox &lt;span class=&#34;c1&#34;&gt;#显示在启动器中的名字&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Icon&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/home/caowenhui/Treasury/tools_and_drives/firefox/browser/chrome/icons/default/default128.png &lt;span class=&#34;c1&#34;&gt;#firefox的图标路径&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Exec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/bin/firefox &lt;span class=&#34;c1&#34;&gt;#firefox的可执行程序路径&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Terminal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#是否在终端运行&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Categories&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Network&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;WebBrowser&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#分类&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;a web browser &lt;span class=&#34;c1&#34;&gt;#说明&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意，需要修改的就只有Icon和Exec两项，其他无需修改，并且，保存前 &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; ，否则不会生效。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;完成保存，打开启动器查看并运行程序。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>deepin系统安装</title>
+      <link>https://cao-arvin.github.io/post/work_platform/install_deepin_os/</link>
+      <pubDate>Sat, 16 Nov 2019 17:30:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/post/work_platform/install_deepin_os/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍deepin系统和记录deepin系统的安装过程。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.deepin.org/installation/&#34;&gt;deepin官网-如何安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/u012335228/article/details/83209192&#34;&gt;实操：安装深度DeepinLinux桌面操作系统（替代微软Windows的国产开源系统）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Win10&lt;/li&gt;
+&lt;li&gt;deppin版本： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是deepin&#34;&gt;什么是deepin？&lt;/h2&gt;
+
+&lt;p&gt;deepin操作系统是由武汉深之度科技有限公司开发的Linux发行版。deepin操作系统是一个基于Debian的Linux操作系统，专注于使用者对日常办公、学习、生活和娱乐的操作体验的极致，适合笔记本、桌面计算机和一体机。它包含了所有您需要的应用程序，网页浏览器、幻灯片演示、文档编辑、电子表格、娱乐、声音和图片处理软件，即时通讯软件等等。以上内容摘自百度百科，了解详细信息可登录&lt;a href=&#34;https://www.deepin.org/&#34;&gt;deepin操作系统官网&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;简而言之，deepin是基于Debian内核、简单易用又美观的Linux操作系统，适合轻量应用的普通用户和初识Linux的学习者。deepin从使用习惯上是最接近Windows的Linux操作系统，它自带应用商店、文件管理器、系统监视器、深度截屏、深度录屏、深度录音、深度影院等等，深度应用商店中提供的软件还是很丰富的，涉及网络应用、社交沟通、音乐欣赏、视频播放、图形图像、游戏娱乐、办公学习、阅读翻译、编程开发和系统管理，比如微信、QQ、百度网盘、迅雷、网易云音乐等都可以使用，但是有些软件版本较低且部分功能不支持，不过好在还是可以用的，你也可以通过手动安装最新版本，也可以发掘其他好玩好用的Linux版软件。这里说一下，deepin对游戏支持不太好，如果玩游戏的话建议还是整个Windows稳定环境吧。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装deepin&#34;&gt;安装deepin&lt;/h2&gt;
+
+&lt;h3 id=&#34;下载安装包和启动盘制作工具&#34;&gt;下载安装包和启动盘制作工具&lt;/h3&gt;
+
+&lt;p&gt;打开&lt;a href=&#34;https://www.deepin.org/download/&#34;&gt;deepin官网下载页面&lt;/a&gt;，下载ISO镜像文件，我选择的是左边第一个的 &lt;strong&gt;“官方下载”&lt;/strong&gt; ，启动盘制作工具下载链接在deepin官网下载页面最下面的 &lt;strong&gt;“下载深度启动盘制作工具”&lt;/strong&gt; ，或者点击&lt;a href=&#34;https://www.deepin.org/original/deepin-boot-maker/&#34;&gt;这里&lt;/a&gt;。官网下载的深度启动盘制作工具在Windows下运行总是提示内存无法访问，不知道其他使用者情况，我再提供一个自己使用过的启动盘制作工具，百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1ph70bhA4h70cgB1PLoxPOg&#34;&gt;https://pan.baidu.com/s/1ph70bhA4h70cgB1PLoxPOg&lt;/a&gt; 密码：mphc&lt;/strong&gt; 。&lt;/p&gt;
+
+&lt;h3 id=&#34;制作启动盘&#34;&gt;制作启动盘&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;准备好一个不小于8G的U盘，最好格式化&lt;/li&gt;
+&lt;li&gt;插入准备的U盘并打开启动盘制作工具，选择深度操作系统镜像文件以及准备好的U盘，这里会有勾选项 &lt;strong&gt;“格式化磁盘可提高制作成功率”&lt;/strong&gt; ，若之前U盘未格式化，在备份好内容的前提下建议勾选上&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;“开始”&lt;/strong&gt; 即可制作&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;准备分区&#34;&gt;准备分区&lt;/h3&gt;
+
+&lt;p&gt;我的存储系统是一块256G的固态硬盘，现在要压缩出50G给deepin系统使用，方法如下：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;选中 &lt;strong&gt;“此电脑”&lt;/strong&gt; ，右键选择 &lt;strong&gt;&amp;ldquo;管理&amp;rdquo;&lt;/strong&gt; ，然后选择并打开 &lt;strong&gt;“磁盘管理”&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;选择要压缩的磁盘，我这里就一个256G盘，也就没什么选择的了，然后右键选中 &lt;strong&gt;“压缩卷”&lt;/strong&gt; ，输入压缩空间大小，单位是MB，50G=1024MBx50=51200MB，点击 &lt;strong&gt;“压缩”&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;这里出现了一个未分配的50G磁盘，这就是留给deepin使用的磁盘空间了&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;安装系统&#34;&gt;安装系统&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;将制作好的启动盘插入电脑&lt;/li&gt;
+&lt;li&gt;重启电脑，在屏幕处于黑屏状态时连续敲 &lt;strong&gt;F12（Fn+F12）&lt;/strong&gt; ，进入启动项选择页面，选择插入的U盘，回车&lt;/li&gt;
+&lt;li&gt;系统进入安装界面，选择需要安装的语言，简体中文&lt;/li&gt;
+&lt;li&gt;进入账户界面，输入系统用户名和密码&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;“下一步”&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;进入选择安装位置页面，这里选择之前压缩出的未分配磁盘，并且选择默认的 &lt;strong&gt;“简单”&lt;/strong&gt; 安装即可，若对Linux磁盘分区有了解的话可以选择 &lt;strong&gt;“高级”&lt;/strong&gt; ，因为是双系统，所以不建议选择 &lt;strong&gt;“全盘安装”&lt;/strong&gt; ，可能会影响Windows系统的数据。&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;“继续”&lt;/strong&gt; ，系统开始自动化安装了&lt;/li&gt;
+&lt;li&gt;安装完成后，拔掉U盘，开始体验deepin吧&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://cao-arvin.github.io/image/deepin/deepin1.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; deepin主页 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://cao-arvin.github.io/image/deepin/deepin2.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; deepin启动器 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://cao-arvin.github.io/image/deepin/deepin3.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; deepin应用商店 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;开机启动&#34;&gt;开机启动&lt;/h2&gt;
+
+&lt;p&gt;安装完deepin和win10双系统，开机启动后会默认进入deepin的开机引导页面，第一选项是deepin，其他选项有Windows和硬盘等，默认等待时间是5秒，在5秒内可以选择进入win10系统还是deepin系统，不选择默认第一启动项deepin。&lt;/p&gt;
+
+&lt;h2 id=&#34;如何删除deepin系统&#34;&gt;如何删除deepin系统&lt;/h2&gt;
+
+&lt;p&gt;有可能deepin安装体验后，并不喜欢，没关系，我们可以删除它。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;删除磁盘：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;重启电脑，在启动页面选择Windows启动，进入Windows系统&lt;/li&gt;
+&lt;li&gt;选中此电脑，右键选择管理，然后选择并打开磁盘管理，选中deepin的磁盘，右键选择删除卷&lt;/li&gt;
+&lt;li&gt;原deepin磁盘此时处于未分配状态，选择要扩展的磁盘（未分配空间会添加到此盘），右键选择 &lt;strong&gt;&amp;ldquo;扩展卷&amp;rdquo;&lt;/strong&gt; ，进入使用扩展向导&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;“下一步”&lt;/strong&gt; ，选择扩展的空间容量，这里一般选择最大值即可，设置完毕，点击 &lt;strong&gt;“下一步”&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;完成扩展向导，点击 *“完成”*，即可扩展成功，扩展之后发现扩展磁盘空间增大了&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;设置开机启动顺序：&lt;/strong&gt;
+安装完deepin和win10双系统，开机启动后会默认进入deepin的开机引导页面，虽然删除了deepin的磁盘，但还会进入deepin的开机引导页面，这样会出现问题，所以需要修改开机启动项顺序。方法如下：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;重启电脑，在屏幕处于黑屏状态时连续敲 &lt;strong&gt;F1（Fn+F1）&lt;/strong&gt; ，进入BIOS页面&lt;/li&gt;
+&lt;li&gt;通过左右键选择 &lt;strong&gt;“Startup”&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;在 &lt;strong&gt;“Startup”&lt;/strong&gt; 页面选择 &lt;strong&gt;“Boot”&lt;/strong&gt; 项，回车&lt;/li&gt;
+&lt;li&gt;当前 &lt;strong&gt;“deepin”&lt;/strong&gt; 是第一项，此时将 &lt;strong&gt;“Windows Boot Manager”&lt;/strong&gt; 设为第一项&lt;/li&gt;
+&lt;li&gt;按 &lt;strong&gt;“F10”&lt;/strong&gt; ，保存并退出&lt;/li&gt;
+&lt;li&gt;重启电脑，此时电脑直接进入Win10系统，与安装deepin系统前一样&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>emacs的安装</title>
+      <link>https://cao-arvin.github.io/post/work_platform/install_emacs/</link>
+      <pubDate>Sat, 19 Oct 2019 10:15:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/post/work_platform/install_emacs/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍emacs和记录emacs的安装过程。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;emacs版本： Linux GNU Emacs 26.3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是emacs&#34;&gt;什么是emacs？&lt;/h2&gt;
+
+&lt;p&gt;emacs是一款功能强大的编辑器，被公认为是最受专业程序员喜爱的代码编辑器之一，而另一个就是vim，在业界vim被称为编辑器之神，而emacs被称为神之编辑器。对于初学者可能都有这样的疑问，那就是究竟是Vim还是Emacs好呢？这样的问题已经争辩了十几年，但至今无解，不过为了让初学者有一定的了解，还是做个简单介绍。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Vim&lt;/strong&gt; ：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;开箱即用，大多数操作系统自带，不需要安装&lt;/li&gt;
+&lt;li&gt;体量小，启动快&lt;/li&gt;
+&lt;li&gt;采用双模式（命令模式和编辑模式），这样按键组合少，但是要频繁进行模式切换&lt;/li&gt;
+&lt;li&gt;vim的上下左右jkhl，右手控制相对舒服&lt;/li&gt;
+&lt;li&gt;相对emacs使用人群多，配置和使用技巧可参考内容较多&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Emacs&lt;/strong&gt; ：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;需要自己安装，碰到依赖库的问题，还是有点麻烦的&lt;/li&gt;
+&lt;li&gt;体积大，启动慢，但功能强大&lt;/li&gt;
+&lt;li&gt;主模式操作，不用切换模式，但按键组合就多了，Ctrl、Alt、Shift是离不开的，让你的小拇指粗壮起来&lt;/li&gt;
+&lt;li&gt;emacs的上下左右pnbf放在了两个手，还要配合Ctrl键，需要适应&lt;/li&gt;
+&lt;li&gt;缓存机制个人感觉很有用&lt;/li&gt;
+&lt;li&gt;可扩展性极强，可重新定义变量和快捷键绑定，可自己定制插件，也可通过内置的包管理系统安装和卸载大神们的插件，目前可使用的插件还是很丰富的&lt;/li&gt;
+&lt;li&gt;不同的语言环境对应不同的模式，每个模式都有自己独特的功能，本人最常用的就是org-mode和verilog-mode，org写工程日记，verilog就不说了，IC工程师离不开的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;总之，Vim和Emacs功能都很强大，选择一款适合自己的编辑器即可。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装emacs&#34;&gt;安装emacs&lt;/h2&gt;
+
+&lt;h3 id=&#34;下载emacs安装包&#34;&gt;下载emacs安装包&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;可查看&lt;a href=&#34;http://www.gnu.org/software/emacs/&#34;&gt;emacs官网&lt;/a&gt;或&lt;a href=&#34;http://mirrors.nju.edu.cn/gnu/emacs&#34;&gt;国内镜像文件&lt;/a&gt;，当前最新版本是emacs-26.3（更新时间29-Aug-2019)&lt;/li&gt;
+&lt;li&gt;可查看我的百度网盘分享资源(linux emacs-26.3版本) &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1VZ88kGZpBiC59qGU7sk7tA&#34;&gt;https://pan.baidu.com/s/1VZ88kGZpBiC59qGU7sk7tA&lt;/a&gt; 密码：lki0&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;可直接使用我的可执行程序，无需安装，将其放在自己的 &lt;em&gt;“/usr/local/bin/”&lt;/em&gt; 目录即可，百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/18K8WNnr5ytIkx%5Fe7n%5FuAcQ&#34;&gt;https://pan.baidu.com/s/18K8WNnr5ytIkx%5Fe7n%5FuAcQ&lt;/a&gt; 密码：rrtt&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;安装依赖库&#34;&gt;安装依赖库&lt;/h3&gt;
+
+&lt;p&gt;开启终端，输入以下命令，安装相应的依赖库。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get install libgtk2.0-dev --fix-missing
+sudo apt-get install libxpm-dev
+sudo apt-get install libjpeg62-turbo-dev
+sudo apt-get install libgif-dev
+sudo apt-get install libtiff5-dev&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;编译和安装&#34;&gt;编译和安装&lt;/h3&gt;
+
+&lt;p&gt;开启终端，进入emacs安装包目录，输入以下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;./configure&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;已经安装了相应的依赖，此时应该不会发生error，经过configure后，执行以下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;make
+sudo make install&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;查看是否安装成功&#34;&gt;查看是否安装成功&lt;/h3&gt;
+
+&lt;p&gt;终端中输入以下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;emacs --version&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;正常显示emacs版本号，即安装成功，安装的可执行程序默认在 &lt;em&gt;“/usr/local/bin/”&lt;/em&gt; 。&lt;/p&gt;
+
+&lt;h2 id=&#34;启动emacs&#34;&gt;启动emacs&lt;/h2&gt;
+
+&lt;p&gt;启动命令为 &lt;strong&gt;emacs&lt;/strong&gt; ，如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;emacs ~/Destop/demo.txt&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;启动页面会有简单的使用说明，熟悉熟悉即可上手操作。&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://cao-arvin.github.io/image/emacs/emacs1.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; emacs启动页面 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://cao-arvin.github.io/image/emacs/emacs2.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; emacs org mode &lt;/b&gt;  &lt;/div&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;center&#34;&gt;&lt;/center&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>My Black Boy</title>
+      <link>https://cao-arvin.github.io/post/work_platform/thinkpad_s2/</link>
+      <pubDate>Sun, 13 Oct 2019 15:22:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/post/work_platform/thinkpad_s2/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍购买笔记本电脑前的选择和购买后的使用测评。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;h3 id=&#34;购置需求&#34;&gt;购置需求&lt;/h3&gt;
+
+&lt;p&gt;本人IC工程师，但不会在个人电脑运行大型软件，不爱好游戏，不涉及图像视频相关工作，主要应用场景也就是轻量办公和轻量娱乐，所以对性能要求不高，对显卡要求不高，对屏幕显示要求不高。最大的要求就是小巧轻便，续航能力强，不想再背着联想大G跑来跑去了。&lt;/p&gt;
+
+&lt;h3 id=&#34;购置理由&#34;&gt;购置理由&lt;/h3&gt;
+
+&lt;p&gt;最终选择了这款Thinkpad S2，其购置理由如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;13.3英寸，1.47Kg，厚度19.1mm，满足小巧轻便要求。&lt;/li&gt;
+&lt;li&gt;待机时长5~7小时，满足续航要求。&lt;/li&gt;
+&lt;li&gt;黑色机身，经典Thinkpad外观，商务风格（由于只有A面是金属的，其余为塑料材质，感觉银色款缺少了金属质感，所以放弃）。&lt;/li&gt;
+&lt;li&gt;接口丰富，USB3.0，Type-C，HDMI，同时具有可扩展性，足够满足日常使用（好像大多数电脑都满足这些要求了）。&lt;/li&gt;
+&lt;li&gt;可升级，ThinkPad的电脑的内存和存储都是可以升级的，内存最大升级为32G，所以买了基本配置8G+256G，后续可升级。&lt;/li&gt;
+&lt;li&gt;价格中等，6000上下，可以接受&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;为什么&#34;&gt;为什么&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;为什么处理器不买i7？ 太贵！！！&lt;/li&gt;
+&lt;li&gt;为什么不买x1？ 太贵！！！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;图片&#34;&gt;图片&lt;/h2&gt;
+
+&lt;h3 id=&#34;外观&#34;&gt;外观&lt;/h3&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://cao-arvin.github.io/image/BlackBoy/BlackBoy1.jpg&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; Black Boy &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;接口&#34;&gt;接口&lt;/h3&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://cao-arvin.github.io/image/BlackBoy/BlackBoy2.jpg&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; 接口展示 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;部件名称&lt;/th&gt;
+&lt;th&gt;部件描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CPU型号&lt;/td&gt;
+&lt;td&gt;i5-8250U&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;CPU主频&lt;/td&gt;
+&lt;td&gt;1.60GHz&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;最高睿频&lt;/td&gt;
+&lt;td&gt;3.4GHz&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;总线规格&lt;/td&gt;
+&lt;td&gt;4 GT/s&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;CPU缓存&lt;/td&gt;
+&lt;td&gt;6 MB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;核心/线程数&lt;/td&gt;
+&lt;td&gt;&lt;sup&gt;4&lt;/sup&gt;&amp;frasl;&lt;sub&gt;8&lt;/sub&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;制程工艺&lt;/td&gt;
+&lt;td&gt;光刻 14nm&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;指令集&lt;/td&gt;
+&lt;td&gt;64-bit&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;功耗&lt;/td&gt;
+&lt;td&gt;15 W&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;内存容量&lt;/td&gt;
+&lt;td&gt;8GB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;内存类型&lt;/td&gt;
+&lt;td&gt;2400MHz DDR4&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;插槽数量&lt;/td&gt;
+&lt;td&gt;2个内存插槽（一个插有8G内存，另一个空余供升级使用）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;最大内存容量&lt;/td&gt;
+&lt;td&gt;32GB（每个插槽最大16GB）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;硬盘容量&lt;/td&gt;
+&lt;td&gt;256GB (M.2 SSD) (可升级)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;光驱&lt;/td&gt;
+&lt;td&gt;无&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;触控屏&lt;/td&gt;
+&lt;td&gt;不支持&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;屏幕尺寸&lt;/td&gt;
+&lt;td&gt;13.3英寸&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;显示比例&lt;/td&gt;
+&lt;td&gt;16:9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;屏幕分辨率&lt;/td&gt;
+&lt;td&gt;1366x768&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;屏幕技术&lt;/td&gt;
+&lt;td&gt;LED背光TN显示屏，防眩目显示屏&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;显卡类型&lt;/td&gt;
+&lt;td&gt;集成显卡&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;显卡芯片&lt;/td&gt;
+&lt;td&gt;Intel UHD Graphics 620&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;显存容量&lt;/td&gt;
+&lt;td&gt;共享系统内存&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DirectX版本&lt;/td&gt;
+&lt;td&gt;DirectX 12&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;摄像头&lt;/td&gt;
+&lt;td&gt;720p 高清摄像头&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;音频系统&lt;/td&gt;
+&lt;td&gt;HD Audio，Realtek ALC3287 codec&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;扬声器&lt;/td&gt;
+&lt;td&gt;立体扬声器 2Wx2&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;麦克风&lt;/td&gt;
+&lt;td&gt;DualArray Microphone（内置双阵列麦克风）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;无线网卡&lt;/td&gt;
+&lt;td&gt;支持802.11AC协议的无线网卡&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;有线网卡&lt;/td&gt;
+&lt;td&gt;内置Intel Ethernet Connection I219-V（Jacksonville）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;蓝牙&lt;/td&gt;
+&lt;td&gt;无线网卡集成&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;数据接口&lt;/td&gt;
+&lt;td&gt;2个USB3.0 Gen1（其中一个为Always On），2个USB3.0 Type-C&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;视频接口&lt;/td&gt;
+&lt;td&gt;HDMI&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;音频接口&lt;/td&gt;
+&lt;td&gt;Combo jack（麦克风/耳机二合一接口）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;读卡器&lt;/td&gt;
+&lt;td&gt;MicroSD 读卡器&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;指纹识别&lt;/td&gt;
+&lt;td&gt;支持&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;键盘&lt;/td&gt;
+&lt;td&gt;6行全尺寸键盘（不带背光）&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;电池类型&lt;/td&gt;
+&lt;td&gt;3芯45Wh&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;续航时间&lt;/td&gt;
+&lt;td&gt;5-7小时&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;电源适配器&lt;/td&gt;
+&lt;td&gt;65W USB C型 AC Adapter&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;预装操作系统&lt;/td&gt;
+&lt;td&gt;Win10家庭中文版64位&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;WWAN&lt;/td&gt;
+&lt;td&gt;不支持&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;使用测评&#34;&gt;使用测评&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;整机算是比较轻，但算不上薄，毕竟不是超级本，不过也是thinkpad中小巧轻便的了，整体不错。&lt;/li&gt;
+&lt;li&gt;机身材料只有A面是金属的，其它全是塑料材质，这个买之前就已经知晓了，不过选的黑色款，外观还不错，不知道银色款怎么样，唯一的吐槽点是开箱时塑料味稍微有点大。&lt;/li&gt;
+&lt;li&gt;接口丰富，一个USB给无线键鼠使用，一个可供存储读取使用，其中一个USB口是Always On的，也就是在关机时直插可以给手机充电，两个Type-C都可以充电，HDMI可扩展屏幕，还有mini网口和SD卡读口，足够满足日常需求了，个别需求需要另购扩展坞或转换头。&lt;/li&gt;
+&lt;li&gt;电池续航能力亲测可以，满足日常办公待机5～6小时，可以设置电池充电至90%，这样接电源使用对电池比较好。&lt;/li&gt;
+&lt;li&gt;键盘手感还可以，本人要求不高，中间的红色指杆，是ThinkPad经典标志，不过我觉得现在挺鸡肋的，反正我不会去用，触控板已足够。&lt;/li&gt;
+&lt;li&gt;网上有人说风扇和散热的问题，我这里没发现什么异常&lt;/li&gt;
+&lt;li&gt;在Win10系统，无线网不自动刷新连接，手动刷新有时候找不到自己的网络，估计也不是电脑的问题，回头重装系统试试。&lt;/li&gt;
+&lt;li&gt;联想客服，可以添加微信公众号，绑定自己的设备，有啥问题都可以咨询人工客服&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>关于</title>
+      <link>https://cao-arvin.github.io/about/</link>
+      <pubDate>Sat, 12 Oct 2019 20:55:00 +0800</pubDate>
+      
+      <guid>https://cao-arvin.github.io/about/</guid>
+      
+        <description>
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;300&#34; src=&#34;https://cao-arvin.github.io/image/about/me.jpg&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; 这就是我了 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;你好，欢迎来到这里，我叫文辉，一位一直从事于CPU行业的IC工程师，这是我的个人博客站点，在此总结一些技术经验和记录生活中的点点滴滴。&lt;/p&gt;
+
+&lt;h2 id=&#34;关于我&#34;&gt;关于我&lt;/h2&gt;
+
+&lt;h3 id=&#34;漂于北京的雄安土著&#34;&gt;漂于北京的雄安土著&lt;/h3&gt;
+
+&lt;p&gt;我是一个漂于北京的雄安土著。2017年4月1日，我多了个称号 &lt;strong&gt;“雄安土著”&lt;/strong&gt; 。当时我还在西安上学，成立雄安新区的消息竟然还是室友告诉我的，想想也是有意思。2017年8月，我来到了长沙工作，一年后又到了北京，成为了一只漂于北京的雄安土著。&lt;/p&gt;
+
+&lt;h3 id=&#34;cpu行业从事者&#34;&gt;CPU行业从事者&lt;/h3&gt;
+
+&lt;p&gt;我是一个CPU行业从事者。CPU的启蒙是从 &lt;strong&gt;“计算机组成原理”&lt;/strong&gt; 这门课程开始的，紧接着完成了 &lt;strong&gt;“基于MIPS指令集的多周期处理器”&lt;/strong&gt; 的课程设计，对处理器产生了浓厚的兴趣，后续又完成了 &lt;strong&gt;&amp;ldquo;兼容ARM指令集的五级流水处理器&amp;rdquo;&lt;/strong&gt; 的毕业设计，期间还读了一本姚永斌先生写的 &lt;strong&gt;《超标量处理器设计》&lt;/strong&gt; 一书，对现代处理器的设计有了基础认识。毕业之后顺利进入一家处理器设计公司，任职 &lt;strong&gt;微处理器逻辑设计工程师&lt;/strong&gt; ，开启了我CPU领域的职业之旅。在长沙工作期间，要特别感谢王老师、高老师、赵老师、郑老师对我工作的指导，使我有了很大的进步。一年后来到北京，从事了一段时间CPU验证工作，要特别感谢文彬师兄，在CPU验证方面传授了很多经验给我，也感谢浩哥，从北京CPU产业方面了解到很多东西，相对于从前的我，视野更开阔了。更要感谢我的女朋友，对我一直以来的支持和鼓励，包括对一个工科男的包容和理解。总之，我很荣幸从事于自己喜欢的CPU行业，也很荣幸有一路帮助我的人们，我会一直坚持在CPU领域努力前行。&lt;/p&gt;
+
+&lt;h3 id=&#34;emacs-user&#34;&gt;Emacs User&lt;/h3&gt;
+
+&lt;p&gt;我是一个忠实的 &lt;strong&gt;Emacs User&lt;/strong&gt; 。开始使用Emacs是受王老师推荐，演示了一版 &lt;strong&gt;verilog mode&lt;/strong&gt; 中 &lt;strong&gt;AUTO机制&lt;/strong&gt; 的惊艳操作，从此开始成为一名 &lt;strong&gt;Emacs User&lt;/strong&gt; 。对于 &lt;strong&gt;emacs&lt;/strong&gt; 我主要使用 &lt;strong&gt;org mode&lt;/strong&gt; 和 &lt;strong&gt;verilog mode&lt;/strong&gt; ， &lt;strong&gt;org mode&lt;/strong&gt; 主要用来写博客写笔记，支持大纲浏览和导出各种格式； &lt;strong&gt;verilog mode&lt;/strong&gt; 主要用于代码编辑， &lt;strong&gt;AUTO机制&lt;/strong&gt; 可实现自动顶层连线、自动声明端口列表、自动声明连线等等。&lt;/p&gt;
+
+&lt;h3 id=&#34;美食爱好者-吃货&#34;&gt;美食爱好者（吃货）&lt;/h3&gt;
+
+&lt;p&gt;我是一个美食爱好者（吃货）。本人自出生以来就喜欢吃，喜欢吃肉，喜欢吃甜食，绝对的 &lt;strong&gt;&lt;em&gt;资深吃货&lt;/em&gt;&lt;/strong&gt; 。出去旅游必去的是小吃街：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在西安吃过泡馍（包括小炒泡馍，牛羊肉泡馍，葫芦头泡馍&amp;hellip;）、葫芦鸡、定家小酥肉、贾三灌汤包、水盆羊肉、胡辣汤、葱油饼、凉皮、肉夹馍、油糕、柿饼、甑糕、各种面食&amp;hellip;&amp;hellip; 感觉可以发一个长帖了 &lt;strong&gt;“论在西安的吃喝四年（读大学）”&lt;/strong&gt; 。&lt;/li&gt;
+&lt;li&gt;在兰州吃过灰豆、牛肉饼、甜蓓子、酿皮、牛肉面，都好吃，不过甜蓓子吃了不少，火车上我肚子胀的跟小皮球儿似的，难道在我肚子里发酵了&lt;/li&gt;
+&lt;li&gt;在天水吃过荞面凉粉、天水呱呱，不过个人不太喜欢，在天水吃的最好吃的竟然是永和豆浆的红烧肉盖饭&lt;/li&gt;
+&lt;li&gt;在洛阳吃过丸子汤，汤是牛肉汤，丸子焦酥，美味极了&lt;/li&gt;
+&lt;li&gt;在邢台吃过石头饼，很好吃&lt;/li&gt;
+&lt;li&gt;在长沙吃过小龙虾、辣椒炒肉、带皮羊肉、卜豆角炒肉、卜辣椒炒肉、梅干菜扣肉饼、糖油粑粑、葱油粑粑、臭豆腐&amp;hellip;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;在我老家，要说好吃的，我强烈推荐五香流油烤鸭蛋和小鱼咸菜加贴饼&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;生活在一个地方，最喜欢逛的是菜市场和超市，在西安，我认识了火晶小柿子，认识了拐枣，认识了秦椒&amp;hellip; 在长沙认识了花生芽、擂辣椒、卜豆角、卜辣椒、凉薯、红菜苔、白菜苔、腊鱼腊肉和腊肠&amp;hellip; 在北京好像更国际一些，五道口的帝玛进口超市，认识了更多西餐使用的罗勒酱、迷迭香、鱼露、各种果醋、日本酱油、小洋葱&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;对于吃，我还有个小癖好，那就是收集老菜谱，那些破烂的、发黄的、散发着陈年油墨味的老菜谱，就是我的收集对象了。目前我也收集了十几本老菜谱了，包括六十年代、七十年代、八十年代、九十年代，也有手写油印版的，也许研究他们就是我老了以后的主要工作了。&lt;/p&gt;
+
+&lt;p&gt;在北京，一个不大的出租屋里，我却置办了很多炊具，想吃炒菜买了炒锅，想吃米饭和粥买了电饭锅，想吃粉蒸肉买了电蒸锅，想吃鸡蛋饼买了电饼铛，想吃红烧肉买了电压力锅，想喝豆浆买了豆浆机，想吃烤肉买了烤箱，不知道下一个我要买的会是什么。&lt;/p&gt;
+
+&lt;h3 id=&#34;台球爱好者&#34;&gt;台球爱好者&lt;/h3&gt;
+
+&lt;p&gt;我是一个台球爱好者。说到台球，不得不讲我大学期间的三个目标， &lt;strong&gt;“爱上一座城市 爱上一个人 爱上一项运动”&lt;/strong&gt; ，完成这三个目标的大学生活才是圆满的。如果单从一项运动来讲，没有比在悠哉的大学生活时期去培养更适合了，我已经充分感受到了工作中的忙碌，很难有足够的时间和精力去认真学习一项运动，比如台球。&lt;/p&gt;
+
+&lt;p&gt;我是从大三开始打台球的，那时候找来教学视频，一点点学起，包括手架、握杆、站位、瞄点、发力&amp;hellip;&amp;hellip; 不得不说，台球技巧性很强的，要想学好需要花费不少的时间和精力。我之前看的教学视频是庞卫国老师的，不过是斯诺克教学视频，本人也很喜欢庞卫国老师的解说，尤其是和主持人姜毅搭档。现在教学视频也多了，可以看看前斯诺克职业球手刘松的，还有新锐台球教练王桁的，也可以关注他们的公众号。以前看直播是在星期五台球网，现在有中国体育直播APP方便了，基本所有赛事都有直播，包括八球和斯诺克，而且一般的斯诺克赛事刘松都会主播，刘教练划线很准的。顺便说一句，我的球杆就是野豹中国体育定制款的，千元球杆，打感还可以。&lt;/p&gt;
+
+&lt;p&gt;我平时斯诺克比赛看的多一些，八球比赛很少看，喜欢的球员当然是火老师，打球那叫一个行云流水，还有墨菲，喜欢他打球的节奏，还有中国一哥丁俊晖，喜欢的八球球员就是二宝郑宇伯，打球就两个字 &lt;strong&gt;“痛快”&lt;/strong&gt; 。近年来国内台球很热，好多年轻小将涌现，进入斯诺克职业赛了，比如颜丙涛、周跃龙、袁思俊、赵心童、雷佩凡、斯佳辉&amp;hellip; 斯佳辉是刘松教练的徒弟，雷佩凡是陕西安康人，我室友也是安康人，还记得大二时跟他回家玩，去球厅看到小小的雷佩凡一个人在练球，那年他十一岁，如今也是职业球手了。今年的世界斯诺克中国公开赛在北京国家奥林匹克体育中心体育馆举行，我终于圆了自己一个梦想，看了一次现场斯诺克比赛，前几轮比赛的票价很便宜，毕竟斯诺克是小众运动，我买了99元票坐到了199的位置，还记得当时包括我只有两个观众看了布雷切尔的比赛，下半场我就偷偷溜到二号台，看了马叔两杆破败一杆50+，不过没坚持到比赛结束，太晚了就回家了。斯诺克的票价真的不贵，你可见过黄牛票都打折。在北京的朋友可以看一看中国公开赛，一般举行时间是4月1日到4月7日。&lt;/p&gt;
+
+&lt;p&gt;再来说一说为什么喜欢台球。首先台球是一项绅士运动，不像足球篮球碰撞性那么强，我怕把别人撞坏了，更怕别人把我撞坏了。打台球最让人极致舒适的不是一杆进洞，而是一杆进洞的同时伴随着漂亮的走位，对白球的控制才是让人最爽的。打台球真正的敌人不是对手，而是自己，你需要的是自己的完美发挥。打台球像一场博弈，有进攻，有防守，有思考，有抉择，不仅需要娴熟的技艺，还需要沉着冷静的头脑。打台球更像是解决一道难题，目标就是一杆致胜，但达到目标需要解决一路障碍。我们看下图的球形，开球后9号球落袋，白球位置不太好打全色球，所以击打15号选定花色球，同时白球K停5号，这样12号和14号左下袋口进球线路打开，同时叫到11号左上袋口，击打11号时根据白球角度可以选择轻K12号，也可以单叫10号，打完10号可以顺势解决12号和14号，最后通过13号叫8号球，完成清台。当然这是A计划，如果击球过程中走位出现失误，那就要执行B计划了（防守）。找一个安全的位置，最好对手看不到目标球，其次是无进球线路，在其次是进球难度高的位置，贴库位置是个不错的选择，配合自己的球形大脑里快速评估一下防守成功率，然后进行方案决策以及实施。可是如果对手有袋口球，让你无处可防怎么办，此时要么破坏袋口球的同时白球走一个相对安全位置，要么将对手某目标球锁死，比如赌袋口，实在不行就大捅一杆，洗洗牌，也许会出现对自己有利的球形哦。总之，B计划的宗旨就一个，增加对手清台难度，一杆打不死我，老子就有机会上来收拾你。怎么样，也许看到这里你也喜欢上了台球。&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;900&#34; src=&#34;https://cao-arvin.github.io/image/about/ball.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; 台球 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;我喜欢的&#34;&gt;我喜欢的&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;节目
+
+&lt;ul&gt;
+&lt;li&gt;强烈推荐优酷的 &lt;strong&gt;《圆桌派》&lt;/strong&gt; ，这是一个聊天节目，一个圆桌，一个话题，一炉焚香，四位嘉宾开始畅谈，各自表述观点和想法，作为听众有时也会陷入深思，不知不觉融入其中。圆桌派的话题涉及很广，有发人深省的，也有幽默风趣的，最主要的是全部贴近生活。最喜欢的是陈晓卿参加的那期 &lt;strong&gt;“饭局”&lt;/strong&gt; 。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;音乐和歌手
+
+&lt;ul&gt;
+&lt;li&gt;郑钧：私奔、赤裸裸&lt;/li&gt;
+&lt;li&gt;李志：天空之城、梵高、和你在一起、不多&lt;/li&gt;
+&lt;li&gt;伍佰：再度重相逢、晚风&lt;/li&gt;
+&lt;li&gt;吴宁越：羊肉面&lt;/li&gt;
+&lt;li&gt;马条：阳光中的向日葵&lt;/li&gt;
+&lt;li&gt;赵雷：鼓楼&lt;/li&gt;
+&lt;li&gt;奇葩的歌：少林奥运、李伯伯、罗马表、我想我想&amp;hellip;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;最近听的：Chris Stapleton的Tennessee Whiskey、北野武的浅草キッド、John Lennon的Imagine、老王乐队的我还年轻、杨学的泸沽湖、鱼大叔的后来的我、丢火车的火车日记、莫染的给英格兰友人、房东的猫的下一站茶山刘&amp;hellip;&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;喜欢的电影
+
+&lt;ul&gt;
+&lt;li&gt;我喜欢看轻松娱乐类的电影，比如无名之辈、情圣、人在囧途、让子弹飞&amp;hellip;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;严重抵触悬疑惊悚类，天生胆小&lt;/li&gt;
+&lt;li&gt;有点喜欢战争类，非神剧，比如天空之眼、狂怒、猎杀红色十月、拆弹部队、美国狙击手、孤独的幸存者、兵临城下&amp;hellip;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;不怎么看电视剧，感觉没时间追剧&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;关于本博客&#34;&gt;关于本博客&lt;/h2&gt;
+
+&lt;h3 id=&#34;本博客主要内容&#34;&gt;本博客主要内容&lt;/h3&gt;
+
+&lt;p&gt;本博客主要是总结一些工作中的技术经验，以及记录生活中的一些点点滴滴。&lt;/p&gt;
+
+&lt;h3 id=&#34;本博客名字由来&#34;&gt;本博客名字由来&lt;/h3&gt;
+
+&lt;p&gt;我始终坚持一句话， &lt;strong&gt;&lt;em&gt;“第一次问过或查过的问题，就应该记下来；第二次再问或再查的问题，就必须记下来。”&lt;/em&gt;&lt;/strong&gt; 既然没有强大的大脑，那就多动动手，记录下来，正所谓好记性不如烂笔头，本博客就是我的 &lt;strong&gt;烂笔头&lt;/strong&gt; 。&lt;/p&gt;
+
+&lt;h3 id=&#34;本博客创建过程&#34;&gt;本博客创建过程&lt;/h3&gt;
+
+&lt;p&gt;实际上整个过程是这样的，最初自己只做一些工程上的笔记，使用工具就是word了；后来熟悉了emacs的org mode，开始用org来记笔记，可以导出html文件用浏览器查看；再后来从emacs china论坛中发现有人开发了基于org的笔记管理系统，但是已经不再维护了，所以只是简单了解了一下；接下来仍一直在寻找一种笔记管理方法，网上有人推荐了hexo，一个博客站点生成器，折腾了一段时间，从安装hexo工具到配置主题就要晕死了；在折腾hexo的过程中又发现了hugo博客站点生成器，免安装，还有天然支持org转markdown的插件，简直太舒服了。使用emacs和hugo构建自己的博客，目前对我来说是最舒服的方式没有之一。整个过程是不是很曲折，如果你看到这里，推荐你直接使用hugo搭建自己的博客站点，非emacs用户的话可以直接书写markdown文件，顺便推荐一款markdown编辑器 &lt;strong&gt;Typora&lt;/strong&gt; 。这里就不对如何使用hugo搭建自己的博客站点进行介绍了，有单独的一篇帖子介绍详细的搭建过程。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+  </channel>
+</rss>
