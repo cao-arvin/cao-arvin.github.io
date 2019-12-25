@@ -3,49 +3,49 @@
   
   <url>
     <loc>https://wenhui.space/categories/</loc>
-    <lastmod>2019-12-25T17:23:11+08:00</lastmod>
+    <lastmod>2019-12-25T17:33:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/hugo/</loc>
-    <lastmod>2019-12-25T17:23:11+08:00</lastmod>
+    <lastmod>2019-12-25T17:33:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/create_blog_site/hugo_usage/</loc>
+    <lastmod>2019-12-25T17:33:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/</loc>
-    <lastmod>2019-12-25T17:23:11+08:00</lastmod>
+    <lastmod>2019-12-25T17:33:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/</loc>
-    <lastmod>2019-12-25T17:23:11+08:00</lastmod>
+    <lastmod>2019-12-25T17:33:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/</loc>
-    <lastmod>2019-12-25T17:23:11+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/post/create_blog_site/install_and_use_hugo/</loc>
-    <lastmod>2019-12-25T17:23:11+08:00</lastmod>
+    <lastmod>2019-12-25T17:33:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9/</loc>
-    <lastmod>2019-12-25T17:23:11+08:00</lastmod>
+    <lastmod>2019-12-25T17:33:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
