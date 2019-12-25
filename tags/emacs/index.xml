@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>emacs on Wenhui&#39;s Rotten Pen</title>
-    <link>https://cao-arvin.github.io/blog/tags/emacs/</link>
+    <link>https://wenhui.space/tags/emacs/</link>
     <description>Recent content in emacs on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 19 Oct 2019 10:15:00 +0800</lastBuildDate>
     
-	<atom:link href="https://cao-arvin.github.io/blog/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://wenhui.space/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>emacs的安装</title>
-      <link>https://cao-arvin.github.io/blog/post/work_platform/install_emacs/</link>
+      <link>https://wenhui.space/post/work_platform/install_emacs/</link>
       <pubDate>Sat, 19 Oct 2019 10:15:00 +0800</pubDate>
       
-      <guid>https://cao-arvin.github.io/blog/post/work_platform/install_emacs/</guid>
+      <guid>https://wenhui.space/post/work_platform/install_emacs/</guid>
       <description>本文 主要介绍emacs和记录emacs的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本： Linux GNU Emacs 26.3 什么是ema</description>
     </item>
     

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hugo on Wenhui&#39;s Rotten Pen</title>
-    <link>https://wenhui.space/tags/hugo/</link>
-    <description>Recent content in hugo on Wenhui&#39;s Rotten Pen</description>
+    <title>搭建博客站点 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9/</link>
+    <description>Recent content in 搭建博客站点 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 23 Dec 2019 19:22:00 +0800</lastBuildDate>
     
-	<atom:link href="https://wenhui.space/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://wenhui.space/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://wenhui.space/post/create_blog_site/install_and_use_hugo/</guid>
       <description>本文 主要介绍了如何下载和使用hugo。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 hugo官网 hugo中文文</description>
-    </item>
-    
-    <item>
-      <title>hugo的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_hugo/</link>
-      <pubDate>Mon, 23 Dec 2019 15:54:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_hugo/</guid>
-      <description>本文 主要介绍hugo和记录hugo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 Hugo中文文档 什</description>
     </item>
     
   </channel>
