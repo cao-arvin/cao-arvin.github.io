@@ -38,5 +38,14 @@
       <description>本文 主要介绍了如何下载和使用hugo。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 hugo官网 hugo中文文</description>
     </item>
     
+    <item>
+      <title>hugo的安装</title>
+      <link>https://wenhui.space/post/work_platform/install_hugo/</link>
+      <pubDate>Mon, 23 Dec 2019 15:54:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/install_hugo/</guid>
+      <description>本文 主要介绍hugo和记录hugo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 Hugo中文文档 什</description>
+    </item>
+    
   </channel>
 </rss>

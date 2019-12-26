@@ -3,112 +3,231 @@
   
   <url>
     <loc>https://wenhui.space/categories/</loc>
-    <lastmod>2019-12-26T20:24:04+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/markdown/</loc>
-    <lastmod>2019-12-26T20:14:52+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/create_blog_site/markdown/</loc>
-    <lastmod>2019-12-26T20:14:52+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/</loc>
-    <lastmod>2019-12-26T20:24:04+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/</loc>
-    <lastmod>2019-12-26T20:24:04+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/</loc>
-    <lastmod>2019-12-26T20:24:04+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9/</loc>
-    <lastmod>2019-12-26T20:24:04+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/hugo/</loc>
-    <lastmod>2019-12-26T20:24:04+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/create_blog_site/hugo_content_tips/</loc>
-    <lastmod>2019-12-26T17:49:37+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/create_blog_site/hugo_deploy_to_github/</loc>
-    <lastmod>2019-12-26T20:24:04+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/create_blog_site/hugo_usage/</loc>
-    <lastmod>2019-12-26T17:47:17+08:00</lastmod>
+    <lastmod>2019-12-26T20:34:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://wenhui.space/tags/git/</loc>
-    <lastmod>2019-12-26T17:52:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/post/work_platform/install_git/</loc>
-    <lastmod>2019-12-26T17:52:30+08:00</lastmod>
+    <loc>https://wenhui.space/post/work_platform/install_hugo/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/categories/%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0/</loc>
-    <lastmod>2019-12-26T17:52:30+08:00</lastmod>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
-    <lastmod>2019-12-26T17:52:30+08:00</lastmod>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2019-12-26T17:52:30+08:00</lastmod>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/picgo/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/work_platform/install_picgo/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/deepin/</loc>
+    <lastmod>2019-12-26T20:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/categories/%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2019-12-26T20:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</loc>
+    <lastmod>2019-12-26T20:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/links/</loc>
+    <lastmod>2019-12-26T20:34:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/firefox/</loc>
+    <lastmod>2019-12-26T20:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/other_tools_tips/install_flash_player_for_firefox/</loc>
+    <lastmod>2019-12-26T20:33:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/goldendict/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/work_platform/install_goldendict/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/work_platform/install_firefox/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/git/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/work_platform/install_git/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/emacs/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/work_platform/install_emacs/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/work_platform/install_deepin_os/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/work_platform/thinkpad_s2/</loc>
+    <lastmod>2019-12-26T20:33:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/about/</loc>
+    <lastmod>2019-12-26T20:34:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
