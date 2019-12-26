@@ -6,10 +6,19 @@
     <description>Recent content in 搭建博客站点 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 25 Dec 2019 22:15:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Dec 2019 21:38:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>给自己的博客自定义域名</title>
+      <link>https://wenhui.space/post/create_blog_site/modify_url_for_blog/</link>
+      <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/create_blog_site/modify_url_for_blog/</guid>
+      <description>本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来自阿里云的域名 个人独立博客如何与阿</description>
+    </item>
     
     <item>
       <title>markdown语法</title>

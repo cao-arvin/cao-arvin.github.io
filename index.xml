@@ -6,10 +6,112 @@
     <description>Recent content on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 25 Dec 2019 22:15:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Dec 2019 21:38:00 +0800</lastBuildDate>
     
         <atom:link href="https://wenhui.space/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>给自己的博客自定义域名</title>
+      <link>https://wenhui.space/post/create_blog_site/modify_url_for_blog/</link>
+      <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/create_blog_site/modify_url_for_blog/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍如何为自己的博客自定义域名。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;需要购买域名，我使用的是阿里云&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/qq%5F29232943/article/details/52786603&#34;&gt;GitHub Pages 绑定来自阿里云的域名&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/qq%5F37210523/article/details/81190296&#34;&gt;个人独立博客如何与阿里云域名绑定&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;准备域名&#34;&gt;准备域名&lt;/h2&gt;
+
+&lt;h3 id=&#34;购买域名&#34;&gt;购买域名&lt;/h3&gt;
+
+&lt;p&gt;点击进入&lt;a href=&#34;https://wanwang.aliyun.com/?spm=5176.12825654.eofdhaal5.9.3dbd2c4a7YMe8c&amp;amp;aly%5Fas=UyMWv9je&#34;&gt;阿里云域名注册&lt;/a&gt;页面，选择自己喜欢的域名，点击查询，看一下是否被注册以及售价，我使用的是 &lt;strong&gt;&lt;em&gt;wenhui.space&lt;/em&gt;&lt;/strong&gt; ，售价十年179元，还可以。当然购买之前要先登录账户，这里使用支付宝登录即可，登录后需要实名认证，可以选择支付宝快速完成实名认证。选择心仪的域名，进行购买。&lt;/p&gt;
+
+&lt;h3 id=&#34;完成域名持有者认证&#34;&gt;完成域名持有者认证&lt;/h3&gt;
+
+&lt;p&gt;需要上传个人身份证正面照片，提交认证，一般当天可以认证完成。&lt;/p&gt;
+
+&lt;h2 id=&#34;域名解析&#34;&gt;域名解析&lt;/h2&gt;
+
+&lt;h3 id=&#34;找到github-page的ip地址&#34;&gt;找到github page的IP地址&lt;/h3&gt;
+
+&lt;p&gt;需要ping一下自己的github page网址，如下图，红色部分就是IP地址。
+&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/create-blog-site/github-ip.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; ping github IP &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;配置阿里云域名解析&#34;&gt;配置阿里云域名解析&lt;/h3&gt;
+
+&lt;p&gt;登录你的阿里云账号,进入管理控制台,在左侧菜单找到 域名与网站(万网), 然后进入你的阿里云的解析域名列表，选择你想要解析的域名，点击后面的解析。输入如下图内容：
+&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/create-blog-site/aliyun1.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; ping github IP &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+说明：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;记录类型
+
+&lt;ul&gt;
+&lt;li&gt;A记录： 将域名指向一个IPv4地址（例如：8.8.8.8）&lt;/li&gt;
+&lt;li&gt;CNAME：将域名指向另一个域名（例如www.qcloud.com）&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;主机记录
+
+&lt;ul&gt;
+&lt;li&gt;www： 解析后的域名为www.qcloud.com。&lt;/li&gt;
+&lt;li&gt;@： 直接解析主域名 qcloud.com。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;配置github-pages的custom-domain&#34;&gt;配置github pages的custom domain&lt;/h2&gt;
+
+&lt;p&gt;进入你的github pages的仓库，然后在设置里面将的你的域名的地址，添加到custom domain中，然后保存即可。如下图所示：
+&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/create-blog-site/github2.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+设置到这里,你就可以 通过你的域名访问你的博客啦!(可以适当等几分钟再使用新的网址访问自己的博客)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>markdown语法</title>
@@ -320,6 +422,8 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;这里显示的是插入本地图片，图片位置放在博客站点根目录下的static文件内，上文所示路径对应文件存放路径为 &lt;strong&gt;&lt;em&gt;“my_blog/static/image/me.jpg”&lt;/em&gt;&lt;/strong&gt; ，这里可以对图片大小，显示位置，图片标题进行设置。也可以将相对路径改为网址全路径，也就是引用网上图片，这时候需要图床工具，PicGo是一个不错的选择，可参考我的另一篇帖子&lt;a href=&#34;https://www.wenhui.space/post/work%5Fplatform/install%5Fpicgo/&#34;&gt;PicGo的安装&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注意：static目录下的所有文件名不要使用下划线，否则会导致图片索引错误，可以使用 &amp;ldquo;-&amp;rdquo; 连字符。&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
 
