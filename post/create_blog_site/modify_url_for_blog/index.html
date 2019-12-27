@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="文辉" />
-  <meta name="description" content="本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来自阿里云的域名 个人独立博客如何与阿" />
+  <meta name="description" content="本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 0.2 解决push后自定义域名失效问题 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来" />
 
   <meta name="keywords" content="Hugo, linux, emacs, CPU" />
 
@@ -60,25 +60,25 @@
 
 
 <meta property="og:title" content="给自己的博客自定义域名" />
-<meta property="og:description" content="本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来自阿里云的域名 个人独立博客如何与阿" />
+<meta property="og:description" content="本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 0.2 解决push后自定义域名失效问题 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wenhui.space/post/create_blog_site/modify_url_for_blog/" />
 <meta property="article:published_time" content="2019-12-26T21:38:00+08:00" />
-<meta property="article:modified_time" content="2019-12-26T22:53:22+08:00" />
+<meta property="article:modified_time" content="2019-12-27T17:57:14+08:00" />
 <meta itemprop="name" content="给自己的博客自定义域名">
-<meta itemprop="description" content="本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来自阿里云的域名 个人独立博客如何与阿">
+<meta itemprop="description" content="本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 0.2 解决push后自定义域名失效问题 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来">
 
 
 <meta itemprop="datePublished" content="2019-12-26T21:38:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-26T22:53:22&#43;08:00" />
-<meta itemprop="wordCount" content="699">
+<meta itemprop="dateModified" content="2019-12-27T17:57:14&#43;08:00" />
+<meta itemprop="wordCount" content="947">
 
 
 
 <meta itemprop="keywords" content="hugo," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="给自己的博客自定义域名"/>
-<meta name="twitter:description" content="本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来自阿里云的域名 个人独立博客如何与阿"/>
+<meta name="twitter:description" content="本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 0.2 解决push后自定义域名失效问题 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -344,7 +344,7 @@
             <a href="https://wenhui.space/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9/"> 搭建博客站点 </a>
             
           </div>
-        <span class="more-meta"> 约 699 字 </span>
+        <span class="more-meta"> 约 947 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -378,6 +378,7 @@
 <li><a href="#配置阿里云域名解析">配置阿里云域名解析</a></li>
 </ul></li>
 <li><a href="#配置github-pages的custom-domain">配置github pages的custom domain</a></li>
+<li><a href="#解决push后自定义域名失效问题">解决push后自定义域名失效问题</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -404,6 +405,11 @@
 <tr>
 <td>0.1</td>
 <td>初版发布</td>
+</tr>
+
+<tr>
+<td>0.2</td>
+<td>解决push后自定义域名失效问题</td>
 </tr>
 </tbody>
 </table>
@@ -474,6 +480,59 @@
 </center>
 设置到这里,你就可以 通过你的域名访问你的博客啦!(可以适当等几分钟再使用新的网址访问自己的博客)</p>
 
+<h2 id="解决push后自定义域名失效问题">解决push后自定义域名失效问题</h2>
+
+<p>自定义域名失效是因为仓库中没有CNAME文件，该文件是指向你自定义域名的文件。</p>
+
+<ul>
+<li>创建CNAME文件，打开终端，进入开启github page的仓库，输入以下命令（替换为你自己的域名）：</li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> www.wenhui.space &gt;CNAME</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>将其上传到远程仓库，输入以下命令：</li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git add CNAME
+git commit -m <span class="s2">&#34;add CNAME file&#34;</span>
+git push -u origin +master</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>创建.gitignore文件并上传到远程仓库，目的是在通过issue.sh脚本上传public文件时，不会修改CNAME，命令如下：</li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> CNAME &gt;&gt;.gitignore
+git add CNAME
+git commit -m <span class="s2">&#34;add CNAME file&#34;</span>
+git push -u origin +master</code></pre></td></tr></table>
+</div>
+</div>
 <hr />
 
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
@@ -490,7 +549,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2019-12-26
+      2019-12-27
       
     </span>
   </p>

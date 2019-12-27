@@ -6,7 +6,7 @@
     <description>Recent content in emacs on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 26 Dec 2019 21:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Dec 2019 17:55:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>使用org-mode和ox-hugo写博客</title>
       <link>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</link>
-      <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
+      <pubDate>Fri, 27 Dec 2019 17:55:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</guid>
       <description>本文 主要介绍如何使用org-mode和ox-hugo写博客。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 emac</description>
