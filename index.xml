@@ -437,7 +437,7 @@
 hugo
 rm -rf ../cao-arvin.github.io/*
 mv ./public/* ../cao-arvin.github.io/
-mv ./CNAME ../cao-arvin.github.io/
+cp ./CNAME ../cao-arvin.github.io/
 rm -rf ./public
 &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ../cao-arvin.github.io/
 git add .
