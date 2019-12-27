@@ -722,7 +722,7 @@
     <item>
       <title>将hugo博客部署到github</title>
       <link>https://wenhui.space/post/create_blog_site/hugo_deploy_to_github/</link>
-      <pubDate>Mon, 23 Dec 2019 20:22:00 +0800</pubDate>
+      <pubDate>Mon, 23 Dec 2019 20:05:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/create_blog_site/hugo_deploy_to_github/</guid>
       
@@ -744,6 +744,11 @@
 &lt;tr&gt;
 &lt;td&gt;0.1&lt;/td&gt;
 &lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;修改issue.sh脚本&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -849,7 +854,7 @@ rm -rf ./public
 &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ../cao-arvin.github.io/
 git add .
 git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;rebuilding site &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-git push
+git push -u origin +master
 &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; -&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
