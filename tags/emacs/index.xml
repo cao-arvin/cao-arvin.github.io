@@ -6,15 +6,24 @@
     <description>Recent content in emacs on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 26 Oct 2019 16:15:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Dec 2019 21:38:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>使用org-mode和ox-hugo写博客</title>
+      <link>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</link>
+      <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</guid>
+      <description>本文 主要介绍如何使用org-mode和ox-hugo写博客。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 emac</description>
+    </item>
+    
+    <item>
       <title>emacs的安装</title>
       <link>https://wenhui.space/post/work_platform/install_emacs/</link>
-      <pubDate>Sat, 26 Oct 2019 16:15:00 +0800</pubDate>
+      <pubDate>Sat, 19 Oct 2019 16:15:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_emacs/</guid>
       <description>本文 主要介绍emacs和记录emacs的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本： Linux GNU Emacs 26.3 什么是ema</description>

@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>使用org-mode和ox-hugo写博客</title>
+      <link>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</link>
+      <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</guid>
+      <description>本文 主要介绍如何使用org-mode和ox-hugo写博客。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 emac</description>
+    </item>
+    
+    <item>
       <title>给自己的博客自定义域名</title>
       <link>https://wenhui.space/post/create_blog_site/modify_url_for_blog/</link>
       <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
@@ -50,7 +59,7 @@
     <item>
       <title>hugo的安装</title>
       <link>https://wenhui.space/post/work_platform/install_hugo/</link>
-      <pubDate>Mon, 23 Dec 2019 15:54:00 +0800</pubDate>
+      <pubDate>Sat, 23 Nov 2019 15:54:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_hugo/</guid>
       <description>本文 主要介绍hugo和记录hugo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 Hugo中文文档 什</description>

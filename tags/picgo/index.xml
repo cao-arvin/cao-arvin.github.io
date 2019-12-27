@@ -6,7 +6,7 @@
     <description>Recent content in picgo on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 23 Dec 2019 13:18:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Nov 2019 13:18:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/picgo/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>PicGo的安装</title>
       <link>https://wenhui.space/post/work_platform/install_picgo/</link>
-      <pubDate>Mon, 23 Dec 2019 13:18:00 +0800</pubDate>
+      <pubDate>Sat, 16 Nov 2019 13:18:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_picgo/</guid>
       <description>本文 主要介绍图床工具PicGo和记录PicGo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 PicGo版本： picgo-2.1.2-x86_64.AppImage 参考 在Li</description>

@@ -12,6 +12,289 @@
     
     
     <item>
+      <title>使用org-mode和ox-hugo写博客</title>
+      <link>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</link>
+      <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍如何使用org-mode和ox-hugo写博客。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;hugo版本： hugo 0.58&lt;/li&gt;
+&lt;li&gt;emacs版本：Linux GNU Emacs 26.3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://ox-hugo.scripter.co/doc/org-meta-data-to-hugo-front-matter/&#34;&gt;ox-hugo的使用手册&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ox-hugo.scripter.co/&#34;&gt;Org to Markdown for Hugo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/hooyying/article/details/84576840&#34;&gt;使用emacs中的包管理器安装插件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;声明&#34;&gt;声明&lt;/h2&gt;
+
+&lt;p&gt;当你看到此帖子，我必须要声明一下，如果你是非emacs用户，并不强烈推荐你使用emacs org-mode来写博客，除非你有足够的兴趣了解和学习emacs。&lt;/p&gt;
+
+&lt;h2 id=&#34;什么是org-mode-什么是ox-hugo&#34;&gt;什么是org-mode？什么是ox-hugo？&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;org-mode是文本编辑软件Emacs的一种支持内容分级显示的编辑模式，是一个基于快速高效的文本方式来实现做笔记、管理待办事项（TODO list）以及做项目计划的模式。本人使用感受最好的就是大纲显示模式。&lt;/li&gt;
+&lt;li&gt;ox-hugo是emacs的一个插件，可以将org格式文件转换为hugo识别的markdown格式文件。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;安装emacs和安装ox-hugo插件&#34;&gt;安装emacs和安装ox-hugo插件&lt;/h2&gt;
+
+&lt;p&gt;安装emacs就不介绍了，可参考我的另一篇帖子 &lt;a href=&#34;https://www.wenhui.space/post/work%5Fplatform/install%5Femacs/&#34;&gt;emacs的安装&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;这里主要介绍一下如何安装ox-hugo插件。给emacs安装插件可以使用emacs的包管理器，首先添加以下代码到.emacs中（或.emacs.d/init.el），然后 &lt;strong&gt;“M-x package-list-packages”&lt;/strong&gt; （初学者可能不知道什么意思，那你就需要了解了解emacs了， M就是Alt键，打开emacs，敲击组合键 &lt;strong&gt;Alt+x&lt;/strong&gt; ，启动命令窗口，然后输入命令“package-list-packages”（tab键可以补全）），接下来你会看到所有插件的列表，找到“ox-hugo”，可以点击，然后根据提示下载安装，也可以使用快捷键操作，如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;i ： 选择要安装的包&lt;/li&gt;
+&lt;li&gt;d ： 选择要删除的包&lt;/li&gt;
+&lt;li&gt;U ： 升级已安装的包&lt;/li&gt;
+&lt;li&gt;x ： 执行操作&lt;/li&gt;
+&lt;li&gt;d ： 选择要删除的包&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;package&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-to-list&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;package-archives&lt;/span&gt;
+             &lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;melpa&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;http://melpa.milkbox.net/packages/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;package-initialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;emacs的基础使用&#34;&gt;emacs的基础使用&lt;/h2&gt;
+
+&lt;p&gt;emacs的使用可以简单了解一下emacs启动页面的使用手册，简单了解就可以上手了。这里把最基础的使用粘贴出来。&lt;/p&gt;
+
+&lt;p&gt;Emacs的快捷键都是绑定在ctrl和alt上的，例如C-x就是ctrl+x，M-x就是alt+x。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;文件操作
+
+&lt;ul&gt;
+&lt;li&gt;C-x C-f 打开文件&lt;/li&gt;
+&lt;li&gt;C-x C-s 保存文件&lt;/li&gt;
+&lt;li&gt;C-x C-c 退出Emacs&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;编辑操作
+
+&lt;ul&gt;
+&lt;li&gt;C-f 前进一个字符（方向键也可以）&lt;/li&gt;
+&lt;li&gt;C-b 后退一个字符（方向键也可以）&lt;/li&gt;
+&lt;li&gt;C-a 移到行首&lt;/li&gt;
+&lt;li&gt;C-e 移到行尾&lt;/li&gt;
+&lt;li&gt;C-p 后退一行（方向键也可以）&lt;/li&gt;
+&lt;li&gt;C-n 前进一行（方向键也可以）&lt;/li&gt;
+&lt;li&gt;M-g M-g 跳到指定行&lt;/li&gt;
+&lt;li&gt;M-&amp;lt; 文档头部（配合Shift键）&lt;/li&gt;
+&lt;li&gt;M-&amp;gt; 文档尾部（配合Shift键）&lt;/li&gt;
+&lt;li&gt;C-d 删除一个字符（delete键也可以）&lt;/li&gt;
+&lt;li&gt;C-k 删除一行&lt;/li&gt;
+&lt;li&gt;C-Shift-空格 标记开始区域&lt;/li&gt;
+&lt;li&gt;C-w 删除标记区域&lt;/li&gt;
+&lt;li&gt;C-y 粘贴删除的内容，注意：C-y可以粘贴连续C-k删除的内容；先按C-y，然后按M-y可以选择粘贴被删除的内容&lt;/li&gt;
+&lt;li&gt;M-w 复制标记区域&lt;/li&gt;
+&lt;li&gt;C-/ or C-x u 撤消操作&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;窗口操作
+
+&lt;ul&gt;
+&lt;li&gt;C-x 0 关闭本窗口&lt;/li&gt;
+&lt;li&gt;C-x 1 只留下一个窗口&lt;/li&gt;
+&lt;li&gt;C-x 2 垂直均分窗口&lt;/li&gt;
+&lt;li&gt;C-x 3 水平均分窗口&lt;/li&gt;
+&lt;li&gt;C-x o 切换到别的窗口&lt;/li&gt;
+&lt;li&gt;C-x s 保存所有窗口的缓冲&lt;/li&gt;
+&lt;li&gt;C-x b 选择当前窗口的缓冲区&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;缓冲区列表操作
+
+&lt;ul&gt;
+&lt;li&gt;C-x C-b 打开缓冲区列表&lt;/li&gt;
+&lt;li&gt;C-x k 关闭缓冲区&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;搜索模式
+
+&lt;ul&gt;
+&lt;li&gt;C-s 向前搜索&lt;/li&gt;
+&lt;li&gt;C-s 查找下一个&lt;/li&gt;
+&lt;li&gt;ENTER 停止搜索&lt;/li&gt;
+&lt;li&gt;C-r 反向搜索&lt;/li&gt;
+&lt;li&gt;C-s C-w 以光标所在位置的字为关键字搜索&lt;/li&gt;
+&lt;li&gt;M-% (配合Shift键) 替换， 输入y表示同意此处替换，否则输入n，全部替换使用！&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;帮助
+
+&lt;ul&gt;
+&lt;li&gt;C-h t 入门指南&lt;/li&gt;
+&lt;li&gt;C-h ? 查看帮助列表&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;org-mode和ox-hugo写博客&#34;&gt;org-mode和ox-hugo写博客&lt;/h2&gt;
+
+&lt;p&gt;ox-hugo 支持两种方式来管理 org 格式的博客文章，一种是多个文章放在同一个 org 文件里，另一种是对不同的文章使用独立的 org 文件。本人喜欢第一种方式，我会将同一类的博客文章放在同一个org文件来管理。如下：
+&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/emacs/emacs2.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; emacs org mode &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;文件头部说明&#34;&gt;文件头部说明&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HUGO_BASE_DIR：这里是博客的根目录，因为我的org文件放在博客根目录下的 &lt;strong&gt;orgposts&lt;/strong&gt; ，所以这里博客的根目录就是 &lt;strong&gt;“../”&lt;/strong&gt; ，也就是本目录的上一层目录&lt;/li&gt;
+&lt;li&gt;HUGO_SECTION：生成的markdown文件的位置，比如 &lt;strong&gt;“./post/create_blog_site/”&lt;/strong&gt; 就会将markdown文件生成在博客根目录下的 &lt;strong&gt;“content/post/create_blog_site/”&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;hugo_auto_set_lastmod：最后修改的时间，也就是org转markdown时的时间，t的话会自动生成，也可以选择f，这个时间在jane主题也就是文章末的最后更新时间&lt;/li&gt;
+&lt;li&gt;hugo_custom_front_matter：这里是markdown文件头部参数的设置，比如toc，是否开启目录，不开启的话浏览时无目录显示，为了阅读方便建议开启&lt;/li&gt;
+&lt;li&gt;hugo_categories：分类名称，我是将同一类博客放在了一个org文件，这里就是分类名，然后每个subtree就是一个博客，会生成一个markdown文件&lt;/li&gt;
+&lt;li&gt;author:nil：这里是作者名称，在hugo的配置文件中已经配置了作者名称，这里将作者名称的控制关掉&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-org&#34; data-lang=&#34;org&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-org&#34; data-lang=&#34;org&#34;&gt;&lt;span class=&#34;cs&#34;&gt;#+HUGO_BASE_DIR&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;: ../&lt;/span&gt;
+&lt;span class=&#34;cs&#34;&gt;#+HUGO_SECTION&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;: ./post/create_blog_site/&lt;/span&gt;
+&lt;span class=&#34;cs&#34;&gt;#+hugo_auto_set_lastmod&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;: t&lt;/span&gt;
+&lt;span class=&#34;cs&#34;&gt;#+hugo_custom_front_matter&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;: :toc true&lt;/span&gt;
+&lt;span class=&#34;cs&#34;&gt;#+hugo_categories&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;: 搭建博客站点&lt;/span&gt;
+
+&lt;span class=&#34;cs&#34;&gt;#+OPTIONS&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;: author:nil&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;subtree&#34;&gt;subtree&lt;/h3&gt;
+
+&lt;p&gt;下面是一个subtree的内容(为了防止转义，前面都加了#号，实际中无#号)，下面一行一行介绍：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;第一行是一级标题，这里也就是一个subtree，也是文章标题，后面冒号间的文字是标签，对应markdown文件中的tag，注意，冒号需要为英文符号，也可以使用 &lt;strong&gt;C-c C-c&lt;/strong&gt; 快捷键输入tag；标题前的 &lt;strong&gt;DONE&lt;/strong&gt; 表示完成状态，除此之外还有 &lt;strong&gt;TODO&lt;/strong&gt; 状态，对应markdown文件中的 &lt;strong&gt;draft&lt;/strong&gt; ， &lt;strong&gt;TODO&lt;/strong&gt; 状态时，会认为是草稿，不会发布到站点，还要注意的是，状态不是手动敲上去的，而是光标放在标题行，通过Shift和左右键切换&lt;/li&gt;
+&lt;li&gt;第二行是文章创建的时间，对应markdown文件的date&lt;/li&gt;
+&lt;li&gt;第三四五行，EXPORT_FILE_NAME是输出markdown文件的名称，这里是subtree的属性描述，可使用参数应该还有很多，不过暂时没了解&lt;/li&gt;
+&lt;li&gt;最后就是博客内容了，二级标题和三级标题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-org&#34; data-lang=&#34;org&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-org&#34; data-lang=&#34;org&#34;&gt;#* DONE title_level1                               :hugo:emacs:
+&lt;span class=&#34;c&#34;&gt;# CLOSED: &amp;lt;2019-09-13 五 14:22&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;#   :PROPERTIES:&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;#   :EXPORT_FILE_NAME: Thinkpad_S2&lt;/span&gt;
+&lt;span class=&#34;c&#34;&gt;#   :END:&lt;/span&gt;
+#** title_level2
+#*** title_level3&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;特殊需求&#34;&gt;特殊需求&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;外链：可以使用 &lt;strong&gt;C-c C-l&lt;/strong&gt; (这里是小写L)快捷键，输入链接和链接说明&lt;/li&gt;
+&lt;li&gt;图片：官方提供的方式如下(这里为了防止转义使用的小括号，实际为英文大括号)：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-org&#34; data-lang=&#34;org&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-org&#34; data-lang=&#34;org&#34;&gt;((&amp;lt;&lt;span class=&#34;s&#34;&gt; figure src=&amp;#34;/image/cook/image0.jpg&amp;#34; title=&amp;#34;图片&amp;#34; &lt;/span&gt;&amp;gt;))&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;由于我还是希望对图片显示大小和位置能够控制，也许有其他方法还不知道，不过在这里写一个html格式的图片引用，能够实现我想要的效果，方式如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;center&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;800&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/image/me.jpg&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;color:darkorange;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; github新建仓库 &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;center&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;subtree中设置分类，如下，@后是分类，:后是标签（为了防止转义，添加了#号，实际中无#号）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-org&#34; data-lang=&#34;org&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-org&#34; data-lang=&#34;org&#34;&gt;&lt;span class=&#34;c&#34;&gt;# :@笔记:昨天:今天:明天:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;脚注：在需要插入脚注的地方写下 &lt;strong&gt;“【fn:1】”&lt;/strong&gt; ，在文章末尾添加脚注的说明 &lt;strong&gt;“【fn:1】 脚注说明”&lt;/strong&gt; ，这里为了防止转义使用了中文符号，实际中记得使用英文符号&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>给自己的博客自定义域名</title>
       <link>https://wenhui.space/post/create_blog_site/modify_url_for_blog/</link>
       <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
@@ -1247,284 +1530,6 @@ toc = true
     </item>
     
     <item>
-      <title>hugo的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_hugo/</link>
-      <pubDate>Mon, 23 Dec 2019 15:54:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_hugo/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍hugo和记录hugo的安装过程。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
-&lt;li&gt;hugo版本： hugo 0.58&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.gohugo.org/&#34;&gt;Hugo中文文档&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;什么是hugo&#34;&gt;什么是hugo？&lt;/h2&gt;
-
-&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。简单来说就是你可以用它来生成自己的博客站点，而且安装极简单，无依赖。类似此功能的工具还有Hexo，， Jekyll, Ghost，我强烈推荐Hugo。更多内容可以查看&lt;a href=&#34;https://www.gohugo.org/&#34;&gt;Hugo中文文档&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h2 id=&#34;安装hugo&#34;&gt;安装hugo&lt;/h2&gt;
-
-&lt;h3 id=&#34;下载&#34;&gt;下载&lt;/h3&gt;
-
-&lt;p&gt;推荐二进制安装，也就是直接下载可执行程序，方便简单。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;到 &lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;Hugo Releases&lt;/a&gt; 下载对应的操作系统版本的Hugo二进制文件（hugo或者hugo.exe）&lt;/li&gt;
-&lt;li&gt;采用我的百度网盘分享资源（里面包含hugo_0.58和extend_hugo_0.61两个版本，选其一即可） &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1ub-6LSw9VABaf0GNe7oeGQ&#34;&gt;https://pan.baidu.com/s/1ub-6LSw9VABaf0GNe7oeGQ&lt;/a&gt; 密码：pvb4&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
-
-&lt;p&gt;将下载的文件解压，找到hugo文件，将其放入 &lt;strong&gt;&lt;em&gt;“/usr/local/bin/”&lt;/em&gt;&lt;/strong&gt; 目录，若其为非可执行文件，请更改文件属性。可参考以下执行命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看系统变量&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;#更改文件属性为可执行&lt;/span&gt;
-chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./hugo
-
-&lt;span class=&#34;c1&#34;&gt;#复制到/usr/local/bin/目录，也可以选择自己$PATH的某一路径&lt;/span&gt;
-sudo cp ./hugo /usr/local/bin/hugo&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>PicGo的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_picgo/</link>
-      <pubDate>Mon, 23 Dec 2019 13:18:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_picgo/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍图床工具PicGo和记录PicGo的安装过程。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
-&lt;li&gt;PicGo版本： picgo-2.1.2-x86_64.AppImage&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.owow.cc/linux/108.md&#34;&gt;在Linux上安装PicGO&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;什么是picgo&#34;&gt;什么是PicGo？&lt;/h2&gt;
-
-&lt;p&gt;PicGo是一款功能实用、操作简捷的图床工具，图床工具简单来说就是本地图片上传自动转换成链接的一款工具。网络上的图床工具有很多，PicGo算得上一款比较优秀的图床工具了，它可以支持微博， 七牛云， 腾讯云COS， 又拍云， GitHub， 阿里云OSS， SM.MS， imgur 等8种常用图床，功能强大，简单易用。&lt;/p&gt;
-
-&lt;h2 id=&#34;为什么安装picgo&#34;&gt;为什么安装PicGo？&lt;/h2&gt;
-
-&lt;p&gt;写博客内容时，常常会用到图片，最初是将图片放在本地并随博客public一同上传至github，但是在本地网址显示好好的图片，上传至github就打不开了，其主要原因还是因为填写的是相对地址，上传github后，往往地址会发生变化，导致图片索引不到，所以只好通过图床工具转化为链接，作为全路径添加到博客内容，这样就可以解决了。网上搜索了一下图床工具，好像PicGo有点独步天下的意思，网上评价PicGo是最好的图床工具，没有之一。所以，开始折腾起来，下载安装。&lt;/p&gt;
-
-&lt;h2 id=&#34;安装过程&#34;&gt;安装过程&lt;/h2&gt;
-
-&lt;h3 id=&#34;下载picgo&#34;&gt;下载PicGo&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;去&lt;a href=&#34;https://github.com/Molunerfinn/PicGo/releases&#34;&gt;PicGo官方github页面&lt;/a&gt;下载最新版本的PicGo，我这里选择的是picgo-2.1.2-x86_64.AppImage&lt;/li&gt;
-&lt;li&gt;采用我的百度资源分享 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A&#34;&gt;https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A&lt;/a&gt; 密码：4zvy&lt;/strong&gt; ，另附有一张logo图&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
-
-&lt;p&gt;安装很简单，其实下载的就是一个可执行程序，放到自己的 &lt;strong&gt;系统变量PATH&lt;/strong&gt; 即可，我习惯是放在 &lt;strong&gt;&lt;em&gt;“/usr/local/bin/”&lt;/em&gt;&lt;/strong&gt; 。打开终端进入下载解压后的picgo目录，执行以下命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看系统变量&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;#更改文件属性为可执行&lt;/span&gt;
-chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./picgo-2.1.2-x86_64.AppImage
-
-&lt;span class=&#34;c1&#34;&gt;#复制到/usr/local/bin/目录，也可以选择自己$PATH的某一路径&lt;/span&gt;
-sudo cp ./picgo-2.1.2-x86_64.AppImage /usr/local/bin/picgo&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;添加到启动器&#34;&gt;添加到启动器&lt;/h3&gt;
-
-&lt;p&gt;可参考另一篇帖子 &lt;strong&gt;将软件添加到deepin启动器&lt;/strong&gt; 。&lt;/p&gt;
-
-&lt;h3 id=&#34;安装依赖&#34;&gt;安装依赖&lt;/h3&gt;
-
-&lt;p&gt;虽然PicGo已经开始运行了，可是有些功能需要依赖其他程序来实现。在程序内实现粘贴板上传需要用到xclip，不装的话会报 &lt;strong&gt;&amp;ldquo;xclip not found&amp;rdquo;&lt;/strong&gt; 的错误。可以通过包管理器安装，命令如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install xclip -y&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>将软件添加到deepin启动器</title>
-      <link>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</link>
-      <pubDate>Mon, 23 Dec 2019 12:51:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍了如何将手动安装的软件添加到deepin启动器中显示。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;操纵过程&#34;&gt;操纵过程&lt;/h2&gt;
-
-&lt;p&gt;手动安装的工具可在终端运行，但对于某些软件来说使用不方便，也可以将可执行程序放在桌面，但是又使桌面不整洁美观，也可以添加至任务栏，但会导致任务栏工具繁多杂乱，最好的方式就是将其加入到deepin的启动器，以firefox为例，方法如下：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;打开终端，进入 &lt;em&gt;”/usr/share/applications/“&lt;/em&gt; 目录&lt;/li&gt;
-&lt;li&gt;新建 &lt;strong&gt;”firefox.desktop“&lt;/strong&gt; 文件(需要root权限)&lt;/li&gt;
-&lt;li&gt;打开新建的文件，输入如下内容：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Desktop Entry&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Application &lt;span class=&#34;c1&#34;&gt;#类型，一般不改动&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Firefox &lt;span class=&#34;c1&#34;&gt;#显示在启动器中的名字&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Icon&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/home/caowenhui/Treasury/tools_and_drives/firefox/browser/chrome/icons/default/default128.png &lt;span class=&#34;c1&#34;&gt;#firefox的图标路径&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Exec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/bin/firefox &lt;span class=&#34;c1&#34;&gt;#firefox的可执行程序路径&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Terminal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#是否在终端运行&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Categories&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Network&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;WebBrowser&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#分类&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;a web browser &lt;span class=&#34;c1&#34;&gt;#说明&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;注意，需要修改的就只有Name、Icon、Exec、Categories、Comment，其他建议不要修改，并且，保存前 &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; ，否则不会生效。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;完成保存，打开启动器查看并运行程序。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
       <title>友链</title>
       <link>https://wenhui.space/links/</link>
       <pubDate>Sun, 22 Dec 2019 20:55:00 +0800</pubDate>
@@ -1638,9 +1643,204 @@ sudo cp ./picgo-2.1.2-x86_64.AppImage /usr/local/bin/picgo&lt;/code&gt;&lt;/pre&
     </item>
     
     <item>
+      <title>hugo的安装</title>
+      <link>https://wenhui.space/post/work_platform/install_hugo/</link>
+      <pubDate>Sat, 23 Nov 2019 15:54:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/install_hugo/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍hugo和记录hugo的安装过程。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;hugo版本： hugo 0.58&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.gohugo.org/&#34;&gt;Hugo中文文档&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是hugo&#34;&gt;什么是hugo？&lt;/h2&gt;
+
+&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。简单来说就是你可以用它来生成自己的博客站点，而且安装极简单，无依赖。类似此功能的工具还有Hexo，， Jekyll, Ghost，我强烈推荐Hugo。更多内容可以查看&lt;a href=&#34;https://www.gohugo.org/&#34;&gt;Hugo中文文档&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装hugo&#34;&gt;安装hugo&lt;/h2&gt;
+
+&lt;h3 id=&#34;下载&#34;&gt;下载&lt;/h3&gt;
+
+&lt;p&gt;推荐二进制安装，也就是直接下载可执行程序，方便简单。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;到 &lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;Hugo Releases&lt;/a&gt; 下载对应的操作系统版本的Hugo二进制文件（hugo或者hugo.exe）&lt;/li&gt;
+&lt;li&gt;采用我的百度网盘分享资源（里面包含hugo_0.58和extend_hugo_0.61两个版本，选其一即可） &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1ub-6LSw9VABaf0GNe7oeGQ&#34;&gt;https://pan.baidu.com/s/1ub-6LSw9VABaf0GNe7oeGQ&lt;/a&gt; 密码：pvb4&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+
+&lt;p&gt;将下载的文件解压，找到hugo文件，将其放入 &lt;strong&gt;&lt;em&gt;“/usr/local/bin/”&lt;/em&gt;&lt;/strong&gt; 目录，若其为非可执行文件，请更改文件属性。可参考以下执行命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看系统变量&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;#更改文件属性为可执行&lt;/span&gt;
+chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./hugo
+
+&lt;span class=&#34;c1&#34;&gt;#复制到/usr/local/bin/目录，也可以选择自己$PATH的某一路径&lt;/span&gt;
+sudo cp ./hugo /usr/local/bin/hugo&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>PicGo的安装</title>
+      <link>https://wenhui.space/post/work_platform/install_picgo/</link>
+      <pubDate>Sat, 16 Nov 2019 13:18:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/install_picgo/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍图床工具PicGo和记录PicGo的安装过程。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;PicGo版本： picgo-2.1.2-x86_64.AppImage&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.owow.cc/linux/108.md&#34;&gt;在Linux上安装PicGO&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是picgo&#34;&gt;什么是PicGo？&lt;/h2&gt;
+
+&lt;p&gt;PicGo是一款功能实用、操作简捷的图床工具，图床工具简单来说就是本地图片上传自动转换成链接的一款工具。网络上的图床工具有很多，PicGo算得上一款比较优秀的图床工具了，它可以支持微博， 七牛云， 腾讯云COS， 又拍云， GitHub， 阿里云OSS， SM.MS， imgur 等8种常用图床，功能强大，简单易用。&lt;/p&gt;
+
+&lt;h2 id=&#34;为什么安装picgo&#34;&gt;为什么安装PicGo？&lt;/h2&gt;
+
+&lt;p&gt;写博客内容时，常常会用到图片，最初是将图片放在本地并随博客public一同上传至github，但是在本地网址显示好好的图片，上传至github就打不开了，其主要原因还是因为填写的是相对地址，上传github后，往往地址会发生变化，导致图片索引不到，所以只好通过图床工具转化为链接，作为全路径添加到博客内容，这样就可以解决了。网上搜索了一下图床工具，好像PicGo有点独步天下的意思，网上评价PicGo是最好的图床工具，没有之一。所以，开始折腾起来，下载安装。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装过程&#34;&gt;安装过程&lt;/h2&gt;
+
+&lt;h3 id=&#34;下载picgo&#34;&gt;下载PicGo&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;去&lt;a href=&#34;https://github.com/Molunerfinn/PicGo/releases&#34;&gt;PicGo官方github页面&lt;/a&gt;下载最新版本的PicGo，我这里选择的是picgo-2.1.2-x86_64.AppImage&lt;/li&gt;
+&lt;li&gt;采用我的百度资源分享 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A&#34;&gt;https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A&lt;/a&gt; 密码：4zvy&lt;/strong&gt; ，另附有一张logo图&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+
+&lt;p&gt;安装很简单，其实下载的就是一个可执行程序，放到自己的 &lt;strong&gt;系统变量PATH&lt;/strong&gt; 即可，我习惯是放在 &lt;strong&gt;&lt;em&gt;“/usr/local/bin/”&lt;/em&gt;&lt;/strong&gt; 。打开终端进入下载解压后的picgo目录，执行以下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看系统变量&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;#更改文件属性为可执行&lt;/span&gt;
+chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./picgo-2.1.2-x86_64.AppImage
+
+&lt;span class=&#34;c1&#34;&gt;#复制到/usr/local/bin/目录，也可以选择自己$PATH的某一路径&lt;/span&gt;
+sudo cp ./picgo-2.1.2-x86_64.AppImage /usr/local/bin/picgo&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;添加到启动器&#34;&gt;添加到启动器&lt;/h3&gt;
+
+&lt;p&gt;可参考另一篇帖子 &lt;strong&gt;将软件添加到deepin启动器&lt;/strong&gt; 。&lt;/p&gt;
+
+&lt;h3 id=&#34;安装依赖&#34;&gt;安装依赖&lt;/h3&gt;
+
+&lt;p&gt;虽然PicGo已经开始运行了，可是有些功能需要依赖其他程序来实现。在程序内实现粘贴板上传需要用到xclip，不装的话会报 &lt;strong&gt;&amp;ldquo;xclip not found&amp;rdquo;&lt;/strong&gt; 的错误。可以通过包管理器安装，命令如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install xclip -y&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>GoldenDict的安装</title>
       <link>https://wenhui.space/post/work_platform/install_goldendict/</link>
-      <pubDate>Sun, 15 Dec 2019 15:35:00 +0800</pubDate>
+      <pubDate>Sat, 09 Nov 2019 15:35:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_goldendict/</guid>
       
@@ -1866,9 +2066,92 @@ trans zh:en &lt;span class=&#34;s2&#34;&gt;&amp;#34;你好&amp;#34;&lt;/span&gt;
     </item>
     
     <item>
+      <title>将软件添加到deepin启动器</title>
+      <link>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</link>
+      <pubDate>Sun, 27 Oct 2019 12:51:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍了如何将手动安装的软件添加到deepin启动器中显示。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;操纵过程&#34;&gt;操纵过程&lt;/h2&gt;
+
+&lt;p&gt;手动安装的工具可在终端运行，但对于某些软件来说使用不方便，也可以将可执行程序放在桌面，但是又使桌面不整洁美观，也可以添加至任务栏，但会导致任务栏工具繁多杂乱，最好的方式就是将其加入到deepin的启动器，以firefox为例，方法如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;打开终端，进入 &lt;em&gt;”/usr/share/applications/“&lt;/em&gt; 目录&lt;/li&gt;
+&lt;li&gt;新建 &lt;strong&gt;”firefox.desktop“&lt;/strong&gt; 文件(需要root权限)&lt;/li&gt;
+&lt;li&gt;打开新建的文件，输入如下内容：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Desktop Entry&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Application &lt;span class=&#34;c1&#34;&gt;#类型，一般不改动&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Firefox &lt;span class=&#34;c1&#34;&gt;#显示在启动器中的名字&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Icon&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/home/caowenhui/Treasury/tools_and_drives/firefox/browser/chrome/icons/default/default128.png &lt;span class=&#34;c1&#34;&gt;#firefox的图标路径&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Exec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/bin/firefox &lt;span class=&#34;c1&#34;&gt;#firefox的可执行程序路径&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Terminal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#是否在终端运行&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Categories&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Network&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;WebBrowser&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#分类&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;a web browser &lt;span class=&#34;c1&#34;&gt;#说明&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意，需要修改的就只有Name、Icon、Exec、Categories、Comment，其他建议不要修改，并且，保存前 &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; ，否则不会生效。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;完成保存，打开启动器查看并运行程序。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>firefox的安装</title>
       <link>https://wenhui.space/post/work_platform/install_firefox/</link>
-      <pubDate>Sun, 08 Dec 2019 20:15:00 +0800</pubDate>
+      <pubDate>Sat, 26 Oct 2019 20:15:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_firefox/</guid>
       
@@ -1990,7 +2273,7 @@ trans zh:en &lt;span class=&#34;s2&#34;&gt;&amp;#34;你好&amp;#34;&lt;/span&gt;
     <item>
       <title>git的安装</title>
       <link>https://wenhui.space/post/work_platform/install_git/</link>
-      <pubDate>Sat, 16 Nov 2019 22:21:00 +0800</pubDate>
+      <pubDate>Sun, 20 Oct 2019 22:21:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_git/</guid>
       
@@ -2119,7 +2402,7 @@ git push&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     <item>
       <title>emacs的安装</title>
       <link>https://wenhui.space/post/work_platform/install_emacs/</link>
-      <pubDate>Sat, 26 Oct 2019 16:15:00 +0800</pubDate>
+      <pubDate>Sat, 19 Oct 2019 16:15:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_emacs/</guid>
       
@@ -2278,7 +2561,7 @@ sudo make install&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     <item>
       <title>deepin系统安装</title>
       <link>https://wenhui.space/post/work_platform/install_deepin_os/</link>
-      <pubDate>Sat, 19 Oct 2019 17:30:00 +0800</pubDate>
+      <pubDate>Sun, 13 Oct 2019 20:30:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_deepin_os/</guid>
       

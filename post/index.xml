@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>使用org-mode和ox-hugo写博客</title>
+      <link>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</link>
+      <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</guid>
+      <description>本文 主要介绍如何使用org-mode和ox-hugo写博客。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 emac</description>
+    </item>
+    
+    <item>
       <title>给自己的博客自定义域名</title>
       <link>https://wenhui.space/post/create_blog_site/modify_url_for_blog/</link>
       <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
@@ -57,33 +66,6 @@
     </item>
     
     <item>
-      <title>hugo的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_hugo/</link>
-      <pubDate>Mon, 23 Dec 2019 15:54:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_hugo/</guid>
-      <description>本文 主要介绍hugo和记录hugo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 Hugo中文文档 什</description>
-    </item>
-    
-    <item>
-      <title>PicGo的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_picgo/</link>
-      <pubDate>Mon, 23 Dec 2019 13:18:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_picgo/</guid>
-      <description>本文 主要介绍图床工具PicGo和记录PicGo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 PicGo版本： picgo-2.1.2-x86_64.AppImage 参考 在Li</description>
-    </item>
-    
-    <item>
-      <title>将软件添加到deepin启动器</title>
-      <link>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</link>
-      <pubDate>Mon, 23 Dec 2019 12:51:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</guid>
-      <description>本文 主要介绍了如何将手动安装的软件添加到deepin启动器中显示。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 操纵过程 手动安装的工</description>
-    </item>
-    
-    <item>
       <title>为firefox安装flash player插件</title>
       <link>https://wenhui.space/post/other_tools_tips/install_flash_player_for_firefox/</link>
       <pubDate>Sun, 15 Dec 2019 21:22:00 +0800</pubDate>
@@ -93,18 +75,45 @@
     </item>
     
     <item>
+      <title>hugo的安装</title>
+      <link>https://wenhui.space/post/work_platform/install_hugo/</link>
+      <pubDate>Sat, 23 Nov 2019 15:54:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/install_hugo/</guid>
+      <description>本文 主要介绍hugo和记录hugo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 Hugo中文文档 什</description>
+    </item>
+    
+    <item>
+      <title>PicGo的安装</title>
+      <link>https://wenhui.space/post/work_platform/install_picgo/</link>
+      <pubDate>Sat, 16 Nov 2019 13:18:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/install_picgo/</guid>
+      <description>本文 主要介绍图床工具PicGo和记录PicGo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 PicGo版本： picgo-2.1.2-x86_64.AppImage 参考 在Li</description>
+    </item>
+    
+    <item>
       <title>GoldenDict的安装</title>
       <link>https://wenhui.space/post/work_platform/install_goldendict/</link>
-      <pubDate>Sun, 15 Dec 2019 15:35:00 +0800</pubDate>
+      <pubDate>Sat, 09 Nov 2019 15:35:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_goldendict/</guid>
       <description>本文 主要介绍词典工具GoldenDict和记录GoldenDict的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 Gold</description>
     </item>
     
     <item>
+      <title>将软件添加到deepin启动器</title>
+      <link>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</link>
+      <pubDate>Sun, 27 Oct 2019 12:51:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</guid>
+      <description>本文 主要介绍了如何将手动安装的软件添加到deepin启动器中显示。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 操纵过程 手动安装的工</description>
+    </item>
+    
+    <item>
       <title>firefox的安装</title>
       <link>https://wenhui.space/post/work_platform/install_firefox/</link>
-      <pubDate>Sun, 08 Dec 2019 20:15:00 +0800</pubDate>
+      <pubDate>Sat, 26 Oct 2019 20:15:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_firefox/</guid>
       <description>本文 主要介绍firefox浏览器和记录firefox浏览器的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版</description>
@@ -113,7 +122,7 @@
     <item>
       <title>git的安装</title>
       <link>https://wenhui.space/post/work_platform/install_git/</link>
-      <pubDate>Sat, 16 Nov 2019 22:21:00 +0800</pubDate>
+      <pubDate>Sun, 20 Oct 2019 22:21:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_git/</guid>
       <description>本文 主要介绍git和记录git的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 git版本： git version 2.11.0 参考 Deepin 系统下安装git 什么</description>
@@ -122,7 +131,7 @@
     <item>
       <title>emacs的安装</title>
       <link>https://wenhui.space/post/work_platform/install_emacs/</link>
-      <pubDate>Sat, 26 Oct 2019 16:15:00 +0800</pubDate>
+      <pubDate>Sat, 19 Oct 2019 16:15:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_emacs/</guid>
       <description>本文 主要介绍emacs和记录emacs的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本： Linux GNU Emacs 26.3 什么是ema</description>
@@ -131,7 +140,7 @@
     <item>
       <title>deepin系统安装</title>
       <link>https://wenhui.space/post/work_platform/install_deepin_os/</link>
-      <pubDate>Sat, 19 Oct 2019 17:30:00 +0800</pubDate>
+      <pubDate>Sun, 13 Oct 2019 20:30:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/work_platform/install_deepin_os/</guid>
       <description>本文 主要介绍deepin系统和记录deepin系统的安装过程。 版本 说明 0.1 初版发布 参考 deepin官网-如何安装 实操：安装深度DeepinLi</description>
