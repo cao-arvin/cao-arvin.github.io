@@ -6,7 +6,7 @@
     <description>Recent content on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 27 Dec 2019 17:55:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Dec 2019 20:35:00 +0800</lastBuildDate>
     
         <atom:link href="https://wenhui.space/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>使用org-mode和ox-hugo写博客</title>
       <link>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</link>
-      <pubDate>Fri, 27 Dec 2019 17:55:00 +0800</pubDate>
+      <pubDate>Fri, 27 Dec 2019 20:35:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</guid>
       
@@ -285,6 +285,14 @@
 &lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;脚注：在需要插入脚注的地方写下 &lt;strong&gt;“【fn:1】”&lt;/strong&gt; ，在文章末尾添加脚注的说明 &lt;strong&gt;“【fn:1】 脚注说明”&lt;/strong&gt; ，这里为了防止转义使用了中文符号，实际中记得使用英文符号&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;org文件转为markdown文件&#34;&gt;org文件转为markdown文件&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;将所有subtree都转为对应的Hugo markdown文件，快捷键 &lt;strong&gt;C-c C-e H A&lt;/strong&gt; ，其中 &lt;strong&gt;C-c C-e&lt;/strong&gt; 是导出快捷键，可选的有很多，比如h代表html，l代表laTex等，H代表Hugo，后面的A代表All（快捷键操作过程中会有提示，详细信息可以看提示信息）&lt;/li&gt;
+&lt;li&gt;将某subtree转为对应的Hugo markdown文件，首先光标移至对应的subtree，再通过快捷键 &lt;strong&gt;C-c C-e H H&lt;/strong&gt; ，其中 &lt;strong&gt;C-c C-e&lt;/strong&gt; 是导出快捷键，H代表Hugo，后面的H代表subtree（快捷键操作过程中会有提示，详细信息可以看提示信息）&lt;/li&gt;
+&lt;li&gt;其他说明：content不存在对应的目录也没关系，ox-hugo会自动创建&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
