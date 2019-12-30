@@ -6,10 +6,37 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 27 Dec 2019 20:35:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2019 14:16:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>为firefox安装插件</title>
+      <link>https://wenhui.space/post/other_tools_tips/install_plugins_for_firefox/</link>
+      <pubDate>Mon, 30 Dec 2019 14:16:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/other_tools_tips/install_plugins_for_firefox/</guid>
+      <description>本文 主要介绍了为firefox安装插件的小技巧。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版本： Mozilla Firefox 71.0 安装插件 打开</description>
+    </item>
+    
+    <item>
+      <title>Bitwarden的安装</title>
+      <link>https://wenhui.space/post/work_platform/install_bitwarden/</link>
+      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/install_bitwarden/</guid>
+      <description>本文 主要介绍一款开源密码管理工具 Bitwarden 。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版本： Mozilla Firefox 71.0 什么是Bitwarden</description>
+    </item>
+    
+    <item>
+      <title>Linux中其他使用记录</title>
+      <link>https://wenhui.space/post/about_linux/note_of_linux/</link>
+      <pubDate>Sun, 29 Dec 2019 15:18:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_linux/note_of_linux/</guid>
+      <description>本文 主要对日常linux系统使用中的一些技巧进行记录。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 使用命令记录 查看系统信息 查看系统</description>
+    </item>
     
     <item>
       <title>使用org-mode和ox-hugo写博客</title>

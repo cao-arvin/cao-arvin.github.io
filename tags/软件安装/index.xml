@@ -6,10 +6,19 @@
     <description>Recent content in 软件安装 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 23 Nov 2019 15:54:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Dec 2019 22:16:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bitwarden的安装</title>
+      <link>https://wenhui.space/post/work_platform/install_bitwarden/</link>
+      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/install_bitwarden/</guid>
+      <description>本文 主要介绍一款开源密码管理工具 Bitwarden 。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版本： Mozilla Firefox 71.0 什么是Bitwarden</description>
+    </item>
     
     <item>
       <title>hugo的安装</title>

@@ -6,10 +6,55 @@
     <description>Recent content in Tags on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 27 Dec 2019 20:35:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2019 14:16:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>firefox</title>
+      <link>https://wenhui.space/tags/firefox/</link>
+      <pubDate>Mon, 30 Dec 2019 14:16:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/firefox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>密码管理</title>
+      <link>https://wenhui.space/tags/%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>计算机</title>
+      <link>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
+      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>软件安装</title>
+      <link>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://wenhui.space/tags/linux/</link>
+      <pubDate>Sun, 29 Dec 2019 15:18:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/linux/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>emacs</title>
@@ -35,33 +80,6 @@
       <pubDate>Wed, 25 Dec 2019 22:15:00 +0800</pubDate>
       
       <guid>https://wenhui.space/tags/markdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>firefox</title>
-      <link>https://wenhui.space/tags/firefox/</link>
-      <pubDate>Sun, 15 Dec 2019 21:22:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/firefox/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>计算机</title>
-      <link>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
-      <pubDate>Sat, 23 Nov 2019 15:54:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>软件安装</title>
-      <link>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</link>
-      <pubDate>Sat, 23 Nov 2019 15:54:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</guid>
       <description></description>
     </item>
     

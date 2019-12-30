@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>密码管理 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/tags/%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/</link>
+    <description>Recent content in 密码管理 on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 29 Dec 2019 22:16:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://wenhui.space/tags/%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bitwarden的安装</title>
+      <link>https://wenhui.space/post/work_platform/install_bitwarden/</link>
+      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/install_bitwarden/</guid>
+      <description>本文 主要介绍一款开源密码管理工具 Bitwarden 。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版本： Mozilla Firefox 71.0 什么是Bitwarden</description>
+    </item>
+    
+  </channel>
+</rss>
