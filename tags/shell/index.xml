@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/tags/shell/</link>
+    <description>Recent content in shell on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 01 Dec 2019 14:18:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://wenhui.space/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>shell脚本使用记录</title>
+      <link>https://wenhui.space/post/about_linux/shell_use_tips/</link>
+      <pubDate>Sun, 01 Dec 2019 14:18:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_linux/shell_use_tips/</guid>
+      <description>本文 主要对日常shell脚本使用中的一些技巧进行记录。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 字符串替换的小技巧 在一个文件里替</description>
+    </item>
+    
+  </channel>
+</rss>

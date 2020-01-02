@@ -6,10 +6,1101 @@
     <description>Recent content on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 30 Dec 2019 14:16:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 16:42:00 +0800</lastBuildDate>
     
         <atom:link href="https://wenhui.space/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Emacs verilog-mode 的使用</title>
+      <link>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</link>
+      <pubDate>Wed, 01 Jan 2020 16:42:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;emacs版本：Linux GNU Emacs 26.3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.veripool.org/projects/verilog-mode/wiki/verilog-mode%5Fveritedium.html&#34;&gt;verilog-mode&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是verilog-mode&#34;&gt;什么是verilog mode&lt;/h2&gt;
+
+&lt;p&gt;verilog-mode是Emacs的一种编辑模式，主要面对verilog的开发环境，拥有很方便的自动缩进机制和AUTO机制。AUTO机制是Emacs verilog-mode中一些自动化实现的脚本功能，比如自动填充模块参数列表、自动完成模块例化、自动声明连线等等。&lt;/p&gt;
+
+&lt;h2 id=&#34;为什么使用verilog-mode&#34;&gt;为什么使用verilog-mode&lt;/h2&gt;
+
+&lt;p&gt;verilog语法中有很多内容是冗余的，模块中必须出现却起不到什么功能作用，列举如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;模块参数列表和模块端口声明input/output&lt;/li&gt;
+&lt;li&gt;reg语句和已经声明为输出的信号&lt;/li&gt;
+&lt;li&gt;子模块实例化的连线声明&lt;/li&gt;
+&lt;li&gt;子模块的实例化语句和子模块的端口声明&lt;/li&gt;
+&lt;li&gt;组合逻辑always语句的敏感信号表（不过已经可以使用*来代替了）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可见verilog语法中的垃圾信息还是不少的，不过这是语法规则导致的，是语言本身的缺陷，作为使用者只能遵守语法规则。这些冗余信息中比如参数列表和模块例化连线，不仅需要花费时间去编写，而且还特别容易出错，给RTL编写以及后续的修改维护都带来很多问题。那么如果解决这些问题，会带来什么效果呢？个人认为有以下几点：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;代码整洁，便于阅读&lt;/li&gt;
+&lt;li&gt;提高编码效率，尤其是顶层实例化&lt;/li&gt;
+&lt;li&gt;减少拼写错误&lt;/li&gt;
+&lt;li&gt;便于维护，比如修改、增加和删除端口，无需修改参数列表，比如修改、增加和删除子模块端口，无需修改顶层实例化&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;auto机制的使用&#34;&gt;AUTO机制的使用&lt;/h2&gt;
+
+&lt;p&gt;Emacs verilog-mode的AUTO机制，就是在代码中相应的位置写一些/*AUTO*/类似的注释，verilog-mode可以自动替换为所需的内容。Emacs编辑器和verilog-mode的AUTO机制结合，可以很方便的看到AUTO的效果，而且AUTO是以注释形式添加到verilog文件，在语法上本身是合法的，不会影响EDA工具的使用。举例如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;原代码
+
+&lt;ul&gt;
+&lt;li&gt;top module&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;top_md&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt;           &lt;span class=&#34;n&#34;&gt;din1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;     &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt;          &lt;span class=&#34;n&#34;&gt;dout1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;dout2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;cm&#34;&gt;/*AUTOREG*/&lt;/span&gt;
+&lt;span class=&#34;cm&#34;&gt;/*AUTOWIRE*/&lt;/span&gt;
+
+&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOSENSE*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;dout1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;sub_md&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i_sub_md&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dout2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// top_md
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;sub_module&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sub_md&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt;           &lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt;           &lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;      &lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// sub_md
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;AUTO之后&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;top_md&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dout1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dout2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt;           &lt;span class=&#34;n&#34;&gt;din1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;     &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt;          &lt;span class=&#34;n&#34;&gt;dout1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;dout2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;cm&#34;&gt;/*AUTOREG*/&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Beginning of automatic regs (for this module&amp;#39;s undeclared outputs)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;                     &lt;span class=&#34;n&#34;&gt;dout1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// End of automatics
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOWIRE*/&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Beginning of automatic wires (for undeclared instantiated-module outputs)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                 &lt;span class=&#34;c1&#34;&gt;// From i_sub_md of sub_md.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// End of automatics
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOSENSE*/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din1&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;or&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;dout1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;sub_md&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i_sub_md&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+                &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;                 &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+                &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;                  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;                  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dout2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// top_md
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;使用-autosense-自动生成敏感表&#34;&gt;使用 AUTOSENSE 自动生成敏感表&lt;/h3&gt;
+
+&lt;p&gt;在Verilog 2000中，已经对语法做出了简化，比如使用 &lt;strong&gt;@(×)&lt;/strong&gt; 来代替敏感信号列表，但是需要EDA工具的支持。不过现在EDA工具都已经支持verilog 2005了，可以将敏感信号列表直接写为 &lt;strong&gt;@(×)&lt;/strong&gt; 即可，所以 &lt;strong&gt;AUTOSENSE&lt;/strong&gt; 功能可以不使用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;always&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;@&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOSENSE*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;begin&lt;/span&gt;
+   &lt;span class=&#34;n&#34;&gt;outin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ina&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inb&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;n&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;outin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;快捷键 &lt;strong&gt;C-c C-a&lt;/strong&gt; 之后，实现AUTO机制，快捷键 &lt;strong&gt;C-c C-k&lt;/strong&gt; 可取消AUTO效果。AUTO效果如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;always&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;@&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOSENSE*/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ina&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;or&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inb&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;begin&lt;/span&gt;
+   &lt;span class=&#34;n&#34;&gt;outin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ina&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inb&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;n&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;outin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;使用autoarg自动生成模块参数表&#34;&gt;使用AUTOARG自动生成模块参数表&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ex_arg&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;快捷键 &lt;strong&gt;C-c C-a&lt;/strong&gt; 之后，实现AUTO机制，快捷键 &lt;strong&gt;C-c C-k&lt;/strong&gt; 可取消AUTO效果。AUTO效果如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ex_arg&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+   &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;不支持带 &lt;strong&gt;`ifdefs&lt;/strong&gt; 等条件限制的端口声明，如有此需求，可以将其写在 &lt;strong&gt;AUTOARG&lt;/strong&gt; 之前， &lt;strong&gt;AUTOARG&lt;/strong&gt; 不会对其进行重新声明。不过不建议这种方式，因为在 &lt;strong&gt;AUTOINST&lt;/strong&gt; 中会引入更多的 &lt;strong&gt;`ifdefs&lt;/strong&gt; 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ex_arg&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;span class=&#34;no&#34;&gt;`ifdef&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;need_x_input&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;no&#34;&gt;`endif&lt;/span&gt;
+  &lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;no&#34;&gt;`ifdef&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;need_x_input&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;c1&#34;&gt;// This is an optional input, if `need_x_signal is defined
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;`endif&lt;/span&gt;
+
+  &lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;使用autoinst自动实例化&#34;&gt;使用AUTOINST自动实例化&lt;/h3&gt;
+
+&lt;p&gt;子模块：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fanout&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}};&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;顶层模块：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ex_inst&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;n&#34;&gt;fanout&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fanout&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;快捷键 &lt;strong&gt;C-c C-a&lt;/strong&gt; 之后，实现AUTO机制，快捷键 &lt;strong&gt;C-c C-k&lt;/strong&gt; 可取消AUTO效果。AUTO效果如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ex_inst&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;n&#34;&gt;fanout&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fanout&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+                    &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                    &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+                    &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                    &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意，子模块需要与顶层例化模块保存在同一文件目录，否则会索引不到子模块，而且实例化的端口名与子模块的端口名，默认是一致的。一般来讲，提倡实例化的端口名与子模块的端口名一致，这样对综合及维护都会带来好处，但是由于某些原因无法使其一致，那最简单的方法就是在 &lt;strong&gt;AUTOINST&lt;/strong&gt; 之前指定实例化的端口名，所有在 &lt;strong&gt;AUTOINST&lt;/strong&gt; 之前定义的端口不会再次生成，但是你最好加上 &lt;strong&gt;//Inputs&lt;/strong&gt; &lt;strong&gt;//Outputs&lt;/strong&gt; 注释，否则 &lt;strong&gt;AUTOWIRE&lt;/strong&gt; 不知道信号方向。举例如下:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;fanout&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fanout&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+               &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;               &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;          &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_i_dont_mess_with_it&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+               &lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+               &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;               &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;          &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果你被端口名不一致所困扰，可以参考我的另一篇帖子 Vrename解决verilog端口名不一致问题。&lt;/p&gt;
+
+&lt;h3 id=&#34;使用auto-template创建模板&#34;&gt;使用AUTO_TEMPLATE创建模板&lt;/h3&gt;
+
+&lt;p&gt;如果一个模块被实例化多次，你可以使用verilog的 &lt;strong&gt;generate&lt;/strong&gt; 语法，也可以使用Emacs verilog-mode的 &lt;strong&gt;AUTO_TEMPLATE&lt;/strong&gt; 和 &lt;strong&gt;AUTOINST&lt;/strong&gt; 。Verilog-mode向上索引最近的模板，这样对于一个子模块可以写多个模板，只需要将模板写在实例化之前即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* psm_mas AUTO_TEMPLATE (
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;        .PTL_MAPVALIDX          (PTL_MAPVALID[@]),
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;        .PTL_BUS                (PTL_BUSNEW[]),
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;        ); */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;TEMPLATE中的模块名称必须与实例中的模块名称相同，并且只需列出每次实例化时名字不同的那些信号就好了。如上文的例子，要遵守此格式（每行只有一个端口，并且以逗号结尾，最后以分号结尾，就像AUTOINST产生的一样）。实际上，最简单的方法是完成一个AUTOINST，并将其修改后复制到AUTO_TEMPLATE。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;psm_mas&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ms2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;AUTO效果：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-veerilog&#34; data-lang=&#34;veerilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-veerilog&#34; data-lang=&#34;veerilog&#34;&gt;psm_mas ms2 (/*AUTOINST*/
+    // Outputs
+    .INSTDATAOUT     (INSTDATAOUT),
+    .PTL_MAPVALIDX   (PTL_MAPVALID[2]),   // Templated
+
+    .PTL_BUS         (PTL_BUSNEW[3:0]),   // Templated
+    ....&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;@&lt;/strong&gt; 字符非常有用，他将被实例名的末尾数字代替（不限于1位数字），比如ms2，@替换为2。AUTO机制把模板中的 &lt;strong&gt;[]&lt;/strong&gt; 替换为子模块中该信号真实的字段范围，比如 &lt;strong&gt;PTL_BUSNEW[]&lt;/strong&gt; 替换成了 &lt;strong&gt;PTL_BUSNEW[3:0]&lt;/strong&gt; ，因为子模块中PTL_BUSNEW信号声明就是 [3:0]。这样写的好处就是子模块的修改自动响应到顶层模块。（其实如果端口信号位宽一致，实例化端口也可以不指明位宽字段，不过为了便于维护和减少出错，建议指明位宽字段）&lt;/p&gt;
+
+&lt;p&gt;神奇的 &lt;strong&gt;@&lt;/strong&gt; 不仅支持数字，还可以支持字母，这需要在模板做以下操作（模板支持正则表达式）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* InstModule AUTO_TEMPLATE &amp;#34;_\([a-z]+\)&amp;#34; (
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;                .ptl_mapvalidx		(@_ptl_mapvalid),
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;                .ptl_mapvalidp1x	(ptl_mapvalid_@),
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;                );
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;        */&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ms2_FOO&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ms2_BAR&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;AUTO效果如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ms2_FOO&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+            &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ptl_mapvalidx&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;FOO_ptl_mapvalid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ptl_mapvalidp1x&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ptl_mapvalid_FOO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ms2_BAR&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+            &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ptl_mapvalidx&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BAR_ptl_mapvalid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ptl_mapvalidp1x&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ptl_mapvalid_BAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;在模板中使用lisp&#34;&gt;在模板中使用Lisp&lt;/h3&gt;
+
+&lt;p&gt;在AUTO_TEMPLATE中指定简单的线名称并不能够解决所有需求，尤其是在多个实例化中使用同一信号不同数据位时。因此，Verilog-Mode允许你编写一个程序来进行计算并为实例化端口进行命名，如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* InstModule AUTO_TEMPLATE (
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;     .a(in[@&amp;#34;(+ (* 8 @) 7)&amp;#34;:@&amp;#34;(* 8 @)&amp;#34;]),
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;     );*/&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;u_a0&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+                 &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                 &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;                     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]));&lt;/span&gt;               &lt;span class=&#34;c1&#34;&gt;// Templated
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;u_a1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+                 &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                 &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;                     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]));&lt;/span&gt;              &lt;span class=&#34;c1&#34;&gt;// Templated
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;u_a2&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+                 &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                 &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;                     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;23&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]));&lt;/span&gt;             &lt;span class=&#34;c1&#34;&gt;// Templated
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;u_a3&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+                 &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                 &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;                     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;24&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]));&lt;/span&gt;             &lt;span class=&#34;c1&#34;&gt;// Templated
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这里对上述Lisp代码部分解释一下， 也就是 &lt;em&gt;@&amp;ldquo;(+ (* 8 @) 7)&amp;rdquo;:@&amp;ldquo;(* 8 @)&amp;rdquo;&lt;/em&gt; ：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;基础结构为 &lt;em&gt;@&amp;ldquo;&amp;rdquo;&lt;/em&gt; 代表@为输入参数，引号内为计算处理&lt;/li&gt;
+&lt;li&gt;每个括号内容为一步计算，形如 &lt;em&gt;(* 8 @)&lt;/em&gt; ，意思是 @参数乘8&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;(+ (* 8 @) 7)&lt;/em&gt; 就是将 &lt;em&gt;(* 8 @)&lt;/em&gt; 的结果加7&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;autoinstparam的使用&#34;&gt;AUTOINSTPARAM的使用&lt;/h3&gt;
+
+&lt;p&gt;如何在实例化时自动填充参数列表？AUTOINSTPARAM可以做到，如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;parameter&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;PARAM1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;parameter&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;PARAM2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ModnameTest&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;n&#34;&gt;InstModule&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINSTPARAM*/&lt;/span&gt;
+         &lt;span class=&#34;c1&#34;&gt;// Parameters
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;         &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PARAM1&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PARAM1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+         &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PARAM2&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PARAM2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+     &lt;span class=&#34;n&#34;&gt;instName&lt;/span&gt;
+       &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;...);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;verilog-mode中如何使用正则表达式&#34;&gt;verilog-mode中如何使用正则表达式&lt;/h3&gt;
+
+&lt;p&gt;在顶层实例化时，有大量的信号需要重新命名，使用模板的话会增加大量的注释内容，不过往往这些信号命名有特定的规律，我们可以使用正则表达式来处理，下面举几个例子：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;提取信号中固定位置的数字&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_j&lt;/span&gt;   &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req_jtag_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req12_j&lt;/span&gt;   &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req_jtag_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;删除末尾下划线内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_j&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]),&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req_j&lt;/span&gt;   &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;对信号矢量化处理(\1内容代表提取末尾数字之前的内容，\2内容代表提取末尾数字)（将@改为\([0-9]+\)也是可以的）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)@&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req0&lt;/span&gt;   &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req1&lt;/span&gt;   &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req2&lt;/span&gt;   &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req3&lt;/span&gt;   &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pci_req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;autowire-的使用&#34;&gt;AUTOWIRE 的使用&lt;/h3&gt;
+
+&lt;p&gt;顶层实例化时，需要将连线进行声明， &lt;strong&gt;AUTOWIRE&lt;/strong&gt; 可以完成此项任务。 &lt;strong&gt;AUTOWIRE&lt;/strong&gt; 将声明所有子模块输出的连接线。这对于在两个子模块之间互连但未在顶部模块中使用的信号特别有用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;top&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+   &lt;span class=&#34;cm&#34;&gt;/*AUTOWIRE*/&lt;/span&gt;
+
+   &lt;span class=&#34;n&#34;&gt;inst&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inst&lt;/span&gt;   &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+   &lt;span class=&#34;n&#34;&gt;other&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;other&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;快捷键 &lt;strong&gt;C-c C-a&lt;/strong&gt; 之后，实现AUTO机制，快捷键 &lt;strong&gt;C-c C-k&lt;/strong&gt; 可取消AUTO效果。AUTO效果如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ex_wire&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+   &lt;span class=&#34;cm&#34;&gt;/*AUTOWIRE*/&lt;/span&gt;
+   &lt;span class=&#34;c1&#34;&gt;// Beginning of automatic wires
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;ins2oth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// From inst of inst.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;oth2ins&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// From other of other.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;c1&#34;&gt;// End of automatics
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+   &lt;span class=&#34;n&#34;&gt;inst&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inst&lt;/span&gt;   &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+                &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ins2oth&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ins2oth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+                &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;oth2ins&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;oth2ins&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+
+   &lt;span class=&#34;n&#34;&gt;other&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;other&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+                &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;oth2ins&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;oth2ins&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+                &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ins2oth&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ins2oth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;autoreg的使用&#34;&gt;AUTOREG的使用&lt;/h3&gt;
+
+&lt;p&gt;如果模块输出来自寄存器，则需要将信号声明为寄存器和输出端口。 &lt;strong&gt;AUTOREG&lt;/strong&gt; 将完成输出信号的寄存器声明，并且如果输出来自非寄存器，则不会添加reg声明。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ex_reg&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+   &lt;span class=&#34;cm&#34;&gt;/*AUTOREG*/&lt;/span&gt;
+
+   &lt;span class=&#34;k&#34;&gt;always&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;快捷键 &lt;strong&gt;C-c C-a&lt;/strong&gt; 之后，实现AUTO机制，快捷键 &lt;strong&gt;C-c C-k&lt;/strong&gt; 可取消AUTO效果。AUTO效果如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ex_reg&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+   &lt;span class=&#34;cm&#34;&gt;/*AUTOREG*/&lt;/span&gt;
+   &lt;span class=&#34;c1&#34;&gt;// Beginning of automatic regs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+   &lt;span class=&#34;c1&#34;&gt;// End of automatics
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;always&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;o&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;autoinput-autooutput的使用&#34;&gt;AUTOINPUT、AUTOOUTPUT的使用&lt;/h3&gt;
+
+&lt;p&gt;在top层中，一般只有子模块的例化，没有任何其他粘合逻辑，这也是最期望的。这时top层通过 &lt;strong&gt;AUTOWIRE&lt;/strong&gt; 声明了子模块的输出连线， &lt;strong&gt;AUTOINST&lt;/strong&gt; 实现了子模块的实例化，其余未声明的信号，就是top模块的输入输出信号，我们可以通过 &lt;strong&gt;AUTOINPUT&lt;/strong&gt; &lt;strong&gt;AUTOOUTPUT&lt;/strong&gt; 完成输入输出信号的声明。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;top_md&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;cm&#34;&gt;/*AUTOINPUT*/&lt;/span&gt;
+&lt;span class=&#34;cm&#34;&gt;/*AUTOOUTPUT*/&lt;/span&gt;
+
+&lt;span class=&#34;cm&#34;&gt;/*AUTOREG*/&lt;/span&gt;
+&lt;span class=&#34;cm&#34;&gt;/*AUTOWIRE*/&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;sub_md&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i_sub_md112&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// top_md
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sub_md&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt;           &lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// sub_md
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;快捷键 &lt;strong&gt;C-c C-a&lt;/strong&gt; 之后，实现AUTO机制，快捷键 &lt;strong&gt;C-c C-k&lt;/strong&gt; 可取消AUTO效果。AUTO效果如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;top_md&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;cm&#34;&gt;/*AUTOINPUT*/&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Beginning of automatic inputs (from unused autoinst inputs)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt;                   &lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                  &lt;span class=&#34;c1&#34;&gt;// To i_sub_md112 of sub_md.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                  &lt;span class=&#34;c1&#34;&gt;// To i_sub_md112 of sub_md.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// End of automatics
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOOUTPUT*/&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Beginning of automatic outputs (from unused autoinst outputs)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                 &lt;span class=&#34;c1&#34;&gt;// From i_sub_md112 of sub_md.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// End of automatics
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;cm&#34;&gt;/*AUTOREG*/&lt;/span&gt;
+&lt;span class=&#34;cm&#34;&gt;/*AUTOWIRE*/&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;sub_md&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i_sub_md112&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+                   &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                   &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;              &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dout_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]),&lt;/span&gt;
+                   &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                   &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;               &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+                   &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;               &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]));&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// top_md
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;其他使用技巧&#34;&gt;其他使用技巧&lt;/h2&gt;
+
+&lt;h3 id=&#34;多目录问题-如果文件在同一目录-可忽略&#34;&gt;多目录问题（如果文件在同一目录，可忽略）&lt;/h3&gt;
+
+&lt;p&gt;我们的项目工程会有很多代码，存放在不同的文件目录里，而Verilog-mode进行 &lt;strong&gt;AUTOINST&lt;/strong&gt; 只会自动查找当前目录，这时候就会遇到问题了。那我们就来讲一讲verilog-mode是如何查找的吧。首先如果您在单文件中定义了多个模块，则会优先选择当前文件中的模块，然后在当前文件所在目录查找，如果定义了verilog-library-extensions，则继续查找附加扩展名的文件中查找模块，最后，它在verilog-library-directories中定义的每个目录中查找。 因此，如果您有一个顶层模块需要实例化其他目录的子模块，则需要告诉Verilog-Mode在哪些目录中查找，最好的方法是在每个需要它们的Verilog文件的末尾定义库变量：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Local Variables:
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// verilog-library-directories:(&amp;#34;.&amp;#34; &amp;#34;subdir&amp;#34; &amp;#34;subdir2&amp;#34;)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// verilog-library-files:(&amp;#34;/some/path/technology.v&amp;#34; &amp;#34;/some/path/tech2.v&amp;#34;)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// verilog-library-extensions:(&amp;#34;.v&amp;#34; &amp;#34;.h&amp;#34;)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// End:
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;define问题-如果auto相关内容不涉及define-可忽略&#34;&gt;define问题（如果AUTO相关内容不涉及define，可忽略）&lt;/h3&gt;
+
+&lt;p&gt;使用AUTOINST或AUTOSENSE时，有些场景中信号会带有define，这时候需要verilog-mode将define信息读进来，才可以正确完成AUTO功能。使用如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Local Variables:
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// eval:(verilog-read-defines)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// eval:(verilog-read-defines &amp;#34;group_standard_includes.v&amp;#34;)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// End:
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;第一行是读取当前文件中的define，第二行是读取define文件。&lt;/p&gt;
+
+&lt;h3 id=&#34;include-file问题-如果auto相关内容不涉及include-可忽略&#34;&gt;include file问题（如果AUTO相关内容不涉及include，可忽略）&lt;/h3&gt;
+
+&lt;p&gt;出于速度原因，Verilog-Mode不会自动读取include文件。这意味着include文件中定义的常量将不被作为AUTOSENSE的常量。解决方法如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Local Variables:
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// eval:(verilog-read-includes)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// End:
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;verilog-mode-的auto使用方法&#34;&gt;verilog-mode 的AUTO使用方法&lt;/h3&gt;
+
+&lt;p&gt;上文也看到了，可以通过打开emacs，使用快捷键来完成AUTO和取消AUTO，除此之外还可以当做脚本来处理，使用方法如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;emacs --batch --no-site-file -l verilog-mode.el filename.v -f verilog-auto -f save-buffer&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;由此可见，我们可以通过脚本进行批量处理代码文件，完成AUTO机制，并且可以通过将不同目录文件复制其软连接到同一目录，再通过脚本实现AUTO机制，这样解决了不同目录对 &lt;strong&gt;AUTOINST&lt;/strong&gt; 的影响。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>emacs的使用技巧记录</title>
+      <link>https://wenhui.space/post/about_emacs/emacs_use_tips/</link>
+      <pubDate>Tue, 31 Dec 2019 10:09:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/emacs_use_tips/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要记录了emacs使用过程中的小技巧。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;emacs版本：Linux GNU Emacs 26.3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;文本编辑相关&#34;&gt;文本编辑相关&lt;/h2&gt;
+
+&lt;h3 id=&#34;emacs-中的批量查找与替换&#34;&gt;Emacs 中的批量查找与替换&lt;/h3&gt;
+
+&lt;p&gt;Emacs 有很强大的批量查找与替换功能。操作如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;切换到源码项目目录，然后 &lt;strong&gt;M-x find-dired&lt;/strong&gt; ，输入 &lt;strong&gt;.&lt;/strong&gt; ，表示查找当前目录下的所有文件，回车，在输入 &lt;strong&gt;-name &amp;ldquo;&lt;/strong&gt;.el&amp;rdquo;* ，表示只查找.el文件。再次回车后，Emacs 会打开一个缓冲区显示出项目中所有的.el后缀的文件&lt;/li&gt;
+&lt;li&gt;在显示所有查找文件的缓存页面，可以直接按t来标记所有文件，或者按m来一个一个的进行标记，如果标记错误了，可以按u来取消标记&lt;/li&gt;
+&lt;li&gt;标记完所有要进行查找替换的文件之后按Q快捷键，使用正则表达式来查找与替换被标记文件中的内容，第一次需要输入的是被查找项，回车之后在输入替换项，之后在回车，Emacs 会逐个打开被标记的文件，然后用高亮显示被正则搜索到的要替换的语句，逐个的问你是否要进行替换&lt;/li&gt;
+&lt;li&gt;显示的高亮替换项，你可以按y来确认替换，也可以按n取消替换，或者按!强制不提示而进行所有替换&lt;/li&gt;
+&lt;li&gt;替换完成后 &lt;strong&gt;C-x s&lt;/strong&gt; 保存所有修改项，会逐个询问是否保存，yes代表保存，no代表不保存，！代表强制保存所有&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Emacs 的查找与替换功能看似比其他软件繁琐与麻烦许多，实际上这是非常稳健的操作方式，查找与替换的过程非常透明化，你可以详细的看到要被替换的项，仔细谨慎的进行确认替换，之间也有非常多的机会来中断查找替换过程，来恢复文件中被错误替换的内容。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>为firefox安装插件</title>
@@ -1937,6 +3028,147 @@ toc = true
     </item>
     
     <item>
+      <title>shell脚本使用记录</title>
+      <link>https://wenhui.space/post/about_linux/shell_use_tips/</link>
+      <pubDate>Sun, 01 Dec 2019 14:18:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_linux/shell_use_tips/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要对日常shell脚本使用中的一些技巧进行记录。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;字符串替换的小技巧&#34;&gt;字符串替换的小技巧&lt;/h2&gt;
+
+&lt;h3 id=&#34;在一个文件里替换一个字符串&#34;&gt;在一个文件里替换一个字符串&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;替换结果保存在临时文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sed -e s/OLDSTRING/NEWSTRING/g src_file &amp;gt;tempfile&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;直接覆盖源文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sed -i -e s/OLDSTRING/NEWSTRING/g src_file&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;在一个文件里进行有条件替换&#34;&gt;在一个文件里进行有条件替换&lt;/h3&gt;
+
+&lt;p&gt;我们经常有这样的需求，对某个文件中某些参数值进行修改，比如将TRUE改为FALSE，而且有些参数的keyword可能由多个单词构成（中间空格分离）。shell中for循环的默认分隔符是：空格、tab、\n，，根据需求选择只将\n作为分隔符（原分隔符暂存，处理完后恢复，为的是不影响后面的脚本运行）(for语句中的shell命令用反引号包起来)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;IFS_OLD&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$IFS&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;IFS&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;$&amp;#39;\n&amp;#39;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; key in &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;cat keywords&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+    sed -i &lt;span class=&#34;s2&#34;&gt;&amp;#34;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/s/TRUE/FALSE/g&amp;#34;&lt;/span&gt; src_file
+&lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+
+&lt;span class=&#34;nv&#34;&gt;IFS&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$IFS_OLD&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;在一组文件里替换一个字符串&#34;&gt;在一组文件里替换一个字符串&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; file in &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;cat flist&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+    sed -i -e s/OLDSTRING/NEWSTRING/g &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;在一个文件里替换一组字符串&#34;&gt;在一个文件里替换一组字符串&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sed -i -e s/OLDSTRING1/NEWSTRING1/g &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;       -e s/OLDSTRING2/NEWSTRING2/g &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;       -e s/OLDSTRING3/NEWSTRING3/g &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;       src_file&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;更多无耻要求&#34;&gt;更多无耻要求&lt;/h3&gt;
+
+&lt;p&gt;更多无耻要求可以基于以上简单脚本进行嵌套实现，不再一一说明。&lt;/p&gt;
+
+&lt;h3 id=&#34;其他方案-emacs&#34;&gt;其他方案：Emacs&lt;/h3&gt;
+
+&lt;p&gt;如果你是Emacs用户的话，可以使用emacs的批量替换，具体可查看我的另一篇帖子 &lt;a href=&#34;https://www.wenhui.space/post/about%5Femacs/emacs%5Fuse%5Ftips/&#34;&gt;emacs的使用技巧记录&lt;/a&gt;中 &lt;strong&gt;“Emacs 批量查找与替换”&lt;/strong&gt; 章节。Emacs 批量查找与替换功能操作起来虽然比其他软件繁琐许多，但是你可以详细的看到要被替换的项，这一点相对于单纯的脚本替换是有安全性的。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>hugo的安装</title>
       <link>https://wenhui.space/post/work_platform/install_hugo/</link>
       <pubDate>Sat, 23 Nov 2019 15:54:00 +0800</pubDate>
@@ -2689,618 +3921,6 @@ git push&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;h3 id=&#34;详细使用技巧&#34;&gt;详细使用技巧&lt;/h3&gt;
 
 &lt;p&gt;至此，其实已经可以基本使用git了，其他详细使用技巧请期待后续帖子更新。也可以参考网上教程&lt;a href=&#34;https://www.liaoxuefeng.com/wiki/896043488029600&#34;&gt;廖雪峰git使用教程&lt;/a&gt;。&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>emacs的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_emacs/</link>
-      <pubDate>Sat, 19 Oct 2019 16:15:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_emacs/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍emacs和记录emacs的安装过程。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
-&lt;li&gt;emacs版本： Linux GNU Emacs 26.3&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;什么是emacs&#34;&gt;什么是emacs？&lt;/h2&gt;
-
-&lt;p&gt;emacs是一款功能强大的编辑器，被公认为是最受专业程序员喜爱的代码编辑器之一，而另一个就是vim，在业界vim被称为编辑器之神，而emacs被称为神之编辑器。对于初学者可能都有这样的疑问，那就是究竟是Vim还是Emacs好呢？这样的问题已经争辩了十几年，但至今无解，不过为了让初学者有一定的了解，还是做个简单介绍。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Vim&lt;/strong&gt; ：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;开箱即用，大多数操作系统自带，不需要安装&lt;/li&gt;
-&lt;li&gt;体量小，启动快&lt;/li&gt;
-&lt;li&gt;采用双模式（命令模式和编辑模式），这样按键组合少，但是要频繁进行模式切换&lt;/li&gt;
-&lt;li&gt;vim的上下左右jkhl，右手控制相对舒服&lt;/li&gt;
-&lt;li&gt;相对emacs使用人群多，配置和使用技巧可参考内容较多&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Emacs&lt;/strong&gt; ：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;需要自己安装，碰到依赖库的问题，还是有点麻烦的&lt;/li&gt;
-&lt;li&gt;体积大，启动慢，但功能强大&lt;/li&gt;
-&lt;li&gt;主模式操作，不用切换模式，但按键组合就多了，Ctrl、Alt、Shift是离不开的，让你的小拇指粗壮起来&lt;/li&gt;
-&lt;li&gt;emacs的上下左右pnbf放在了两个手，还要配合Ctrl键，需要适应&lt;/li&gt;
-&lt;li&gt;缓存机制个人感觉很有用&lt;/li&gt;
-&lt;li&gt;可扩展性极强，可重新定义变量和快捷键绑定，可自己定制插件，也可通过内置的包管理系统安装和卸载大神们的插件，目前可使用的插件还是很丰富的&lt;/li&gt;
-&lt;li&gt;不同的语言环境对应不同的模式，每个模式都有自己独特的功能，本人最常用的就是org-mode和verilog-mode，org写工程日记，verilog就不说了，IC工程师离不开的&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;总之，Vim和Emacs功能都很强大，选择一款适合自己的编辑器即可。&lt;/p&gt;
-
-&lt;h2 id=&#34;安装emacs&#34;&gt;安装emacs&lt;/h2&gt;
-
-&lt;h3 id=&#34;下载emacs安装包&#34;&gt;下载emacs安装包&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;可查看&lt;a href=&#34;http://www.gnu.org/software/emacs/&#34;&gt;emacs官网&lt;/a&gt;或&lt;a href=&#34;http://mirrors.nju.edu.cn/gnu/emacs&#34;&gt;国内镜像文件&lt;/a&gt;，当前最新版本是emacs-26.3（更新时间29-Aug-2019)&lt;/li&gt;
-&lt;li&gt;可查看我的百度网盘分享资源(linux emacs-26.3版本) &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1VZ88kGZpBiC59qGU7sk7tA&#34;&gt;https://pan.baidu.com/s/1VZ88kGZpBiC59qGU7sk7tA&lt;/a&gt; 密码：lki0&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;可直接使用我的可执行程序，无需安装，将其放在自己的 &lt;em&gt;“/usr/local/bin/”&lt;/em&gt; 目录即可，百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/18K8WNnr5ytIkx%5Fe7n%5FuAcQ&#34;&gt;https://pan.baidu.com/s/18K8WNnr5ytIkx%5Fe7n%5FuAcQ&lt;/a&gt; 密码：rrtt&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;安装依赖库&#34;&gt;安装依赖库&lt;/h3&gt;
-
-&lt;p&gt;开启终端，输入以下命令，安装相应的依赖库。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get install libgtk2.0-dev --fix-missing
-sudo apt-get install libxpm-dev
-sudo apt-get install libjpeg62-turbo-dev
-sudo apt-get install libgif-dev
-sudo apt-get install libtiff5-dev&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;编译和安装&#34;&gt;编译和安装&lt;/h3&gt;
-
-&lt;p&gt;开启终端，进入emacs安装包目录，输入以下命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;./configure&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;已经安装了相应的依赖，此时应该不会发生error，经过configure后，执行以下命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;make
-sudo make install&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;查看是否安装成功&#34;&gt;查看是否安装成功&lt;/h3&gt;
-
-&lt;p&gt;终端中输入以下命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;emacs --version&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;正常显示emacs版本号，即安装成功，安装的可执行程序默认在 &lt;em&gt;“/usr/local/bin/”&lt;/em&gt; 。&lt;/p&gt;
-
-&lt;h2 id=&#34;启动emacs&#34;&gt;启动emacs&lt;/h2&gt;
-
-&lt;p&gt;启动命令为 &lt;strong&gt;emacs&lt;/strong&gt; ，如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;emacs ~/Destop/demo.txt&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;启动页面会有简单的使用说明，熟悉熟悉即可上手操作。&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/emacs/emacs1.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; emacs启动页面 &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/emacs/emacs2.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; emacs org mode &lt;/b&gt;  &lt;/div&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;center&#34;&gt;&lt;/center&gt;&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>deepin系统安装</title>
-      <link>https://wenhui.space/post/work_platform/install_deepin_os/</link>
-      <pubDate>Sun, 13 Oct 2019 20:30:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_deepin_os/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍deepin系统和记录deepin系统的安装过程。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.deepin.org/installation/&#34;&gt;deepin官网-如何安装&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/u012335228/article/details/83209192&#34;&gt;实操：安装深度DeepinLinux桌面操作系统（替代微软Windows的国产开源系统）&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Win10&lt;/li&gt;
-&lt;li&gt;deppin版本： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;什么是deepin&#34;&gt;什么是deepin？&lt;/h2&gt;
-
-&lt;p&gt;deepin操作系统是由武汉深之度科技有限公司开发的Linux发行版。deepin操作系统是一个基于Debian的Linux操作系统，专注于使用者对日常办公、学习、生活和娱乐的操作体验的极致，适合笔记本、桌面计算机和一体机。它包含了所有您需要的应用程序，网页浏览器、幻灯片演示、文档编辑、电子表格、娱乐、声音和图片处理软件，即时通讯软件等等。以上内容摘自百度百科，了解详细信息可登录&lt;a href=&#34;https://www.deepin.org/&#34;&gt;deepin操作系统官网&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;简而言之，deepin是基于Debian内核、简单易用又美观的Linux操作系统，适合轻量应用的普通用户和初识Linux的学习者。deepin从使用习惯上是最接近Windows的Linux操作系统，它自带应用商店、文件管理器、系统监视器、深度截屏、深度录屏、深度录音、深度影院等等，深度应用商店中提供的软件还是很丰富的，涉及网络应用、社交沟通、音乐欣赏、视频播放、图形图像、游戏娱乐、办公学习、阅读翻译、编程开发和系统管理，比如微信、QQ、百度网盘、迅雷、网易云音乐等都可以使用，但是有些软件版本较低且部分功能不支持，不过好在还是可以用的，你也可以通过手动安装最新版本，也可以发掘其他好玩好用的Linux版软件。这里说一下，deepin对游戏支持不太好，如果玩游戏的话建议还是整个Windows稳定环境吧。&lt;/p&gt;
-
-&lt;h2 id=&#34;安装deepin&#34;&gt;安装deepin&lt;/h2&gt;
-
-&lt;h3 id=&#34;下载安装包和启动盘制作工具&#34;&gt;下载安装包和启动盘制作工具&lt;/h3&gt;
-
-&lt;p&gt;打开&lt;a href=&#34;https://www.deepin.org/download/&#34;&gt;deepin官网下载页面&lt;/a&gt;，下载ISO镜像文件，我选择的是左边第一个的 &lt;strong&gt;“官方下载”&lt;/strong&gt; ，启动盘制作工具下载链接在deepin官网下载页面最下面的 &lt;strong&gt;“下载深度启动盘制作工具”&lt;/strong&gt; ，或者点击&lt;a href=&#34;https://www.deepin.org/original/deepin-boot-maker/&#34;&gt;这里&lt;/a&gt;。官网下载的深度启动盘制作工具在Windows下运行总是提示内存无法访问，不知道其他使用者情况，我再提供一个自己使用过的启动盘制作工具，百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1ph70bhA4h70cgB1PLoxPOg&#34;&gt;https://pan.baidu.com/s/1ph70bhA4h70cgB1PLoxPOg&lt;/a&gt; 密码：mphc&lt;/strong&gt; 。&lt;/p&gt;
-
-&lt;h3 id=&#34;制作启动盘&#34;&gt;制作启动盘&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;准备好一个不小于8G的U盘，最好格式化&lt;/li&gt;
-&lt;li&gt;插入准备的U盘并打开启动盘制作工具，选择深度操作系统镜像文件以及准备好的U盘，这里会有勾选项 &lt;strong&gt;“格式化磁盘可提高制作成功率”&lt;/strong&gt; ，若之前U盘未格式化，在备份好内容的前提下建议勾选上&lt;/li&gt;
-&lt;li&gt;点击 &lt;strong&gt;“开始”&lt;/strong&gt; 即可制作&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;准备分区&#34;&gt;准备分区&lt;/h3&gt;
-
-&lt;p&gt;我的存储系统是一块256G的固态硬盘，现在要压缩出50G给deepin系统使用，方法如下：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;选中 &lt;strong&gt;“此电脑”&lt;/strong&gt; ，右键选择 &lt;strong&gt;&amp;ldquo;管理&amp;rdquo;&lt;/strong&gt; ，然后选择并打开 &lt;strong&gt;“磁盘管理”&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;选择要压缩的磁盘，我这里就一个256G盘，也就没什么选择的了，然后右键选中 &lt;strong&gt;“压缩卷”&lt;/strong&gt; ，输入压缩空间大小，单位是MB，50G=1024MBx50=51200MB，点击 &lt;strong&gt;“压缩”&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;这里出现了一个未分配的50G磁盘，这就是留给deepin使用的磁盘空间了&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;安装系统&#34;&gt;安装系统&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;将制作好的启动盘插入电脑&lt;/li&gt;
-&lt;li&gt;重启电脑，在屏幕处于黑屏状态时连续敲 &lt;strong&gt;F12（Fn+F12）&lt;/strong&gt; ，进入启动项选择页面，选择插入的U盘，回车&lt;/li&gt;
-&lt;li&gt;系统进入安装界面，选择需要安装的语言，简体中文&lt;/li&gt;
-&lt;li&gt;进入账户界面，输入系统用户名和密码&lt;/li&gt;
-&lt;li&gt;点击 &lt;strong&gt;“下一步”&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;进入选择安装位置页面，这里选择之前压缩出的未分配磁盘，并且选择默认的 &lt;strong&gt;“简单”&lt;/strong&gt; 安装即可，若对Linux磁盘分区有了解的话可以选择 &lt;strong&gt;“高级”&lt;/strong&gt; ，因为是双系统，所以不建议选择 &lt;strong&gt;“全盘安装”&lt;/strong&gt; ，可能会影响Windows系统的数据。&lt;/li&gt;
-&lt;li&gt;点击 &lt;strong&gt;“继续”&lt;/strong&gt; ，系统开始自动化安装了&lt;/li&gt;
-&lt;li&gt;安装完成后，拔掉U盘，开始体验deepin吧&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/deepin/deepin1.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; deepin主页 &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/deepin/deepin2.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; deepin启动器 &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/deepin/deepin3.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; deepin应用商店 &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;开机启动&#34;&gt;开机启动&lt;/h2&gt;
-
-&lt;p&gt;安装完deepin和win10双系统，开机启动后会默认进入deepin的开机引导页面，第一选项是deepin，其他选项有Windows和硬盘等，默认等待时间是5秒，在5秒内可以选择进入win10系统还是deepin系统，不选择默认第一启动项deepin。&lt;/p&gt;
-
-&lt;h2 id=&#34;如何删除deepin系统&#34;&gt;如何删除deepin系统&lt;/h2&gt;
-
-&lt;p&gt;有可能deepin安装体验后，并不喜欢，没关系，我们可以删除它。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;删除磁盘：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;重启电脑，在启动页面选择Windows启动，进入Windows系统&lt;/li&gt;
-&lt;li&gt;选中此电脑，右键选择管理，然后选择并打开磁盘管理，选中deepin的磁盘，右键选择删除卷&lt;/li&gt;
-&lt;li&gt;原deepin磁盘此时处于未分配状态，选择要扩展的磁盘（未分配空间会添加到此盘），右键选择 &lt;strong&gt;&amp;ldquo;扩展卷&amp;rdquo;&lt;/strong&gt; ，进入使用扩展向导&lt;/li&gt;
-&lt;li&gt;点击 &lt;strong&gt;“下一步”&lt;/strong&gt; ，选择扩展的空间容量，这里一般选择最大值即可，设置完毕，点击 &lt;strong&gt;“下一步”&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;完成扩展向导，点击 *“完成”*，即可扩展成功，扩展之后发现扩展磁盘空间增大了&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;strong&gt;设置开机启动顺序：&lt;/strong&gt;
-安装完deepin和win10双系统，开机启动后会默认进入deepin的开机引导页面，虽然删除了deepin的磁盘，但还会进入deepin的开机引导页面，这样会出现问题，所以需要修改开机启动项顺序。方法如下：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;重启电脑，在屏幕处于黑屏状态时连续敲 &lt;strong&gt;F1（Fn+F1）&lt;/strong&gt; ，进入BIOS页面&lt;/li&gt;
-&lt;li&gt;通过左右键选择 &lt;strong&gt;“Startup”&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;在 &lt;strong&gt;“Startup”&lt;/strong&gt; 页面选择 &lt;strong&gt;“Boot”&lt;/strong&gt; 项，回车&lt;/li&gt;
-&lt;li&gt;当前 &lt;strong&gt;“deepin”&lt;/strong&gt; 是第一项，此时将 &lt;strong&gt;“Windows Boot Manager”&lt;/strong&gt; 设为第一项&lt;/li&gt;
-&lt;li&gt;按 &lt;strong&gt;“F10”&lt;/strong&gt; ，保存并退出&lt;/li&gt;
-&lt;li&gt;重启电脑，此时电脑直接进入Win10系统，与安装deepin系统前一样&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>My Black Boy</title>
-      <link>https://wenhui.space/post/work_platform/thinkpad_s2/</link>
-      <pubDate>Sun, 13 Oct 2019 15:22:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/thinkpad_s2/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍购买笔记本电脑前的选择和购买后的使用测评。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;h3 id=&#34;购置需求&#34;&gt;购置需求&lt;/h3&gt;
-
-&lt;p&gt;本人IC工程师，但不会在个人电脑运行大型软件，不爱好游戏，不涉及图像视频相关工作，主要应用场景也就是轻量办公和轻量娱乐，所以对性能要求不高，对显卡要求不高，对屏幕显示要求不高。最大的要求就是小巧轻便，续航能力强，不想再背着联想大G跑来跑去了。&lt;/p&gt;
-
-&lt;h3 id=&#34;购置理由&#34;&gt;购置理由&lt;/h3&gt;
-
-&lt;p&gt;最终选择了这款Thinkpad S2，其购置理由如下：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;13.3英寸，1.47Kg，厚度19.1mm，满足小巧轻便要求。&lt;/li&gt;
-&lt;li&gt;待机时长5~7小时，满足续航要求。&lt;/li&gt;
-&lt;li&gt;黑色机身，经典Thinkpad外观，商务风格（由于只有A面是金属的，其余为塑料材质，感觉银色款缺少了金属质感，所以放弃）。&lt;/li&gt;
-&lt;li&gt;接口丰富，USB3.0，Type-C，HDMI，同时具有可扩展性，足够满足日常使用（好像大多数电脑都满足这些要求了）。&lt;/li&gt;
-&lt;li&gt;可升级，ThinkPad的电脑的内存和存储都是可以升级的，内存最大升级为32G，所以买了基本配置8G+256G，后续可升级。&lt;/li&gt;
-&lt;li&gt;价格中等，6000上下，可以接受&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;为什么&#34;&gt;为什么&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;为什么处理器不买i7？ 太贵！！！&lt;/li&gt;
-&lt;li&gt;为什么不买x1？ 太贵！！！&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;图片&#34;&gt;图片&lt;/h2&gt;
-
-&lt;h3 id=&#34;外观&#34;&gt;外观&lt;/h3&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/BlackBoy/BlackBoy1.jpg&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; Black Boy &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;接口&#34;&gt;接口&lt;/h3&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/BlackBoy/BlackBoy2.jpg&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; 接口展示 &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;部件名称&lt;/th&gt;
-&lt;th&gt;部件描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;CPU型号&lt;/td&gt;
-&lt;td&gt;i5-8250U&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;CPU主频&lt;/td&gt;
-&lt;td&gt;1.60GHz&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;最高睿频&lt;/td&gt;
-&lt;td&gt;3.4GHz&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;总线规格&lt;/td&gt;
-&lt;td&gt;4 GT/s&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;CPU缓存&lt;/td&gt;
-&lt;td&gt;6 MB&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;核心/线程数&lt;/td&gt;
-&lt;td&gt;&lt;sup&gt;4&lt;/sup&gt;&amp;frasl;&lt;sub&gt;8&lt;/sub&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;制程工艺&lt;/td&gt;
-&lt;td&gt;光刻 14nm&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;指令集&lt;/td&gt;
-&lt;td&gt;64-bit&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;功耗&lt;/td&gt;
-&lt;td&gt;15 W&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;内存容量&lt;/td&gt;
-&lt;td&gt;8GB&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;内存类型&lt;/td&gt;
-&lt;td&gt;2400MHz DDR4&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;插槽数量&lt;/td&gt;
-&lt;td&gt;2个内存插槽（一个插有8G内存，另一个空余供升级使用）&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;最大内存容量&lt;/td&gt;
-&lt;td&gt;32GB（每个插槽最大16GB）&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;硬盘容量&lt;/td&gt;
-&lt;td&gt;256GB (M.2 SSD) (可升级)&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;光驱&lt;/td&gt;
-&lt;td&gt;无&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;触控屏&lt;/td&gt;
-&lt;td&gt;不支持&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;屏幕尺寸&lt;/td&gt;
-&lt;td&gt;13.3英寸&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;显示比例&lt;/td&gt;
-&lt;td&gt;16:9&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;屏幕分辨率&lt;/td&gt;
-&lt;td&gt;1366x768&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;屏幕技术&lt;/td&gt;
-&lt;td&gt;LED背光TN显示屏，防眩目显示屏&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;显卡类型&lt;/td&gt;
-&lt;td&gt;集成显卡&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;显卡芯片&lt;/td&gt;
-&lt;td&gt;Intel UHD Graphics 620&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;显存容量&lt;/td&gt;
-&lt;td&gt;共享系统内存&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;DirectX版本&lt;/td&gt;
-&lt;td&gt;DirectX 12&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;摄像头&lt;/td&gt;
-&lt;td&gt;720p 高清摄像头&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;音频系统&lt;/td&gt;
-&lt;td&gt;HD Audio，Realtek ALC3287 codec&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;扬声器&lt;/td&gt;
-&lt;td&gt;立体扬声器 2Wx2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;麦克风&lt;/td&gt;
-&lt;td&gt;DualArray Microphone（内置双阵列麦克风）&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;无线网卡&lt;/td&gt;
-&lt;td&gt;支持802.11AC协议的无线网卡&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;有线网卡&lt;/td&gt;
-&lt;td&gt;内置Intel Ethernet Connection I219-V（Jacksonville）&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;蓝牙&lt;/td&gt;
-&lt;td&gt;无线网卡集成&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;数据接口&lt;/td&gt;
-&lt;td&gt;2个USB3.0 Gen1（其中一个为Always On），2个USB3.0 Type-C&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;视频接口&lt;/td&gt;
-&lt;td&gt;HDMI&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;音频接口&lt;/td&gt;
-&lt;td&gt;Combo jack（麦克风/耳机二合一接口）&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;读卡器&lt;/td&gt;
-&lt;td&gt;MicroSD 读卡器&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;指纹识别&lt;/td&gt;
-&lt;td&gt;支持&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;键盘&lt;/td&gt;
-&lt;td&gt;6行全尺寸键盘（不带背光）&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;电池类型&lt;/td&gt;
-&lt;td&gt;3芯45Wh&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;续航时间&lt;/td&gt;
-&lt;td&gt;5-7小时&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;电源适配器&lt;/td&gt;
-&lt;td&gt;65W USB C型 AC Adapter&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;预装操作系统&lt;/td&gt;
-&lt;td&gt;Win10家庭中文版64位&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;WWAN&lt;/td&gt;
-&lt;td&gt;不支持&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;使用测评&#34;&gt;使用测评&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;整机算是比较轻，但算不上薄，毕竟不是超级本，不过也是thinkpad中小巧轻便的了，整体不错。&lt;/li&gt;
-&lt;li&gt;机身材料只有A面是金属的，其它全是塑料材质，这个买之前就已经知晓了，不过选的黑色款，外观还不错，不知道银色款怎么样，唯一的吐槽点是开箱时塑料味稍微有点大。&lt;/li&gt;
-&lt;li&gt;接口丰富，一个USB给无线键鼠使用，一个可供存储读取使用，其中一个USB口是Always On的，也就是在关机时直插可以给手机充电，两个Type-C都可以充电，HDMI可扩展屏幕，还有mini网口和SD卡读口，足够满足日常需求了，个别需求需要另购扩展坞或转换头。&lt;/li&gt;
-&lt;li&gt;电池续航能力亲测可以，满足日常办公待机5～6小时，可以设置电池充电至90%，这样接电源使用对电池比较好。&lt;/li&gt;
-&lt;li&gt;键盘手感还可以，本人要求不高，中间的红色指杆，是ThinkPad经典标志，不过我觉得现在挺鸡肋的，反正我不会去用，触控板已足够。&lt;/li&gt;
-&lt;li&gt;网上有人说风扇和散热的问题，我这里没发现什么异常&lt;/li&gt;
-&lt;li&gt;在Win10系统，无线网不自动刷新连接，手动刷新有时候找不到自己的网络，估计也不是电脑的问题，回头重装系统试试。&lt;/li&gt;
-&lt;li&gt;联想客服，可以添加微信公众号，绑定自己的设备，有啥问题都可以咨询人工客服&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 </description>
       
     </item>

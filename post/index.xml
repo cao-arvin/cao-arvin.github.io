@@ -6,10 +6,28 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 30 Dec 2019 14:16:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 16:42:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Emacs verilog-mode 的使用</title>
+      <link>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</link>
+      <pubDate>Wed, 01 Jan 2020 16:42:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</guid>
+      <description>本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU</description>
+    </item>
+    
+    <item>
+      <title>emacs的使用技巧记录</title>
+      <link>https://wenhui.space/post/about_emacs/emacs_use_tips/</link>
+      <pubDate>Tue, 31 Dec 2019 10:09:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/emacs_use_tips/</guid>
+      <description>本文 主要记录了emacs使用过程中的小技巧。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 文本编辑相</description>
+    </item>
     
     <item>
       <title>为firefox安装插件</title>
@@ -102,6 +120,15 @@
     </item>
     
     <item>
+      <title>shell脚本使用记录</title>
+      <link>https://wenhui.space/post/about_linux/shell_use_tips/</link>
+      <pubDate>Sun, 01 Dec 2019 14:18:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_linux/shell_use_tips/</guid>
+      <description>本文 主要对日常shell脚本使用中的一些技巧进行记录。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 字符串替换的小技巧 在一个文件里替</description>
+    </item>
+    
+    <item>
       <title>hugo的安装</title>
       <link>https://wenhui.space/post/work_platform/install_hugo/</link>
       <pubDate>Sat, 23 Nov 2019 15:54:00 +0800</pubDate>
@@ -162,24 +189,6 @@
       
       <guid>https://wenhui.space/post/work_platform/install_emacs/</guid>
       <description>本文 主要介绍emacs和记录emacs的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本： Linux GNU Emacs 26.3 什么是ema</description>
-    </item>
-    
-    <item>
-      <title>deepin系统安装</title>
-      <link>https://wenhui.space/post/work_platform/install_deepin_os/</link>
-      <pubDate>Sun, 13 Oct 2019 20:30:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_deepin_os/</guid>
-      <description>本文 主要介绍deepin系统和记录deepin系统的安装过程。 版本 说明 0.1 初版发布 参考 deepin官网-如何安装 实操：安装深度DeepinLi</description>
-    </item>
-    
-    <item>
-      <title>My Black Boy</title>
-      <link>https://wenhui.space/post/work_platform/thinkpad_s2/</link>
-      <pubDate>Sun, 13 Oct 2019 15:22:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/thinkpad_s2/</guid>
-      <description>本文 主要介绍购买笔记本电脑前的选择和购买后的使用测评。 版本 说明 0.1 初版发布 背景 购置需求 本人IC工程师，但不会在个人电脑运行大型软件，不爱好游戏</description>
     </item>
     
   </channel>

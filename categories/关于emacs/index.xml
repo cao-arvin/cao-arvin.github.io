@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>关于emacs on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/</link>
+    <description>Recent content in 关于emacs on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 01 Jan 2020 16:42:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Emacs verilog-mode 的使用</title>
+      <link>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</link>
+      <pubDate>Wed, 01 Jan 2020 16:42:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</guid>
+      <description>本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU</description>
+    </item>
+    
+    <item>
+      <title>emacs的使用技巧记录</title>
+      <link>https://wenhui.space/post/about_emacs/emacs_use_tips/</link>
+      <pubDate>Tue, 31 Dec 2019 10:09:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/emacs_use_tips/</guid>
+      <description>本文 主要记录了emacs使用过程中的小技巧。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 文本编辑相</description>
+    </item>
+    
+  </channel>
+</rss>
