@@ -6,10 +6,19 @@
     <description>Recent content in 关于emacs on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 03 Jan 2020 17:37:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jan 2020 20:30:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>emacs 中使用模板文件</title>
+      <link>https://wenhui.space/post/about_emacs/emacs_auto_insert/</link>
+      <pubDate>Fri, 03 Jan 2020 20:30:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/emacs_auto_insert/</guid>
+      <description>本文 主要介绍用emacs auto-insert命令实现用模板文件创建新文件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs</description>
+    </item>
     
     <item>
       <title>Emacs Verilog Perl 的使用</title>
@@ -17,7 +26,7 @@
       <pubDate>Fri, 03 Jan 2020 17:37:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/about_emacs/verilog_perl_useguide/</guid>
-      <description>本文 主要介绍如何使用 Verilog-Perl 脚本对verilog代码进行神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 Verilog-Perl版</description>
+      <description>本文 主要介绍如何使用 Verilog-Perl 脚本对verilog代码进行神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux</description>
     </item>
     
     <item>
