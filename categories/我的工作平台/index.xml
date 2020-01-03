@@ -75,6 +75,15 @@
     </item>
     
     <item>
+      <title>为deepin系统安装无线网卡驱动</title>
+      <link>https://wenhui.space/post/work_platform/install_rtl8821ce_wireless_drive/</link>
+      <pubDate>Mon, 14 Oct 2019 21:22:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/install_rtl8821ce_wireless_drive/</guid>
+      <description>本文 主要介绍如何为deepin系统安装 rtl8821ce 无线网卡驱动。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Win10 deppin版本： Deepin GNU/Linux 15.11 无线驱动：rtl882</description>
+    </item>
+    
+    <item>
       <title>deepin系统安装</title>
       <link>https://wenhui.space/post/work_platform/install_deepin_os/</link>
       <pubDate>Sun, 13 Oct 2019 20:30:00 +0800</pubDate>

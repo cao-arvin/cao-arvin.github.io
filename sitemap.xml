@@ -3,7 +3,7 @@
   
   <url>
     <loc>https://wenhui.space/categories/</loc>
-    <lastmod>2020-01-03T17:38:02+08:00</lastmod>
+    <lastmod>2020-01-03T19:03:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,14 +24,14 @@
   
   <url>
     <loc>https://wenhui.space/post/</loc>
-    <lastmod>2020-01-03T17:38:02+08:00</lastmod>
+    <lastmod>2020-01-03T19:03:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/</loc>
-    <lastmod>2020-01-03T17:38:02+08:00</lastmod>
+    <lastmod>2020-01-03T19:03:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -45,7 +45,7 @@
   
   <url>
     <loc>https://wenhui.space/</loc>
-    <lastmod>2020-01-03T17:38:02+08:00</lastmod>
+    <lastmod>2020-01-03T19:03:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -108,21 +108,21 @@
   
   <url>
     <loc>https://wenhui.space/categories/%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%B9%B3%E5%8F%B0/</loc>
-    <lastmod>2019-12-30T19:24:07+08:00</lastmod>
+    <lastmod>2020-01-03T19:03:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
-    <lastmod>2019-12-30T19:24:07+08:00</lastmod>
+    <lastmod>2020-01-03T19:03:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2019-12-30T19:24:07+08:00</lastmod>
+    <lastmod>2020-01-03T19:03:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -312,6 +312,13 @@
   <url>
     <loc>https://wenhui.space/post/work_platform/install_emacs/</loc>
     <lastmod>2019-12-27T15:07:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/work_platform/install_rtl8821ce_wireless_drive/</loc>
+    <lastmod>2020-01-03T19:03:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
