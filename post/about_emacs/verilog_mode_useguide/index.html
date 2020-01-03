@@ -64,14 +64,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wenhui.space/post/about_emacs/verilog_mode_useguide/" />
 <meta property="article:published_time" content="2020-01-01T16:42:00+08:00" />
-<meta property="article:modified_time" content="2020-01-03T00:45:06+08:00" />
+<meta property="article:modified_time" content="2020-01-03T15:35:05+08:00" />
 <meta itemprop="name" content="Emacs verilog-mode 的使用">
 <meta itemprop="description" content="本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU">
 
 
 <meta itemprop="datePublished" content="2020-01-01T16:42:00&#43;08:00" />
-<meta itemprop="dateModified" content="2020-01-03T00:45:06&#43;08:00" />
-<meta itemprop="wordCount" content="4627">
+<meta itemprop="dateModified" content="2020-01-03T15:35:05&#43;08:00" />
+<meta itemprop="wordCount" content="6676">
 
 
 
@@ -344,8 +344,8 @@
             <a href="https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/"> 关于emacs </a>
             
           </div>
-        <span class="more-meta"> 约 4627 字 </span>
-          <span class="more-meta"> 预计阅读 10 分钟 </span>
+        <span class="more-meta"> 约 6676 字 </span>
+          <span class="more-meta"> 预计阅读 14 分钟 </span>
 
         
         
@@ -381,6 +381,8 @@
 <li><a href="#autowire-的使用">AUTOWIRE 的使用</a></li>
 <li><a href="#autoreg的使用">AUTOREG的使用</a></li>
 <li><a href="#autoinput-autooutput的使用">AUTOINPUT、AUTOOUTPUT的使用</a></li>
+<li><a href="#autoreset的使用">AUTORESET的使用</a></li>
+<li><a href="#autoreginput的使用">AUTOREGINPUT的使用</a></li>
 </ul></li>
 <li><a href="#其他使用技巧">其他使用技巧</a>
 <ul>
@@ -389,6 +391,8 @@
 <li><a href="#include-file问题-如果auto相关内容不涉及include-可忽略">include file问题（如果AUTO相关内容不涉及include，可忽略）</a></li>
 <li><a href="#verilog-mode-的auto使用方法">verilog-mode 的AUTO使用方法</a></li>
 </ul></li>
+<li><a href="#emacs的配置-关于verilog-mode">emacs的配置（关于verilog-mode）</a></li>
+<li><a href="#忘了c-c-c-a怎么办">忘了C-c C-a怎么办</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1342,6 +1346,294 @@
 </span></code></pre></td></tr></table>
 </div>
 </div>
+<h3 id="autoreset的使用">AUTORESET的使用</h3>
+
+<p>寄存器类型的变量往往需要赋初值。描述时序逻辑的always时，最好对复位条件下进行寄存器变量的初始化；描述组合逻辑的always时，最好对寄存器变量赋缺省值，这样不会产生latch。对于多信号的always语句，手动添加不仅费时，而且容易出错，此时我们可以使用 <strong>AUTORESET</strong> 自动完成。这里默认初始化赋值为0，如需其他值，需要将其手动添加到 <strong>AUTORESET</strong> 之前，AUTO不会对其重复添加。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="kt">reg</span>        <span class="n">dout_a</span><span class="p">;</span>
+<span class="kt">reg</span>  <span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dout_b</span><span class="p">;</span>
+<span class="kt">reg</span>  <span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dout_c</span><span class="p">;</span>
+<span class="kt">reg</span>        <span class="n">dout_x</span><span class="p">;</span>
+<span class="kt">reg</span>  <span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dout_y</span><span class="p">;</span>
+<span class="kt">reg</span>  <span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dout_z</span><span class="p">;</span>
+
+<span class="k">always</span><span class="p">@(</span><span class="o">*</span><span class="p">)</span>
+    <span class="cm">/*AUTORESET*/</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sig1</span><span class="o">==</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">)</span><span class="k">begin</span>
+    <span class="n">dout_a</span>      <span class="o">=</span> <span class="n">din0</span><span class="p">;</span>
+    <span class="n">dout_b</span><span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">2</span><span class="p">{</span><span class="n">din1</span><span class="p">}};</span>
+    <span class="n">dout_c</span><span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">3</span><span class="p">{</span><span class="n">din2</span><span class="p">}};</span>
+<span class="k">end</span>
+
+<span class="k">always</span><span class="p">@(</span><span class="k">posedge</span> <span class="n">clk</span> <span class="k">or</span> <span class="k">negedge</span> <span class="n">rst_n</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">rst_n</span><span class="p">)</span><span class="k">begin</span>
+    <span class="cm">/*AUTORESET*/</span>
+<span class="k">end</span>
+<span class="k">else</span> <span class="k">begin</span>
+    <span class="n">dout_x</span>      <span class="o">&lt;=</span> <span class="n">din0</span><span class="p">;</span>
+    <span class="n">dout_y</span><span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="p">{</span><span class="mh">2</span><span class="p">{</span><span class="n">din1</span><span class="p">}};</span>
+    <span class="n">dout_z</span><span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="p">{</span><span class="mh">3</span><span class="p">{</span><span class="n">din2</span><span class="p">}};</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>快捷键 <strong>C-c C-a</strong> 之后，实现AUTO机制，快捷键 <strong>C-c C-k</strong> 可取消AUTO效果。AUTO效果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="kt">reg</span>        <span class="n">dout_a</span><span class="p">;</span>
+<span class="kt">reg</span>  <span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dout_b</span><span class="p">;</span>
+<span class="kt">reg</span>  <span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dout_c</span><span class="p">;</span>
+<span class="kt">reg</span>        <span class="n">dout_x</span><span class="p">;</span>
+<span class="kt">reg</span>  <span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dout_y</span><span class="p">;</span>
+<span class="kt">reg</span>  <span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="n">dout_z</span><span class="p">;</span>
+
+<span class="k">always</span><span class="p">@(</span><span class="o">*</span><span class="p">)</span>
+    <span class="cm">/*AUTORESET*/</span>
+    <span class="c1">// Beginning of autoreset for uninitialized flops
+</span><span class="c1"></span>    <span class="n">dout_a</span> <span class="o">=</span> <span class="mh">1&#39;h0</span><span class="p">;</span>
+    <span class="n">dout_b</span> <span class="o">=</span> <span class="mh">2&#39;h0</span><span class="p">;</span>
+    <span class="n">dout_c</span> <span class="o">=</span> <span class="mh">3&#39;h0</span><span class="p">;</span>
+    <span class="c1">// End of automatics
+</span><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="n">sig1</span><span class="o">==</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">)</span><span class="k">begin</span>
+    <span class="n">dout_a</span>      <span class="o">=</span> <span class="n">din0</span><span class="p">;</span>
+    <span class="n">dout_b</span><span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">2</span><span class="p">{</span><span class="n">din1</span><span class="p">}};</span>
+    <span class="n">dout_c</span><span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">3</span><span class="p">{</span><span class="n">din2</span><span class="p">}};</span>
+<span class="k">end</span>
+
+<span class="k">always</span><span class="p">@(</span><span class="k">posedge</span> <span class="n">clk</span> <span class="k">or</span> <span class="k">negedge</span> <span class="n">rst_n</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">rst_n</span><span class="p">)</span><span class="k">begin</span>
+    <span class="cm">/*AUTORESET*/</span>
+    <span class="c1">// Beginning of autoreset for uninitialized flops
+</span><span class="c1"></span>    <span class="n">dout_x</span> <span class="o">&lt;=</span> <span class="mh">1&#39;h0</span><span class="p">;</span>
+    <span class="n">dout_y</span> <span class="o">&lt;=</span> <span class="mh">2&#39;h0</span><span class="p">;</span>
+    <span class="n">dout_z</span> <span class="o">&lt;=</span> <span class="mh">3&#39;h0</span><span class="p">;</span>
+    <span class="c1">// End of automatics
+</span><span class="c1"></span><span class="k">end</span>
+<span class="k">else</span> <span class="k">begin</span>
+    <span class="n">dout_x</span>      <span class="o">&lt;=</span> <span class="n">din0</span><span class="p">;</span>
+    <span class="n">dout_y</span><span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="p">{</span><span class="mh">2</span><span class="p">{</span><span class="n">din1</span><span class="p">}};</span>
+    <span class="n">dout_z</span><span class="p">[</span><span class="mh">2</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="p">{</span><span class="mh">3</span><span class="p">{</span><span class="n">din2</span><span class="p">}};</span>
+<span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>注意，要先声明reg， <strong>AUTORESET</strong> 才会自动加上位宽，如果仍然不能自动将位宽加上，请在.emacs或.emacs.d/init.el文件添加以下设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-auto-reset-widths</span> <span class="no">t</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如果对时序逻辑always语句中的复位赋值需要添加延迟，请在.emacs或.emacs.d/init.el文件添加以下设置（注意：#1后必须有空格）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-assignment-delay</span> <span class="s">&#34;#1 &#34;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="autoreginput的使用">AUTOREGINPUT的使用</h3>
+
+<p>在写测试激励时，往往将设计模块（也可以叫dut）作为一个子模块在testbench中进行实例化，这事需要定义一些reg类型的信号，作为dut的输入激励。 <strong>AUTOREGINPUT</strong> 可以帮你完成此任务。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="k">module</span> <span class="n">testbench</span><span class="p">;</span>
+<span class="cm">/*AUTOREGINPUT*/</span>
+
+<span class="k">initial</span> <span class="k">begin</span>
+    <span class="p">#</span><span class="mh">0</span>  <span class="k">begin</span> <span class="n">din1</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">din2</span> <span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="k">end</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="k">begin</span> <span class="n">din1</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">din2</span> <span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="k">end</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="k">begin</span> <span class="n">din1</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">din2</span> <span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="k">end</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="k">begin</span> <span class="n">din1</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">din2</span> <span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">dut</span> <span class="n">i_dut</span><span class="p">(</span><span class="cm">/*AUTOINST*/</span><span class="p">);</span>
+<span class="k">endmodule</span> <span class="c1">// testbench
+</span><span class="c1"></span>
+<span class="k">module</span> <span class="n">dut</span><span class="p">(</span><span class="cm">/*AUTOARG*/</span>
+<span class="c1">// Outputs
+</span><span class="c1"></span><span class="n">dout</span><span class="p">,</span>
+<span class="c1">// Inputs
+</span><span class="c1"></span><span class="n">din1</span><span class="p">,</span> <span class="n">din2</span>
+<span class="p">);</span>
+<span class="k">input</span> <span class="n">din1</span><span class="p">;</span>
+<span class="k">input</span> <span class="n">din2</span><span class="p">;</span>
+<span class="k">output</span> <span class="n">dout</span><span class="p">;</span>
+
+<span class="k">assign</span> <span class="n">dout</span> <span class="o">=</span> <span class="n">din1</span> <span class="o">&amp;</span> <span class="n">din2</span><span class="p">;</span>
+<span class="k">endmodule</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>快捷键 <strong>C-c C-a</strong> 之后，实现AUTO机制，快捷键 <strong>C-c C-k</strong> 可取消AUTO效果。AUTO效果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="k">module</span> <span class="n">testbench</span><span class="p">;</span>
+<span class="cm">/*AUTOREGINPUT*/</span>
+<span class="c1">// Beginning of automatic reg inputs (for undeclared instantiated-module inputs)
+</span><span class="c1"></span><span class="kt">reg</span>                     <span class="n">din1</span><span class="p">;</span>                   <span class="c1">// To i_dut of dut.v
+</span><span class="c1"></span><span class="kt">reg</span>                     <span class="n">din2</span><span class="p">;</span>                   <span class="c1">// To i_dut of dut.v
+</span><span class="c1">// End of automatics
+</span><span class="c1"></span>
+<span class="k">initial</span> <span class="k">begin</span>
+    <span class="p">#</span><span class="mh">0</span>  <span class="k">begin</span> <span class="n">din1</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">din2</span> <span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="k">end</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="k">begin</span> <span class="n">din1</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">din2</span> <span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="k">end</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="k">begin</span> <span class="n">din1</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">din2</span> <span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="k">end</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="k">begin</span> <span class="n">din1</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">din2</span> <span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">dut</span> <span class="n">i_dut</span><span class="p">(</span><span class="cm">/*AUTOINST*/</span>
+          <span class="c1">// Outputs
+</span><span class="c1"></span>          <span class="p">.</span><span class="n">dout</span>                         <span class="p">(</span><span class="n">dout</span><span class="p">),</span>
+          <span class="c1">// Inputs
+</span><span class="c1"></span>          <span class="p">.</span><span class="n">din1</span>                         <span class="p">(</span><span class="n">din1</span><span class="p">),</span>
+          <span class="p">.</span><span class="n">din2</span>                         <span class="p">(</span><span class="n">din2</span><span class="p">));</span>
+<span class="k">endmodule</span> <span class="c1">// testbench
+</span><span class="c1"></span>
+<span class="k">module</span> <span class="n">dut</span><span class="p">(</span><span class="cm">/*AUTOARG*/</span>
+<span class="c1">// Outputs
+</span><span class="c1"></span><span class="n">dout</span><span class="p">,</span>
+<span class="c1">// Inputs
+</span><span class="c1"></span><span class="n">din1</span><span class="p">,</span> <span class="n">din2</span>
+<span class="p">);</span>
+<span class="k">input</span> <span class="n">din1</span><span class="p">;</span>
+<span class="k">input</span> <span class="n">din2</span><span class="p">;</span>
+<span class="k">output</span> <span class="n">dout</span><span class="p">;</span>
+
+<span class="k">assign</span> <span class="n">dout</span> <span class="o">=</span> <span class="n">din1</span> <span class="o">&amp;</span> <span class="n">din2</span><span class="p">;</span>
+<span class="k">endmodule</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="其他使用技巧">其他使用技巧</h2>
 
 <h3 id="多目录问题-如果文件在同一目录-可忽略">多目录问题（如果文件在同一目录，可忽略）</h3>
@@ -1413,6 +1705,165 @@
 </div>
 <p>由此可见，我们可以通过脚本进行批量处理代码文件，完成AUTO机制，并且可以通过将不同目录文件复制其软连接到同一目录，再通过脚本实现AUTO机制，这样解决了不同目录对 <strong>AUTOINST</strong> 的影响。</p>
 
+<h2 id="emacs的配置-关于verilog-mode">emacs的配置（关于verilog-mode）</h2>
+
+<p>以下是我的关于verilog-mode的emacs配置内容，“;;”代表注释符号。(所有设置参数均已添加注释，查看其他参数可以在verilog-mode模式下快捷键C-h m，查看verilog-mode.el)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="c1">;;my verilog mode config</span>
+<span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;auto-mode-alist</span><span class="o">&#39;</span> <span class="p">(</span><span class="s">&#34;\\.vp\\&#39;&#34;</span> <span class="o">.</span> <span class="nv">verilog-mode</span><span class="p">))</span>   <span class="c1">;;open *.vp file with verilog-mode</span>
+<span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;auto-mode-alist</span><span class="o">&#39;</span> <span class="p">(</span><span class="s">&#34;\\.svp\\&#39;&#34;</span> <span class="o">.</span> <span class="nv">verilog-mode</span><span class="p">))</span>  <span class="c1">;;open *.svp file with verilog-mode</span>
+
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-date-scientific-format</span> <span class="no">t</span><span class="p">)</span>   <span class="c1">;;dates are written in scientific format (e.g.  1997/09/17)</span>
+
+<span class="p">(</span><span class="nb">setq-default</span> <span class="nv">indent-tabs-mode</span> <span class="no">nil</span><span class="p">)</span>       <span class="c1">;;false tab indent mode</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-indent-level</span> <span class="mi">4</span><span class="p">)</span>             <span class="c1">;;Indentation of Verilog statements with respect to containing block</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-indent-level-module</span> <span class="mi">0</span><span class="p">)</span>      <span class="c1">;;Indentation of Module level Verilog statements (eg always, initial)</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-indent-level-declaration</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">;;Indentation of declarations with respect to containing block</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-case-indent</span> <span class="mi">4</span><span class="p">)</span>              <span class="c1">;;Indentation for case statements</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-cexp-indent</span> <span class="mi">4</span><span class="p">)</span>              <span class="c1">;;Indentation of Verilog statements split across lines</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-indent-lists</span> <span class="no">t</span><span class="p">)</span>             <span class="c1">;;Indentation of lists, look the under content.</span>
+<span class="c1">;;  &#34;How to treat indenting items in a list.</span>
+<span class="c1">;;If t (the default), indent as:</span>
+<span class="c1">;;	always @( posedge a or</span>
+<span class="c1">;;                reset ) begin</span>
+<span class="c1">;;</span>
+<span class="c1">;;If nil, treat as:</span>
+<span class="c1">;;	always @( posedge a or</span>
+<span class="c1">;;	   reset ) begin&#34;</span>
+
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-indent-level-behavioral</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1">;;Absolute indentation of first begin in a task or function block</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-indent-level-directive</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1">;;Indentation to add to each level of \\=`ifdef declarations</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-auto-indent-on-newline</span> <span class="no">t</span><span class="p">)</span>   <span class="c1">;;Non-nil means automatically indent line after newline</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-tab-always-indent</span> <span class="no">t</span><span class="p">)</span>        <span class="c1">;;Non-nil means TAB should always re-indent the current line.</span>
+                                          <span class="c1">;;A nil value means TAB will only reindent when at the beginning of the line.</span>
+
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-indent-begin-after-if</span> <span class="no">t</span><span class="p">)</span>    <span class="c1">;;Non-nil means indent begin statements following if, else, while, etc. Otherwise, line them up.</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-auto-newline</span> <span class="no">t</span><span class="p">)</span>             <span class="c1">;;Non-nil means automatically newline after semicolons and the punctuation mark after an end</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-auto-endcomments</span> <span class="no">t</span><span class="p">)</span>         <span class="c1">;;Non-nil means a comment /* ... */ is set after the ends which ends cases, tasks, functions and modules.  The type and name of the object will be set between the braces.</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-auto-reset-widths</span> <span class="no">t</span><span class="p">)</span>        <span class="c1">;;True means AUTORESET should determine the width of signals</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-assignment-delay</span> <span class="s">&#34;#1 &#34;</span><span class="p">)</span>     <span class="c1">;;Text used for delays in delayed assignments.  Add a trailing space if set</span>
+<span class="p">(</span><span class="nb">setq</span> <span class="nv">verilog-auto-lineup</span> <span class="ss">&#39;all</span><span class="p">)</span>           <span class="c1">;;</span>
+<span class="c1">;; &#34;Type of statements to lineup across multiple lines.</span>
+<span class="c1">;;If `all&#39; is selected, then all line ups described below are done.</span>
+<span class="c1">;;</span>
+<span class="c1">;;If `declarations&#39;, then just declarations are lined up with any</span>
+<span class="c1">;;preceding declarations, taking into account widths and the like,</span>
+<span class="c1">;;so or example the code:</span>
+<span class="c1">;;	reg [31:0] a;</span>
+<span class="c1">;;	reg b;</span>
+<span class="c1">;;would become</span>
+<span class="c1">;;	reg [31:0] a;</span>
+<span class="c1">;;	reg        b;</span>
+<span class="c1">;;</span>
+<span class="c1">;;If `assignment&#39;, then assignments are lined up with any preceding</span>
+<span class="c1">;;assignments, so for example the code</span>
+<span class="c1">;;	a_long_variable &lt;= b + c;</span>
+<span class="c1">;;	d = e + f;</span>
+<span class="c1">;;would become</span>
+<span class="c1">;;	a_long_variable &lt;= b + c;</span>
+<span class="c1">;;	d                = e + f;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>有些参数目前我也不清楚具体用法和含义，如有其他好用的配置参数，欢迎推荐给我。</p>
+
+<h2 id="忘了c-c-c-a怎么办">忘了C-c C-a怎么办</h2>
+
+<p>有时候我们会忘记 <strong>C-c C-a</strong> ，显然这样会导致代码错误，如果是全部未实现AUTO还好，很容易及时发现，但是如果是在修改代码，并且仅仅是很小的改动，在功能仿真时不能及时发现，那就成了隐藏的bug，后果还是很严重的。比如组合逻辑always块的 <strong>AUTORESET</strong> ，功能仿真时并不容易被发现。 所以为了防止忘记 <strong>C-c C-a</strong> ，这里提供两种方案：</p>
+
+<ul>
+<li>将verilog-auto与保存文件的 <strong>C-x C-s</strong> 绑定（注意，只有使用 <strong>C-x C-s</strong> 才有效，功能栏点击保存不会实现AUTO），请将以下代码添加到.emacs或.emacs.d/init.el（只在verilog-mode下有效，不会影响其他模式）</li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;verilog-mode-hook</span>
+    <span class="o">&#39;</span><span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+        <span class="p">(</span><span class="nv">local-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-x C-s&#34;</span><span class="p">)</span>
+            <span class="o">&#39;</span><span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+                <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
+                <span class="p">(</span><span class="nv">verilog-auto</span><span class="p">)</span>
+                <span class="p">(</span><span class="nv">save-buffer</span><span class="p">)))))</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>使用脚本处理，将自己的源文件通过脚本处理后生成新的文件，比如我将原始文件命名为 *.vp 或 *.svp，最终处理后的文件为 *.v 或 *.sv，这样可以避免忘记完成verilog-auto。以脚本的形式进行处理还有一个好处，那就是对vim以及其他编辑器使用者比较友好，因为并非所有开发者都使用emacs。脚本处理命令如下：</li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">emacs --batch --no-site-file -l verilog-mode.el filename.v -f verilog-auto -f save-buffer</code></pre></td></tr></table>
+</div>
+</div>
 <hr />
 
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
@@ -1454,6 +1905,19 @@
       
       <nav class="post-nav">
         
+          <a class="prev" href="/post/about_emacs/verilog_perl_useguide/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">Emacs Verilog Perl 的使用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         
           <a class="next" href="/post/about_emacs/emacs_use_tips/">
             <span class="next-text nav-default">emacs的使用技巧记录</span>
