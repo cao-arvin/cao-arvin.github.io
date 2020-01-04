@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>芯片验证工程师 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/</link>
+    <description>Recent content in 芯片验证工程师 on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 04 Jan 2020 22:41:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>芯片验证工程师</title>
+      <link>https://wenhui.space/post/digital_verifer/digital_verifer/</link>
+      <pubDate>Sat, 04 Jan 2020 22:41:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/digital_verifer/</guid>
+      <description>本文 主要介绍芯片验证工程师的成长之路，包括职位概述、技术入门、能力提升和角色转换。 写在前头，本文内容是根据自己的工作经验和行业了解，以及师兄</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,189 @@
     <description>Recent content on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 03 Jan 2020 20:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jan 2020 22:41:00 +0800</lastBuildDate>
     
         <atom:link href="https://wenhui.space/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>芯片验证工程师</title>
+      <link>https://wenhui.space/post/digital_verifer/digital_verifer/</link>
+      <pubDate>Sat, 04 Jan 2020 22:41:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/digital_verifer/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍芯片验证工程师的成长之路，包括职位概述、技术入门、能力提升和角色转换。&lt;/p&gt;
+
+&lt;p&gt;写在前头，本文内容是根据自己的工作经验和行业了解，以及师兄的经验传授和网络资源，集合而成。并且我还在不断继续努力中。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;p&gt;本人工作IC设计和IC验证同时涉及，工作领域为CPU相关，经验三年。&lt;/p&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;路科验证&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;芯片验证职位概述&#34;&gt;芯片验证职位概述&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;以往设计地位高于验证，随着芯片复杂度越来越高，流片成本越来越大，目前芯片验证地位与设计同样重要&lt;/li&gt;
+&lt;li&gt;验证的岗位需求量大，与设计的比例接近2:1&lt;/li&gt;
+&lt;li&gt;了解验证知识对于将来从事芯片设计也有很大帮助&lt;/li&gt;
+&lt;li&gt;公司越规模化，团队越正规化，对芯片验证的规范性和重要性就越突出&lt;/li&gt;
+&lt;li&gt;芯片验证相对设计，更讲究团队协作&lt;/li&gt;
+&lt;li&gt;芯片验证软件化，工具和语言等知识迭代快（目前相对稳定，统一使用sv语言和UVM方法学），需要不断学习&lt;/li&gt;
+&lt;li&gt;芯片验证也要懂设计代码，否则无法更好的完成芯片验证&lt;/li&gt;
+&lt;li&gt;芯片验证不仅限于发现设计bug，还包括对设计的理解以及提出修改意见&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;芯片验证的技术入门&#34;&gt;芯片验证的技术入门&lt;/h2&gt;
+
+&lt;p&gt;芯片验证相对于芯片设计，技术门槛较低，但要学习的知识宽度要大于芯片设计。所谓技术门槛低，换句话说也就是即便你对项目领域（如射频、通信、CPU等）完全不通，但并不妨碍你做基础的验证工作。以下是个人认为芯片验证工程师入门需具备的基础：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;基本的数字电路知识&lt;/li&gt;
+&lt;li&gt;systemverilog语言和UVM验证方法学&lt;/li&gt;
+&lt;li&gt;RTL硬件描述语言，如verilog&lt;/li&gt;
+&lt;li&gt;芯片设计项目的了解（对于前期入门阶段并不是硬性要求）&lt;/li&gt;
+&lt;li&gt;基础的脚本语言，如Makefile、shell&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;芯片验证工程师与fpga验证工程师-芯片设计工程师-软件测试工程师的比较&#34;&gt;芯片验证工程师与FPGA验证工程师、芯片设计工程师、软件测试工程师的比较&lt;/h2&gt;
+
+&lt;h3 id=&#34;芯片验证工程师与fpga验证工程师&#34;&gt;芯片验证工程师与FPGA验证工程师&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;FPGA验证是更高层次的黑盒验证&lt;/li&gt;
+&lt;li&gt;FPAG验证相对于模拟仿真，缺点是难以调试IC设计的内部信号，难以深入debug&lt;/li&gt;
+&lt;li&gt;FPGA验证相对于模拟仿真，优点是仿真速度快，可模拟芯片真实环境，发现隐藏bug&lt;/li&gt;
+&lt;li&gt;FPGA验证工程师的技能更多是工具的使用，看到的IC设计更上层（一般IC设计完整度较高时才会上FPGA平台）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;芯片验证工程师与芯片设计工程师&#34;&gt;芯片验证工程师与芯片设计工程师&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;芯片设计工程师更加硬件化，只需verilog语言，但重点在于对设计领域的深刻理解和项目经验&lt;/li&gt;
+&lt;li&gt;芯片设计工程师对芯片验证领域无需了解太多，而验证工程师也需要对设计有一定了解&lt;/li&gt;
+&lt;li&gt;芯片验证工程师往往有机会转型到设计，debug过程对设计逐步了解，并且有时候需要给出修改意见&lt;/li&gt;
+&lt;li&gt;芯片验证工程师不仅与设计工程师协作紧密，与后端和软件工程师有时也有交互&lt;/li&gt;
+&lt;li&gt;芯片设计工程师关注的是功能结构如何转换为电路实现，芯片验证工程师关注的是电路层次是否符合功能场景&lt;/li&gt;
+&lt;li&gt;芯片设计工程师学习深度更深，芯片验证工程师学习广度更广，换句话说，验证工程师相对于设计工程师更容易转行（指项目领域，如射频、通信、CPU）&lt;/li&gt;
+&lt;li&gt;芯片设计门槛高于芯片验证，需要更强的项目领域相关背景知识（一般要求重点学校硕士学历）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;芯片验证工程师与软件测试工程师&#34;&gt;芯片验证工程师与软件测试工程师&lt;/h3&gt;
+
+&lt;p&gt;芯片验证与软件测试，对于非芯片领域或刚毕业的学生，是很容易产生误会的。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;所处芯片开发阶段不同，芯片验证在流片前，软件测试在流片后（不仅限于流片后）&lt;/li&gt;
+&lt;li&gt;软件测试纯软件化，看不到或不关心电路结构&lt;/li&gt;
+&lt;li&gt;软件测试与软件设计的薪资差异，远远大于芯片验证和芯片设计的薪资差异，普遍来讲（排除技术大牛），芯片验证薪资往往高于软件测试（这也是为什么产生误会的原因）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;芯片验证工程师的能力提升&#34;&gt;芯片验证工程师的能力提升&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;深入学习设计领域知识和IC设计架构（对于IP验证及其重要）&lt;/li&gt;
+&lt;li&gt;深刻学习理解SV语言，可以学习与SV类似的面向对象编程语言，帮助对SV语言特性的理解&lt;/li&gt;
+&lt;li&gt;深刻学习理解UVM验证方法学，可以从软件的设计模式深入理解&lt;/li&gt;
+&lt;li&gt;优化代码结构和项目层次，增强可复用性，增强集成度和自动化&lt;/li&gt;
+&lt;li&gt;多平台验证工具的使用，如formal、FPGA等，对于覆盖率收敛很重要&lt;/li&gt;
+&lt;li&gt;脚本语言，如shell、Makefile、Python、Tcl、Perl等，掌握脚本语言是使验证平台自动化的基础&lt;/li&gt;
+&lt;li&gt;虚拟建模和VIP的开发，可增加验证效率，并且可复用性强&lt;/li&gt;
+&lt;li&gt;制定和优化验证流程，验证计划的制定和实现，验证进程评估&lt;/li&gt;
+&lt;li&gt;验证管理，包括时间和人力，以及任务安排&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;芯片验证工程师的角色转换&#34;&gt;芯片验证工程师的角色转换&lt;/h2&gt;
+
+&lt;p&gt;一个芯片验证工程师经历五到七年的技术积累，此时工作任务得心应手（或者说固化），往往会产生工作倦怠的态度，对于新工具和新知识的学习也不再渴望，这时候需要考虑角色的转换。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;承担全新设计模块的验证，比如对于CPU项目，可以从DPU模块验证转为LSU模块验证&lt;/li&gt;
+&lt;li&gt;转为芯片设计，从事不同的工作内容&lt;/li&gt;
+&lt;li&gt;专职做验证平台优化，学习或自研更好的验证工具和验证方法，提高验证效率（前提是公司同意）&lt;/li&gt;
+&lt;li&gt;做技术培训者&lt;/li&gt;
+&lt;li&gt;做验证技术专家或验证管理（前提是能力出众，一般工作十年经验）&lt;/li&gt;
+&lt;li&gt;离职（需慎重，芯片行业大公司不多，跳一个少一个）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;芯片验证工程师的职业规划-也是写给自己&#34;&gt;芯片验证工程师的职业规划（也是写给自己）&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一年时间，完成芯片验证工程师的入门&lt;/li&gt;
+&lt;li&gt;三年时间，从初级芯片验证工程师到独立承担模块验证&lt;/li&gt;
+&lt;li&gt;三年时间，从独立承担模块验证到验证leader（也有可能转向芯片设计）&lt;/li&gt;
+&lt;li&gt;N年时间，从验证人员到验证主管（或技术专家）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;除了技术-我们还需要做什么&#34;&gt;除了技术，我们还需要做什么？&lt;/h2&gt;
+
+&lt;p&gt;虽然我们是技术从业者，但是毕竟人的社会是复杂的，那么除了技术，我们还需要做什么？&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;提高团队合作性，让更多的人乐于和自己合作，是对自己人品和性格的最好肯定&lt;/li&gt;
+&lt;li&gt;提高行业敏锐度，多关心了解行业领域的一些事情，相信我这样是有好处的&lt;/li&gt;
+&lt;li&gt;跟对一个好领导，作为领导的主要干将，相信我这样是有好处的&lt;/li&gt;
+&lt;li&gt;保持好同事和前同事的联系，相信我这样是有好处的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;顺便，对于新入职的毕业生，教你如何快速与同事和领导建立起社交关系，那就从吃食堂开始。&lt;/p&gt;
+
+&lt;h2 id=&#34;书单&#34;&gt;书单&lt;/h2&gt;
+
+&lt;h3 id=&#34;基础&#34;&gt;基础&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;《SystemVerilog验证》&lt;/li&gt;
+&lt;li&gt;《UVM实战》&lt;/li&gt;
+&lt;li&gt;《芯片漫游指南：从系统理论到UVM的验证全视界》&lt;/li&gt;
+&lt;li&gt;《全面的功能验证：完整的工业流程》&lt;/li&gt;
+&lt;li&gt;《Verilog与SystemVerilog的编程陷阱》&lt;/li&gt;
+&lt;li&gt;《综合与时序分析的设计约束：Synopsys设计约束（SDC）实用指南》&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;提升&#34;&gt;提升&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;《设计模式：可复用面向对象软件的基础》&lt;/li&gt;
+&lt;li&gt;《敏捷软件开发：原则、模式与实践》&lt;/li&gt;
+&lt;li&gt;《代码大全》&lt;/li&gt;
+&lt;li&gt;《代码阅读》&lt;/li&gt;
+&lt;li&gt;《重构：改善既有代码的设计》&lt;/li&gt;
+&lt;li&gt;《改善程序与设计的55个具体做法》&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>emacs 中使用模板文件</title>
@@ -2007,6 +2186,11 @@ sigren	&amp;#34;testbench&amp;#34;			&amp;#34;testbench&amp;#34;
 &lt;td&gt;0.1&lt;/td&gt;
 &lt;td&gt;初版发布&lt;/td&gt;
 &lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;更正 &lt;strong&gt;验证器秘钥（TOTP）&lt;/strong&gt; 的理解&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -2057,9 +2241,13 @@ sigren	&amp;#34;testbench&amp;#34;			&amp;#34;testbench&amp;#34;
 
 &lt;ul&gt;
 &lt;li&gt;打开firefox浏览器，点击插件Bitwarden，注册登录，注意， &lt;strong&gt;一定要记住主密码，一定要记住主密码，一定要记住主密码&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;添加项目，项目内容有名称、用户名、密码、验证器密钥、网址、文件夹、笔记等等，其中网址会根据当前打开网页自动添加，密码可以选择工具生成也可以自动输入，验证器密钥应该就是加密秘钥（本地加密后的数据存放到服务器），文件夹可以根据个人需求创建和选择，笔记以及其他可以不写&lt;/li&gt;
+&lt;li&gt;添加项目，项目内容有名称、用户名、密码、验证器密钥、网址、文件夹、笔记等等，其中网址会根据当前打开网页自动添加，密码可以选择工具生成也可以自动输入，验证器密钥TOTP（与二次验证相关，不开启二次验证可忽略），文件夹可以根据个人需求创建和选择，笔记以及其他根据个人需求填写，也可不写。&lt;/li&gt;
 &lt;li&gt;打开网页，Bitwarden插件会自动识别，打开Bitwarden，可以选择自动填充也可以手动复制&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h2 id=&#34;什么是-验证器秘钥-totp&#34;&gt;什么是  &lt;strong&gt;验证器秘钥（TOTP）&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;验证器秘钥与二次验证相关，二次验证就像除了密码之外还需要短信验证码一样，这里的两步验证也是相当于给帐号多加一把“锁”(多一步的验证)，在输入正确的账号密码之后，用户同样还需要额外输入一个每 30 秒自动变化一次的 6 位数字「二步验证码」才能完成登录。这里的验证器秘钥通过基于时间和加密算法生成“每 30 秒变化一次的 6 位数字验证码”，也叫做 TOTP (Time-Based One-time Password) 或 OTP 一次性密码。&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -4396,89 +4584,6 @@ trans zh:en &lt;span class=&#34;s2&#34;&gt;&amp;#34;你好&amp;#34;&lt;/span&gt;
 &lt;h2 id=&#34;使用技巧&#34;&gt;使用技巧&lt;/h2&gt;
 
 &lt;p&gt;快捷键 &lt;strong&gt;Ctrl+C+C&lt;/strong&gt; ，翻译剪切板中的内容，通过鼠标或快捷键选择群组，快速找到想要的内容。更多快捷键、屏幕取词以及其他使用技巧，可查看 &lt;strong&gt;【编辑】&amp;gt; 【首选项】&lt;/strong&gt; 。（个人不太喜欢屏幕取词，工具会自动调用 &lt;strong&gt;Ctrl-C&lt;/strong&gt; 命令，在终端中会误杀死进程）&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>将软件添加到deepin启动器</title>
-      <link>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</link>
-      <pubDate>Sun, 27 Oct 2019 12:51:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍了如何将手动安装的软件添加到deepin启动器中显示。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;操纵过程&#34;&gt;操纵过程&lt;/h2&gt;
-
-&lt;p&gt;手动安装的工具可在终端运行，但对于某些软件来说使用不方便，也可以将可执行程序放在桌面，但是又使桌面不整洁美观，也可以添加至任务栏，但会导致任务栏工具繁多杂乱，最好的方式就是将其加入到deepin的启动器，以firefox为例，方法如下：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;打开终端，进入 &lt;em&gt;”/usr/share/applications/“&lt;/em&gt; 目录&lt;/li&gt;
-&lt;li&gt;新建 &lt;strong&gt;”firefox.desktop“&lt;/strong&gt; 文件(需要root权限)&lt;/li&gt;
-&lt;li&gt;打开新建的文件，输入如下内容：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Desktop Entry&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Application &lt;span class=&#34;c1&#34;&gt;#类型，一般不改动&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Firefox &lt;span class=&#34;c1&#34;&gt;#显示在启动器中的名字&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Icon&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/home/caowenhui/Treasury/tools_and_drives/firefox/browser/chrome/icons/default/default128.png &lt;span class=&#34;c1&#34;&gt;#firefox的图标路径&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Exec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/bin/firefox &lt;span class=&#34;c1&#34;&gt;#firefox的可执行程序路径&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Terminal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#是否在终端运行&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Categories&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Network&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;WebBrowser&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#分类&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Comment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;a web browser &lt;span class=&#34;c1&#34;&gt;#说明&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;注意，需要修改的就只有Name、Icon、Exec、Categories、Comment，其他建议不要修改，并且，保存前 &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; &lt;strong&gt;删除掉注释!&lt;/strong&gt; ，否则不会生效。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;完成保存，打开启动器查看并运行程序。&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;hr /&gt;
 
