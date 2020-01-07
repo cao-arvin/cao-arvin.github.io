@@ -64,14 +64,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wenhui.space/post/digital_verifer/digital_verifer/" />
 <meta property="article:published_time" content="2020-01-04T22:41:00+08:00" />
-<meta property="article:modified_time" content="2020-01-04T22:52:04+08:00" />
+<meta property="article:modified_time" content="2020-01-05T22:01:15+08:00" />
 <meta itemprop="name" content="芯片验证工程师">
 <meta itemprop="description" content="本文 主要介绍芯片验证工程师的成长之路，包括职位概述、技术入门、能力提升和角色转换。 写在前头，本文内容是根据自己的工作经验和行业了解，以及师兄">
 
 
 <meta itemprop="datePublished" content="2020-01-04T22:41:00&#43;08:00" />
-<meta itemprop="dateModified" content="2020-01-04T22:52:04&#43;08:00" />
-<meta itemprop="wordCount" content="2498">
+<meta itemprop="dateModified" content="2020-01-05T22:01:15&#43;08:00" />
+<meta itemprop="wordCount" content="2945">
 
 
 
@@ -344,8 +344,8 @@
             <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片验证工程师 </a>
             
           </div>
-        <span class="more-meta"> 约 2498 字 </span>
-          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span class="more-meta"> 约 2945 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
 
         
         
@@ -378,6 +378,7 @@
 <li><a href="#芯片验证工程师的能力提升">芯片验证工程师的能力提升</a></li>
 <li><a href="#芯片验证工程师的角色转换">芯片验证工程师的角色转换</a></li>
 <li><a href="#芯片验证工程师的职业规划-也是写给自己">芯片验证工程师的职业规划（也是写给自己）</a></li>
+<li><a href="#验证流程">验证流程</a></li>
 <li><a href="#除了技术-我们还需要做什么">除了技术，我们还需要做什么？</a></li>
 <li><a href="#书单">书单</a>
 <ul>
@@ -412,6 +413,11 @@
 <tr>
 <td>0.1</td>
 <td>初版发布</td>
+</tr>
+
+<tr>
+<td>0.2</td>
+<td>添加验证流程</td>
 </tr>
 </tbody>
 </table>
@@ -520,6 +526,19 @@
 <li>N年时间，从验证人员到验证主管（或技术专家）</li>
 </ul>
 
+<h2 id="验证流程">验证流程</h2>
+
+<ul>
+<li>创建验证计划：参照设计人员提供的设计功能描述文档创建验证计划，并且与设计工程师完成多次review，确保验证计划无明显缺陷</li>
+<li>搭建验证环境：验证工程师搭建验证环境平台，准备测试激励</li>
+<li>模拟仿真和debug：开始跑测试激励，进行验证环境和设计电路的debug（如果是环境问题择优化环境，设计问题定位具体bug，提交给设计人员）</li>
+<li>回归测试：当设计电路通过了一定量的测试激励，验证人员需要准备回归测试，也就是将已有的所有测试通过的用例重新测试一遍</li>
+<li>验证代码检查：也就是对验证环境和当前验证结果的review，检查是否有遗漏的测试用例、不恰当的随机约束等</li>
+<li>收集覆盖率：覆盖率包括功能覆盖率和代码覆盖率，覆盖率是对验证进度以及验证完备性的重要数据指标</li>
+<li>完备性检查：此项任务由验证项目经理完成，主要根据验证计划、验证进度、数据结果等信息来综合评定是否全部完成验证任务，并签字画押</li>
+<li>硅后测试：当硅后测试发现bug时，不仅要协助测试人员定位和修复bug，更重要的是分析硅前测试bug逃逸的原因，总结经验教训</li>
+</ul>
+
 <h2 id="除了技术-我们还需要做什么">除了技术，我们还需要做什么？</h2>
 
 <p>虽然我们是技术从业者，但是毕竟人的社会是复杂的，那么除了技术，我们还需要做什么？</p>
@@ -573,7 +592,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2020-01-04
+      2020-01-05
       
     </span>
   </p>
@@ -594,6 +613,19 @@
       
       <nav class="post-nav">
         
+          <a class="prev" href="/post/polular_science/rank_and_abbreviation/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">你应该知道的职级与英文缩写</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         
           <a class="next" href="/post/about_emacs/emacs_auto_insert/">
             <span class="next-text nav-default">emacs 中使用模板文件</span>

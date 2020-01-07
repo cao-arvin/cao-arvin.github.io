@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 03 Jan 2020 20:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2020 14:56:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>google</title>
+      <link>https://wenhui.space/tags/google/</link>
+      <pubDate>Tue, 07 Jan 2020 14:56:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/google/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>计算机</title>
+      <link>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
+      <pubDate>Tue, 07 Jan 2020 14:56:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>软件安装</title>
+      <link>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Tue, 07 Jan 2020 14:56:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>职级与英文缩写</title>
+      <link>https://wenhui.space/tags/%E8%81%8C%E7%BA%A7%E4%B8%8E%E8%8B%B1%E6%96%87%E7%BC%A9%E5%86%99/</link>
+      <pubDate>Tue, 07 Jan 2020 14:45:58 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/%E8%81%8C%E7%BA%A7%E4%B8%8E%E8%8B%B1%E6%96%87%E7%BC%A9%E5%86%99/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>emacs</title>
@@ -44,24 +80,6 @@
       <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
       
       <guid>https://wenhui.space/tags/%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>计算机</title>
-      <link>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
-      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>软件安装</title>
-      <link>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</link>
-      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</guid>
       <description></description>
     </item>
     

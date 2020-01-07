@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>google on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/tags/google/</link>
+    <description>Recent content in google on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 07 Jan 2020 14:56:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://wenhui.space/tags/google/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>最简单易用的谷歌访问助手</title>
+      <link>https://wenhui.space/post/work_platform/google_assistant/</link>
+      <pubDate>Tue, 07 Jan 2020 14:56:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/google_assistant/</guid>
+      <description>本文 主要介绍一个破解版的谷歌访问助手工具。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 google版本： 78.0.3904.97（</description>
+    </item>
+    
+  </channel>
+</rss>

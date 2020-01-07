@@ -6,10 +6,254 @@
     <description>Recent content on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 04 Jan 2020 22:41:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2020 14:56:00 +0800</lastBuildDate>
     
         <atom:link href="https://wenhui.space/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>最简单易用的谷歌访问助手</title>
+      <link>https://wenhui.space/post/work_platform/google_assistant/</link>
+      <pubDate>Tue, 07 Jan 2020 14:56:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/google_assistant/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍一个破解版的谷歌访问助手工具。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
+&lt;li&gt;google版本： 78.0.3904.97（正式版本） （64 位）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;谷歌访问助手能做什么&#34;&gt;谷歌访问助手能做什么&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;解决chrome扩展程序无法自动更新的问题&lt;/li&gt;
+&lt;li&gt;可以访问google搜索、gmail邮箱和google+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;下载&#34;&gt;下载&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;进入&lt;a href=&#34;https://github.com/haotian-wang/google-access-helper/archive/master.zip&#34;&gt;github网址&lt;/a&gt;进行下载&lt;/li&gt;
+&lt;li&gt;我的百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1nVTXRinSBhOz17C23ytM7w&#34;&gt;https://pan.baidu.com/s/1nVTXRinSBhOz17C23ytM7w&lt;/a&gt; 密码：j0lt&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;打开google浏览器（Windows和Linux均支持）&lt;/li&gt;
+&lt;li&gt;点击功能栏右侧三个点，选择设置，打开设置页面&lt;/li&gt;
+&lt;li&gt;选择扩展程序，进入扩展程序页面&lt;/li&gt;
+&lt;li&gt;打开 &lt;strong&gt;开发者模式&lt;/strong&gt; ，选择 &lt;strong&gt;加载已解压的扩展程序包&lt;/strong&gt; ，选择刚刚下载的压缩包解压后的文件夹&lt;/li&gt;
+&lt;li&gt;可以开始访问了（该插件通过代理服务器访问Google，代理服务器的地址和密码以及PAC脚本均由插件动态获取。研究发现，即使将PAC脚本替换掉，依然只能访问Google和GMail，其余网站无法打开，表明服务器端已进行了限制。）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/google/google-assistant.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; 谷歌访问助手页面 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;注意&#34;&gt;注意&lt;/h2&gt;
+
+&lt;p&gt;该插件是在使用网络代理访问外网，建议仅在安装扩展程序以及google查资料时使用，尽量不要长时间访问外网。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>你应该知道的职级与英文缩写</title>
+      <link>https://wenhui.space/post/polular_science/rank_and_abbreviation/</link>
+      <pubDate>Tue, 07 Jan 2020 14:45:58 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/polular_science/rank_and_abbreviation/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍芯片相关公司的组织架构，和职级与职位及对应的英文缩写。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;写在前头&#34;&gt;写在前头&lt;/h2&gt;
+
+&lt;p&gt;本文主要属于科普，目的是避免像我一样，在与别人聊天中对关于职级职位的英文，自己一脸懵逼。&lt;/p&gt;
+
+&lt;h2 id=&#34;一般芯片公司的组织架构&#34;&gt;一般芯片公司的组织架构&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/polular-science/Organization-Chart.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;公司一级部门由董事长/总经理和副董事长/副总经理负责（也可以称为总裁、副总裁）：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;董事长/总经理： 向董事会负责。&lt;/li&gt;
+&lt;li&gt;董事长/总经理助理： 负责协助完成董事长的行程安排、计划实施和会议总结等其他事项。&lt;/li&gt;
+&lt;li&gt;副董事长/副总经理助理： 负责分管的具体事项，如财政、人力、市场、研发。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;公司二级部门由各部门总监负责（芯片公司研发是重中之重，往往研发属于一级部门，研发下设二级部门）：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;人事部： 负责薪酬、考核、招聘、培训等。&lt;/li&gt;
+&lt;li&gt;财务部： 负责报销、发票、进帐、出账、税务等。&lt;/li&gt;
+&lt;li&gt;行政部： 负责会议记录、办公室、后勤、车辆的调度使用等。&lt;/li&gt;
+&lt;li&gt;市场部： 负责市场、销售、客服等。&lt;/li&gt;
+&lt;li&gt;运营部： 负责生产管理和运营管理等。&lt;/li&gt;
+&lt;li&gt;品控部： 负责供应商品质、设计品质、流程体系、可靠性品质等。&lt;/li&gt;
+&lt;li&gt;研发部： 下设项目部 、验证部、IP部、SOC部、软件测试部、固件开发部、后端设计部等。
+
+&lt;ul&gt;
+&lt;li&gt;项目部： 负责项目立项调研，牵头项目规划和执行。&lt;/li&gt;
+&lt;li&gt;验证部： 负责项目中验证任务（此验证部与IP部和SOC部的验证团队功能有交叉，不同公司分设不同）。&lt;/li&gt;
+&lt;li&gt;IP部： 负责IP的开发，其中下设验证团队和设计团队，以及可能还有算法模型设计团队。&lt;/li&gt;
+&lt;li&gt;SOC部： 负责芯片的集成，包括存储、互连、总线等。&lt;/li&gt;
+&lt;li&gt;软件测试部： 完成芯片的软件测试。&lt;/li&gt;
+&lt;li&gt;固件开发部： 完成芯片的固件驱动开发。&lt;/li&gt;
+&lt;li&gt;后端设计部： 完成芯片的后端版图设计，包括行布局布线和物理验证。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;公司三级部门由各部门经理或项目经理负责：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;设计团队： 负责芯片的前端RTL设计。&lt;/li&gt;
+&lt;li&gt;验证团队： 负责芯片的验证。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;公司职位与职级-以及对应的英文&#34;&gt;公司职位与职级，以及对应的英文&lt;/h2&gt;
+
+&lt;p&gt;公司规模和企业性质不同，都会有不同的组织架构，以下只是列举出常见的职位名称，以及其职能，仅供参考：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GM： 是英文 General Manager 的缩写，指总经理，总经理（General manager）传统意义上是一个公司的最高领导人或该公司的创始人。但实际上，总经理所在的层级，还是会因公司的规模而有所不同。&lt;/li&gt;
+&lt;li&gt;CEO： 是英文 Chief Executive Officer 的缩写，指首席执行官，是在一个企业中负责日常事务的最高行政官员，又称作行政总裁、总经理或最高执行长&lt;/li&gt;
+&lt;li&gt;COO： 是英文 Chief Operating Officer 的缩写，指首席运营官，主要是负责公司的日常营运，辅助CEO的工作。对CEO负责，负责企业的运营管理。COO在某些公司中同时任职 总裁 ，但他们通常是常务或资深的副总裁。&lt;/li&gt;
+&lt;li&gt;CFO： 是英文 Chief Finance Officer 的缩写，指首席财务官，CFO是绝对的二号人物，对公司上市全权负责，对公司长远发展的了解，和对公司整体战略的把握，都要远超其他C级人物。再者，很多时候CFO是董事会直接委派的，有间接地监督CEO和管理团队的职责，所以CFO地位绝对超然。&lt;/li&gt;
+&lt;li&gt;VP： 是英文 Vice President 的缩写，指副总裁，副总裁是总裁的助手，受总裁委托分管公司日常经营管理工作，对总裁负责，并在副总裁职责范围内签发有关业务文件，总裁因故不能履行职务时，副总裁受总裁委托代行总裁的职权。&lt;/li&gt;
+&lt;li&gt;HRD： 是英文 Human Resource Director 的缩写，指人力资源总监，人力资源总监要从战略高度努力构建高效实用的人力资源管理系统，成功进行人才选拔，建立科学的考核与激励机制，最大限度地激发人才潜能，创建优秀团队，塑造卓越的企业文化，推动组织变革与创新，最终实现组织的持续发展。&lt;/li&gt;
+&lt;li&gt;HRM： 是英文 Human Resource Manager 的缩写，指人力资源经理，分管组织管理、人事信息管理、招聘管理、培训管理、绩效管理、福利管理、工资管理等全部或部分职责。&lt;/li&gt;
+&lt;li&gt;HRBP：是英文 Human Resource BUSINESS PARTNER 的缩写，指人力资源业务合作伙伴，实际上就是企业派驻到各个业务部门或事业部的人力资源管理者，主要协助各业务单元高层及经理在员工发展、人才发掘、能力培养等方面的工作。&lt;/li&gt;
+&lt;li&gt;MD： 是英文 Marketing Director 的缩写，指市场总监，企业中负责市场运营工作的高级管理人员，主要负责在企业中对营销思想进行定位；把握市场机会，制定市场营销战略和实施计划，完成企业的营销目标；协调企业内外部关系，对企业市场营销战略计划的执行进行监督和控制；负责企业营销组织建设与激励工作。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上列出的是公司各大部门的管理层职位（可能不全），下面我们来看一下职级：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;职级名称&lt;/th&gt;
+&lt;th&gt;英文&lt;/th&gt;
+&lt;th&gt;职级名称&lt;/th&gt;
+&lt;th&gt;英文&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;总裁&lt;/td&gt;
+&lt;td&gt;CEO/GM&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;首席科学家&lt;/td&gt;
+&lt;td&gt;Chief Scientific Officer&lt;/td&gt;
+&lt;td&gt;副总裁&lt;/td&gt;
+&lt;td&gt;VP&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;研究员&lt;/td&gt;
+&lt;td&gt;Researcher Engineer&lt;/td&gt;
+&lt;td&gt;总监&lt;/td&gt;
+&lt;td&gt;Director&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;专家&lt;/td&gt;
+&lt;td&gt;Proficient Engineer&lt;/td&gt;
+&lt;td&gt;经理&lt;/td&gt;
+&lt;td&gt;Manager&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;高级工程师&lt;/td&gt;
+&lt;td&gt;Senior Engineer&lt;/td&gt;
+&lt;td&gt;主管&lt;/td&gt;
+&lt;td&gt;Header&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;中级工程师&lt;/td&gt;
+&lt;td&gt;Middle Engineer&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;初级工程师&lt;/td&gt;
+&lt;td&gt;Junior Engineer&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;以上信息仅是自己简单的个人理解，实际公司中职级分的可能更细，并且会设有类似于Senior Management Engineer这样的研发管理职位，总之，本篇文章仅为科普，如有幸更专业的人士看到此帖子，欢迎指正。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>芯片验证工程师</title>
@@ -38,6 +282,11 @@
 &lt;tr&gt;
 &lt;td&gt;0.1&lt;/td&gt;
 &lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;添加验证流程&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -146,6 +395,19 @@
 &lt;li&gt;N年时间，从验证人员到验证主管（或技术专家）&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h2 id=&#34;验证流程&#34;&gt;验证流程&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;创建验证计划：参照设计人员提供的设计功能描述文档创建验证计划，并且与设计工程师完成多次review，确保验证计划无明显缺陷&lt;/li&gt;
+&lt;li&gt;搭建验证环境：验证工程师搭建验证环境平台，准备测试激励&lt;/li&gt;
+&lt;li&gt;模拟仿真和debug：开始跑测试激励，进行验证环境和设计电路的debug（如果是环境问题择优化环境，设计问题定位具体bug，提交给设计人员）&lt;/li&gt;
+&lt;li&gt;回归测试：当设计电路通过了一定量的测试激励，验证人员需要准备回归测试，也就是将已有的所有测试通过的用例重新测试一遍&lt;/li&gt;
+&lt;li&gt;验证代码检查：也就是对验证环境和当前验证结果的review，检查是否有遗漏的测试用例、不恰当的随机约束等&lt;/li&gt;
+&lt;li&gt;收集覆盖率：覆盖率包括功能覆盖率和代码覆盖率，覆盖率是对验证进度以及验证完备性的重要数据指标&lt;/li&gt;
+&lt;li&gt;完备性检查：此项任务由验证项目经理完成，主要根据验证计划、验证进度、数据结果等信息来综合评定是否全部完成验证任务，并签字画押&lt;/li&gt;
+&lt;li&gt;硅后测试：当硅后测试发现bug时，不仅要协助测试人员定位和修复bug，更重要的是分析硅前测试bug逃逸的原因，总结经验教训&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&#34;除了技术-我们还需要做什么&#34;&gt;除了技术，我们还需要做什么？&lt;/h2&gt;
 
 &lt;p&gt;虽然我们是技术从业者，但是毕竟人的社会是复杂的，那么除了技术，我们还需要做什么？&lt;/p&gt;
@@ -216,8 +478,21 @@
 &lt;td&gt;0.1&lt;/td&gt;
 &lt;td&gt;初版发布&lt;/td&gt;
 &lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;添加两个函数&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/lujun9972/article/details/46002893&#34;&gt;Emacs中那些简化输入的方法&amp;ndash;Autotyping&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.emacswiki.org/emacs/AutoInsertMode&#34;&gt;Auto Insert Mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://forum.ubuntu.org.cn/viewtopic.php?t=262929&#34;&gt;Emacs如何使用文件模板&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
 
@@ -325,6 +600,44 @@
                 &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
               &lt;span class=&#34;nv&#34;&gt;auto-insert-alist&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;;;----------------------------------------------------&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;添加两个函数&#34;&gt;添加两个函数&lt;/h2&gt;
+
+&lt;h3 id=&#34;插入当前时间&#34;&gt;插入当前时间&lt;/h3&gt;
+
+&lt;p&gt;将下面代码添加到.emacs或.emacs.d/init.el文件，需要插入当前时间时， &lt;strong&gt;M-x now&lt;/strong&gt; 即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;defvar&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;current-date-time-format&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;%Y/%m/%d %H:%S&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;defun&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;now&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;interactive&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;format-time-string&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;current-date-time-format&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;current-time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;插入当前文件名&#34;&gt;插入当前文件名&lt;/h3&gt;
+
+&lt;p&gt;将下面代码添加到.emacs或.emacs.d/init.el文件，需要插入当前文件名时， &lt;strong&gt;M-x name&lt;/strong&gt; 即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;defun&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;interactive&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;file-name-nondirectory&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;buffer-file-name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr /&gt;
@@ -4253,338 +4566,6 @@ chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./hugo
 sudo cp ./hugo /usr/local/bin/hugo&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>PicGo的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_picgo/</link>
-      <pubDate>Sat, 16 Nov 2019 13:18:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_picgo/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍图床工具PicGo和记录PicGo的安装过程。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
-&lt;li&gt;PicGo版本： picgo-2.1.2-x86_64.AppImage&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.owow.cc/linux/108.md&#34;&gt;在Linux上安装PicGO&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;什么是picgo&#34;&gt;什么是PicGo？&lt;/h2&gt;
-
-&lt;p&gt;PicGo是一款功能实用、操作简捷的图床工具，图床工具简单来说就是本地图片上传自动转换成链接的一款工具。网络上的图床工具有很多，PicGo算得上一款比较优秀的图床工具了，它可以支持微博， 七牛云， 腾讯云COS， 又拍云， GitHub， 阿里云OSS， SM.MS， imgur 等8种常用图床，功能强大，简单易用。&lt;/p&gt;
-
-&lt;h2 id=&#34;为什么安装picgo&#34;&gt;为什么安装PicGo？&lt;/h2&gt;
-
-&lt;p&gt;写博客内容时，常常会用到图片，最初是将图片放在本地并随博客public一同上传至github，但是在本地网址显示好好的图片，上传至github就打不开了，其主要原因还是因为填写的是相对地址，上传github后，往往地址会发生变化，导致图片索引不到，所以只好通过图床工具转化为链接，作为全路径添加到博客内容，这样就可以解决了。网上搜索了一下图床工具，好像PicGo有点独步天下的意思，网上评价PicGo是最好的图床工具，没有之一。所以，开始折腾起来，下载安装。&lt;/p&gt;
-
-&lt;h2 id=&#34;安装过程&#34;&gt;安装过程&lt;/h2&gt;
-
-&lt;h3 id=&#34;下载picgo&#34;&gt;下载PicGo&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;去&lt;a href=&#34;https://github.com/Molunerfinn/PicGo/releases&#34;&gt;PicGo官方github页面&lt;/a&gt;下载最新版本的PicGo，我这里选择的是picgo-2.1.2-x86_64.AppImage&lt;/li&gt;
-&lt;li&gt;采用我的百度资源分享 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A&#34;&gt;https://pan.baidu.com/s/14ZhG87VBDfNi9w7%5FK4my1A&lt;/a&gt; 密码：4zvy&lt;/strong&gt; ，另附有一张logo图&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
-
-&lt;p&gt;安装很简单，其实下载的就是一个可执行程序，放到自己的 &lt;strong&gt;系统变量PATH&lt;/strong&gt; 即可，我习惯是放在 &lt;strong&gt;&lt;em&gt;“/usr/local/bin/”&lt;/em&gt;&lt;/strong&gt; 。打开终端进入下载解压后的picgo目录，执行以下命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看系统变量&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;#更改文件属性为可执行&lt;/span&gt;
-chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./picgo-2.1.2-x86_64.AppImage
-
-&lt;span class=&#34;c1&#34;&gt;#复制到/usr/local/bin/目录，也可以选择自己$PATH的某一路径&lt;/span&gt;
-sudo cp ./picgo-2.1.2-x86_64.AppImage /usr/local/bin/picgo&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;添加到启动器&#34;&gt;添加到启动器&lt;/h3&gt;
-
-&lt;p&gt;可参考另一篇帖子 &lt;strong&gt;将软件添加到deepin启动器&lt;/strong&gt; 。&lt;/p&gt;
-
-&lt;h3 id=&#34;安装依赖&#34;&gt;安装依赖&lt;/h3&gt;
-
-&lt;p&gt;虽然PicGo已经开始运行了，可是有些功能需要依赖其他程序来实现。在程序内实现粘贴板上传需要用到xclip，不装的话会报 &lt;strong&gt;&amp;ldquo;xclip not found&amp;rdquo;&lt;/strong&gt; 的错误。可以通过包管理器安装，命令如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install xclip -y&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>GoldenDict的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_goldendict/</link>
-      <pubDate>Sat, 09 Nov 2019 15:35:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_goldendict/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍词典工具GoldenDict和记录GoldenDict的安装过程。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
-&lt;li&gt;GoldenDict版本：1.5.0-RC2+git&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jianshu.com/p/b6b2c1d78d7c&#34;&gt;安装使用 GoldenDict 查词神器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;什么是goldendict&#34;&gt;什么是GoldenDict？&lt;/h2&gt;
-
-&lt;p&gt;GoldenDict是一款优秀的的词典软件，其特点如下：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;免费&lt;/li&gt;
-&lt;li&gt;纯净无广告&lt;/li&gt;
-&lt;li&gt;跨平台：Windows / Mac / Linux&lt;/li&gt;
-&lt;li&gt;支持多种词典格式&lt;/li&gt;
-&lt;li&gt;支持查维基百科 / 支持在线翻译（需配置）&lt;/li&gt;
-&lt;li&gt;支持屏幕取词&lt;/li&gt;
-&lt;li&gt;支持听取 forvo.com 上的发音&lt;/li&gt;
-&lt;li&gt;更多特点可详见&lt;a href=&#34;http://www.goldendict.org/&#34;&gt;GoldenDict 官网&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;500&#34; src=&#34;https://wenhui.space/image/GoldenDict/GoldenDict1.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; GoldenDict就是它了 &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;安装goldendict&#34;&gt;安装GoldenDict&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;可选择使用deepin软件商店安装，操作简单&lt;/li&gt;
-&lt;li&gt;可通过软件包管理工具下载（版本不一定是最新的，但应该比软件商店提供的版本新，安装后按需手动添加到启动器），命令如下：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Ubuntu / Debian&lt;/span&gt;
-sudo apt install goldendict -y
-
-&lt;span class=&#34;c1&#34;&gt;# CentOS&lt;/span&gt;
-sudo yum install goldendict -y&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;添加离线词典&#34;&gt;添加离线词典&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;下载词典&lt;/strong&gt; ，我这里使用的是三个词典，百度网盘分享资源 &lt;strong&gt;链接： &lt;a href=&#34;https://pan.baidu.com/s/1wXbxsUlLLsGl9namvO4q-g&#34;&gt;https://pan.baidu.com/s/1wXbxsUlLLsGl9namvO4q-g&lt;/a&gt; 密码：45o3&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;en-zh：牛津现代英汉双解词典&lt;/li&gt;
-&lt;li&gt;zh-en：朗道汉英字典&lt;/li&gt;
-&lt;li&gt;zh-zh：新华字典&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;存放词典&lt;/strong&gt; ，解压后根据个人喜好选择存放位置，且后续不能移动，我这里放在 &lt;em&gt;“~/Treasury/tools_and_drives/GoldenDict/”&lt;/em&gt; 下&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;导入词典&lt;/strong&gt; ，菜单栏选择 &lt;strong&gt;【编辑】&amp;gt;【词典】&amp;gt;【词典来源】&amp;gt;【文件】&amp;gt;【添加】&lt;/strong&gt; ，选择上一步的词典位置打开，并勾选上递归搜索，点击 &lt;strong&gt;“重新扫描”&lt;/strong&gt; 完成后点击 &lt;strong&gt;【应用】&lt;/strong&gt; 即可&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;功能测试&lt;/strong&gt; ，在搜索栏分别输入“you”和“你”，回车，查看翻译结果。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;添加网页翻译-有道&#34;&gt;添加网页翻译（有道）&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;菜单栏选择 &lt;strong&gt;【编辑】&amp;gt;【词典】&amp;gt;【词典来源】&amp;gt;【网站】&amp;gt; 【添加】&lt;/strong&gt; ，输入名称为“youdao”，输入地址， 勾选已启用，点击 &lt;strong&gt;【应用】&lt;/strong&gt; 。&lt;/li&gt;
-&lt;li&gt;地址内容为“&lt;a href=&#34;http://dict.youdao.com/search?q=%GDWORD%&amp;amp;ue=utf8&#34;&gt;http://dict.youdao.com/search?q=%GDWORD%&amp;amp;ue=utf8&lt;/a&gt;”&lt;/li&gt;
-&lt;li&gt;功能测试，在搜索栏输入“you”，回车，查看youdao翻译结果&lt;/li&gt;
-&lt;li&gt;也可以使用其他网页翻译以及搜索引擎&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;添加google翻译-translate-shell&#34;&gt;添加google翻译（translate-shell）&lt;/h2&gt;
-
-&lt;p&gt;以上添加的离线词典只能翻译词典里存在的词汇，不能对整句整段进行翻译，而有道翻译的页面广告多，让人不舒服，所以我们为词典添加一个google翻译。translate-shell是命令行版google翻译，在终端命令行可以直接通过 &lt;strong&gt;“trans”&lt;/strong&gt; 命令使用，也可以将命令添加到GoldenDict使用。&lt;/p&gt;
-
-&lt;h3 id=&#34;下载安装-translate-shell&#34;&gt;下载安装 translate-shell&lt;/h3&gt;
-
-&lt;p&gt;安装方法有三种：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;直接下载可执行文件，百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1kQYl%5F%5FhptxA5X0k9h7ZYcg&#34;&gt;https://pan.baidu.com/s/1kQYl%5F%5FhptxA5X0k9h7ZYcg&lt;/a&gt; 密码：sxeq&lt;/strong&gt; ，打开终端进入下载目录，执行以下命令：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./trans
-sudo mv trans /usr/local/bin/&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;手动安装，下载trans_shell安装包，以下是使用git工具进行下载，也可以登录网址通过浏览器下载压缩包，或使用我的百度网盘分享资源 &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1aHXNwKm6QYcXMtuk77roPg&#34;&gt;https://pan.baidu.com/s/1aHXNwKm6QYcXMtuk77roPg&lt;/a&gt; 密码：yzxu&lt;/strong&gt; ，安装命令如下：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/soimort/translate-shell
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; translate-shell
-make
-sudo make install&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;通过包管理器安装，命令如下：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt install translate-shell
-which trans&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;trans-shell的使用&#34;&gt;trans_shell的使用&lt;/h3&gt;
-
-&lt;p&gt;本文目的主要是安装trans_shell给GoldenDictionary使用，不过在终端也可以使用，使用方法如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;trans en:zh &lt;span class=&#34;s1&#34;&gt;&amp;#39;Hello World&amp;#39;&lt;/span&gt;
-trans zh:en &lt;span class=&#34;s2&#34;&gt;&amp;#34;你好&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;为goldendict添加trans-shell&#34;&gt;为GoldenDict添加trans_shell&lt;/h3&gt;
-
-&lt;p&gt;菜单栏选择 &lt;strong&gt;【编辑】&amp;gt;【词典】&amp;gt;【词典来源】&amp;gt;【程序】&amp;gt; 【添加】&lt;/strong&gt; ，类型选择纯文本，勾选已启用，名字（可以自己命名）与命令行内容如下：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;名字：google_2_en
-
-&lt;ul&gt;
-&lt;li&gt;命令行：trans -e google -s auto -t en-US -show-original y -show-original-phonetics n -show-translation y -no-ansi -show-translation-phonetics n -show-prompt-message n -show-languages y -show-original-dictionary n -show-dictionary n -show-alternatives n “%GDWORD%”&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;名字：google_2_zh
-
-&lt;ul&gt;
-&lt;li&gt;命令行：trans -e google -s auto -t zh-CN -show-original y -show-original-phonetics n -show-translation y -no-ansi -show-translation-phonetics n -show-prompt-message n -show-languages n -show-original-dictionary n -show-dictionary n -show-alternatives n “%GDWORD%”&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;填写完之后点击 &lt;strong&gt;【应用】&lt;/strong&gt; 即可。&lt;/p&gt;
-
-&lt;h2 id=&#34;为goldendict分组&#34;&gt;为GoldenDict分组&lt;/h2&gt;
-
-&lt;p&gt;分组的目的是为了方便快速翻译，更加快速准确的找到自己想要的内容。菜单栏选择 &lt;strong&gt;【编辑】&amp;gt;【词典】&amp;gt;【群组】&lt;/strong&gt; ，此时左栏会看到已启用的词典（牛津现代英汉双解词典、google_2_zh、youdao、新华字典、朗道汉英字典5.0、google-2-en）。点击 &lt;strong&gt;【添加群组】&lt;/strong&gt; ，进行命名，选择词典加入该群组，并且可以在群组内调整词典的优先级，也可以根据个人需求为群组设置快捷键。我的分组如下：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;en_zh： google-2-zh、牛津现代英汉双解词典&lt;/li&gt;
-&lt;li&gt;zh_en： google-2-en、朗道汉英字典5.0&lt;/li&gt;
-&lt;li&gt;zh_zh： 新华字典&lt;/li&gt;
-&lt;li&gt;youdao： youdao&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;500&#34; src=&#34;https://wenhui.space/image/GoldenDict/GoldenDict2.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; 给词典进行分组 &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;使用技巧&#34;&gt;使用技巧&lt;/h2&gt;
-
-&lt;p&gt;快捷键 &lt;strong&gt;Ctrl+C+C&lt;/strong&gt; ，翻译剪切板中的内容，通过鼠标或快捷键选择群组，快速找到想要的内容。更多快捷键、屏幕取词以及其他使用技巧，可查看 &lt;strong&gt;【编辑】&amp;gt; 【首选项】&lt;/strong&gt; 。（个人不太喜欢屏幕取词，工具会自动调用 &lt;strong&gt;Ctrl-C&lt;/strong&gt; 命令，在终端中会误杀死进程）&lt;/p&gt;
-
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;

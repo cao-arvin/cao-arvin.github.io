@@ -17,7 +17,7 @@
       <pubDate>Fri, 03 Jan 2020 20:30:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/about_emacs/emacs_auto_insert/</guid>
-      <description>本文 主要介绍用emacs auto-insert命令实现用模板文件创建新文件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs</description>
+      <description>本文 主要介绍用emacs auto-insert命令实现用模板文件创建新文件。 版本 说明 0.1 初版发布 0.2 添加两个函数 参考 Emacs中那些简化输入的方</description>
     </item>
     
     <item>

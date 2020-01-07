@@ -6,10 +6,28 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 04 Jan 2020 22:41:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2020 14:56:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>最简单易用的谷歌访问助手</title>
+      <link>https://wenhui.space/post/work_platform/google_assistant/</link>
+      <pubDate>Tue, 07 Jan 2020 14:56:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/work_platform/google_assistant/</guid>
+      <description>本文 主要介绍一个破解版的谷歌访问助手工具。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 google版本： 78.0.3904.97（</description>
+    </item>
+    
+    <item>
+      <title>你应该知道的职级与英文缩写</title>
+      <link>https://wenhui.space/post/polular_science/rank_and_abbreviation/</link>
+      <pubDate>Tue, 07 Jan 2020 14:45:58 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/polular_science/rank_and_abbreviation/</guid>
+      <description>本文 主要介绍芯片相关公司的组织架构，和职级与职位及对应的英文缩写。 版本 说明 0.1 初版发布 写在前头 本文主要属于科普，目的是避免像我一样，在与别人聊</description>
+    </item>
     
     <item>
       <title>芯片验证工程师</title>
@@ -26,7 +44,7 @@
       <pubDate>Fri, 03 Jan 2020 20:30:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/about_emacs/emacs_auto_insert/</guid>
-      <description>本文 主要介绍用emacs auto-insert命令实现用模板文件创建新文件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs</description>
+      <description>本文 主要介绍用emacs auto-insert命令实现用模板文件创建新文件。 版本 说明 0.1 初版发布 0.2 添加两个函数 参考 Emacs中那些简化输入的方</description>
     </item>
     
     <item>
@@ -171,24 +189,6 @@
       
       <guid>https://wenhui.space/post/work_platform/install_picgo/</guid>
       <description>本文 主要介绍图床工具PicGo和记录PicGo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 PicGo版本： picgo-2.1.2-x86_64.AppImage 参考 在Li</description>
-    </item>
-    
-    <item>
-      <title>GoldenDict的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_goldendict/</link>
-      <pubDate>Sat, 09 Nov 2019 15:35:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_goldendict/</guid>
-      <description>本文 主要介绍词典工具GoldenDict和记录GoldenDict的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 Gold</description>
-    </item>
-    
-    <item>
-      <title>将软件添加到deepin启动器</title>
-      <link>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</link>
-      <pubDate>Sun, 27 Oct 2019 12:51:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/other_tools_tips/add_software_to_deepin_launcher/</guid>
-      <description>本文 主要介绍了如何将手动安装的软件添加到deepin启动器中显示。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 操纵过程 手动安装的工</description>
     </item>
     
   </channel>
