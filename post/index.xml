@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 07 Jan 2020 14:56:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2020 20:50:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Formal验证技术总结</title>
+      <link>https://wenhui.space/post/digital_verifer/formal_verify/</link>
+      <pubDate>Tue, 07 Jan 2020 20:50:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/formal_verify/</guid>
+      <description>本文 主要介绍本人使用形式化验证的一些经验总结。 版本 说明 0.1 初版发布 背景 验证工具： Cadence 公司的 JasperGold 写在前头 形式化验证是一种验证方法，而实际应用方向主要</description>
+    </item>
     
     <item>
       <title>最简单易用的谷歌访问助手</title>
@@ -180,15 +189,6 @@
       
       <guid>https://wenhui.space/post/work_platform/install_hugo/</guid>
       <description>本文 主要介绍hugo和记录hugo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 Hugo中文文档 什</description>
-    </item>
-    
-    <item>
-      <title>PicGo的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_picgo/</link>
-      <pubDate>Sat, 16 Nov 2019 13:18:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_picgo/</guid>
-      <description>本文 主要介绍图床工具PicGo和记录PicGo的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 PicGo版本： picgo-2.1.2-x86_64.AppImage 参考 在Li</description>
     </item>
     
   </channel>

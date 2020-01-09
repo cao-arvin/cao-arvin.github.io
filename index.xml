@@ -6,10 +6,450 @@
     <description>Recent content on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 07 Jan 2020 14:56:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2020 20:50:00 +0800</lastBuildDate>
     
         <atom:link href="https://wenhui.space/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Formal验证技术总结</title>
+      <link>https://wenhui.space/post/digital_verifer/formal_verify/</link>
+      <pubDate>Tue, 07 Jan 2020 20:50:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/formal_verify/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍本人使用形式化验证的一些经验总结。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;验证工具： Cadence 公司的 JasperGold&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;写在前头&#34;&gt;写在前头&lt;/h2&gt;
+
+&lt;p&gt;形式化验证是一种验证方法，而实际应用方向主要有两方面，一是综合前后的等价性检查，二是RTL设计的功能验证。本文所讲的是形式化验证方法在RTL设计功能验证方向的应用。&lt;/p&gt;
+
+&lt;h2 id=&#34;模拟仿真验证和形式化验证&#34;&gt;模拟仿真验证和形式化验证&lt;/h2&gt;
+
+&lt;p&gt;芯片验证的两个方法，一个是模拟仿真验证，另一个是形式化验证。&lt;/p&gt;
+
+&lt;p&gt;模拟仿真验证是目前最主流的验证方法，主要是以 UVM 为代表的验证方法学，特点就是搭建模拟仿真环境，通过随机化激励进行模拟仿真，reference module作为验证标准进行结果数据的check，以收集覆盖率的方式作为验证进度的参考，当代码覆盖率和功能点覆盖率达到100%时，做到sign off。由此看来，模拟仿真的优点就是基本不受设计复杂度的影响，而缺点就是验证环境搭建较复杂，测试激励手动添加，收集覆盖率周期较长，尤其是Corner场景的覆盖很让人头疼。&lt;/p&gt;
+
+&lt;p&gt;形式化验证从某层面看似乎让人省心。形式化方法简单的说就是用数学工具进行定义、开发和验证，它会对设计电路进行数学建模，然后穷举系统运行过程中电路所能达到的所有状态，以断言的形式完成设计电路的功能验证和规则检查（也可以通过reference model的形式，做结果数据的check）。听起来似乎完美，但是这要依赖强大的运算系统和EDA工具，否则会发生状态爆炸问题，长时间无法得出证明结果。以目前的形式化验证工具来看，还不足以吃进一个超复杂的设计电路，来完全替代模拟仿真的验证方法。&lt;/p&gt;
+
+&lt;p&gt;所以，在芯片的验证中，随机仿真验证和形式化验证往往是相辅相成，一个更适合系统级功能验证，一个更适合模块级的功能验证。除此之外，还有FPGA的硬件加速测试，这三种验证手段可谓是三位一体，相辅相成。&lt;/p&gt;
+
+&lt;h2 id=&#34;什么是形式化验证&#34;&gt;什么是形式化验证&lt;/h2&gt;
+
+&lt;p&gt;个人认为，形式化验证是基于严格的数学算法和模型，根据设计功能提取电路规则的属性描述，并穷举系统运行过程中电路所能达到的所有状态，自动进行数学分析和证明。验证过程如下：
+&lt;center&gt;
+&lt;img width=&#34;500&#34; src=&#34;https://wenhui.space/image/digital-verifer/formal.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; 形式化验证示例 &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;以上的形式化验证过程就像做一道数学证明题，用数学方法证明该命题是否成立，而这个证明过程是验证工具完成的，工程师不需要关心。目前，业界主流的形式化验证工具主要有Cadence的 JasperGold 和 Synposys 的 VC-Formal。&lt;/p&gt;
+
+&lt;h2 id=&#34;sva语法&#34;&gt;SVA语法&lt;/h2&gt;
+
+&lt;p&gt;形式化验证使用的是 SVA (SystemVerilog Assertion) 语言，属于SV的一部分，下面对SVA基本的使用语法进行说明。&lt;/p&gt;
+
+&lt;p&gt;SVA的语法主要分为三种使用类型：assume、assert、cover。使用的基本规则为，先描述一个property，然后为property设置为assume或assert或cover，命名时习惯性将property名字添加“P_”前缀，将assume名字添加“ASM_”前缀，将assert名字添加“AST_”前缀，将cover名字添加“COV_”前缀。注：建议所有属性带时钟沿触发条件。&lt;/p&gt;
+
+&lt;h3 id=&#34;assume&#34;&gt;Assume&lt;/h3&gt;
+
+&lt;p&gt;Assum即假定之意，也就是假定某些信号符合某规则特性，最常见的就是给输入信号添加约束，下面对assume语法的使用做简单介绍：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;标准写法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endproperty&lt;/span&gt;
+&lt;span class=&#34;nl&#34;&gt;ASM_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;assume&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;精简写法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;nl&#34;&gt;ASM_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;assume&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;assert&#34;&gt;Assert&lt;/h3&gt;
+
+&lt;p&gt;Assert即断言之意，也就是认为某些信号符合某规则特性，出现反例则报错，最常见的就是给关键信号依据特定属性设置断言，来进行特性检查，下面对assert语法的使用做简单介绍：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;标准写法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endproperty&lt;/span&gt;
+&lt;span class=&#34;nl&#34;&gt;AST_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;精简写法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;nl&#34;&gt;AST_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;cover&#34;&gt;Cover&lt;/h3&gt;
+
+&lt;p&gt;cover即覆盖之意，也就是对某些信号的某规则特性进行采样，反馈是否覆盖该特性，下面对cover语法的使用做简单介绍：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;标准写法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+          &lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endproperty&lt;/span&gt;
+&lt;span class=&#34;nl&#34;&gt;COV_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cover&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;精简写法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;nl&#34;&gt;COV_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cov&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;jaspergold的使用&#34;&gt;JasperGold的使用&lt;/h2&gt;
+
+&lt;p&gt;本文使用的形式化验证工具是JasperGold，其常用的使用方法有两种类型，一个是SEC，对模块功能做对等性检查，另一个是FPV，基于规则特性的功能验证。这里只对FPV进行介绍，也就是 Formal Property Verifycation。&lt;/p&gt;
+
+&lt;h3 id=&#34;验证环境&#34;&gt;验证环境&lt;/h3&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/JasperGold-env.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;FPV_project_name：整个FPV的验证环境。&lt;/li&gt;
+&lt;li&gt;Report：用来存放验证报告。&lt;/li&gt;
+&lt;li&gt;Source：整个FPV环境的文件源。&lt;/li&gt;
+&lt;li&gt;FPV_project_name.tcl：FPV验证环境的启动脚本。&lt;/li&gt;
+&lt;li&gt;Design：文件源中的设计文件，也可以不存放设计文件，而由design.flist指定设计文件。&lt;/li&gt;
+&lt;li&gt;Property：文件源中的验证文件（SVA），提取设计文件的属性。&lt;/li&gt;
+&lt;li&gt;Refer_model：此文件为参考模型文件，根据需求创建，非必须。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;启动脚本&#34;&gt;启动脚本&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;设置环境变量&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; FPV_ROOT    &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;FPV_project_path
+&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; DES_PATH    &lt;span class=&#34;nv&#34;&gt;$FPV_ROOT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;source&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;design
+&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; PRO_PATH    &lt;span class=&#34;nv&#34;&gt;$FPV_ROOT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;source&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;property&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;设置功能点收集选项&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;set_capture_elaborated_design&lt;/span&gt; on
+&lt;span class=&#34;nv&#34;&gt;check_cov&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;init &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;exclude_bind_hierarchies &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;enable_prove_based_proff_core&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;编译设计文件 (注：v2k指IEEE 2001 标准)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;analyze&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;v2k &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;f &lt;span class=&#34;nv&#34;&gt;$DES_PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;design.flist&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;编译验证文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;analyze&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;sva &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;f &lt;span class=&#34;nv&#34;&gt;$PRO_PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;property.flist&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;设置顶层&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;elaborate&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;top top_module_name&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;设置时钟和复位 (注：如果复位是低位有效，则为 ~reset_signal_name)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;clock&lt;/span&gt; clock_signal_name
+&lt;span class=&#34;nv&#34;&gt;reset&lt;/span&gt; reset_signal_name&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;设置最长验证时间&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;set_prove_time_limit&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;24&lt;/span&gt;h&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;启动验证&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;prove&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;all&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;生成报告&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;report&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;summary &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;force &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;result &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;file &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;report&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;FPV_project_name.rpt&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;其他&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上只说明了基本设置，其他详细设置可参考手册或JasperGold的Tcl Command Help。&lt;/p&gt;
+
+&lt;h3 id=&#34;启动命令&#34;&gt;启动命令&lt;/h3&gt;
+
+&lt;p&gt;启动验证环境很简单，验证流程主要依靠启动脚本的设置，而验证环境的启动只需在终端敲下启动命令即可，如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;jg FPV_project_name.tcl&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;关于形式化验证的个人总结&#34;&gt;关于形式化验证的个人总结&lt;/h2&gt;
+
+&lt;h3 id=&#34;什么样的设计适合用形式化验证&#34;&gt;什么样的设计适合用形式化验证&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;规模较小：设计模块太大对应验证复杂度较高，导致验证时间过长。&lt;/li&gt;
+&lt;li&gt;功能独立：功能独立的设计更容易提取规则属性。&lt;/li&gt;
+&lt;li&gt;时序较短：时序较长会导致验证复杂度增大，验证时间指数增长。&lt;/li&gt;
+&lt;li&gt;接口清晰：接口清晰便于对输入添加约束，避免非法输入影响验证结果。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;形式化验证中影响验证时间的因素&#34;&gt;形式化验证中影响验证时间的因素&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;设计复杂度：设计复杂度高，肯定验证时间长，这也是为什么形式化验证不适合大的设计模块。&lt;/li&gt;
+&lt;li&gt;时序较长：形式化验证是所有状态的全遍历，时序每增加一个cycle，所增加的遍历空间并非只是此cycle，还包括此cycle与前几个cycle的状态组合，换句话说，时序增加，遍历空间指数增长。&lt;/li&gt;
+&lt;li&gt;设计中存在时序控制：比如advance_pipeline对pipeline进行使能控制的此类信号，以及所有影响流水线不能依次脉动流出的控制信号。&lt;/li&gt;
+&lt;li&gt;设置的特性检查：设置的特性检查越多越复杂，对应的验证时间越长，如果以reference model形式进行数据结果check，所需验证时间最长，但是若只提取设计特性又很难做到signoff标准。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;形式化验证不能验证完全是不是就无任何作用&#34;&gt;形式化验证不能验证完全是不是就无任何作用&lt;/h3&gt;
+
+&lt;p&gt;当然不是！&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;形式化验证工具进行了语法检查，可确定设计逻辑语法无误。&lt;/li&gt;
+&lt;li&gt;形式化验证工具进行了部分特性检查，可确定已验证的特性符合设计规则。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;换句话说，形式化验证不能验证完全，虽然不能做到sign off，但是可以将前期暴露的语法bug和设计bug进行修复，最终验证不完全，无非表明我不一定是对的，但也没找到我的错误，说明设计代码已经达到一定成熟度。&lt;/p&gt;
+
+&lt;h3 id=&#34;形式化验证工具的其他用途&#34;&gt;形式化验证工具的其他用途&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;完成设计不加任何特性检查，直接启动形式化验证工具，可将暴露的语法错误和警告修复，提高设计代码质量。当然反过来，验证人员可先启动形式化验证工具，将暴露的语法错误和警告提单给设计人员。&lt;/li&gt;
+&lt;li&gt;设计时对于显而易见的规则特性边设计边记录，待设计交付验证人员时，可先启动形式化验证，修复前期bug，提高设计代码质量。&lt;/li&gt;
+&lt;li&gt;模拟仿真中收集覆盖率，对于较难收到的功能点可利用形式化验证工具去设置cover，辅助模拟仿真创建定向用例。这里提两点，一是需要确定输入的场景作为输入约束，二是无需保证形式化验证的正确性，因为只是提取测试激励，正确性由模拟仿真保证。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;复杂设计如何完成验证&#34;&gt;复杂设计如何完成验证&lt;/h3&gt;
+
+&lt;p&gt;复杂的设计验证时间通常较长，不容易完成验证，但是，依据设计的特性，也是可以通过一些手段完成验证，下面以典型设计举例。&lt;/p&gt;
+
+&lt;h4 id=&#34;设计结构&#34;&gt;设计结构&lt;/h4&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/digital-verifer/formal2.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+此设计有以下几个特点：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;设计中stage1输入，stage5输出，中间需寄存四拍。&lt;/li&gt;
+&lt;li&gt;设计中分为流水线控制信号、数据信号和控制信号、组合逻辑三个部分，流水线控制信号带复位。&lt;/li&gt;
+&lt;li&gt;设计中为单向流动，无bypass，也就是流水线前后独立，无反馈。&lt;/li&gt;
+&lt;li&gt;设计中带advance_pipeline，流水线的使能控制，也就是流水线可能锁定n拍后重新启动。&lt;/li&gt;
+&lt;li&gt;设计中模块支持多功能类型，也就是op_type。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;复杂设计的形式化验证方案&#34;&gt;复杂设计的形式化验证方案&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;依据功能类型，分类验证，各个功能依次验证。&lt;/li&gt;
+&lt;li&gt;约束输入，单功能验证仅提交一次，运算数据由工具遍历，验证功能正确性。&lt;/li&gt;
+&lt;li&gt;除流水线控制寄存器之外，其他寄存器不加复位，工具会将其初始值进行遍历，可等效为激励输入前模块的任何状态。&lt;/li&gt;
+&lt;li&gt;凡是影响流水线行进的输入，全部添加约束，可以约束停顿周期为1~2，或直接约束为无停顿，暂不验证流水线控制功能。&lt;/li&gt;
+&lt;li&gt;数据check语法采用单比特，如“data_a[3:0]==data_b[3:0]”改为“data_a[3]==data_b[3], data_a[2]==data_b[2] ……”，前者遍历空间是2^4，后者遍历空间2*4。&lt;/li&gt;
+&lt;li&gt;对流水线控制功能的验证，在其算法功能验证的正确基础上，将数据进行适当约束，减少遍历空间，主要验证流水线控制功能。&lt;/li&gt;
+&lt;li&gt;其他手段有待后续补充。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;其他减少状态空间的方法&#34;&gt;其他减少状态空间的方法&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;抽象模型：如fifo或其他存储类模块，设计本身主要验证的是控制逻辑，从而可以减少存储单元来针对设计完成抽象模型，可以有效的减少状态空间。&lt;/li&gt;
+&lt;li&gt;黑盒化：将不关心的设计设置黑盒，可以有效的减少状态空间&lt;/li&gt;
+&lt;li&gt;断点：待了解&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上方法还未在实际工程中使用过，待后续总结&lt;/p&gt;
+
+&lt;h2 id=&#34;推荐书籍&#34;&gt;推荐书籍&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;《SystemVerilog Assertion应用指南》&lt;/li&gt;
+&lt;li&gt;《Formal Verification: An ESSential Toolkit For Modern VLSI Design》&lt;/li&gt;
+&lt;li&gt;以及其他EDA厂商提供的使用手册和培训资料（如哪位读者有此类资料，感谢分享）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>最简单易用的谷歌访问助手</title>
@@ -4241,6 +4681,8 @@ toc = true
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.fuzihao.org/blog/&#34;&gt;切问录： emacs使用者&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/tylinux/&#34;&gt;博客园之暖壶塞儿的自留地： emacs使用者&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://xiaotanzhong.github.io/&#34;&gt;老石谈芯：一个芯片行业从业者&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
@@ -4475,97 +4917,6 @@ toc = true
 
 &lt;p&gt;如果你是Emacs用户的话，可以使用emacs的批量替换，具体可查看我的另一篇帖子 &lt;a href=&#34;https://www.wenhui.space/post/about%5Femacs/emacs%5Fuse%5Ftips/&#34;&gt;emacs的使用技巧记录&lt;/a&gt;中 &lt;strong&gt;“Emacs 批量查找与替换”&lt;/strong&gt; 章节。Emacs 批量查找与替换功能操作起来虽然比其他软件繁琐许多，但是你可以详细的看到要被替换的项，这一点相对于单纯的脚本替换是有安全性的。&lt;/p&gt;
 
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>hugo的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_hugo/</link>
-      <pubDate>Sat, 23 Nov 2019 15:54:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_hugo/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍hugo和记录hugo的安装过程。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
-&lt;li&gt;hugo版本： hugo 0.58&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.gohugo.org/&#34;&gt;Hugo中文文档&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;什么是hugo&#34;&gt;什么是hugo？&lt;/h2&gt;
-
-&lt;p&gt;Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。简单来说就是你可以用它来生成自己的博客站点，而且安装极简单，无依赖。类似此功能的工具还有Hexo，， Jekyll, Ghost，我强烈推荐Hugo。更多内容可以查看&lt;a href=&#34;https://www.gohugo.org/&#34;&gt;Hugo中文文档&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h2 id=&#34;安装hugo&#34;&gt;安装hugo&lt;/h2&gt;
-
-&lt;h3 id=&#34;下载&#34;&gt;下载&lt;/h3&gt;
-
-&lt;p&gt;推荐二进制安装，也就是直接下载可执行程序，方便简单。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;到 &lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;Hugo Releases&lt;/a&gt; 下载对应的操作系统版本的Hugo二进制文件（hugo或者hugo.exe）&lt;/li&gt;
-&lt;li&gt;采用我的百度网盘分享资源（里面包含hugo_0.58和extend_hugo_0.61两个版本，选其一即可） &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/1ub-6LSw9VABaf0GNe7oeGQ&#34;&gt;https://pan.baidu.com/s/1ub-6LSw9VABaf0GNe7oeGQ&lt;/a&gt; 密码：pvb4&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
-
-&lt;p&gt;将下载的文件解压，找到hugo文件，将其放入 &lt;strong&gt;&lt;em&gt;“/usr/local/bin/”&lt;/em&gt;&lt;/strong&gt; 目录，若其为非可执行文件，请更改文件属性。可参考以下执行命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看系统变量&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;#更改文件属性为可执行&lt;/span&gt;
-chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ./hugo
-
-&lt;span class=&#34;c1&#34;&gt;#复制到/usr/local/bin/目录，也可以选择自己$PATH的某一路径&lt;/span&gt;
-sudo cp ./hugo /usr/local/bin/hugo&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
