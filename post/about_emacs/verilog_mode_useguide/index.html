@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="文辉" />
-  <meta name="description" content="本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU" />
+  <meta name="description" content="本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 0.2 添加快捷键插入内容 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emac" />
 
   <meta name="keywords" content="Hugo, linux, emacs, CPU" />
 
@@ -60,25 +60,25 @@
 
 
 <meta property="og:title" content="Emacs verilog-mode 的使用" />
-<meta property="og:description" content="本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU" />
+<meta property="og:description" content="本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 0.2 添加快捷键插入内容 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emac" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wenhui.space/post/about_emacs/verilog_mode_useguide/" />
 <meta property="article:published_time" content="2020-01-01T16:42:00+08:00" />
-<meta property="article:modified_time" content="2020-01-03T15:35:05+08:00" />
+<meta property="article:modified_time" content="2020-01-10T15:56:00+08:00" />
 <meta itemprop="name" content="Emacs verilog-mode 的使用">
-<meta itemprop="description" content="本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU">
+<meta itemprop="description" content="本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 0.2 添加快捷键插入内容 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emac">
 
 
 <meta itemprop="datePublished" content="2020-01-01T16:42:00&#43;08:00" />
-<meta itemprop="dateModified" content="2020-01-03T15:35:05&#43;08:00" />
-<meta itemprop="wordCount" content="6676">
+<meta itemprop="dateModified" content="2020-01-10T15:56:00&#43;08:00" />
+<meta itemprop="wordCount" content="7056">
 
 
 
 <meta itemprop="keywords" content="emacs,verilog," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Emacs verilog-mode 的使用"/>
-<meta name="twitter:description" content="本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU"/>
+<meta name="twitter:description" content="本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 0.2 添加快捷键插入内容 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emac"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -344,8 +344,8 @@
             <a href="https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/"> 关于emacs </a>
             
           </div>
-        <span class="more-meta"> 约 6676 字 </span>
-          <span class="more-meta"> 预计阅读 14 分钟 </span>
+        <span class="more-meta"> 约 7056 字 </span>
+          <span class="more-meta"> 预计阅读 15 分钟 </span>
 
         
         
@@ -393,6 +393,7 @@
 </ul></li>
 <li><a href="#emacs的配置-关于verilog-mode">emacs的配置（关于verilog-mode）</a></li>
 <li><a href="#忘了c-c-c-a怎么办">忘了C-c C-a怎么办</a></li>
+<li><a href="#快捷键插入内容">快捷键插入内容</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -419,6 +420,11 @@
 <tr>
 <td>0.1</td>
 <td>初版发布</td>
+</tr>
+
+<tr>
+<td>0.2</td>
+<td>添加快捷键插入内容</td>
 </tr>
 </tbody>
 </table>
@@ -847,7 +853,7 @@
 </code></pre></td></tr></table>
 </div>
 </div>
-<p>如果你被端口名不一致所困扰，可以参考我的另一篇帖子 Vrename解决verilog端口名不一致问题。</p>
+<p>如果你被端口名不一致所困扰，可以参考我的另一篇帖子 <a href="https://www.wenhui.space/post/about%5Femacs/verilog%5Fperl%5Fuseguide/">Emacs Verilog Perl 的使用中vrename的使用章节</a>。</p>
 
 <h3 id="使用auto-template创建模板">使用AUTO_TEMPLATE创建模板</h3>
 
@@ -1864,6 +1870,75 @@
 <pre class="chroma"><code class="language-bash" data-lang="bash">emacs --batch --no-site-file -l verilog-mode.el filename.v -f verilog-auto -f save-buffer</code></pre></td></tr></table>
 </div>
 </div>
+<h2 id="快捷键插入内容">快捷键插入内容</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">C-c C-t a  Insert an always @(AS) begin .. end block.
+   C-c C-t b  Insert a begin .. end block.
+   C-c C-t c  Insert a case block, prompting for details.
+   C-c C-t f  Insert a for (...) begin .. end block, prompting for details.
+   C-c C-t g  Insert a generate .. endgenerate block.
+   C-c C-t h  Insert a header block at the top of file.
+   C-c C-t i  Insert an initial begin .. end block.
+   C-c C-t j  Insert a fork begin .. end .. join block.
+   C-c C-t m  Insert a module .. (/*AUTOARG*/);.. endmodule block.
+   C-c C-t o  Insert an OVM Class block.
+   C-c C-t u  Insert an UVM Object block.
+   C-c C-t U  Insert an UVM Component block.
+   C-c C-t p  Insert a primitive .. (.. );.. endprimitive block.
+   C-c C-t r  Insert a repeat (..) begin .. end block.
+   C-c C-t s  Insert a specify .. endspecify block.
+   C-c C-t t  Insert a task .. begin .. end endtask block.
+   C-c C-t w  Insert a while (...) begin .. end block, prompting for details.
+   C-c C-t x  Insert a casex (...) item: begin.. end endcase block, prompting for details.
+   C-c C-t z  Insert a casez (...) item: begin.. end endcase block, prompting for details.
+   C-c C-t ?  Insert an if (..) begin .. end block.
+   C-c C-t :  Insert an else if (..) begin .. end block.
+   C-c C-t /  Insert a comment block.
+   C-c C-t A  Insert an assign .. = ..; statement.
+   C-c C-t F  Insert a function .. begin .. end endfunction block.
+   C-c C-t I  Insert an input declaration, prompting for details.
+   C-c C-t O  Insert an output declaration, prompting for details.
+   C-c C-t S  Insert a state machine definition, prompting for details.
+   C-c C-t =  Insert an inout declaration, prompting for details.
+   C-c C-t W  Insert a wire declaration, prompting for details.
+   C-c C-t R  Insert a register declaration, prompting for details.
+   C-c C-t D  Define signal under point as a register at the top of the modul</code></pre></td></tr></table>
+</div>
+</div>
 <hr />
 
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
@@ -1880,7 +1955,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2020-01-03
+      2020-01-10
       
     </span>
   </p>
@@ -1919,8 +1994,8 @@
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/about_emacs/emacs_use_tips/">
-            <span class="next-text nav-default">emacs的使用技巧记录</span>
+          <a class="next" href="/post/other_tools_tips/install_plugins_for_firefox/">
+            <span class="next-text nav-default">为firefox安装插件</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

@@ -3,7 +3,49 @@
   
   <url>
     <loc>https://wenhui.space/categories/</loc>
-    <lastmod>2020-01-10T13:19:26+08:00</lastmod>
+    <lastmod>2020-01-10T19:52:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/emacs/</loc>
+    <lastmod>2020-01-10T19:52:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/about_emacs/emacs_folding_mode/</loc>
+    <lastmod>2020-01-10T19:52:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/</loc>
+    <lastmod>2020-01-10T19:52:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/</loc>
+    <lastmod>2020-01-10T19:52:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/</loc>
+    <lastmod>2020-01-10T19:52:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/</loc>
+    <lastmod>2020-01-10T19:52:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -18,27 +60,6 @@
   <url>
     <loc>https://wenhui.space/post/digital_verifer/formal_verify/</loc>
     <lastmod>2020-01-09T17:30:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/post/</loc>
-    <lastmod>2020-01-10T13:19:26+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/tags/</loc>
-    <lastmod>2020-01-10T13:19:26+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/</loc>
-    <lastmod>2020-01-10T13:19:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -114,13 +135,6 @@
   </url>
   
   <url>
-    <loc>https://wenhui.space/tags/emacs/</loc>
-    <lastmod>2020-01-06T10:31:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://wenhui.space/post/about_emacs/emacs_auto_insert/</loc>
     <lastmod>2020-01-06T10:31:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -129,14 +143,7 @@
   
   <url>
     <loc>https://wenhui.space/tags/verilog/</loc>
-    <lastmod>2020-01-06T10:31:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/</loc>
-    <lastmod>2020-01-06T10:31:49+08:00</lastmod>
+    <lastmod>2020-01-10T15:56:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -150,14 +157,7 @@
   
   <url>
     <loc>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</loc>
-    <lastmod>2020-01-03T15:35:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/post/about_emacs/emacs_use_tips/</loc>
-    <lastmod>2019-12-31T14:17:38+08:00</lastmod>
+    <lastmod>2020-01-10T15:56:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -199,7 +199,7 @@
   
   <url>
     <loc>https://wenhui.space/tags/linux/</loc>
-    <lastmod>2020-01-10T13:19:26+08:00</lastmod>
+    <lastmod>2020-01-10T13:25:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -213,7 +213,7 @@
   
   <url>
     <loc>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Elinux/</loc>
-    <lastmod>2020-01-10T13:19:26+08:00</lastmod>
+    <lastmod>2020-01-10T13:25:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -283,7 +283,7 @@
   
   <url>
     <loc>https://wenhui.space/links/</loc>
-    <lastmod>2020-01-07T22:02:22+08:00</lastmod>
+    <lastmod>2020-01-10T15:02:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -296,15 +296,29 @@
   </url>
   
   <url>
+    <loc>https://wenhui.space/post/about_emacs/emacs_package_install/</loc>
+    <lastmod>2020-01-10T19:52:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/about_emacs/emacs_use_tips/</loc>
+    <lastmod>2020-01-10T15:17:56+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://wenhui.space/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
-    <lastmod>2020-01-10T13:19:26+08:00</lastmod>
+    <lastmod>2020-01-10T13:25:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/about_linux/regular_expression/</loc>
-    <lastmod>2020-01-10T13:19:26+08:00</lastmod>
+    <lastmod>2020-01-10T13:25:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

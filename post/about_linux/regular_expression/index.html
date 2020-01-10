@@ -64,13 +64,13 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wenhui.space/post/about_linux/regular_expression/" />
 <meta property="article:published_time" content="2019-12-07T21:18:00+08:00" />
-<meta property="article:modified_time" content="2020-01-10T13:19:26+08:00" />
+<meta property="article:modified_time" content="2020-01-10T13:25:59+08:00" />
 <meta itemprop="name" content="正则表达式语法简明教程">
 <meta itemprop="description" content="本文 主要对正则表达式的常用语法进行整理和介绍。 版本 说明 0.1 初版发布 背景 Linux 什么是正则表达式？ 正则表达式（regular expression 简称regex），正则表">
 
 
 <meta itemprop="datePublished" content="2019-12-07T21:18:00&#43;08:00" />
-<meta itemprop="dateModified" content="2020-01-10T13:19:26&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-10T13:25:59&#43;08:00" />
 <meta itemprop="wordCount" content="4616">
 
 
@@ -483,11 +483,11 @@
 <li>字符串的边界：开头^，结尾$，比如^.*$，在语法上完全正确，而且总能匹配到一个结果，但是却无任何用途。这里字符串边界符要搭配分行匹配模式(?m)来使用的，举例说明：匹配verilog代码中的注释行内容：(?m)^\s*//.*$，解释：(?m)分行匹配模式，将一行内容作为一个字符串处理；^字符串开头；\s*任意一个或多个空白符，如空格、制表符、换行符等等；//为verilog中的注释符；.*为任意字符重复0次或多次，其实这里代表注释内容；$代表字符串结尾。</li>
 <li>总之，比较难理解的是字符串边界的使用，这里对常用的几个举例：
 
-<ol>
+<ul>
 <li>^\s*：代表文本开头的有效内容处（这里有效内容是排除空行、空格、tab等）</li>
 <li>\s*$：代表文本末尾的有效内容处（这里有效内容是排除空行、空格、tab等）</li>
 <li>搭配(?m)作为行处理：(?m)^\s*代表行首有效内容；(?m)\s*$代表行尾有效内容</li>
-</ol></li>
+</ul></li>
 </ol>
 
 <h3 id="子表达式">子表达式</h3>
@@ -505,10 +505,10 @@
 <li>回溯引用通过\1，\2等来表达的，这里数字是通过相对位置来引用的，即此处\1，代表表达式中第一个子表达式（嵌套表达式是如何暂不清楚，认为是指引用层级相同的子表达式），注意数字从1开始。</li>
 <li>回溯引用在替换中的应用：
 
-<ol>
+<ul>
 <li>将电话号码重新排版，将313-555-1234和251-555-2031排版为(313) 555-1234和(251) 555-2031。匹配表达式：(\d{3})(-)(5{3})(-)(\d{4})，替换表达式：($1) $3-$5。</li>
 <li>大小写转换：元字符（\E作为结束标志；\l把下一个字符转换为小写；\u把下一个字符转换为大写；）举例：AaBbCcDd，匹配：([Aa]{2})([Bb]{2})([Cc]{2})([Dd]{2})，替换：$1\U$2$3\E$4，替换效果为AaBBCCDd（将第二第三表达式全部替换为大写）</li>
-</ol></li>
+</ul></li>
 </ol>
 
 <h3 id="前后查找">前后查找</h3>
@@ -882,7 +882,7 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/other_tools_tips/install_flash_player_for_firefox/">
+          <a class="prev" href="/post/about_emacs/emacs_use_tips/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -892,7 +892,7 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">为firefox安装flash player插件</span>
+            <span class="prev-text nav-default">emacs安装插件</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         

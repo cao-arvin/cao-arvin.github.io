@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>为firefox安装flash player插件 - Wenhui&#39;s Rotten Pen</title>
+  <title>emacs使用folding-mode - Wenhui&#39;s Rotten Pen</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="文辉" />
-  <meta name="description" content="本文 主要介绍了如何为firefox手动安装flash player插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 firefox版" />
+  <meta name="description" content="本文 主要介绍emacs folding-mode的使用。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU Emacs 26.3" />
 
   <meta name="keywords" content="Hugo, linux, emacs, CPU" />
 
@@ -35,7 +35,7 @@
 <meta name="generator" content="Hugo 0.58.3" />
 
 
-<link rel="canonical" href="https://wenhui.space/post/other_tools_tips/install_flash_player_for_firefox/" />
+<link rel="canonical" href="https://wenhui.space/post/about_emacs/emacs_folding_mode/" />
 
 
 
@@ -59,26 +59,26 @@
 
 
 
-<meta property="og:title" content="为firefox安装flash player插件" />
-<meta property="og:description" content="本文 主要介绍了如何为firefox手动安装flash player插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 firefox版" />
+<meta property="og:title" content="emacs使用folding-mode" />
+<meta property="og:description" content="本文 主要介绍emacs folding-mode的使用。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU Emacs 26.3" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://wenhui.space/post/other_tools_tips/install_flash_player_for_firefox/" />
-<meta property="article:published_time" content="2019-12-15T21:22:00+08:00" />
-<meta property="article:modified_time" content="2019-12-27T15:08:55+08:00" />
-<meta itemprop="name" content="为firefox安装flash player插件">
-<meta itemprop="description" content="本文 主要介绍了如何为firefox手动安装flash player插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 firefox版">
+<meta property="og:url" content="https://wenhui.space/post/about_emacs/emacs_folding_mode/" />
+<meta property="article:published_time" content="2020-01-10T19:13:00+08:00" />
+<meta property="article:modified_time" content="2020-01-10T19:52:48+08:00" />
+<meta itemprop="name" content="emacs使用folding-mode">
+<meta itemprop="description" content="本文 主要介绍emacs folding-mode的使用。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU Emacs 26.3">
 
 
-<meta itemprop="datePublished" content="2019-12-15T21:22:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-27T15:08:55&#43;08:00" />
-<meta itemprop="wordCount" content="745">
+<meta itemprop="datePublished" content="2020-01-10T19:13:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-10T19:52:48&#43;08:00" />
+<meta itemprop="wordCount" content="952">
 
 
 
-<meta itemprop="keywords" content="firefox," />
+<meta itemprop="keywords" content="emacs," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="为firefox安装flash player插件"/>
-<meta name="twitter:description" content="本文 主要介绍了如何为firefox手动安装flash player插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 firefox版"/>
+<meta name="twitter:title" content="emacs使用folding-mode"/>
+<meta name="twitter:description" content="本文 主要介绍emacs folding-mode的使用。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU Emacs 26.3"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -334,17 +334,17 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">为firefox安装flash player插件</h1>
+      <h1 class="post-title">emacs使用folding-mode</h1>
       
       <div class="post-meta">
-        <time datetime="2019-12-15" class="post-time">
-          2019-12-15
+        <time datetime="2020-01-10" class="post-time">
+          2020-01-10
         </time>
         <div class="post-category">
-            <a href="https://wenhui.space/categories/%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"> 其他工具使用技巧 </a>
+            <a href="https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/"> 关于emacs </a>
             
           </div>
-        <span class="more-meta"> 约 745 字 </span>
+        <span class="more-meta"> 约 952 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -366,13 +366,14 @@
 <ul>
 <li><a href="#本文">本文</a></li>
 <li><a href="#背景">背景</a></li>
-<li><a href="#参考">参考</a></li>
-<li><a href="#安装过程">安装过程</a>
+<li><a href="#什么是folding-mode">什么是folding-mode?</a></li>
+<li><a href="#安装folding-mode">安装folding-mode</a></li>
+<li><a href="#folding-mode的使用">folding-mode的使用</a>
 <ul>
-<li><a href="#为什么安装flash插件">为什么安装Flash插件</a></li>
-<li><a href="#下载flash插件">下载Flash插件</a></li>
-<li><a href="#解压安装">解压安装</a></li>
-<li><a href="#查看">查看</a></li>
+<li><a href="#修改emacs配置文件">修改emacs配置文件</a></li>
+<li><a href="#个人配置">个人配置</a></li>
+<li><a href="#使用">使用</a></li>
+<li><a href="#效果">效果</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -386,7 +387,7 @@
 
 <h2 id="本文">本文</h2>
 
-<p>主要介绍了如何为firefox手动安装flash player插件。</p>
+<p>主要介绍emacs folding-mode的使用。</p>
 
 <table>
 <thead>
@@ -410,59 +411,119 @@
 <li>主机： Thinkpad S2</li>
 <li>系统： Deepin GNU/Linux 15.11</li>
 <li>内核： Debian 6.3.0-18+deb9u1</li>
-<li>firefox版本： Mozilla Firefox 71.0</li>
-<li>flash player版本：32.0</li>
+<li>emacs版本：Linux GNU Emacs 26.3</li>
 </ul>
 
-<h2 id="参考">参考</h2>
+<h2 id="什么是folding-mode">什么是folding-mode?</h2>
+
+<p>emacs 的folding-mode是一种emacs的副模式，提供代码折叠功能，方便代码阅读和编辑。emacs用户肯定知道org-mode的大纲模式，但是只能在阅读或编辑org文档时才可以使用，而folding-mode可以对任何模式实现类似于org-mode大纲模式的功能。</p>
+
+<h2 id="安装folding-mode">安装folding-mode</h2>
+
+<p>最简捷的安装方式，是通过emacs的包管理器安装，安装方法请参考我的另一篇帖子 <a href="https://www.wenhui.space/post/about%5Femacs/emacs%5Fpackage%5Finstall/">emacs如何安装插件</a> 。</p>
+
+<h2 id="folding-mode的使用">folding-mode的使用</h2>
+
+<h3 id="修改emacs配置文件">修改emacs配置文件</h3>
+
+<p>安装folding-mode后，需要修改emacs配置文件，.emacs或.emacs.d/init.el，开启folding-mode功能，请将下面代码添加到emacs配置文件。注意：如需为新的格式添加folding-mode功能，请参照folding-add-to-marks-list完成添加。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">load</span> <span class="s">&#34;folding&#34;</span> <span class="ss">&#39;nomessage</span> <span class="ss">&#39;noerror</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">folding-mode-add-find-file-hook</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nv">folding-add-to-marks-list</span> <span class="ss">&#39;verilog-mode</span>         <span class="s">&#34;//{{{&#34;</span> <span class="s">&#34;//}}}&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">folding-add-to-marks-list</span> <span class="ss">&#39;c-mode</span>               <span class="s">&#34;//{{{&#34;</span> <span class="s">&#34;//}}}&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">folding-add-to-marks-list</span> <span class="ss">&#39;latex-mode</span>           <span class="s">&#34;%%{{{&#34;</span> <span class="s">&#34;%%}}}&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">folding-add-to-marks-list</span> <span class="ss">&#39;lisp-mode</span>            <span class="s">&#34;;;{{{&#34;</span> <span class="s">&#34;;;}}}&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">folding-add-to-marks-list</span> <span class="ss">&#39;shell-script-mode</span>    <span class="s">&#34;##{{{&#34;</span> <span class="s">&#34;##}}}&#34;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="个人配置">个人配置</h3>
+
+<p>为了使用方便，我对folding-mode的常用命令设置了别名，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">defalias</span> <span class="ss">&#39;me-folding-mode</span>      <span class="ss">&#39;folding-mode</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defalias</span> <span class="ss">&#39;me-folding-reg</span>       <span class="ss">&#39;folding-fold-region</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defalias</span> <span class="ss">&#39;me-folding-in</span>        <span class="ss">&#39;folding-shift-in</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defalias</span> <span class="ss">&#39;me-folding-out</span>       <span class="ss">&#39;folding-shift-out</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defalias</span> <span class="ss">&#39;me-folding-hide-all</span>  <span class="ss">&#39;folding-whole-buffer</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defalias</span> <span class="ss">&#39;me-folding-show-all</span>  <span class="ss">&#39;folding-open-buffer</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defalias</span> <span class="ss">&#39;me-folding-hide</span>      <span class="ss">&#39;folding-hide-current-entry</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defalias</span> <span class="ss">&#39;me-folding-show</span>      <span class="ss">&#39;folding-show-current-entry</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="使用">使用</h3>
+
+<p>folding-mode，我主要是以命令的形式使用，其实也支持快捷键，快捷键比较复杂且难以记住，如folding-shift-in，快捷键是 C-c @ &gt;，所以我还是以快捷键使用为主，其他快捷键可以查看folding-mode文档或使用emacs help。</p>
 
 <ul>
-<li><a href="https://support.mozilla.org/zh-CN/kb/%25E5%25AE%2589%25E8%25A3%2585%2520Flash%2520%25E6%258F%2592%25E4%25BB%25B6#w%5Foooegoce-flash-acki">firefox帮助：安装 Flash 插件</a></li>
-<li><a href="https://jingyan.baidu.com/article/9f7e7ec09f58966f281554a9.html">百度经验：deepin linux下firefox怎么升级flash player</a></li>
+<li>打开文件（支持folding-mode的类型）， <strong>M-x folding-mode</strong> ，打开folding-mode。</li>
+<li>选中一块区域，输入 M-x me-folding-reg，此时会在buffer中仅显示选中的内容，且上下插入了folding的注释符，输入标题（也就是第一行注释符后的内容），添加标题后 M-x me-folding-out 可以显示所有内容；或者可以手动添加folding的注释符，通过 M-x me-folding-hide/show 打开或关闭折叠区。</li>
+<li>其他命令可自行尝试，不再说明。</li>
 </ul>
 
-<h2 id="安装过程">安装过程</h2>
-
-<h3 id="为什么安装flash插件">为什么安装Flash插件</h3>
-
-<p>由于deepin没有发现简单易用的图片处理软件，比如调整大小、拼图、裁剪等等，最佳选择就是使用美图秀秀网页版了，但是发现缺少可用的Flash插件，于是开始了安装过程。</p>
-
-<h3 id="下载flash插件">下载Flash插件</h3>
+<h3 id="效果">效果</h3>
 
 <ul>
-<li>你可以到官网下载，请进入<a href="https://get.adobe.com/cn/flashplayer/">Adobe Flash Player下载页面</a>，选择要下载的版本，我这里选择的是 <strong><em>.tar.gz 适用于 Linux</em></strong></li>
-<li>也可以选择我的百度网盘分享资源 <strong>链接：<a href="https://pan.baidu.com/s/18FLcCARtjnogcBB%5F950s-Q">https://pan.baidu.com/s/18FLcCARtjnogcBB%5F950s-Q</a> 密码：xbcu</strong></li>
+<li>hide：</li>
 </ul>
 
-<h3 id="解压安装">解压安装</h3>
-
-<p>将下载的安装包解压，放到自己合适的位置，比如我的 <strong><em>“~/Treasury/tools_and_drives/flash_player/”</em></strong> ，“Treasure”的意思就是财富宝藏了，没错，我的所有“财富”都在这里。然后将下载的文件包中 <strong>libflashplayer.so</strong> 复制到firefox的插件目录 <strong><em>“/usr/lib/mozilla/plugins/”</em></strong> 。打开终端进入下载的文件包目录，输入如下命令(中途会提示输入用户密码)：</p>
+<!--listend-->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo cp ./libflashplayer.so /usr/lib/mozilla/plugins/</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># {{{ Title1...</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>如果没有firefox的插件目录，需要自己创建：</p>
+<ul>
+<li>show:</li>
+</ul>
+
+<!--listend-->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /usr/lib/mozilla/plugins/</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># {{{ Title1</span>
+
+<span class="nv">aaabbbccc</span><span class="o">=</span><span class="m">123456</span>
+<span class="nv">aaabbbccc</span><span class="o">=</span><span class="m">123456</span>
+<span class="nv">aaabbbccc</span><span class="o">=</span><span class="m">123456</span>
+
+<span class="c1"># }}}</span></code></pre></td></tr></table>
 </div>
 </div>
-<h3 id="查看">查看</h3>
-
-<p>重启firefox，点击菜单打开 <strong>附加组件</strong> 或快捷键 <strong>Ctrl+Shift+A</strong> ，点击左侧的“插件”即可看到flash palyer的版本。
-<center>
-<img width="600" src="/image/other-tools-tips/firefox1.png">
-<div style="color:darkorange;"> <b> flash player版本为32.0 </b>  </div>
-</center>
-如果还没有的话，可以试试点击 <strong>齿轮图标</strong> 选择 <strong>从文件安装附加组件</strong> 。</p>
-
 <hr />
 
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
@@ -479,7 +540,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2019-12-27
+      2020-01-10
       
     </span>
   </p>
@@ -496,29 +557,16 @@
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://wenhui.space/tags/firefox/">firefox</a>
+          <a href="https://wenhui.space/tags/emacs/">emacs</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/create_blog_site/hugo_usage/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">hugo的使用</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
-          <a class="next" href="/post/about_emacs/emacs_package_install/">
-            <span class="next-text nav-default">emacs如何安装插件</span>
+          <a class="next" href="/post/digital_verifer/formal_verify/">
+            <span class="next-text nav-default">Formal验证技术总结</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
