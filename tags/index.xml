@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 10 Jan 2020 19:13:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jan 2020 16:40:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux</title>
+      <link>https://wenhui.space/tags/linux/</link>
+      <pubDate>Wed, 15 Jan 2020 16:40:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://wenhui.space/tags/python/</link>
+      <pubDate>Wed, 15 Jan 2020 16:40:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>verilog</title>
+      <link>https://wenhui.space/tags/verilog/</link>
+      <pubDate>Wed, 15 Jan 2020 16:40:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/verilog/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>emacs</title>
@@ -66,15 +93,6 @@
     </item>
     
     <item>
-      <title>verilog</title>
-      <link>https://wenhui.space/tags/verilog/</link>
-      <pubDate>Fri, 03 Jan 2020 20:30:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/verilog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>firefox</title>
       <link>https://wenhui.space/tags/firefox/</link>
       <pubDate>Mon, 30 Dec 2019 14:16:00 +0800</pubDate>
@@ -89,15 +107,6 @@
       <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
       
       <guid>https://wenhui.space/tags/%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://wenhui.space/tags/linux/</link>
-      <pubDate>Sun, 29 Dec 2019 15:18:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/linux/</guid>
       <description></description>
     </item>
     
