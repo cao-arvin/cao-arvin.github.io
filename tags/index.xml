@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 15 Jan 2020 22:23:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jan 2020 00:04:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>verilog</title>
+      <link>https://wenhui.space/tags/verilog/</link>
+      <pubDate>Thu, 16 Jan 2020 00:04:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/verilog/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Linux</title>
@@ -26,15 +35,6 @@
       <pubDate>Wed, 15 Jan 2020 22:23:00 +0800</pubDate>
       
       <guid>https://wenhui.space/tags/perl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>verilog</title>
-      <link>https://wenhui.space/tags/verilog/</link>
-      <pubDate>Wed, 15 Jan 2020 22:23:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/verilog/</guid>
       <description></description>
     </item>
     

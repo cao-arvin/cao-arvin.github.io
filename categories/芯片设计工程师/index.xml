@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>芯片设计工程师 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/</link>
+    <description>Recent content in 芯片设计工程师 on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Jan 2020 00:04:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>verilog编码的三大利器</title>
+      <link>https://wenhui.space/post/digital_designer/verilog_coding_three_tools/</link>
+      <pubDate>Thu, 16 Jan 2020 00:04:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_designer/verilog_coding_three_tools/</guid>
+      <description>本文 主要介绍辅助verilog编码的三款工具，简化编码工作。 版本 说明 0.1 初版发布 三大利器 Emacs verilog-mode 的使用 代码预处理工具ep3的使用 verilog中r</description>
+    </item>
+    
+  </channel>
+</rss>
