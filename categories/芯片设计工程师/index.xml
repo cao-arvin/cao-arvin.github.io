@@ -6,10 +6,19 @@
     <description>Recent content in 芯片设计工程师 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 16 Jan 2020 00:04:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jan 2020 10:12:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Verilog中获取随机数</title>
+      <link>https://wenhui.space/post/digital_designer/random_in_verilog/</link>
+      <pubDate>Fri, 17 Jan 2020 10:12:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_designer/random_in_verilog/</guid>
+      <description>本文 主要介绍一种verilog语言中获取随机数的方法。 版本 说明 0.1 初版发布 代码展示 设计代码 1 2 3 4 5 function [31:0] get_random; input signed [31:0] min_num; input signed [31:0] max_num; get_random = min_num + {$random}%(max_num-min_num+1); endfunction // get_random 验证</description>
+    </item>
     
     <item>
       <title>verilog编码的三大利器</title>

@@ -6,10 +6,28 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 16 Jan 2020 00:04:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 Jan 2020 14:51:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python简明教程</title>
+      <link>https://wenhui.space/post/about_linux/python_tutorial/</link>
+      <pubDate>Tue, 21 Jan 2020 14:51:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_linux/python_tutorial/</guid>
+      <description>本文 主要介绍有关python的一些基础知识。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 python： Python 2.7.13 参考 菜鸟教程：Pytho</description>
+    </item>
+    
+    <item>
+      <title>Verilog中获取随机数</title>
+      <link>https://wenhui.space/post/digital_designer/random_in_verilog/</link>
+      <pubDate>Fri, 17 Jan 2020 10:12:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_designer/random_in_verilog/</guid>
+      <description>本文 主要介绍一种verilog语言中获取随机数的方法。 版本 说明 0.1 初版发布 代码展示 设计代码 1 2 3 4 5 function [31:0] get_random; input signed [31:0] min_num; input signed [31:0] max_num; get_random = min_num + {$random}%(max_num-min_num+1); endfunction // get_random 验证</description>
+    </item>
     
     <item>
       <title>verilog编码的三大利器</title>
@@ -81,6 +99,15 @@
       
       <guid>https://wenhui.space/post/digital_verifer/digital_verifer/</guid>
       <description>本文 主要介绍芯片验证工程师的成长之路，包括职位概述、技术入门、能力提升和角色转换。 写在前头，本文内容是根据自己的工作经验和行业了解，以及师兄</description>
+    </item>
+    
+    <item>
+      <title>关于word编辑文档的一些建议</title>
+      <link>https://wenhui.space/post/about_windows/some_advices_of_word/</link>
+      <pubDate>Sat, 04 Jan 2020 15:18:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_windows/some_advices_of_word/</guid>
+      <description>本文 主要介绍对word编辑文档的一些建议。 版本 说明 0.1 初版发布 背景 本篇文章参考自王老师。 写在前面 出于各方面原因，我们编辑文档时，主要还是使用微</description>
     </item>
     
     <item>
@@ -162,33 +189,6 @@
       
       <guid>https://wenhui.space/post/create_blog_site/markdown/</guid>
       <description>本文 主要介绍了markdown基本语法。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 什么是markdown？ Markdown是一种</description>
-    </item>
-    
-    <item>
-      <title>hugo博客内容的使用技巧</title>
-      <link>https://wenhui.space/post/create_blog_site/hugo_content_tips/</link>
-      <pubDate>Tue, 24 Dec 2019 21:15:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/create_blog_site/hugo_content_tips/</guid>
-      <description>本文 主要介绍了一个hugo博客内容的使用技巧。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 hugo官网 hug</description>
-    </item>
-    
-    <item>
-      <title>将hugo博客部署到github</title>
-      <link>https://wenhui.space/post/create_blog_site/hugo_deploy_to_github/</link>
-      <pubDate>Mon, 23 Dec 2019 20:05:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/create_blog_site/hugo_deploy_to_github/</guid>
-      <description>本文 主要介绍了如何将hugo创建的博客站点部署到github。 版本 说明 0.1 初版发布 0.2 修改issue.sh脚本 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian</description>
-    </item>
-    
-    <item>
-      <title>hugo的使用</title>
-      <link>https://wenhui.space/post/create_blog_site/hugo_usage/</link>
-      <pubDate>Mon, 23 Dec 2019 19:22:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/create_blog_site/hugo_usage/</guid>
-      <description>本文 主要介绍了如何下载和使用hugo。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 参考 hugo官网 hugo中文文</description>
     </item>
     
   </channel>
