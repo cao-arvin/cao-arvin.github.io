@@ -3,20 +3,62 @@
   
   <url>
     <loc>https://wenhui.space/categories/</loc>
-    <lastmod>2020-01-21T14:51:37+08:00</lastmod>
+    <lastmod>2020-01-22T11:38:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://wenhui.space/tags/linux/</loc>
-    <lastmod>2020-01-21T14:51:37+08:00</lastmod>
+    <loc>https://wenhui.space/tags/emacs/</loc>
+    <lastmod>2020-01-22T11:38:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/about_emacs/emacs_org_mode/</loc>
+    <lastmod>2020-01-22T11:38:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/org/</loc>
+    <lastmod>2020-01-22T11:38:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/</loc>
+    <lastmod>2020-01-22T11:38:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/</loc>
+    <lastmod>2020-01-22T11:38:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/</loc>
+    <lastmod>2020-01-22T11:38:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/</loc>
+    <lastmod>2020-01-22T11:38:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/linux/</loc>
     <lastmod>2020-01-21T14:51:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -37,20 +79,6 @@
   </url>
   
   <url>
-    <loc>https://wenhui.space/tags/</loc>
-    <lastmod>2020-01-21T14:51:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/</loc>
-    <lastmod>2020-01-21T14:51:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Elinux/</loc>
     <lastmod>2020-01-21T14:51:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -59,21 +87,21 @@
   
   <url>
     <loc>https://wenhui.space/post/digital_designer/random_in_verilog/</loc>
-    <lastmod>2020-01-17T16:41:29+08:00</lastmod>
+    <lastmod>2020-01-21T14:55:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/</loc>
-    <lastmod>2020-01-17T16:41:29+08:00</lastmod>
+    <lastmod>2020-01-21T14:55:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/verilog/</loc>
-    <lastmod>2020-01-16T13:53:07+08:00</lastmod>
+    <lastmod>2020-01-21T17:45:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -107,21 +135,7 @@
   </url>
   
   <url>
-    <loc>https://wenhui.space/tags/emacs/</loc>
-    <lastmod>2020-01-10T19:52:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://wenhui.space/post/about_emacs/emacs_folding_mode/</loc>
-    <lastmod>2020-01-10T19:52:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/</loc>
     <lastmod>2020-01-10T19:52:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -255,7 +269,7 @@
   
   <url>
     <loc>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</loc>
-    <lastmod>2020-01-10T15:56:00+08:00</lastmod>
+    <lastmod>2020-01-21T17:45:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

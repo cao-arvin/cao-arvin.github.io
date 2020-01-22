@@ -64,14 +64,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wenhui.space/post/digital_designer/random_in_verilog/" />
 <meta property="article:published_time" content="2020-01-17T10:12:00+08:00" />
-<meta property="article:modified_time" content="2020-01-17T16:41:29+08:00" />
+<meta property="article:modified_time" content="2020-01-21T14:55:04+08:00" />
 <meta itemprop="name" content="Verilog中获取随机数">
 <meta itemprop="description" content="本文 主要介绍一种verilog语言中获取随机数的方法。 版本 说明 0.1 初版发布 代码展示 设计代码 1 2 3 4 5 function [31:0] get_random; input signed [31:0] min_num; input signed [31:0] max_num; get_random = min_num &#43; {$random}%(max_num-min_num&#43;1); endfunction // get_random 验证">
 
 
 <meta itemprop="datePublished" content="2020-01-17T10:12:00&#43;08:00" />
-<meta itemprop="dateModified" content="2020-01-17T16:41:29&#43;08:00" />
-<meta itemprop="wordCount" content="325">
+<meta itemprop="dateModified" content="2020-01-21T14:55:04&#43;08:00" />
+<meta itemprop="wordCount" content="328">
 
 
 
@@ -344,7 +344,7 @@
             <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片设计工程师 </a>
             
           </div>
-        <span class="more-meta"> 约 325 字 </span>
+        <span class="more-meta"> 约 328 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -459,7 +459,7 @@
 </div>
 <h2 id="应用场景">应用场景</h2>
 
-<p>实际设计中并不会使用随机数的生成逻辑，因为本身逻辑也是非可综合的。使用随机数生成逻辑往往用于测试逻辑。典型的应用如，为时钟添加时钟偏移（多用于跨时钟域设计，如异步fifo设计）。</p>
+<p>实际设计中并不会使用随机数的生成逻辑，因为本身逻辑也是非可综合的。使用随机数生成逻辑往往用于测试逻辑。典型的应用如，为时钟添加时钟偏移（多用于跨时钟域设计的验证，如异步fifo验证）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt"> 1
@@ -503,7 +503,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2020-01-17
+      2020-01-21
       
     </span>
   </p>
