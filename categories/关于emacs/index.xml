@@ -74,5 +74,14 @@
       <description>本文 主要介绍emacs如何安装插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 安装过程 给emac</description>
     </item>
     
+    <item>
+      <title>emacs的基本使用</title>
+      <link>https://wenhui.space/post/about_emacs/emacs_useguide/</link>
+      <pubDate>Sat, 07 Dec 2019 22:09:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/emacs_useguide/</guid>
+      <description>本文 主要介绍emacs的基本使用方法。 版本 说明 0.1 初版发布 获取教程的途径 子龙山人的《21天学会Emacs》电子书在线阅读 打开emacs，快捷键</description>
+    </item>
+    
   </channel>
 </rss>

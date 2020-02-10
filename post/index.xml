@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 22 Jan 2020 11:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2020 21:04:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>我的美食地图</title>
+      <link>https://wenhui.space/post/about_life/my_food_map/</link>
+      <pubDate>Sun, 09 Feb 2020 21:04:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_life/my_food_map/</guid>
+      <description>本文 主要介绍了我的美食地图，大部分是旅行中亲自品尝并值得推荐的美食，还有部分列为TODO的美食清单。写本帖子的目的是对自己生活的一个美好记录</description>
+    </item>
     
     <item>
       <title>emacs org-mode 的使用</title>
@@ -180,15 +189,6 @@
       
       <guid>https://wenhui.space/post/create_blog_site/org_mode_and_ox_hugo/</guid>
       <description>本文 主要介绍如何使用org-mode和ox-hugo写博客。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 hugo版本： hugo 0.58 emac</description>
-    </item>
-    
-    <item>
-      <title>给自己的博客自定义域名</title>
-      <link>https://wenhui.space/post/create_blog_site/modify_url_for_blog/</link>
-      <pubDate>Thu, 26 Dec 2019 21:38:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/create_blog_site/modify_url_for_blog/</guid>
-      <description>本文 主要介绍如何为自己的博客自定义域名。 版本 说明 0.1 初版发布 0.2 解决push后自定义域名失效问题 背景 需要购买域名，我使用的是阿里云 参考 GitHub Pages 绑定来</description>
     </item>
     
   </channel>
