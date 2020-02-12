@@ -6,10 +6,19 @@
     <description>Recent content in verilog on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 16 Jan 2020 00:04:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Feb 2020 19:47:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/verilog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于X-Propagation问题</title>
+      <link>https://wenhui.space/post/digital_designer/x-propagation/</link>
+      <pubDate>Wed, 12 Feb 2020 19:47:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_designer/x-propagation/</guid>
+      <description>本文 主要介绍数字电路设计中X-Propagation问题以及其解决方案。 版本 说明 0.1 初版发布 参考 文献1：《X-Propagation Woes: Masking Bugs at RTL</description>
+    </item>
     
     <item>
       <title>verilog编码的三大利器</title>
