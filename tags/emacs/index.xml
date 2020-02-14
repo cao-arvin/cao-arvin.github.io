@@ -6,10 +6,19 @@
     <description>Recent content in emacs on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 22 Jan 2020 11:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2020 17:38:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>emacs插件之英文自动补全</title>
+      <link>https://wenhui.space/post/about_emacs/emacs_company_english/</link>
+      <pubDate>Fri, 14 Feb 2020 17:38:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/emacs_company_english/</guid>
+      <description>本文 主要介绍一款关于英文自动补全的emacs插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 内容</description>
+    </item>
     
     <item>
       <title>emacs org-mode 的使用</title>
@@ -71,15 +80,6 @@
       <pubDate>Wed, 11 Dec 2019 20:09:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/about_emacs/emacs_package_install/</guid>
-      <description>本文 主要介绍emacs如何安装插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 安装过程 给emac</description>
-    </item>
-    
-    <item>
-      <title>emacs安装插件</title>
-      <link>https://wenhui.space/post/about_emacs/emacs_use_tips/</link>
-      <pubDate>Wed, 11 Dec 2019 20:09:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/about_emacs/emacs_use_tips/</guid>
       <description>本文 主要介绍emacs如何安装插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 安装过程 给emac</description>
     </item>
     
