@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 17 Feb 2020 13:04:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 17:58:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>我的美食拙作</title>
+      <link>https://wenhui.space/post/about_life/my_food_works/</link>
+      <pubDate>Mon, 17 Feb 2020 17:58:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_life/my_food_works/</guid>
+      <description>本文 主要介绍一些我生活中做的小菜，以及做菜的小心得，为自己的美好生活做个记录，同时与有兴趣的人一起分享。 背景 为什么喜欢做菜呢？ 还不是为了嘴嘛</description>
+    </item>
     
     <item>
       <title>WPS如何使用文档模板</title>
@@ -180,15 +189,6 @@
       
       <guid>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</guid>
       <description>本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 0.2 添加快捷键插入内容 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emac</description>
-    </item>
-    
-    <item>
-      <title>为firefox安装插件</title>
-      <link>https://wenhui.space/post/other_tools_tips/install_plugins_for_firefox/</link>
-      <pubDate>Mon, 30 Dec 2019 14:16:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/other_tools_tips/install_plugins_for_firefox/</guid>
-      <description>本文 主要介绍了为firefox安装插件的小技巧。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版本： Mozilla Firefox 71.0 安装插件 打开</description>
     </item>
     
   </channel>

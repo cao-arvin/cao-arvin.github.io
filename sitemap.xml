@@ -3,28 +3,49 @@
   
   <url>
     <loc>https://wenhui.space/categories/</loc>
-    <lastmod>2020-02-17T15:24:46+08:00</lastmod>
+    <lastmod>2020-02-17T21:55:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/</loc>
-    <lastmod>2020-02-17T15:24:46+08:00</lastmod>
+    <lastmod>2020-02-17T21:55:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/</loc>
-    <lastmod>2020-02-17T15:24:46+08:00</lastmod>
+    <lastmod>2020-02-17T21:55:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/</loc>
-    <lastmod>2020-02-17T15:24:46+08:00</lastmod>
+    <lastmod>2020-02-17T21:55:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/categories/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2020-02-17T21:55:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/about_life/my_food_works/</loc>
+    <lastmod>2020-02-17T21:55:03+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/%E7%BE%8E%E9%A3%9F/</loc>
+    <lastmod>2020-02-17T21:55:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -100,15 +121,8 @@
   </url>
   
   <url>
-    <loc>https://wenhui.space/categories/%E5%85%B3%E4%BA%8E%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2020-02-10T11:00:03+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://wenhui.space/post/about_life/my_food_map/</loc>
-    <lastmod>2020-02-10T11:00:03+08:00</lastmod>
+    <lastmod>2020-02-17T17:56:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
