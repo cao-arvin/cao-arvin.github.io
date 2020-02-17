@@ -6,10 +6,96 @@
     <description>Recent content on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 14 Feb 2020 17:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 13:04:00 +0800</lastBuildDate>
     
         <atom:link href="https://wenhui.space/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>WPS如何使用文档模板</title>
+      <link>https://wenhui.space/post/about_windows/create_wps_tepmlate/</link>
+      <pubDate>Mon, 17 Feb 2020 13:04:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_windows/create_wps_tepmlate/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍WPS如何使用文档模板。编辑文档时使用模板是一个好习惯，不仅能够使工作中的文档格式统一，还节省排版时间。Windows word创建模板操作应该类似。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
+&lt;li&gt;deppin版本： Deepin GNU/Linux 15.11&lt;/li&gt;
+&lt;li&gt;WPS版本：WPS Office 2019&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
+
+&lt;p&gt;由于本人的办公系统基本已经从Windows转向了Linux，而且文档编写已经转向emacs org格式，但是与同事间交互时还是避免不了使用传统文档文件。典型的文档编辑器就是Windows Office word，但是Linux环境并不支持word，幸好WPS有Linux版本。有人说WPS不如word好用，两个工具来对比，其实功能基本完全对等，只是操作不同，可能大部分人习惯了word吧，还有就是彼此兼容略有问题，建议WPS完成的文档转为PDF格式再交付，这样可以避免兼容的问题。&lt;/p&gt;
+
+&lt;h2 id=&#34;创建我的模板&#34;&gt;创建我的模板&lt;/h2&gt;
+
+&lt;p&gt;由于网上并没有找到合适的模板，所以就根据自己的工作习惯，创建一个自己的模板，我对文档格式的需求主要有如下几点：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;标题页面，需要有标题名称，作者信息，时间和版本信息。&lt;/li&gt;
+&lt;li&gt;目录页面，包括文档目录、图目录和表目录。&lt;/li&gt;
+&lt;li&gt;页码，前文页码为罗马数字，正文页码为阿拉伯数字。&lt;/li&gt;
+&lt;li&gt;正文第一项，文档介绍，需要介绍文档目的和参考文献。&lt;/li&gt;
+&lt;li&gt;水印为可选项，可加可不加。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;根据以上需求，我完成了我的文档模板，分享给大家，仅供参考。网盘资源分享链接： &lt;strong&gt;链接：&lt;a href=&#34;https://pan.baidu.com/s/19C-LCnAOpcN0RBXoCGocPg&#34;&gt;https://pan.baidu.com/s/19C-LCnAOpcN0RBXoCGocPg&lt;/a&gt; 密码：27ys&lt;/strong&gt; 。&lt;/p&gt;
+
+&lt;p&gt;简单描述一下文档模板如何创建，其实和编写文档一样，设置完以上内容，通过 另存为 可选择输出为模板文件。&lt;/p&gt;
+
+&lt;h2 id=&#34;如何使用模板文件&#34;&gt;如何使用模板文件&lt;/h2&gt;
+
+&lt;p&gt;新建文档时选择 &lt;strong&gt;本机上的模板&lt;/strong&gt; ，一般这里只会显示空白模板，选中导入模板，在本地找到模板文件，即可使用模板创建新的文档。如果想在 &lt;strong&gt;本机上的模板&lt;/strong&gt; 中显示自己的模板，请将模板文件移动到WPS的模板文件夹内，这里给出Linux下的路径： &lt;strong&gt;~/.local/share/Kingsoft/office6/templates/wps/zh_CN&lt;/strong&gt; 。&lt;/p&gt;
+
+&lt;h2 id=&#34;其他使用技巧&#34;&gt;其他使用技巧&lt;/h2&gt;
+
+&lt;h3 id=&#34;关于水印&#34;&gt;关于水印&lt;/h3&gt;
+
+&lt;p&gt;选择 &lt;strong&gt;插入&lt;/strong&gt;-*水印*，可以选择去除水印或右键编辑水印。&lt;/p&gt;
+
+&lt;h3 id=&#34;关于图表&#34;&gt;关于图表&lt;/h3&gt;
+
+&lt;p&gt;文档中免不了会使用图表，选中插入的图表，选择 &lt;strong&gt;引用&lt;/strong&gt;-&lt;strong&gt;题注&lt;/strong&gt;-&lt;strong&gt;图 或 表&lt;/strong&gt; ，这里一般有几个重要参数，编号格式和是否包含章节编号，我一般选择默认的数字和包含章节编号，一般包含一级标题编号即可，另外一个参数是 &lt;strong&gt;位置&lt;/strong&gt; ，一般习惯上表格的题注在上方，图的题注在下方。&lt;/p&gt;
+
+&lt;h3 id=&#34;关于目录&#34;&gt;关于目录&lt;/h3&gt;
+
+&lt;p&gt;文档目录模板中已经添加好，可双击选择更新；图表目录需要删除后，将光标置于合适位置，选择 &lt;strong&gt;引用&lt;/strong&gt;-&lt;strong&gt;插入表目录&lt;/strong&gt; ，选择图或表，即可自动插入目录。（如果需要添加公式目录，操作类似）&lt;/p&gt;
+
+&lt;h3 id=&#34;关于操作符&#34;&gt;关于操作符&lt;/h3&gt;
+
+&lt;p&gt;这里操作符是指换行符等在文档中不可见的符号，在模板中添加了若干换行符、分页符和分节符等，若想显示它们，点击左上角的 &lt;strong&gt;文件&lt;/strong&gt;-&lt;strong&gt;选项&lt;/strong&gt;-&lt;strong&gt;视图&lt;/strong&gt;-&lt;strong&gt;段落标记&lt;/strong&gt; 。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>emacs插件之英文自动补全</title>
@@ -57,7 +143,7 @@
 
 &lt;h2 id=&#34;补充说明&#34;&gt;补充说明：&lt;/h2&gt;
 
-&lt;p&gt;这个英文补全的emacs插件是基于Company插件的，可能需要先安装Company插件才可以使用，由于安装此英文补全插件时以及安装Company插件，所以并未考证。如果需要安装Company插件，请参考我的另一篇帖子 &lt;a href=&#34;https://www.wenhui.space/post/about%5Femacs/emacs%5Fpackage%5Finstall/&#34;&gt;emacs如何安装插件&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这个英文补全的emacs插件是基于Company插件的，可能需要先安装Company插件才可以使用，由于安装此英文补全插件时已经安装Company插件，所以并未考证。如果需要安装Company插件，请参考我的另一篇帖子 &lt;a href=&#34;https://www.wenhui.space/post/about%5Femacs/emacs%5Fpackage%5Finstall/&#34;&gt;emacs如何安装插件&lt;/a&gt;。&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -9221,102 +9307,6 @@ sigren	&amp;#34;testbench&amp;#34;			&amp;#34;testbench&amp;#34;
 &lt;li&gt;Bitwarden（免费密码管理器，妈妈再也不用担心我忘记密码了）&lt;/li&gt;
 &lt;li&gt;OneTab（以列表形式显示标签页，解决功能栏标签繁杂的问题）&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Bitwarden的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_bitwarden/</link>
-      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_bitwarden/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍一款开源密码管理工具 &lt;strong&gt;Bitwarden&lt;/strong&gt; 。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;0.2&lt;/td&gt;
-&lt;td&gt;更正 &lt;strong&gt;验证器秘钥（TOTP）&lt;/strong&gt; 的理解&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;主机： Thinkpad S2&lt;/li&gt;
-&lt;li&gt;系统： Deepin GNU/Linux 15.11&lt;/li&gt;
-&lt;li&gt;内核： Debian 6.3.0-18+deb9u1&lt;/li&gt;
-&lt;li&gt;firefox版本： Mozilla Firefox 71.0&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;什么是bitwarden&#34;&gt;什么是Bitwarden？&lt;/h2&gt;
-
-&lt;p&gt;Bitwarden是一款开源的密码管理器，所谓密码管理器，就是将所有密码交由工具管理，我们只需要记住主密码就行，生成密码、记忆密码和填写密码都由工具来自动完成。类似于此功能的还有PassWord、KeePass 、Lastpass等等，不过他们都是付费的，而Bitwarden是开源免费的。关于Bitwarden的详细信息可查看&lt;a href=&#34;https://bitwarden.com/&#34;&gt;Bitwarden官网&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;这里简单列出个人认为Bitwarden的优点：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;这是一款免费、开源的密码管理软件&lt;/li&gt;
-&lt;li&gt;支持 Windows、Mac、Linux 操作系统&lt;/li&gt;
-&lt;li&gt;通过插件可支持主流的浏览器，如google和firefox&lt;/li&gt;
-&lt;li&gt;提供苹果、安卓的原生应用&lt;/li&gt;
-&lt;li&gt;支持浏览器自动填写以及二次验证&lt;/li&gt;
-&lt;li&gt;可以使用官方的免费服务，也可以自建服务器&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;关于安全性&#34;&gt;关于安全性&lt;/h2&gt;
-
-&lt;p&gt;就安全性而言，这些密码管理工具采用的是高强度 AES-256 加密算法，想要破解几乎是不可能的事。也有人会担心把密码放在别人的服务器上不安全？个人认为是安全的，它们的加密方法，是把帐号和主密码通过算法得到一个值，然后用这个值去加密用户的各个密码，最后储存在服务器上。而加密解密都需要在本地进行，也就是说，黑客即使攻破了服务器，但无法破解密码数据库，除了把你的密码数据库删除外，其他什么也做不了。&lt;/p&gt;
-
-&lt;p&gt;不过还有一句话，互联网没有绝对的安全，所以我一般把各个密码分级。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;三级： 一般社交平台账户密码和其他应用账户密码&lt;/li&gt;
-&lt;li&gt;二级： 邮箱以及其他带有注册性的账户密码&lt;/li&gt;
-&lt;li&gt;一级： 带有支付性的账户密码&lt;/li&gt;
-&lt;li&gt;特级： 支付密码&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;三级交由密码工具管理，二级和一级由密码工具加个人前缀码组合，特级只放在脑子里。&lt;/p&gt;
-
-&lt;h2 id=&#34;安装bitwarden&#34;&gt;安装Bitwarden&lt;/h2&gt;
-
-&lt;p&gt;Bitwarden可以网页访问，可以安装浏览器插件，也可以下载应用程序。下载应用程序和网页登录可以选择进入&lt;a href=&#34;https://bitwarden.com/&#34;&gt;Bitwarden官网&lt;/a&gt;，安装浏览器插件这里以firefox为例，参考我另一篇帖子 &lt;a href=&#34;https://www.wenhui.space/post/other%5Ftools%5Ftips/install%5Fplugins%5Ffor%5Ffirefox/&#34;&gt;为firefox安装插件&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h2 id=&#34;如何使用bitwarden&#34;&gt;如何使用Bitwarden?&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;打开firefox浏览器，点击插件Bitwarden，注册登录，注意， &lt;strong&gt;一定要记住主密码，一定要记住主密码，一定要记住主密码&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;添加项目，项目内容有名称、用户名、密码、验证器密钥、网址、文件夹、笔记等等，其中网址会根据当前打开网页自动添加，密码可以选择工具生成也可以自动输入，验证器密钥TOTP（与二次验证相关，不开启二次验证可忽略），文件夹可以根据个人需求创建和选择，笔记以及其他根据个人需求填写，也可不写。&lt;/li&gt;
-&lt;li&gt;打开网页，Bitwarden插件会自动识别，打开Bitwarden，可以选择自动填充也可以手动复制&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;什么是-验证器秘钥-totp&#34;&gt;什么是  &lt;strong&gt;验证器秘钥（TOTP）&lt;/strong&gt;&lt;/h2&gt;
-
-&lt;p&gt;验证器秘钥与二次验证相关，二次验证就像除了密码之外还需要短信验证码一样，这里的两步验证也是相当于给帐号多加一把“锁”(多一步的验证)，在输入正确的账号密码之后，用户同样还需要额外输入一个每 30 秒自动变化一次的 6 位数字「二步验证码」才能完成登录。这里的验证器秘钥通过基于时间和加密算法生成“每 30 秒变化一次的 6 位数字验证码”，也叫做 TOTP (Time-Based One-time Password) 或 OTP 一次性密码。&lt;/p&gt;
 
 &lt;hr /&gt;
 

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 14 Feb 2020 17:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 13:04:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>WPS如何使用文档模板</title>
+      <link>https://wenhui.space/post/about_windows/create_wps_tepmlate/</link>
+      <pubDate>Mon, 17 Feb 2020 13:04:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_windows/create_wps_tepmlate/</guid>
+      <description>本文 主要介绍WPS如何使用文档模板。编辑文档时使用模板是一个好习惯，不仅能够使工作中的文档格式统一，还节省排版时间。Windows word创</description>
+    </item>
     
     <item>
       <title>emacs插件之英文自动补全</title>
@@ -180,15 +189,6 @@
       
       <guid>https://wenhui.space/post/other_tools_tips/install_plugins_for_firefox/</guid>
       <description>本文 主要介绍了为firefox安装插件的小技巧。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版本： Mozilla Firefox 71.0 安装插件 打开</description>
-    </item>
-    
-    <item>
-      <title>Bitwarden的安装</title>
-      <link>https://wenhui.space/post/work_platform/install_bitwarden/</link>
-      <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/install_bitwarden/</guid>
-      <description>本文 主要介绍一款开源密码管理工具 Bitwarden 。 版本 说明 0.1 初版发布 0.2 更正 验证器秘钥（TOTP） 的理解 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版</description>
     </item>
     
   </channel>

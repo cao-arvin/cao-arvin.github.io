@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 14 Feb 2020 17:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 13:04:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>WPS</title>
+      <link>https://wenhui.space/tags/wps/</link>
+      <pubDate>Mon, 17 Feb 2020 13:04:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/wps/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>emacs</title>
@@ -179,15 +188,6 @@
       <pubDate>Sat, 07 Dec 2019 21:18:00 +0800</pubDate>
       
       <guid>https://wenhui.space/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>shell</title>
-      <link>https://wenhui.space/tags/shell/</link>
-      <pubDate>Sun, 01 Dec 2019 14:18:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/shell/</guid>
       <description></description>
     </item>
     
