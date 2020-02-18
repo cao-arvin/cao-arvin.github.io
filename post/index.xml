@@ -6,10 +6,28 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 17 Feb 2020 17:58:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Feb 2020 10:35:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于Verilog中的case、casex、casez</title>
+      <link>https://wenhui.space/post/digital_designer/about_verilog_cases/</link>
+      <pubDate>Tue, 18 Feb 2020 10:35:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_designer/about_verilog_cases/</guid>
+      <description>本文 主要介绍Verilog语法中case，casex，casez的区别，以及建议使用方法。 版本 说明 0.1 初版发布 关于case 代码： 1 2 3 4 5 6 7</description>
+    </item>
+    
+    <item>
+      <title>我的英语单词本</title>
+      <link>https://wenhui.space/post/about_life/my_english_wordbook/</link>
+      <pubDate>Tue, 18 Feb 2020 09:51:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_life/my_english_wordbook/</guid>
+      <description>本文 主要记录我工作生活中遇到的英文，整理为单词本，一边巩固学习。其中主要记录的还是与专业相关的英语，因为对一个IC工程师来说，免不了要阅读英</description>
+    </item>
     
     <item>
       <title>我的美食拙作</title>
@@ -171,24 +189,6 @@
       
       <guid>https://wenhui.space/post/about_emacs/emacs_auto_insert/</guid>
       <description>本文 主要介绍用emacs auto-insert命令实现用模板文件创建新文件。 版本 说明 0.1 初版发布 0.2 添加两个函数 参考 Emacs中那些简化输入的方</description>
-    </item>
-    
-    <item>
-      <title>Emacs Verilog Perl 的使用</title>
-      <link>https://wenhui.space/post/about_emacs/verilog_perl_useguide/</link>
-      <pubDate>Fri, 03 Jan 2020 17:37:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/about_emacs/verilog_perl_useguide/</guid>
-      <description>本文 主要介绍如何使用 Verilog-Perl 脚本对verilog代码进行神奇操作。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux</description>
-    </item>
-    
-    <item>
-      <title>Emacs verilog-mode 的使用</title>
-      <link>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</link>
-      <pubDate>Wed, 01 Jan 2020 16:42:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/about_emacs/verilog_mode_useguide/</guid>
-      <description>本文 主要介绍使用emacs verilog-mode 编辑verilog的神奇操作。 版本 说明 0.1 初版发布 0.2 添加快捷键插入内容 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emac</description>
     </item>
     
   </channel>
