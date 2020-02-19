@@ -6,10 +6,28 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 19 Feb 2020 14:35:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 19 Feb 2020 21:45:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>我的收藏-美食漫画</title>
+      <link>https://wenhui.space/post/about_life/food-comics/</link>
+      <pubDate>Wed, 19 Feb 2020 21:45:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_life/food-comics/</guid>
+      <description>本文 主要分享我摘自微博的关于美食系列漫画，作者为 心壹绘画 。 展示 分享 百度网盘分享资源： 链接：https://pan.baidu.com/s/1</description>
+    </item>
+    
+    <item>
+      <title>我的收藏-中国烹饪古籍丛刊</title>
+      <link>https://wenhui.space/post/about_life/ancient_chinese_cooking_books/</link>
+      <pubDate>Wed, 19 Feb 2020 21:11:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_life/ancient_chinese_cooking_books/</guid>
+      <description>本文 主要分享我收藏的中国烹饪古籍丛刊，文件为电子扫描版PDF格式。 介绍 中国烹饪古籍丛刊是由中国商业出版社出版的，好像最早是1984年9月出版</description>
+    </item>
     
     <item>
       <title>verilog的编码风格</title>
@@ -71,7 +89,7 @@
       <pubDate>Wed, 12 Feb 2020 19:47:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/digital_designer/x-propagation/</guid>
-      <description>本文 主要介绍数字电路设计中X-Propagation问题以及其解决方案。 版本 说明 0.1 初版发布 参考 文献1：《X-Propagation Woes: Masking Bugs at RTL</description>
+      <description>本文 主要介绍数字电路设计中X-Propagation问题以及其解决方案。 版本 说明 0.1 初版发布 0.2 添加JasperGold X-Prop APP 介绍 参考 文献1：《X</description>
     </item>
     
     <item>
@@ -171,24 +189,6 @@
       
       <guid>https://wenhui.space/post/polular_science/rank_and_abbreviation/</guid>
       <description>本文 主要介绍芯片相关公司的组织架构，和职级与职位及对应的英文缩写。 版本 说明 0.1 初版发布 写在前头 本文主要属于科普，目的是避免像我一样，在与别人聊</description>
-    </item>
-    
-    <item>
-      <title>芯片验证工程师</title>
-      <link>https://wenhui.space/post/digital_verifer/digital_verifer/</link>
-      <pubDate>Sat, 04 Jan 2020 22:41:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/digital_verifer/digital_verifer/</guid>
-      <description>本文 主要介绍芯片验证工程师的成长之路，包括职位概述、技术入门、能力提升和角色转换。 写在前头，本文内容是根据自己的工作经验和行业了解，以及师兄</description>
-    </item>
-    
-    <item>
-      <title>关于word编辑文档的一些建议</title>
-      <link>https://wenhui.space/post/about_windows/some_advices_of_word/</link>
-      <pubDate>Sat, 04 Jan 2020 15:18:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/about_windows/some_advices_of_word/</guid>
-      <description>本文 主要介绍对word编辑文档的一些建议。 版本 说明 0.1 初版发布 背景 本篇文章参考自王老师。 写在前面 出于各方面原因，我们编辑文档时，主要还是使用微</description>
     </item>
     
   </channel>
