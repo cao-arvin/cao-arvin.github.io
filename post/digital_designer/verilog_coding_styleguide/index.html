@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>verilog的编码风格 - Wenhui&#39;s Rotten Pen</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="文辉" />
+  <meta name="description" content="本文 主要介绍了一些verilog的编码风格准则。 版本 说明 0.1 初版发布 参考 RTL Coding Styles That Yield Simulation and Synthesis Mismatches（链接：https://pan.b" />
+
+  <meta name="keywords" content="Hugo, linux, emacs, CPU" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3" />
+
+
+<link rel="canonical" href="https://wenhui.space/post/digital_designer/verilog_coding_styleguide/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="verilog的编码风格" />
+<meta property="og:description" content="本文 主要介绍了一些verilog的编码风格准则。 版本 说明 0.1 初版发布 参考 RTL Coding Styles That Yield Simulation and Synthesis Mismatches（链接：https://pan.b" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wenhui.space/post/digital_designer/verilog_coding_styleguide/" />
+<meta property="article:published_time" content="2020-02-19T14:35:00+08:00" />
+<meta property="article:modified_time" content="2020-02-19T14:41:04+08:00" />
+<meta itemprop="name" content="verilog的编码风格">
+<meta itemprop="description" content="本文 主要介绍了一些verilog的编码风格准则。 版本 说明 0.1 初版发布 参考 RTL Coding Styles That Yield Simulation and Synthesis Mismatches（链接：https://pan.b">
+
+
+<meta itemprop="datePublished" content="2020-02-19T14:35:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-19T14:41:04&#43;08:00" />
+<meta itemprop="wordCount" content="2512">
+
+
+
+<meta itemprop="keywords" content="Verilog," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="verilog的编码风格"/>
+<meta name="twitter:description" content="本文 主要介绍了一些verilog的编码风格准则。 版本 说明 0.1 初版发布 参考 RTL Coding Styles That Yield Simulation and Synthesis Mismatches（链接：https://pan.b"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">文辉的烂笔头</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/about/">关于</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/links/">友链</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/index.xml">订阅</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css" integrity="sha256-LWdHSKWG7zv3DTpee8YAgoTfkj3gNkfauF624h4P2Nw=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css" integrity="sha256-Q9bBMw/rHRRag46GDWY84J3elDNc8JJjKXL9tIC4oe8=" crossorigin="anonymous" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      文辉的烂笔头
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/links/">友链</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://wenhui.space/index.xml">订阅</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">verilog的编码风格</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-02-19" class="post-time">
+          2020-02-19
+        </time>
+        <div class="post-category">
+            <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片设计工程师 </a>
+            
+          </div>
+        <span class="more-meta"> 约 2512 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#本文">本文</a></li>
+<li><a href="#参考">参考</a></li>
+<li><a href="#写在前头">写在前头</a></li>
+<li><a href="#利于模拟的编码风格">利于模拟的编码风格</a></li>
+<li><a href="#利于综合的编码风格">利于综合的编码风格</a></li>
+<li><a href="#利于维护的编码风格">利于维护的编码风格</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h2 id="本文">本文</h2>
+
+<p>主要介绍了一些verilog的编码风格准则。</p>
+
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0.1</td>
+<td>初版发布</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+<li>RTL Coding Styles That Yield Simulation and Synthesis Mismatches（链接：<a href="https://pan.baidu.com/s/16fD72mrvHfSIA531h33J2A">https://pan.baidu.com/s/16fD72mrvHfSIA531h33J2A</a> 密码：vzrl）</li>
+<li>VERILOG CODING STYLES FOR IMPROVED SIMULATIONEFFICIENCY (链接：<a href="https://pan.baidu.com/s/1r8RETSe3ehe2T%5FK5brZbjQ">https://pan.baidu.com/s/1r8RETSe3ehe2T%5FK5brZbjQ</a> 密码：t2hp)</li>
+</ul>
+
+<h2 id="写在前头">写在前头</h2>
+
+<p>本文主要从三个角度来对verilog编码风格进行说明：</p>
+
+<ul>
+<li>利于模拟的编码风格：可以加快模拟速度或减少模拟占用内存。</li>
+<li>利于综合的编码风格：可以减少综合前后模拟不一致问题。</li>
+<li>利于维护的编码风格：有利于设计的维护、交互与修改，提高设计效率。</li>
+</ul>
+
+<h2 id="利于模拟的编码风格">利于模拟的编码风格</h2>
+
+<ul>
+<li>多条件下尽量使用 case 语句，不使用嵌套 if-else if-else 语句，两者占用内存差不多，但模拟速度 case 比 if 要快。</li>
+<li>不使用多余的 begin-end， always 或 if 语句中只有一条语句，是不需要使用 begin-end 的，多余的 begin-end 会占用更多内存和减缓模拟速度。</li>
+<li>时钟信号产生，使用 always 语句描述模拟速度更快，如下代码：</li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="kt">reg</span> <span class="n">clk</span><span class="err">；</span>
+<span class="k">initial</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">0</span><span class="err">；</span>
+<span class="k">always</span> <span class="p">#(</span><span class="no">`CYCLE</span><span class="o">/</span><span class="mh">2</span><span class="p">)</span> <span class="n">clk</span> <span class="o">=</span> <span class="o">~</span><span class="n">clk</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>尽量避免将赋值语句分散到多个 always 块，如寄存器的赋值，建议尽量将多个寄存器描述在一个 always 块语句，而不是将每个寄存器都用一个 always 块语句来描述，这样可以减少内存和提高模拟速度。</li>
+<li>尽量减少模块的端口数，模块端口数越多，模拟速度越慢，因此需要对设计合理划分模块。</li>
+<li>加载测试向量时，避免在时钟的上下沿变化，而是在延时一个时间单位后，这样更能够模拟真实电路的行为，为了便于维护，可以定义CYCLE数值，延时单位采用 “0.1*`CYCLE” 形式。</li>
+<li>显示非阻塞赋值语句的变量值，使用 $strobe ，而不是 $display 和 $write 。下面介绍一下两者的区别，举例如下：</li>
+</ul>
+
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="k">initial</span>
+<span class="k">begin</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
+<span class="nb">$display</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>          <span class="c1">// displays 0
+</span><span class="c1"></span><span class="nb">$strobe</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>           <span class="c1">// displays 1 ...
+</span><span class="c1"></span><span class="n">a</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>                <span class="c1">// ... 因为这条语句
+</span><span class="c1"></span><span class="k">end</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>可见 $strobe 是在整个块语句结束后执行的，而 $display 是在程序位置执行的。这里是一个顺序执行的块语句，而对于非阻塞赋值语句不是顺序执行的，所以在需要显示非阻塞赋值语句的变量值时，使用 $strobe ，确保能够取到稳定的赋值后的值。</p>
+
+<p>以上是公认的编码原则，强烈建议遵循，而下面内容，仅供参考：</p>
+
+<ul>
+<li>尽量减少设计层次，层次越多模拟速度越慢。</li>
+<li>parameter 比 define 更占用内存，但模拟速度相当。</li>
+<li>`timescale 精度越高，模拟速度越慢。</li>
+<li>$time 等系统调用程序非常影响模拟速度，可以使用但不要滥用。</li>
+<li>不建议设计文件中写 `timescale ，建议写在单独文件，统一进行 `include ，或在仿真工具中参数化输入。</li>
+</ul>
+
+<h2 id="利于综合的编码风格">利于综合的编码风格</h2>
+
+<ul>
+<li>顶层模块不要有粘连逻辑，顶层模块甚至次顶层模块只用来例化和连接子模块，这样不仅可以节省顶层的编译时间，还有利于布局布线的实施。</li>
+<li>减少不必要的设计层次，更多的层次会降低综合性能，当然也可以先使用工具将设计层次铺平，如 dc 的 ungroup 。</li>
+<li>组合逻辑与时序逻辑尽量分开描述，换句话说，寄存器always语句描述中应该只有赋值，而无其他运算。</li>
+<li>将不同类的逻辑分散到不同模块，这样综合工具可以针对不同的逻辑类型采用适当的优化技术。</li>
+<li>相关的组合逻辑不要拆散到不同模块，否则会限制综合工具的优化力度，好的设计就是所有输出都是寄存器输出，对于组合逻辑分散到不同模块，虽然通过工具在综合前将设计铺平的方法可以缓解问题，但作为设计师还是尽量遵循此原则。</li>
+<li>所有输出都是寄存器，这样所有组合逻辑都在前端，最后寄存输出，这也是所说的 “cloud-register原则” ，这样既可以得到更好的综合结果，而且简化了综合的约束设计。</li>
+<li>敏感列表要完整，当然现在可以使用*代替，或者使用 SystemVerilog 的 always_comb 。</li>
+<li>注意阻塞赋值的语句顺序。</li>
+<li>避免 if/case 条件不完整，否则会产生 latch，可以使用 Systemverilog 中的 always_comb、always_latch、always_ff 语句，编译时会严格检查，也可以在块描述语句 if/case 前对信号赋初值。</li>
+<li>用 always 语句描述组合逻辑使用阻塞赋值 = 。</li>
+<li>描述 latch 时使用阻塞赋值 = 。</li>
+<li>描述时序逻辑使用非阻塞赋值 &lt;= 。</li>
+<li>在同一个块语句中不要混用两种赋值方式。</li>
+<li>不要使用 #0 延迟赋值。</li>
+<li>FSM 中的状态名应该使用 parameter。</li>
+<li>FSM 计算下一状态的组合逻辑应该放在一个单独的 always 块。</li>
+<li>FSM 计算下一状态的组合逻辑应该使用 case 语句。</li>
+<li>每个 FSM 使用单独的 module 描述。</li>
+</ul>
+
+<h2 id="利于维护的编码风格">利于维护的编码风格</h2>
+
+<ul>
+<li>每个项目都使用相同的目录结构，相同的目录结构有利于脚本移植，以及增加复用性和可维护性，同时利于工作交接。</li>
+<li>项目中每个设计都保持类似的目录结构，理由同上。</li>
+<li>项目内脚本尽量使用相对路径，需要全路径名称则使用环境变量。</li>
+<li>对 `include 加载的文件尽量使用完整相对路径，方便设计的集成和移植，或者对所有设计的 include 文件规范命名规则。</li>
+<li>每个文件只包含一个 module 。</li>
+<li>文件名和模块名保持一致。</li>
+<li>测试文件名与被测试模块名相对应，添加 _tb 后缀。</li>
+<li>每个文件都添加头信息：版权声明、文件描述、创建时间、修改时间、原始作者信息、当前作者信息。</li>
+<li>注释描述代码功能，而不是行为。</li>
+<li>每个 parameter 声明后要注释。</li>
+<li>function 要加注释。</li>
+<li>每个主要逻辑段落要加注释。</li>
+<li>信号名要有实际意义，并且输入输出信号名信息中要包含输入输出模块。</li>
+<li>废代码删掉，而不是注释。</li>
+<li>每个模块逻辑代码尽量不要超过400行，可读性可调试性强。</li>
+<li>每级缩进建议四个空格，并且不建议使用TAB缩进，不同编辑器对TAB支持不同，可能会导致代码显示乱掉。</li>
+<li>每行最多72个字符，在恰当的地方换行，并保持对齐。</li>
+<li>控制流嵌套不超过三级。</li>
+<li>每行只写一条语句。</li>
+<li>连续声明语句对齐，并且每行只声明一个。</li>
+<li>句尾的注释尽量对齐。</li>
+<li>多次使用的逻辑使用 function 。</li>
+<li>操作符周围使用一个空格与其他项隔开。</li>
+<li>所有信号名尽量使用小写字母，并且用下划线将单词分隔开。</li>
+<li>常数定义和宏定义使用大写字母。</li>
+<li>模块的名字要体现层次结构。</li>
+<li>模块的例化名与模块名基本保持一致，不过例化名可不体现层次结构，加 “i_” 或 “inst_” 前缀。</li>
+<li>信号名要有意义，至少5个字符。</li>
+<li>模块根据功能命名，不要依据类型或作者命名。</li>
+<li>项目内命名要规范，避免模块重名。</li>
+<li>根据功能或逻辑顺序声明端口，而不是方向。</li>
+<li>低电平有效信号加后缀 “_n” ，如复位信号 “rst_n” 。</li>
+<li>建议时钟信号统一加前置 “clk_” 。</li>
+<li>建议复位信号统一加前缀 “rst_” 。</li>
+<li>建议寄存器信号统一加后缀 “_ff” ，下一拍寄存器加载的值信号添加后缀 “_nxt” 。</li>
+<li>总线范围定义为 “N-1:0” 。</li>
+</ul>
+
+<hr />
+
+<p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">文辉</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2020-02-19
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content">文辉原创文章，如需转载请注明出处，谢谢！！！</span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://wenhui.space/tags/verilog/">Verilog</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/digital_designer/about_verilog_cases/">
+            <span class="next-text nav-default">关于Verilog中的case、casex、casez</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+
+
+ 
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2019 -
+    2020
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        文辉
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/slideout/1.0.1/slideout.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script src="/js/load-photoswipe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk="
+      crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

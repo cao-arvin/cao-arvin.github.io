@@ -6,10 +6,19 @@
     <description>Recent content in 芯片设计工程师 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 18 Feb 2020 10:35:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 19 Feb 2020 14:35:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>verilog的编码风格</title>
+      <link>https://wenhui.space/post/digital_designer/verilog_coding_styleguide/</link>
+      <pubDate>Wed, 19 Feb 2020 14:35:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_designer/verilog_coding_styleguide/</guid>
+      <description>本文 主要介绍了一些verilog的编码风格准则。 版本 说明 0.1 初版发布 参考 RTL Coding Styles That Yield Simulation and Synthesis Mismatches（链接：https://pan.b</description>
+    </item>
     
     <item>
       <title>关于Verilog中的case、casex、casez</title>
