@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 22 Feb 2020 14:45:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Feb 2020 21:41:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>emacs插件之自动插入英文翻译</title>
+      <link>https://wenhui.space/post/about_emacs/emacs_insert_english_translate/</link>
+      <pubDate>Sat, 22 Feb 2020 21:41:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/emacs_insert_english_translate/</guid>
+      <description>本文 主要介绍一款自动插入英文翻译的emacs插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 内容</description>
+    </item>
     
     <item>
       <title>Verdi使用总结</title>
@@ -116,7 +125,7 @@
       <pubDate>Wed, 22 Jan 2020 11:38:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/about_emacs/emacs_org_mode/</guid>
-      <description>本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 什么是org-mo</description>
+      <description>本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 0.2 添加Org-Mode导出如何禁用下划线转下标 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 em</description>
     </item>
     
     <item>
@@ -180,15 +189,6 @@
       
       <guid>https://wenhui.space/post/digital_verifer/formal_verify/</guid>
       <description>本文 主要介绍本人使用形式化验证的一些经验总结。 版本 说明 0.1 初版发布 背景 验证工具： Cadence 公司的 JasperGold 写在前头 形式化验证是一种验证方法，而实际应用方向主要</description>
-    </item>
-    
-    <item>
-      <title>最简单易用的谷歌访问助手</title>
-      <link>https://wenhui.space/post/work_platform/google_assistant/</link>
-      <pubDate>Tue, 07 Jan 2020 14:56:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/work_platform/google_assistant/</guid>
-      <description>本文 主要介绍一个破解版的谷歌访问助手工具。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 google版本： 78.0.3904.97（</description>
     </item>
     
   </channel>

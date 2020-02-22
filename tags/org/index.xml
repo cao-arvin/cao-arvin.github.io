@@ -17,7 +17,7 @@
       <pubDate>Wed, 22 Jan 2020 11:38:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/about_emacs/emacs_org_mode/</guid>
-      <description>本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 什么是org-mo</description>
+      <description>本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 0.2 添加Org-Mode导出如何禁用下划线转下标 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 em</description>
     </item>
     
   </channel>

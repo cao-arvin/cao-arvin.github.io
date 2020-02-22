@@ -6,10 +6,19 @@
     <description>Recent content in 关于emacs on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 14 Feb 2020 17:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Feb 2020 21:41:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>emacs插件之自动插入英文翻译</title>
+      <link>https://wenhui.space/post/about_emacs/emacs_insert_english_translate/</link>
+      <pubDate>Sat, 22 Feb 2020 21:41:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/emacs_insert_english_translate/</guid>
+      <description>本文 主要介绍一款自动插入英文翻译的emacs插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 内容</description>
+    </item>
     
     <item>
       <title>emacs插件之英文自动补全</title>
@@ -26,7 +35,7 @@
       <pubDate>Wed, 22 Jan 2020 11:38:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/about_emacs/emacs_org_mode/</guid>
-      <description>本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3 什么是org-mo</description>
+      <description>本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 0.2 添加Org-Mode导出如何禁用下划线转下标 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 em</description>
     </item>
     
     <item>

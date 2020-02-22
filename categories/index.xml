@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 22 Feb 2020 14:45:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Feb 2020 21:41:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于emacs</title>
+      <link>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/</link>
+      <pubDate>Sat, 22 Feb 2020 21:41:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>芯片验证工程师</title>
@@ -44,15 +53,6 @@
       <pubDate>Mon, 17 Feb 2020 13:04:00 +0800</pubDate>
       
       <guid>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Ewindows/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>关于emacs</title>
-      <link>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/</link>
-      <pubDate>Fri, 14 Feb 2020 17:38:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/</guid>
       <description></description>
     </item>
     

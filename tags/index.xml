@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 22 Feb 2020 14:45:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Feb 2020 21:41:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>emacs</title>
+      <link>https://wenhui.space/tags/emacs/</link>
+      <pubDate>Sat, 22 Feb 2020 21:41:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/tags/emacs/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>IC工具使用</title>
@@ -39,7 +48,7 @@
     </item>
     
     <item>
-      <title>verilog</title>
+      <title>Verilog</title>
       <link>https://wenhui.space/tags/verilog/</link>
       <pubDate>Wed, 19 Feb 2020 14:35:00 +0800</pubDate>
       
@@ -62,15 +71,6 @@
       <pubDate>Mon, 17 Feb 2020 13:04:00 +0800</pubDate>
       
       <guid>https://wenhui.space/tags/wps/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>emacs</title>
-      <link>https://wenhui.space/tags/emacs/</link>
-      <pubDate>Fri, 14 Feb 2020 17:38:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/tags/emacs/</guid>
       <description></description>
     </item>
     
