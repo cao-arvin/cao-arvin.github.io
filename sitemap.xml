@@ -3,28 +3,49 @@
   
   <url>
     <loc>https://wenhui.space/categories/</loc>
-    <lastmod>2020-02-19T22:00:23+08:00</lastmod>
+    <lastmod>2020-02-22T14:45:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/ic%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2020-02-22T14:45:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/</loc>
-    <lastmod>2020-02-19T22:00:23+08:00</lastmod>
+    <lastmod>2020-02-22T14:45:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/</loc>
-    <lastmod>2020-02-19T22:00:23+08:00</lastmod>
+    <lastmod>2020-02-22T14:45:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/digital_verifer/verdi_userguide/</loc>
+    <lastmod>2020-02-22T14:45:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/</loc>
-    <lastmod>2020-02-19T22:00:23+08:00</lastmod>
+    <lastmod>2020-02-22T14:45:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/</loc>
+    <lastmod>2020-02-22T14:45:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -276,13 +297,6 @@
   
   <url>
     <loc>https://wenhui.space/post/digital_verifer/formal_verify/</loc>
-    <lastmod>2020-01-09T17:30:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/</loc>
     <lastmod>2020-01-09T17:30:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 19 Feb 2020 21:45:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 22 Feb 2020 14:45:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Verdi使用总结</title>
+      <link>https://wenhui.space/post/digital_verifer/verdi_userguide/</link>
+      <pubDate>Sat, 22 Feb 2020 14:45:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/verdi_userguide/</guid>
+      <description>本文 主要介绍debug工具Verdi的使用，并对自己使用过程中的经验进行总结。 版本 说明 0.1 初版发布 参考 Verdi and Siloti Command Reference Verdi (Premier) Training 百度网盘分享资源 链接：h</description>
+    </item>
     
     <item>
       <title>我的收藏-美食漫画</title>
@@ -180,15 +189,6 @@
       
       <guid>https://wenhui.space/post/work_platform/google_assistant/</guid>
       <description>本文 主要介绍一个破解版的谷歌访问助手工具。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 google版本： 78.0.3904.97（</description>
-    </item>
-    
-    <item>
-      <title>你应该知道的职级与英文缩写</title>
-      <link>https://wenhui.space/post/polular_science/rank_and_abbreviation/</link>
-      <pubDate>Tue, 07 Jan 2020 14:45:58 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/polular_science/rank_and_abbreviation/</guid>
-      <description>本文 主要介绍芯片相关公司的组织架构，和职级与职位及对应的英文缩写。 版本 说明 0.1 初版发布 写在前头 本文主要属于科普，目的是避免像我一样，在与别人聊</description>
     </item>
     
   </channel>
