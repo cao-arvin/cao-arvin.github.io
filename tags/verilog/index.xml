@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Verilog on Wenhui&#39;s Rotten Pen</title>
+    <title>verilog on Wenhui&#39;s Rotten Pen</title>
     <link>https://wenhui.space/tags/verilog/</link>
-    <description>Recent content in Verilog on Wenhui&#39;s Rotten Pen</description>
+    <description>Recent content in verilog on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 19 Feb 2020 14:35:00 +0800</lastBuildDate>
@@ -31,11 +31,11 @@
     
     <item>
       <title>关于X-Propagation问题</title>
-      <link>https://wenhui.space/post/digital_designer/x-propagation/</link>
+      <link>https://wenhui.space/post/digital_verifer/x-propagation/</link>
       <pubDate>Wed, 12 Feb 2020 19:47:00 +0800</pubDate>
       
-      <guid>https://wenhui.space/post/digital_designer/x-propagation/</guid>
-      <description>本文 主要介绍数字电路设计中X-Propagation问题以及其解决方案。 版本 说明 0.1 初版发布 0.2 添加JasperGold X-Prop APP 介绍 参考 文献1：《X</description>
+      <guid>https://wenhui.space/post/digital_verifer/x-propagation/</guid>
+      <description>本文 主要介绍数字电路设计中X-Propagation问题以及其解决方案。 版本 说明 0.1 初版发布 0.2 添加EDA工具的使用 参考 文献1：《X-Propa</description>
     </item>
     
     <item>

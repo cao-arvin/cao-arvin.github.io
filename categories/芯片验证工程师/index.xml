@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>关于X-Propagation问题</title>
+      <link>https://wenhui.space/post/digital_verifer/x-propagation/</link>
+      <pubDate>Wed, 12 Feb 2020 19:47:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/x-propagation/</guid>
+      <description>本文 主要介绍数字电路设计中X-Propagation问题以及其解决方案。 版本 说明 0.1 初版发布 0.2 添加EDA工具的使用 参考 文献1：《X-Propa</description>
+    </item>
+    
+    <item>
       <title>Formal验证技术总结</title>
       <link>https://wenhui.space/post/digital_verifer/formal_verify/</link>
       <pubDate>Wed, 08 Jan 2020 20:50:00 +0800</pubDate>
