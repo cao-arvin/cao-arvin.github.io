@@ -64,14 +64,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wenhui.space/post/digital_verifer/verdi_userguide/" />
 <meta property="article:published_time" content="2020-02-22T14:45:00+08:00" />
-<meta property="article:modified_time" content="2020-02-22T14:45:13+08:00" />
+<meta property="article:modified_time" content="2020-02-25T17:01:39+08:00" />
 <meta itemprop="name" content="Verdi使用总结">
 <meta itemprop="description" content="本文 主要介绍debug工具Verdi的使用，并对自己使用过程中的经验进行总结。 版本 说明 0.1 初版发布 参考 Verdi and Siloti Command Reference Verdi (Premier) Training 百度网盘分享资源 链接：h">
 
 
 <meta itemprop="datePublished" content="2020-02-22T14:45:00&#43;08:00" />
-<meta itemprop="dateModified" content="2020-02-22T14:45:13&#43;08:00" />
-<meta itemprop="wordCount" content="5929">
+<meta itemprop="dateModified" content="2020-02-25T17:01:39&#43;08:00" />
+<meta itemprop="wordCount" content="5935">
 
 
 
@@ -344,7 +344,7 @@
             <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片验证工程师 </a>
             
           </div>
-        <span class="more-meta"> 约 5929 字 </span>
+        <span class="more-meta"> 约 5935 字 </span>
           <span class="more-meta"> 预计阅读 12 分钟 </span>
 
         
@@ -692,7 +692,7 @@ verdi &lt;source_file1.v&gt; -sv &lt;source_file2.sv&gt;…
 verdi system.v ... alu.v -v lib.v -y ../special -ssv -ssy</code></pre></td></tr></table>
 </div>
 </div>
-<p>推荐使用命令： “verdi -f run.f -ssv -ssy” ，其中run.fn内容如下：</p>
+<p>推荐使用命令： “verdi -f run.f -ssv -ssy” ，其中run.f内容如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-nil" data-lang="nil"><span class="lnt"> 1
@@ -711,12 +711,21 @@ verdi system.v ... alu.v -v lib.v -y ../special -ssv -ssy</code></pre></td></tr>
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil">$PROJ_ENV/test_top_tb.v
+<pre class="chroma"><code class="language-nil" data-lang="nil">+define+VCS_DUMPON=1
 
 +incdir+$PROJ_ENV/include_dir1
 +incdir+$PROJ_ENV/include_dir2
+
+$PROJ_ENV/test_top_tb.v
+
++libext+.v
++libext+.sv
 
 -v $PROJ_ENV/lib_path/lib1.v
 -v $PROJ_ENV/lib_path/lib2.v
@@ -725,10 +734,9 @@ verdi system.v ... alu.v -v lib.v -y ../special -ssv -ssy</code></pre></td></tr>
 -y $PROJ_ENV/design_sub_dir3
 -y $PROJ_ENV/design_top_dir
 
-+libext+.v
-+libext+.sv
-
-+define+VCS_DUMPON=1</code></pre></td></tr></table>
+$PROJ_ENV/other_design_path/other_design1.v
+$PROJ_ENV/other_design_path/other_design2.v
+.............</code></pre></td></tr></table>
 </div>
 </div>
 <p>说明如下：</p>
@@ -914,7 +922,7 @@ verdi system.v ... alu.v -v lib.v -y ../special -ssv -ssy</code></pre></td></tr>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2020-02-22
+      2020-02-25
       
     </span>
   </p>

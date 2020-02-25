@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>emacs插件之自动插入英文翻译 - Wenhui&#39;s Rotten Pen</title>
+  <title>如何更好的解决RTL编译时依赖关系问题 - Wenhui&#39;s Rotten Pen</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="文辉" />
-  <meta name="description" content="本文 主要介绍一款自动插入英文翻译的emacs插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU Emacs 26.3 内容" />
+  <meta name="description" content="本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 关于include 一般在文件中会用include来加载依赖的文件，" />
 
   <meta name="keywords" content="Hugo, linux, emacs, CPU" />
 
@@ -35,7 +35,7 @@
 <meta name="generator" content="Hugo 0.58.3" />
 
 
-<link rel="canonical" href="https://wenhui.space/post/about_emacs/emacs_insert_english_translate/" />
+<link rel="canonical" href="https://wenhui.space/post/digital_designer/resolve_dependencies_rtl_compile/" />
 
 
 
@@ -59,26 +59,26 @@
 
 
 
-<meta property="og:title" content="emacs插件之自动插入英文翻译" />
-<meta property="og:description" content="本文 主要介绍一款自动插入英文翻译的emacs插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU Emacs 26.3 内容" />
+<meta property="og:title" content="如何更好的解决RTL编译时依赖关系问题" />
+<meta property="og:description" content="本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 关于include 一般在文件中会用include来加载依赖的文件，" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://wenhui.space/post/about_emacs/emacs_insert_english_translate/" />
-<meta property="article:published_time" content="2020-02-22T21:41:00+08:00" />
-<meta property="article:modified_time" content="2020-02-22T21:50:48+08:00" />
-<meta itemprop="name" content="emacs插件之自动插入英文翻译">
-<meta itemprop="description" content="本文 主要介绍一款自动插入英文翻译的emacs插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU Emacs 26.3 内容">
+<meta property="og:url" content="https://wenhui.space/post/digital_designer/resolve_dependencies_rtl_compile/" />
+<meta property="article:published_time" content="2020-02-24T17:03:00+08:00" />
+<meta property="article:modified_time" content="2020-02-25T17:04:21+08:00" />
+<meta itemprop="name" content="如何更好的解决RTL编译时依赖关系问题">
+<meta itemprop="description" content="本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 关于include 一般在文件中会用include来加载依赖的文件，">
 
 
-<meta itemprop="datePublished" content="2020-02-22T21:41:00&#43;08:00" />
-<meta itemprop="dateModified" content="2020-02-22T21:50:48&#43;08:00" />
-<meta itemprop="wordCount" content="301">
+<meta itemprop="datePublished" content="2020-02-24T17:03:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-25T17:04:21&#43;08:00" />
+<meta itemprop="wordCount" content="1212">
 
 
 
-<meta itemprop="keywords" content="emacs," />
+<meta itemprop="keywords" content="Verilog," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="emacs插件之自动插入英文翻译"/>
-<meta name="twitter:description" content="本文 主要介绍一款自动插入英文翻译的emacs插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18&#43;deb9u1 emacs版本：Linux GNU Emacs 26.3 内容"/>
+<meta name="twitter:title" content="如何更好的解决RTL编译时依赖关系问题"/>
+<meta name="twitter:description" content="本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 关于include 一般在文件中会用include来加载依赖的文件，"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -334,18 +334,18 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">emacs插件之自动插入英文翻译</h1>
+      <h1 class="post-title">如何更好的解决RTL编译时依赖关系问题</h1>
       
       <div class="post-meta">
-        <time datetime="2020-02-22" class="post-time">
-          2020-02-22
+        <time datetime="2020-02-24" class="post-time">
+          2020-02-24
         </time>
         <div class="post-category">
-            <a href="https://wenhui.space/categories/%E5%85%B3%E4%BA%8Eemacs/"> 关于emacs </a>
+            <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片设计工程师 </a>
             
           </div>
-        <span class="more-meta"> 约 301 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span class="more-meta"> 约 1212 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
 
         
         
@@ -365,9 +365,8 @@
 <li>
 <ul>
 <li><a href="#本文">本文</a></li>
-<li><a href="#背景">背景</a></li>
-<li><a href="#内容请参考如下">内容请参考如下：</a></li>
-<li><a href="#补充说明">补充说明：</a></li>
+<li><a href="#关于include">关于include</a></li>
+<li><a href="#关于filelist">关于filelist</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -380,7 +379,7 @@
 
 <h2 id="本文">本文</h2>
 
-<p>主要介绍一款自动插入英文翻译的emacs插件。</p>
+<p>主要介绍一种有效解决RTL编译时依赖关系问题的方法。</p>
 
 <table>
 <thead>
@@ -398,25 +397,108 @@
 </tbody>
 </table>
 
-<h2 id="背景">背景</h2>
+<h2 id="关于include">关于include</h2>
+
+<p>一般在文件中会用include来加载依赖的文件，其效果就好比将依赖文件的内容复制粘贴至此。当然你可以将所有依赖文件都进行include，也就是不仅仅是宏定义文件和函数文件，还包含子模块的文件，这样层层include，自然形成一个完整的编译顺序，而只需要给工具指定最顶层的文件和提供include路径即可。但是并不建议这样实现，因为除了影响代码整洁性（可能某模块子模块众多），还会使代码难以维护。所以我们一般只include宏定义文件和函数文件，这样指定的include路径也会很清楚。</p>
+
+<p>有时候一个文件可能会被多个文件include，为了防止被重复编译，往往会加上ifdef判断条件。虽然重复编译不一定带来问题，但毕竟也影响了编译效率，所以还是要尽量消除重复编译。方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="no">`ifndef</span> <span class="n">__file_name</span>
+<span class="cp">`define __file_name
+</span><span class="cp"></span>
+<span class="c1">//.......
+</span><span class="c1">//File content......
+</span><span class="c1">//.......
+</span><span class="c1"></span>
+<span class="no">`endif</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>在文件的开头和结尾添加如上内容后，当第一次编译该文件时，不会有“__file_name”的宏定义，所以编译文件内容，当再次编译该文件时，已经定义“__file_name”，ifndef的判断会使该文件不被重复编译。这样的方法是被推荐的，建议所有文件的头尾都添加如上内容。</p>
+
+<h2 id="关于filelist">关于filelist</h2>
+
+<p>一般工程中都会用filelist文件来进行维护，这也是最方便的。filelist文件描述的顺序，就是编译顺序，所以这里要小心，要将最底层模块定义到前列，优先编译，否则编译其他模块时找不到其依赖模块，会报编译错误。这里提供两个技巧：</p>
 
 <ul>
-<li>主机： Thinkpad S2</li>
-<li>系统： Deepin GNU/Linux 15.11</li>
-<li>内核： Debian 6.3.0-18+deb9u1</li>
-<li>emacs版本：Linux GNU Emacs 26.3</li>
-</ul>
-
-<h2 id="内容请参考如下">内容请参考如下：</h2>
+<li>较大设计中，分割子模块，定义各个子模块的的filelist，在上层filelist中采用“-f path/xxx_subfilelist”的形式引入子模块filelist（注意要指明路径），这样由子模块的设计师维护子模块的filelist，待合并系统时，再合并filelist。</li>
+<li>加载某一目录下的文件，可以使用“-y”，而不必关心编译顺序，工具会自动识别顺序，使用方法为：
 
 <ul>
-<li><a href="https://www.jianshu.com/p/937308390e3c?utm%5Fsource=oschina-app">Emacs: 自动插入翻译后的字符串</a></li>
-<li><a href="https://github.com/manateelazycat/insert-translated-name.git">Github：insert-translated-name</a></li>
+<li>“+libext+.v+.sv”（指明加载后缀为.v和.sv的文件）</li>
+<li>“-y file_path”（加载该路径下所有后缀为.v和.sv的文件）</li>
+</ul></li>
+<li>“-y” 的使用其实是加载库文件的方法，为了不将设计扁平化，需要在verdi打开时添加“-ssy”，这样可以保持设计的层次化。</li>
+<li>include路径必须添加在filelist前部。</li>
 </ul>
 
-<h2 id="补充说明">补充说明：</h2>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-nil" data-lang="nil"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-nil" data-lang="nil">+define+VCS_DUMPON=1
 
-<p>这个英文补全的emacs插件是基于google翻译的，可能需要先安装google翻译才可以使用，由于安装此自动插入英文翻译的插件时已经安装google翻译，所以并未考证。如果需要安装google翻译，请参考我的另一篇帖子 <a href="https://www.wenhui.space/post/work%5Fplatform/install%5Fgoldendict/">GoldenDict的安装</a> 中 添加google翻译这一节。</p>
++incdir+$PROJ_ENV/include_dir1
++incdir+$PROJ_ENV/include_dir2
+
+$PROJ_ENV/test_top_tb.v
+
++libext+.v
++libext+.sv
+
+-v $PROJ_ENV/lib_path/lib1.v
+-v $PROJ_ENV/lib_path/lib2.v
+-y $PROJ_ENV/design_sub_dir1
+-y $PROJ_ENV/design_sub_dir2
+-y $PROJ_ENV/design_sub_dir3
+-y $PROJ_ENV/design_top_dir
+
+$PROJ_ENV/other_design_path/other_design1.v
+$PROJ_ENV/other_design_path/other_design2.v
+.............</code></pre></td></tr></table>
+</div>
+</div>
+<p>说明如下：</p>
+
+<ul>
+<li>-f代表读取flist文件。</li>
+<li>-y指定文件目录的导入方式，无需关心具体模块的依赖关系。</li>
+<li>+incdir+是指定include文件的路径。</li>
+<li>“+libext+.v”是指定文件后缀，若文件为sv格式，则指定为sv。</li>
+<li>“+define+”是传入define参数。</li>
+</ul>
 
 <hr />
 
@@ -434,7 +516,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2020-02-22
+      2020-02-25
       
     </span>
   </p>
@@ -451,14 +533,14 @@
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://wenhui.space/tags/emacs/">emacs</a>
+          <a href="https://wenhui.space/tags/verilog/">Verilog</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/digital_designer/resolve_dependencies_rtl_compile/">
+          <a class="prev" href="/post/digital_verifer/uvm_and_verification_platforms/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -468,12 +550,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">如何更好的解决RTL编译时依赖关系问题</span>
+            <span class="prev-text nav-default">UVM与验证平台</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/digital_verifer/verdi_userguide/">
-            <span class="next-text nav-default">Verdi使用总结</span>
+          <a class="next" href="/post/about_emacs/emacs_insert_english_translate/">
+            <span class="next-text nav-default">emacs插件之自动插入英文翻译</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

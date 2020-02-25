@@ -3,21 +3,21 @@
   
   <url>
     <loc>https://wenhui.space/categories/</loc>
-    <lastmod>2020-02-25T10:46:59+08:00</lastmod>
+    <lastmod>2020-02-25T17:04:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/</loc>
-    <lastmod>2020-02-25T10:46:59+08:00</lastmod>
+    <lastmod>2020-02-25T17:04:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/</loc>
-    <lastmod>2020-02-25T10:46:59+08:00</lastmod>
+    <lastmod>2020-02-25T17:04:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -38,7 +38,7 @@
   
   <url>
     <loc>https://wenhui.space/</loc>
-    <lastmod>2020-02-25T10:46:59+08:00</lastmod>
+    <lastmod>2020-02-25T17:04:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -52,7 +52,28 @@
   
   <url>
     <loc>https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/</loc>
-    <lastmod>2020-02-25T10:46:59+08:00</lastmod>
+    <lastmod>2020-02-25T17:01:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/tags/verilog/</loc>
+    <lastmod>2020-02-25T17:04:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/digital_designer/resolve_dependencies_rtl_compile/</loc>
+    <lastmod>2020-02-25T17:04:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/</loc>
+    <lastmod>2020-02-25T17:04:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -80,14 +101,14 @@
   
   <url>
     <loc>https://wenhui.space/tags/ic%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2020-02-22T14:45:13+08:00</lastmod>
+    <lastmod>2020-02-25T17:01:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/post/digital_verifer/verdi_userguide/</loc>
-    <lastmod>2020-02-22T14:45:13+08:00</lastmod>
+    <lastmod>2020-02-25T17:01:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -128,21 +149,7 @@
   </url>
   
   <url>
-    <loc>https://wenhui.space/tags/verilog/</loc>
-    <lastmod>2020-02-24T17:38:16+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://wenhui.space/post/digital_designer/verilog_coding_styleguide/</loc>
-    <lastmod>2020-02-19T14:41:04+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/</loc>
     <lastmod>2020-02-19T14:41:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

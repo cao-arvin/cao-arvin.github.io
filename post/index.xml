@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>如何更好的解决RTL编译时依赖关系问题</title>
+      <link>https://wenhui.space/post/digital_designer/resolve_dependencies_rtl_compile/</link>
+      <pubDate>Mon, 24 Feb 2020 17:03:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_designer/resolve_dependencies_rtl_compile/</guid>
+      <description>本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 关于include 一般在文件中会用include来加载依赖的文件，</description>
+    </item>
+    
+    <item>
       <title>emacs插件之自动插入英文翻译</title>
       <link>https://wenhui.space/post/about_emacs/emacs_insert_english_translate/</link>
       <pubDate>Sat, 22 Feb 2020 21:41:00 +0800</pubDate>
@@ -180,15 +189,6 @@
       
       <guid>https://wenhui.space/post/about_linux/verilog_auto_declare/</guid>
       <description>本文 主要介绍一款自己开发的Python脚本： verilog中reg和wire的自动声明 。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian</description>
-    </item>
-    
-    <item>
-      <title>emacs使用folding-mode</title>
-      <link>https://wenhui.space/post/about_emacs/emacs_folding_mode/</link>
-      <pubDate>Fri, 10 Jan 2020 19:13:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/about_emacs/emacs_folding_mode/</guid>
-      <description>本文 主要介绍emacs folding-mode的使用。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 emacs版本：Linux GNU Emacs 26.3</description>
     </item>
     
   </channel>
