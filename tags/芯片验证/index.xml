@@ -6,10 +6,19 @@
     <description>Recent content in 芯片验证 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 12 Feb 2020 19:47:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 25 Feb 2020 10:19:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVM与验证平台</title>
+      <link>https://wenhui.space/post/digital_verifer/uvm_and_verification_platforms/</link>
+      <pubDate>Tue, 25 Feb 2020 10:19:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/uvm_and_verification_platforms/</guid>
+      <description>本文 主要介绍什么是UVM和验证平台，以及如何搭建UVM验证平台。 版本 说明 0.1 初版发布 参考 参考自文彬师兄的UVM培训资料。 初识UVM 什么是UVM</description>
+    </item>
     
     <item>
       <title>关于X-Propagation问题</title>

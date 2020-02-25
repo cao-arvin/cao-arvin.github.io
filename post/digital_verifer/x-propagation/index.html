@@ -64,14 +64,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wenhui.space/post/digital_verifer/x-propagation/" />
 <meta property="article:published_time" content="2020-02-12T19:47:00+08:00" />
-<meta property="article:modified_time" content="2020-02-24T09:40:06+08:00" />
+<meta property="article:modified_time" content="2020-02-24T17:38:16+08:00" />
 <meta itemprop="name" content="关于X-Propagation问题">
 <meta itemprop="description" content="本文 主要介绍数字电路设计中X-Propagation问题以及其解决方案。 版本 说明 0.1 初版发布 0.2 添加EDA工具的使用 0.3 添加verilog X-Pr">
 
 
 <meta itemprop="datePublished" content="2020-02-12T19:47:00&#43;08:00" />
-<meta itemprop="dateModified" content="2020-02-24T09:40:06&#43;08:00" />
-<meta itemprop="wordCount" content="7530">
+<meta itemprop="dateModified" content="2020-02-24T17:38:16&#43;08:00" />
+<meta itemprop="wordCount" content="8119">
 
 
 
@@ -344,8 +344,8 @@
             <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片验证工程师 </a>
             
           </div>
-        <span class="more-meta"> 约 7530 字 </span>
-          <span class="more-meta"> 预计阅读 16 分钟 </span>
+        <span class="more-meta"> 约 8119 字 </span>
+          <span class="more-meta"> 预计阅读 17 分钟 </span>
 
         
         
@@ -377,8 +377,10 @@
 </ul></li>
 <li><a href="#我的测试程序">我的测试程序</a>
 <ul>
-<li><a href="#测试代码">测试代码</a></li>
-<li><a href="#测试结果">测试结果</a></li>
+<li><a href="#rtl测试代码">RTL测试代码</a></li>
+<li><a href="#综合后代码">综合后代码</a></li>
+<li><a href="#rtl测试结果">RTL测试结果</a></li>
+<li><a href="#门级仿真结果">门级仿真结果</a></li>
 <li><a href="#总结">总结</a></li>
 </ul></li>
 <li><a href="#我们的需求是什么">我们的需求是什么？</a>
@@ -458,6 +460,11 @@
 <tr>
 <td>0.3</td>
 <td>添加verilog X-Prop插件VRQ介绍</td>
+</tr>
+
+<tr>
+<td>0.4</td>
+<td>添加综合后代码以及仿真结果</td>
 </tr>
 </tbody>
 </table>
@@ -828,7 +835,7 @@
 
 <h2 id="我的测试程序">我的测试程序</h2>
 
-<h3 id="测试代码">测试代码</h3>
+<h3 id="rtl测试代码">RTL测试代码</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt"> 1
@@ -881,62 +888,200 @@
 </span><span class="lnt">48
 </span><span class="lnt">49
 </span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="k">module</span> <span class="n">top_module</span> <span class="p">();</span>
-    <span class="kt">reg</span> <span class="n">clk</span><span class="p">;</span>
-    <span class="kt">wire</span> <span class="n">out1</span><span class="p">;</span>
-    <span class="kt">reg</span> <span class="n">out2</span><span class="p">;</span>
-    <span class="kt">reg</span> <span class="n">out3</span><span class="p">;</span>
-    <span class="kt">reg</span> <span class="n">sel</span><span class="p">;</span>
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="k">module</span> <span class="n">xprop_tb</span><span class="p">;</span>
+<span class="kt">reg</span>    <span class="n">clk</span><span class="p">;</span>
+<span class="kt">reg</span>    <span class="n">sel</span><span class="p">;</span>
+<span class="kt">reg</span>    <span class="n">a0</span><span class="p">,</span><span class="n">a1</span><span class="p">;</span>
+<span class="kt">reg</span>    <span class="n">b0</span><span class="p">,</span><span class="n">b1</span><span class="p">;</span>
+<span class="kt">reg</span>    <span class="n">din</span><span class="p">;</span>
 
-    <span class="kt">reg</span> <span class="n">a0</span><span class="p">,</span><span class="n">a1</span><span class="p">;</span>
-    <span class="kt">reg</span> <span class="n">b0</span><span class="p">,</span><span class="n">b1</span><span class="p">;</span>
+<span class="cm">/*AUTOWIRE*/</span>
+<span class="c1">// Beginning of automatic wires (for undeclared instantiated-module outputs)
+</span><span class="c1"></span><span class="kt">wire</span>                    <span class="n">out1</span><span class="p">;</span>                   <span class="c1">// From i_xprop of xprop.v
+</span><span class="c1"></span><span class="kt">wire</span>                    <span class="n">out2</span><span class="p">;</span>                   <span class="c1">// From i_xprop of xprop.v
+</span><span class="c1"></span><span class="kt">wire</span>                    <span class="n">out3</span><span class="p">;</span>                   <span class="c1">// From i_xprop of xprop.v
+</span><span class="c1"></span><span class="kt">wire</span>                    <span class="n">out4</span><span class="p">;</span>                   <span class="c1">// From i_xprop of xprop.v
+</span><span class="c1">// End of automatics
+</span><span class="c1"></span>
 
-    <span class="k">assign</span> <span class="n">out1</span> <span class="o">=</span> <span class="n">sel</span> <span class="o">?</span> <span class="n">a0</span> <span class="o">&amp;</span> <span class="n">a1</span> <span class="o">:</span> <span class="n">b0</span> <span class="o">|</span> <span class="n">b1</span><span class="p">;</span>
+<span class="k">initial</span> <span class="k">begin</span>
+    <span class="c1">//Two options have the same value
+</span><span class="c1"></span>    <span class="p">#</span><span class="mh">0</span>  <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bx</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bz</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
 
-    <span class="k">always</span><span class="p">@</span><span class="o">*</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">sel</span><span class="o">==</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">)</span>
-                <span class="n">out2</span> <span class="o">=</span> <span class="n">a0</span> <span class="o">&amp;</span> <span class="n">a1</span><span class="p">;</span>
-        <span class="k">else</span>
-                <span class="n">out2</span> <span class="o">=</span> <span class="n">b0</span> <span class="o">|</span> <span class="n">b1</span><span class="p">;</span>
+    <span class="c1">//Two options have the different value
+</span><span class="c1"></span>    <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bx</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bz</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
 
-    <span class="k">always</span><span class="p">@</span><span class="o">*</span>
-        <span class="k">case</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
-            <span class="mh">1</span><span class="mb">&#39;b1</span><span class="o">:</span> <span class="n">out3</span><span class="o">=</span><span class="n">a0</span> <span class="o">&amp;</span> <span class="n">a1</span><span class="p">;</span>
-            <span class="k">default</span><span class="o">:</span> <span class="n">out3</span><span class="o">=</span><span class="n">b0</span> <span class="o">|</span> <span class="n">b1</span><span class="p">;</span>
-        <span class="k">endcase</span>
+    <span class="c1">//test clk
+</span><span class="c1"></span>    <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">din</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out4</span><span class="p">);</span><span class="c1">//set out4 pre_value is 0
+</span><span class="c1"></span>    <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">din</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bx</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out4</span><span class="p">);</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">din</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out4</span><span class="p">);</span><span class="c1">//set out4 pre_value is 0
+</span><span class="c1"></span>    <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bx</span><span class="p">;</span> <span class="n">din</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out4</span><span class="p">);</span>
 
-    <span class="kt">reg</span> <span class="n">out4</span><span class="p">;</span>
-    <span class="kt">reg</span> <span class="n">din</span><span class="p">;</span>
-    <span class="k">always</span><span class="p">@(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span>
-        <span class="n">out4</span> <span class="o">&lt;=</span> <span class="n">din</span><span class="p">;</span>
-
-    <span class="k">initial</span> <span class="k">begin</span>
-        <span class="c1">//Two options have the same value
-</span><span class="c1"></span>        <span class="p">#</span><span class="mh">0</span>  <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bx</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
-        <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bz</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
-        <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
-        <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
-
-        <span class="c1">//Two options have the different value
-</span><span class="c1"></span>        <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bx</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
-        <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bz</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
-        <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
-        <span class="p">#</span><span class="mh">10</span> <span class="n">a0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">a1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b0</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">b1</span><span class="o">=</span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="n">sel</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out1</span><span class="p">,</span><span class="n">out2</span><span class="p">,</span><span class="n">out3</span><span class="p">);</span>
-
-        <span class="c1">//test clk
-</span><span class="c1"></span>        <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="n">din</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">out4</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bx</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out4</span><span class="p">);</span>
-        <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="p">&#39;</span><span class="n">bx</span><span class="p">;</span> <span class="n">din</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="n">out4</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span> <span class="p">#</span><span class="mh">10</span> <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span> <span class="p">#</span><span class="mh">1</span> <span class="nb">$display</span><span class="p">(</span><span class="n">out4</span><span class="p">);</span>
-
-        <span class="p">#</span><span class="mh">10</span> <span class="nb">$finish</span><span class="p">;</span>
+    <span class="p">#</span><span class="mh">10</span> <span class="nb">$finish</span><span class="p">;</span>
     <span class="k">end</span>
+<span class="n">xprop</span> <span class="n">i_xprop</span><span class="p">(</span><span class="cm">/*AUTOINST*/</span>
+              <span class="c1">// Outputs
+</span><span class="c1"></span>              <span class="p">.</span><span class="n">out1</span>                     <span class="p">(</span><span class="n">out1</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">out2</span>                     <span class="p">(</span><span class="n">out2</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">out3</span>                     <span class="p">(</span><span class="n">out3</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">out4</span>                     <span class="p">(</span><span class="n">out4</span><span class="p">),</span>
+              <span class="c1">// Inputs
+</span><span class="c1"></span>              <span class="p">.</span><span class="n">clk</span>                      <span class="p">(</span><span class="n">clk</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">sel</span>                      <span class="p">(</span><span class="n">sel</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">a0</span>                       <span class="p">(</span><span class="n">a0</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">a1</span>                       <span class="p">(</span><span class="n">a1</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">b0</span>                       <span class="p">(</span><span class="n">b0</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">b1</span>                       <span class="p">(</span><span class="n">b1</span><span class="p">),</span>
+              <span class="p">.</span><span class="n">din</span>                      <span class="p">(</span><span class="n">din</span><span class="p">));</span>
 
+<span class="k">endmodule</span> <span class="c1">// xprop_tb
+</span><span class="c1"></span>
+<span class="k">module</span> <span class="n">xprop</span> <span class="p">(</span><span class="cm">/*AUTOARG*/</span>
+<span class="c1">// Outputs
+</span><span class="c1"></span><span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">,</span> <span class="n">out3</span><span class="p">,</span> <span class="n">out4</span><span class="p">,</span>
+<span class="c1">// Inputs
+</span><span class="c1"></span><span class="n">clk</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">din</span>
+<span class="p">);</span>
+<span class="k">input</span> <span class="n">clk</span><span class="p">;</span>
+<span class="k">input</span> <span class="n">sel</span><span class="p">;</span>
+<span class="k">input</span> <span class="n">a0</span><span class="p">;</span>
+<span class="k">input</span> <span class="n">a1</span><span class="p">;</span>
+<span class="k">input</span> <span class="n">b0</span><span class="p">;</span>
+<span class="k">input</span> <span class="n">b1</span><span class="p">;</span>
+<span class="k">input</span> <span class="n">din</span><span class="p">;</span>
+
+<span class="k">output</span> <span class="n">out1</span><span class="p">;</span>
+<span class="k">output</span> <span class="n">out2</span><span class="p">;</span>
+<span class="k">output</span> <span class="n">out3</span><span class="p">;</span>
+<span class="k">output</span> <span class="n">out4</span><span class="p">;</span>
+
+<span class="kt">wire</span>   <span class="n">out1</span><span class="p">;</span>
+<span class="kt">reg</span>    <span class="n">out2</span><span class="p">;</span>
+<span class="kt">reg</span>    <span class="n">out3</span><span class="p">;</span>
+<span class="kt">reg</span>    <span class="n">out4</span><span class="p">;</span>
+
+<span class="k">assign</span> <span class="n">out1</span> <span class="o">=</span> <span class="n">sel</span> <span class="o">?</span> <span class="n">a0</span> <span class="o">&amp;</span> <span class="n">a1</span> <span class="o">:</span> <span class="n">b0</span> <span class="o">|</span> <span class="n">b1</span><span class="p">;</span>
+
+<span class="k">always</span><span class="p">@</span><span class="o">*</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sel</span><span class="o">==</span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">)</span>
+        <span class="n">out2</span> <span class="o">=</span> <span class="n">a0</span> <span class="o">&amp;</span> <span class="n">a1</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">out2</span> <span class="o">=</span> <span class="n">b0</span> <span class="o">|</span> <span class="n">b1</span><span class="p">;</span>
+
+<span class="k">always</span><span class="p">@</span><span class="o">*</span>
+    <span class="k">case</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span>
+        <span class="mh">1</span><span class="mb">&#39;b1</span><span class="o">:</span> <span class="n">out3</span><span class="o">=</span><span class="n">a0</span> <span class="o">&amp;</span> <span class="n">a1</span><span class="p">;</span>
+        <span class="k">default</span><span class="o">:</span> <span class="n">out3</span><span class="o">=</span><span class="n">b0</span> <span class="o">|</span> <span class="n">b1</span><span class="p">;</span>
+    <span class="k">endcase</span>
+
+<span class="k">always</span><span class="p">@(</span><span class="k">posedge</span> <span class="n">clk</span><span class="p">)</span>
+    <span class="n">out4</span> <span class="o">&lt;=</span> <span class="n">din</span><span class="p">;</span>
+
+<span class="k">endmodule</span> <span class="c1">// xprop
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="综合后代码">综合后代码</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">/////////////////////////////////////////////////////////////
+</span><span class="c1">// Created by: Synopsys DC Expert(TM) in wire load mode
+</span><span class="c1">// Version   : O-2018.06-SP5
+</span><span class="c1">// Date      : Mon Feb 24 10:57:14 2020
+</span><span class="c1">/////////////////////////////////////////////////////////////
+</span><span class="c1"></span>
+
+<span class="k">module</span> <span class="n">xprop</span> <span class="p">(</span> <span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">,</span> <span class="n">out3</span><span class="p">,</span> <span class="n">out4</span><span class="p">,</span> <span class="n">clk</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">din</span> <span class="p">);</span>
+  <span class="k">input</span> <span class="n">clk</span><span class="p">,</span> <span class="n">sel</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">din</span><span class="p">;</span>
+  <span class="k">output</span> <span class="n">out1</span><span class="p">,</span> <span class="n">out2</span><span class="p">,</span> <span class="n">out3</span><span class="p">,</span> <span class="n">out4</span><span class="p">;</span>
+  <span class="kt">wire</span>   <span class="n">out3</span><span class="p">,</span> <span class="n">n4</span><span class="p">,</span> <span class="n">n5</span><span class="p">;</span>
+  <span class="k">assign</span> <span class="n">out2</span> <span class="o">=</span> <span class="n">out3</span><span class="p">;</span>
+  <span class="k">assign</span> <span class="n">out1</span> <span class="o">=</span> <span class="n">out3</span><span class="p">;</span>
+
+  <span class="n">DFFX1_LVT</span> <span class="n">out4_reg</span> <span class="p">(</span> <span class="p">.</span><span class="n">D</span><span class="p">(</span><span class="n">din</span><span class="p">),</span> <span class="p">.</span><span class="n">CLK</span><span class="p">(</span><span class="n">clk</span><span class="p">),</span> <span class="p">.</span><span class="n">Q</span><span class="p">(</span><span class="n">out4</span><span class="p">),</span> <span class="p">.</span><span class="n">QN</span><span class="p">()</span> <span class="p">);</span>
+  <span class="n">MUX21X1_LVT</span> <span class="n">U7</span> <span class="p">(</span> <span class="p">.</span><span class="n">A1</span><span class="p">(</span><span class="n">n4</span><span class="p">),</span> <span class="p">.</span><span class="n">A2</span><span class="p">(</span><span class="n">n5</span><span class="p">),</span> <span class="p">.</span><span class="n">S0</span><span class="p">(</span><span class="n">sel</span><span class="p">),</span> <span class="p">.</span><span class="n">Y</span><span class="p">(</span><span class="n">out3</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">AND2X1_LVT</span> <span class="n">U8</span> <span class="p">(</span> <span class="p">.</span><span class="n">A1</span><span class="p">(</span><span class="n">a1</span><span class="p">),</span> <span class="p">.</span><span class="n">A2</span><span class="p">(</span><span class="n">a0</span><span class="p">),</span> <span class="p">.</span><span class="n">Y</span><span class="p">(</span><span class="n">n5</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">OR2X1_LVT</span> <span class="n">U9</span> <span class="p">(</span> <span class="p">.</span><span class="n">A1</span><span class="p">(</span><span class="n">b0</span><span class="p">),</span> <span class="p">.</span><span class="n">A2</span><span class="p">(</span><span class="n">b1</span><span class="p">),</span> <span class="p">.</span><span class="n">Y</span><span class="p">(</span><span class="n">n4</span><span class="p">)</span> <span class="p">);</span>
 <span class="k">endmodule</span>
 </code></pre></td></tr></table>
 </div>
 </div>
-<h3 id="测试结果">测试结果</h3>
+<h3 id="rtl测试结果">RTL测试结果</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-nil" data-lang="nil"><span class="lnt"> 1
@@ -955,10 +1100,16 @@
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil">Running Icarus Verilog simulator...
-VCD info: dumping is suppressed.
+<pre class="chroma"><code class="language-nil" data-lang="nil">Chronologic VCS simulator copyright 1991-2018
+Contains Synopsys proprietary information.
+Compiler version O-2018.09-SP2_Full64; Runtime version O-2018.09-SP2_Full64;  Feb 24 17:03 2020
 x00
 x00
 000
@@ -967,19 +1118,74 @@ x00
 111
 111
 111
+0
 1
+0
 1
-Hint: Total mismatched samples is 0 out of 0 samples
-
-Simulation finished at 138 ps
-Mismatches: 0 in 0 samples</code></pre></td></tr></table>
+$finish called from file &#34;xprop_tb.v&#34;, line 39.
+$finish at simulation time                  180
+           V C S   S i m u l a t i o n   R e p o r t
+Time: 180
+CPU Time:      0.370 seconds;       Data structure size:   0.0Mb
+Mon Feb 24 17:03:52 2020</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="门级仿真结果">门级仿真结果</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-nil" data-lang="nil"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-nil" data-lang="nil">Chronologic VCS simulator copyright 1991-2018
+Contains Synopsys proprietary information.
+Compiler version O-2018.09-SP2_Full64; Runtime version O-2018.09-SP2_Full64;  Feb 24 17:02 2020
+xxx
+xxx
+000
+111
+xxx
+xxx
+111
+111
+0
+x
+0
+x
+$finish called from file &#34;xprop_tb.v&#34;, line 39.
+$finish at simulation time               180000
+           V C S   S i m u l a t i o n   R e p o r t
+Time: 180000 ps
+CPU Time:      0.360 seconds;       Data structure size:   0.0Mb
+Mon Feb 24 17:02:33 2020</code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="总结">总结</h3>
 
-<p>使用工具为ncverilog。</p>
-
-<p>通过测试结果可见，模拟仿真中if-else和case语句确实存在逻辑乐观处理的问题，而关于三目运算符的结果更符合真实的电路行为。</p>
+<ul>
+<li>使用工具为VCS。</li>
+<li>对于综合，无论是三目运算符还是if-else还是case，综合工具都将其转为相同的选择逻辑电路，也就是无论选择RTL何种表达方式，都不影响门级仿真悲观处理的问题，与综合工具也无关，而是仿真工具解析电路的悲观处理导致的。</li>
+<li>对于模拟仿真，RTL仿真中if-else和case语句确实存在逻辑乐观处理的问题，而关于三目运算符的结果更符合真实的电路行为； 门级仿真是悲观处理的。</li>
+</ul>
 
 <h2 id="我们的需求是什么">我们的需求是什么？</h2>
 

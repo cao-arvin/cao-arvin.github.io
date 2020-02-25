@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UVM on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/tags/uvm/</link>
+    <description>Recent content in UVM on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 25 Feb 2020 10:19:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://wenhui.space/tags/uvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UVM与验证平台</title>
+      <link>https://wenhui.space/post/digital_verifer/uvm_and_verification_platforms/</link>
+      <pubDate>Tue, 25 Feb 2020 10:19:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/uvm_and_verification_platforms/</guid>
+      <description>本文 主要介绍什么是UVM和验证平台，以及如何搭建UVM验证平台。 版本 说明 0.1 初版发布 参考 参考自文彬师兄的UVM培训资料。 初识UVM 什么是UVM</description>
+    </item>
+    
+  </channel>
+</rss>

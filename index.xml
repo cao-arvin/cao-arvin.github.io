@@ -6,10 +6,1055 @@
     <description>Recent content on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 22 Feb 2020 21:41:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 25 Feb 2020 10:19:00 +0800</lastBuildDate>
     
         <atom:link href="https://wenhui.space/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UVM与验证平台</title>
+      <link>https://wenhui.space/post/digital_verifer/uvm_and_verification_platforms/</link>
+      <pubDate>Tue, 25 Feb 2020 10:19:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/uvm_and_verification_platforms/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;主要介绍什么是UVM和验证平台，以及如何搭建UVM验证平台。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;p&gt;参考自文彬师兄的UVM培训资料。&lt;/p&gt;
+
+&lt;h2 id=&#34;初识uvm&#34;&gt;初识UVM&lt;/h2&gt;
+
+&lt;h3 id=&#34;什么是uvm&#34;&gt;什么是UVM？&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;VMM(Verification Methodology Manual)，Synopsys在2006年推出的，VMM当中集成了寄存器解决方案RAL(Register Abstraction Layer)。&lt;/li&gt;
+&lt;li&gt;OVM(Open Verification Methodology)，Cadence和Mentor在2008年推出的，它引进了factory机制，功能非常强大，但是没有寄存器解决方案。&lt;/li&gt;
+&lt;li&gt;UVM(Universal Verification Methodology)，即通用验证方法学，其正式版本在2011年2月由Accellera推出的，UVM几乎完全继承了OVM，同时又采纳了VMM中的寄存器解决方案。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;什么是uvm验证平台&#34;&gt;什么是UVM验证平台？&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;UVM是基于System Verilog的一种验证方法学，也可以看成是一个库，提供一系列的接口，可以利用UVM搭建验证平台，用于验证数字逻辑电路的正确性。&lt;/li&gt;
+&lt;li&gt;注意，UVM本身并不是一个验证平台，他只是一个库，而一个验证平台引入了UVM相关库，称为基于UVM的验证平台，或者简称为UVM验证平台。&lt;/li&gt;
+&lt;li&gt;支持UVM的EDA厂商：Cadence、Synopsys、Mentor&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;uvm基础&#34;&gt;UVM基础&lt;/h2&gt;
+
+&lt;h3 id=&#34;一个基于sv的简单验证平台&#34;&gt;一个基于SV的简单验证平台&lt;/h3&gt;
+
+&lt;p&gt;注：这里“基于SV”指平台仅仅使用SystemVerilog语言搭建。
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM1.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;一个基于uvm的简单验证平台&#34;&gt;一个基于UVM的简单验证平台&lt;/h3&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM2.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;基于uvm验证平台原则&#34;&gt;基于UVM验证平台原则&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;类： UVM中几乎所有的东西都是用类(class)来实现的，所以，搭建uvm平台第一条原则，所有的组件都用类来完成。&lt;/li&gt;
+&lt;li&gt;基于UVM类： 当要实现一个功能时，首先应该想到的是从UVM的某个类派生出一个新的类来实现期望功能，所以，搭建uvm平台第二条原则，所有的组件应该派生自uvm类。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;uvm中两大最重要基类&#34;&gt;UVM中两大最重要基类&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;uvm_object： 它是UVM最基本的类，几乎所有的类都派生自uvm_object，它的拓展性是最好的，当然能力也是最差的。它主要构成了环境的属性（例如配置）和数据传输。&lt;/li&gt;
+&lt;li&gt;uvm_component： 它派生自uvm_object ，却拥有自己独有的强大特性，它有两大独有特点，一是通过new形成树形结构，二是自动执行phase。它主要构成了环境的层次。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;uvm中常用类的继承关系&#34;&gt;UVM中常用类的继承关系&lt;/h3&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM3.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;什么是uvm-factory&#34;&gt;什么是UVM Factory&lt;/h3&gt;
+
+&lt;p&gt;所谓Factory就是工厂，是通过一个字符串（类名）创建一个此字符串所代表的的类的一个实例，并且能够自动调用其phase执行的机制，也就相当于加工工厂。理解上可能比较抽象，我们举例来说明。&lt;/p&gt;
+
+&lt;p&gt;如下图，一个汽车工厂好比我们的验证平台，支持宝马和奔驰两条生产线，两位老板只需下令生产奔驰还是宝马，工厂按照生产线自动加工，最终产出汽车，这里指令（奔驰/宝马）就是上述中的字符串，生产线就是调用其phase执行的机制，整个验证平台也就相当于工厂，这就是UVM Factory。
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM4.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;我们的工厂可以支持生产哪些“汽车”，是由验证平台决定的，如果向验证平台输入不支持的指令，比如指定工厂生产“永久自行车”，会被视为错误指令。
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM5.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;如果就想生产“永久自行车”，我们需要添加永久自行车生产线:
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM6.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;然后我们就可以向工厂输入指令，生产“永久自行车”了。
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM7.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;总结&lt;/strong&gt; ：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;run_test()语句会通过传入的字符串，创建一个类名为输入字符串的类的实例，并且会自动调用此类的phase，但是前提是你已经注册了这个类。&lt;/li&gt;
+&lt;li&gt;对于uvm_component类，注册是通过uvm_component_utils宏来进行的。所有派生自uvm_component以及其派生类都应使用uvm_component_utils来注册&lt;/li&gt;
+&lt;li&gt;对于uvm_object类，注册是通过uvm_object_utils宏来进行的。所有派生自uvm_object以及其派生类(除uvm_component外)都应使用uvm_object_utils来注册&lt;/li&gt;
+&lt;li&gt;由上述例子可以看出：run_test()是启动整个验证平台的UVM库函数。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;uvm验证平台启动执行流程&#34;&gt;UVM验证平台启动执行流程&lt;/h3&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;200&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM8.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;搭建uvm验证平台&#34;&gt;搭建UVM验证平台&lt;/h2&gt;
+
+&lt;h3 id=&#34;uvm验证平台基本组成&#34;&gt;UVM验证平台基本组成&lt;/h3&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM9.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;一个只有driver的测试平台&#34;&gt;一个只有driver的测试平台&lt;/h3&gt;
+
+&lt;h4 id=&#34;driver代码示例&#34;&gt;driver代码示例：&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;uvm_driver&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;     &lt;span class=&#34;c1&#34;&gt;//继承uvm库中的uvm_driver类
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;       &lt;span class=&#34;no&#34;&gt;`uvm_component_utils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//将my_driver类注册到factory
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+       &lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;c1&#34;&gt;//声明driver的interface, interface my_if的定义这里不再介绍
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+       &lt;span class=&#34;n&#34;&gt;extern&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+       &lt;span class=&#34;n&#34;&gt;extern&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;task&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;main_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endclass&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//将顶层实例化的interface指针传递给driver的insterface
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+                &lt;span class=&#34;no&#34;&gt;`uvm_fatal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;must&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;be&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!!!&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endfunction&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;task&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;main_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+       &lt;span class=&#34;c1&#34;&gt;//略去
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;endtask&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;top-tb代码示例&#34;&gt;top_tb代码示例：&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tob_tb&lt;/span&gt;
+       &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rstn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//声明top_tb的interface，在dut实例化时可直接使用
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;       &lt;span class=&#34;n&#34;&gt;dut&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_dut&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+                          &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rst_n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rst_n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+                          &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rxd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;input_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//dut实例化
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;       &lt;span class=&#34;k&#34;&gt;initial&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;begin&lt;/span&gt;
+             &lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_test_top&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//与driver的interface建立连接，将top_tb.input_if与my_driver.vif连接起来
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;run_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//实例化my_driver类，实例的名字是uvm_test_top，并执行类my_driver中的main_phase任务
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意: uvm_test_top是run_test产生的my_driver类的实例化对象名字，run_test(“my_driver”)可以简单的看成:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;uvm_test_top&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;；&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;uvm_test_top&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;main_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这里，任何被run_test()实例化的类的对象的名字都会被UVM平台默认成uvm_test_top，这个被实例化的类也就是整个uvm平台的顶层，而且只允许有一个顶层，即一个验证平台只调用一个run_test()。&lt;/p&gt;
+
+&lt;h4 id=&#34;top-tb顶层与uvm树形结构的交互&#34;&gt;top_tb顶层与uvm树形结构的交互：&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;uvm_config_db&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//将顶层实例化的interface指针传递给driver的insterface
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+                &lt;span class=&#34;no&#34;&gt;`uvm_fatal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;must&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;be&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!!!&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endfunction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;top_tb顶层与uvm树形结构的交互为什么要用这种看起来很怪的uvm_config_db方式获得top_tb的interface，不能直接调用得到吗？ 按道理来讲，是可以的，uvm本来就是基于sv的函数库，其底层肯定也是有sv去实现的，既然uvm将其封装为uvm_config_db，建议统一使用此方法，使用uvm提供的函数也是最好的避免出错的办法。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;top_tb顶层与uvm树形结构：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM10.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;如果将top_tb中的第3点去掉，请回答以下问题：
+
+&lt;ul&gt;
+&lt;li&gt;top_tb如何获取dut内部信号？答：通过top_tb.my_dut.xxx可以获取。&lt;/li&gt;
+&lt;li&gt;top_tb如何获取右侧树形结构的内部信息？答：通过top_tb.uvm_test_top.xxx是不可行的，因为run_test实例化了一个脱离了top_tb层次结构的实例对象，建立了一个新的层次，所以不能通过top_tb.uvm_test_top.xxx直接访问。所以针对这种情况，UVM引入了config_db的机制，也就是前面分别在top_tb和my_driver类中build_phase提到的:&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_test_top&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样我们通过uvm_config_db将top_tb顶层与uvm树形结构打通。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;top_tb与树形结构中driver的交互流：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM11.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+注意：top_tb与树形结构之间的交互用虚线，是因为my_driver.interface.output_xxx不是直接给top_tb.interface.input_xxx传值，而是在采用了config_db机制后，类似于两边在操作同一个指针地址，即改变my_driver.interface.output_xxx的值，就等于直接改变了top_tb.interface.input_xxx中变量的值。另外：uvm_config_db将top_tb顶层与uvm树形结构打通，我们可以将top_tb与树形结构任意组件进行交互，而不仅限于driver和monitor。
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM12.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;树形结构构造&#34;&gt;树形结构构造&lt;/h3&gt;
+
+&lt;p&gt;目前，一个只含有driver驱动的UVM验证平台已经形成，那么接下来要考虑树形结构的构造，即添加新部件并使其层次化。&lt;/p&gt;
+
+&lt;h4 id=&#34;driver-monitor-agent和env&#34;&gt;driver、monitor、agent和env：&lt;/h4&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM13.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+注意：此时树形结构的顶层变成了my_env, 所以在top_tb中run_test(“my_driver”)应改成run_test(“my_env”)，之前讲过,run_test(“my_driver”)实例化之后对象的名字是uvm_test_top, 那么run_test(“my_env”)实例化之后顶层对象的名字是什么？答案是仍然为uvm_test_top。树形结构发生了层次改变，此时top_tb怎么和my_driver交互？如下top_tb代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tob_tb&lt;/span&gt;
+       &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rstn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//声明top_tb的interface，在dut实例化时可直接使用
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;       &lt;span class=&#34;n&#34;&gt;dut&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_dut&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+                          &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rst_n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rst_n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+                          &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rxd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;input_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//dut实例化
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;       &lt;span class=&#34;k&#34;&gt;initial&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;begin&lt;/span&gt;
+             &lt;span class=&#34;c1&#34;&gt;// uvm_config_db# (virtual my_if)::set(null, “uvm_test_top”, “vif”, input_if)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_test_top&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;drv&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//与driver的interface建立连接，将top_tb.input_if与my_driver.vif连接起来
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;             &lt;span class=&#34;c1&#34;&gt;// run_test(“my_driver”)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;run_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_env&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//实例化my_env类，实例的名字是uvm_test_top，并执行类my_env中的phase
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;加入checker&#34;&gt;加入checker：&lt;/h4&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM14.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+注意：这里的checker是将reference model和scoreboard统一看成一个整体。reference model和scoreboard的定义和其他component的方式一样，这里不再赘述。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;树形结构通信通道&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM15.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;加入sequencer&#34;&gt;加入sequencer：&lt;/h4&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM16.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+这里sequencer是一个固定组件，sequencer主要将激励承接给driver，my_transaction是一个数据包，也就是测试激励，这里还要有一个sequence概念，sequence里存放一组trans，提供给sequencer，可见sequencer属于component类，sequence和trans属于object类。关于sequencer、sequence和trans，还有这样一个比喻，trans好比子弹，sequence好比弹夹，而sequencer是枪。&lt;/p&gt;
+
+&lt;h4 id=&#34;加入transaction&#34;&gt;加入transaction：&lt;/h4&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM17.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;transaction使用`uvm_object_utils注册。&lt;/li&gt;
+&lt;li&gt;transaction可以看成是数据包，把数据打包传输，便于交互。&lt;/li&gt;
+&lt;li&gt;在组件之间(driver,checker,monitor等)的信息传递都是基于transaction。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;加入transaction后driver的变化：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;uvm_driver&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;#(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_transaction&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//uvm_driver是参数化类，参数类型为my_transaction
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;       &lt;span class=&#34;no&#34;&gt;`uvm_component_utils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+       &lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+       &lt;span class=&#34;err&#34;&gt;……&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endclass&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;task&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_driver&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;main_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+     &lt;span class=&#34;err&#34;&gt;将：&lt;/span&gt;
+          &lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+     &lt;span class=&#34;err&#34;&gt;改成：&lt;/span&gt;
+          &lt;span class=&#34;n&#34;&gt;req&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//等价于my_transaction tr; tr = new(“tr”);
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;          &lt;span class=&#34;n&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;c1&#34;&gt;//等价于tr.data = 8’b1;
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;          &lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;req&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//等价于vif.data &amp;lt;= tr.data;
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;endtask&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;req是父类uvm_driver中变量，类型是传递给uvm_driver的参数，这里传递的参数是my_transaction，所以父类uvm_driver中的req类型就是my_transaction。&lt;/li&gt;
+&lt;li&gt;my_driver继承了uvm_driver类，所以可以直接使用uvm_driver中的req，而不需要在my_driver中声明定义req。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;加入sequence&#34;&gt;加入sequence：&lt;/h4&gt;
+
+&lt;p&gt;前面所示代码中激励都是在driver产生的，正常情况driver只是传递激励，而不是产生激励，所以要将激励产生从driver中移除，从外界获得激励，那driver的激励应该从哪里产生呢？这就是sequencer要做的事情，也就是说sequencer要提供req(这里为my_transaction)给my_driver。那么sequencer的transaction从哪里来？
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM18.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;`uvm_do(my_trans)实现了以下操作:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;创建一个my_transaction的实例my_trans&lt;/li&gt;
+&lt;li&gt;将其随机化&lt;/li&gt;
+&lt;li&gt;最终将其传送给my_sequencer(此宏不能做到自动连接my_sequencer并将my_trans直接传送给my_sequencer)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;sequence工作机制：
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM19.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;对于1， my_sequencer等待。&lt;/li&gt;
+&lt;li&gt;对于2， my_sequencer等待。&lt;/li&gt;
+&lt;li&gt;对于3， my_sequencer将my_sequence中的my_trans发送给my_driver。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;待解决问题：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;my_driver如何向my_sequencer发送transaction接收请求？&lt;/li&gt;
+&lt;li&gt;my_sequence如何向my_sequencer发送transaction？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;my-driver向my-sequencer发送申请&#34;&gt;my_driver向my_sequencer发送申请：&lt;/h4&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM20.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+注意：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;seq_item_port是uvm_driver中的成员变量。&lt;/li&gt;
+&lt;li&gt;seq_item_export是uvm_sequencer中的成员变量。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;my-sequence向my-sequencer发送my-transaction&#34;&gt;my_sequence向my_sequencer发送my_transaction：&lt;/h4&gt;
+
+&lt;p&gt;前面提到， my_sequence中的`uvm_do不能做到自动连接my_sequencer并将my_trans直接传送给my_sequencer，所以需要额外启动连接，以在当前顶层my_env中手工启动为例(一般都是在顶层启动)：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;task&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;main_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;seq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;seq&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seq&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;seq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sqr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//将此sequence产生的transaction发送给agent中的my_sequencer.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;endtask&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM21.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;my-sequence自动启动机制default-sequence&#34;&gt;my_sequence自动启动机制default_sequence：&lt;/h4&gt;
+
+&lt;p&gt;前面my_sequence是在my_env中手工启动的，default_sequence可以自动启动my_sequence 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;task&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;main_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;err&#34;&gt;将下列代码去掉：&lt;/span&gt;
+         &lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;seq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+         &lt;span class=&#34;n&#34;&gt;seq&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seq&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+         &lt;span class=&#34;n&#34;&gt;seq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sqr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//将此sequence产生的transaction发送给agent中的my_sequencer.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;endtask&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+     &lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_object_wrapper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sqr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;main_pahse&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_sequence&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endtask&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;树形结构通信通道变化&#34;&gt;树形结构通信通道变化：&lt;/h4&gt;
+
+&lt;p&gt;原始：
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM22.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+现在：
+&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM23.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+注意：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;蓝色部分: top_tb与树形结构的连接&lt;/li&gt;
+&lt;li&gt;紫色部分: transaction在my_checker和monitor之间的通信通道&lt;/li&gt;
+&lt;li&gt;红色部分: transaction在my_sequence,my_sequencer和my_driver之间的通信通道&lt;/li&gt;
+&lt;li&gt;单箭头虚线部分: 实际没有显性直接通道，均通过上一层connect实现&lt;/li&gt;
+&lt;li&gt;双箭头虚线部分: 代表同一模块&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;截至目前的树形结构&#34;&gt;截至目前的树形结构：&lt;/h4&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM24.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;
+目前，树形结构除my_case0顶层之后，均已构建完成，并全部打通。后面要添加my_case0。&lt;/p&gt;
+
+&lt;h4 id=&#34;加入base-test&#34;&gt;加入base_test：&lt;/h4&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM25.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;base_test.sv代码:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;base_test&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;uvm_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+      &lt;span class=&#34;no&#34;&gt;`uvm_component_utils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;base_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;my_env&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//my_env会在base_test中实例化,base_test取代env称为顶层。
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endclass&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;base_test&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;//my_sequence需要在顶层启动连接,因为base_test变成顶层,所以从my_env中移到此处
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_object_wrapper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sqr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;main_pahse&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                                                                     &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_sequence&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                                                                     &lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endfunction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;top_tb.sv代码:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tob_tb&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;initial&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;begin&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;//       将：
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//            uvm_config_db# (virtual my_if)::set(null, “uvm_test_top.agt.drv”, “vif”, input_if)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//            run_test(“my_env”);
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//       改成：
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_test_top&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;drv&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vif&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;input_if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;run_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;base_test&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;加入my-case0&#34;&gt;加入my_case0：&lt;/h4&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/UVM26.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_case0&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;base_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+       &lt;span class=&#34;no&#34;&gt;`uvm_component_utils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_case0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endclass&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_case0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+   &lt;span class=&#34;c1&#34;&gt;//以下重载了base_test中的my_sequence的启动，注意bast_test中的仍保留。
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_object_wrapper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sqr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;main_pahse&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_sequence&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endfunction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;my_case0是继承了base_test的一个子类, 是base_test的一个更具体的实现，也就从这里形成了testcase的概念，这个testcase的名字就是my_case0。&lt;/li&gt;
+&lt;li&gt;my_case0没有改变激励产生的方式，即仍然是启动了my_sequence，并利用my_sequence中`uvm_do(my_trans)来全随机产生激励。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;加入my-case0-sequence&#34;&gt;加入my_case0_sequence：&lt;/h4&gt;
+
+&lt;p&gt;my_case0_sequence.sv代码:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_case0_sequence&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_transaction&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+     &lt;span class=&#34;no&#34;&gt;`uvm_object_utils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;my_transaction&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_trans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+      &lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;task&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+          &lt;span class=&#34;no&#34;&gt;`uvm_do_with&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_trans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_trans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hff&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;})&lt;/span&gt;
+      &lt;span class=&#34;k&#34;&gt;endtask&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endclass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;my_case0_sequence是继承了my_sequence的一个子类, 是my_sequence的一个更具体的实现。&lt;/li&gt;
+&lt;li&gt;my_case0_sequence重载了my_sequence 的body()任务，并利用`uvm_do_with()来产生次数值都为8’hff的数据激励。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;my_case0.sv代码:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_case0&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;base_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+       &lt;span class=&#34;no&#34;&gt;`uvm_component_utils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_case0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endclass&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_case0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+   &lt;span class=&#34;c1&#34;&gt;//以下将my_case0_sequence中的trans传递给了sequencer，最终传给driver。
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_object_wrapper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sqr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;main_pahse&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_sequence&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_case0_sequence&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endfunction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;这里制造了一个用例my_case0，此用例每个transaction产生8’hff数据的激励。&lt;/li&gt;
+&lt;li&gt;这里my_case0成为新的顶层。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;将顶层base-test替换成my-case0&#34;&gt;将顶层base_test替换成my_case0：&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tob_tb&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;initial&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;begin&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;//       将：
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//            run_test(“base_test”);
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//       改成：
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;run_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_case0&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;run_test()作用：它会通过传入的字符串，创建一个类名为输入字符串的类的实例，并且会自动调用此类的main_phase。
+run_test给我们最初的印象是构建了一个脱离了top_tb的树形结构，并完成了所有内部需要交互部件的打通。现在我们需要改变一下思维，这里当调用run_test(“my_case0”)时，不再考虑树形结构，我们用一个更抽象的概念来描述run_test的行为，那就是：它执行一个用例my_case0，而且只有一个用例在执行，这条用例每个transaction都在产生数值为8’hff的数据。我们平时所谓的跑各种各样的用例，这些用例其实都是基于这个去构造和命名的(在uvm平台中)。&lt;/p&gt;
+
+&lt;h3 id=&#34;用例构造&#34;&gt;用例构造&lt;/h3&gt;
+
+&lt;p&gt;构造另一个用例my_case1:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;my_case1_sequence.sv:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_case1_sequence&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_transaction&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+     &lt;span class=&#34;no&#34;&gt;`uvm_object_utils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_sequence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;my_transaction&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_trans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+      &lt;span class=&#34;n&#34;&gt;virtual&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;task&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+          &lt;span class=&#34;no&#34;&gt;`uvm_do_with&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_trans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_trans&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;haa&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;})&lt;/span&gt;
+      &lt;span class=&#34;k&#34;&gt;endtask&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endclass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意：my_case1_sequence重载了my_sequence 的body()任务，并利用`uvm_do_with()来产生次数值都为8’haa的数据激励。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;my_case1.sv:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_case1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;base_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+       &lt;span class=&#34;no&#34;&gt;`uvm_component_utils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_case1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;endclass&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my_case1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build_phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_phase&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+   &lt;span class=&#34;c1&#34;&gt;//以下将my_case1_sequence中的trans传递给了sequencer，最终传给driver。
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;n&#34;&gt;uvm_config_db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uvm_object_wrapper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sqr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;main_pahse&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                                                                &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_sequence&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                                                                &lt;span class=&#34;n&#34;&gt;my_case1_sequence&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endfunction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意：这里制造了一个用例my_case1，此用例每个transaction产生8’haa数据的激励； 如果想要运行这个用例，那my_case1将成为新的顶层，也就是将top_tb中的 &lt;strong&gt;run_test(“my_case0”)&lt;/strong&gt; 改为 &lt;strong&gt;run_test(“my_case1”)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;uvm测试用例启动&#34;&gt;UVM测试用例启动&lt;/h3&gt;
+
+&lt;p&gt;由于run_test在top_tb中只能调用一次，所以每次跑新的用例，都要手动改一下run_test()的参数名字，试想我们有10000个用例，如果都手动改，那肯定是不可行的，所以UVM提供了另外一种启动方式。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;top_tb&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;initial&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;begin&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;run_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;此方式将run_test()中的参数去掉，并利用UVM_TESTNAME从命令行中获得测试用例的名字，例如:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;&amp;lt;sim command&amp;gt; … + UVM_TESTNAME=my_case0
+&amp;lt;sim command&amp;gt; … + UVM_TESTNAME=my_case1&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注：sim command为eda厂商提供的仿真命令，后面会有介绍。&lt;/p&gt;
+
+&lt;h2 id=&#34;uvm验证平台启动和封装&#34;&gt;UVM验证平台启动和封装&lt;/h2&gt;
+
+&lt;h3 id=&#34;非基于uvm验证平台仿真启动&#34;&gt;非基于uvm验证平台仿真启动&lt;/h3&gt;
+
+&lt;p&gt;注意：.f文件里分别是验证环境和设计的代码文件列表。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sysnopsys:
+
+&lt;ul&gt;
+&lt;li&gt;编译：vcs –f env_vcs.f –f design_vcs.f –verdi_compile_option –coverage_compile_option ……&lt;/li&gt;
+&lt;li&gt;仿真：./simv –verdi_rrun_option –coverage_run_option ……&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;cadence:
+
+&lt;ul&gt;
+&lt;li&gt;编译：irun –f env_irun.f –f design_irun.f –verdi_compile_option –coverage_compile_option ……&lt;/li&gt;
+&lt;li&gt;仿真：irun –verdi_irun_option –coverage_run_option ……&lt;/li&gt;
+&lt;li&gt;编译：xrun –f env_xrun.f –f design_xrun.f –verdi_compile_option –coverage_compile_option ……&lt;/li&gt;
+&lt;li&gt;仿真：xrun –verdi_run_option –coverage_run_option ……&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;基于uvm验证平台仿真启动&#34;&gt;基于uvm验证平台仿真启动&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sysnopsys:
+
+&lt;ul&gt;
+&lt;li&gt;编译：vcs –f env_vcs.vf –f design_vcs.f –verdi_compile_option –coverage_compile_option –ntb_opts uvm ……&lt;/li&gt;
+&lt;li&gt;仿真：./simv –verdi_rrun_option –coverage_run_option +UVM_TESTNAME=my_case0 ……&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;cadence:
+
+&lt;ul&gt;
+&lt;li&gt;编译：irun –f env_irun.vf –f design_irun.f –verdi_compile_option –coverage_compile_option –uvm +UVM_TESTNAME=my_case0 ……&lt;/li&gt;
+&lt;li&gt;仿真：irun –verdi_irun_option –coverage_run_option +UVM_TESTNAME=my_case0 ……&lt;/li&gt;
+&lt;li&gt;编译：xrun –f env_xrun.vf –f design_xrun.f –verdi_compile_option –coverage_compile_option –uvm +UVM_TESTNAME=my_case0 ……&lt;/li&gt;
+&lt;li&gt;仿真：xrun –verdi_run_option –coverage_run_option +UVM_TESTNAME=my_case0 ……&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注意：需要在env.vf中包含uvm的库文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;$UVM_HOME/src/uvm_macros.svh
+$UVM_HOME/src/uvm.sv
+$UVM_HOME/src/uvm_pkg.sv
+$UVM_HOME/dpi/uvm_dpi.sv
++incdir+$UVM_HOME/src&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;对于vcs和irun/xrun还有一点需要注意：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;对于vcs,使用uvm库时需: include ”uvm_pkg.sv”&lt;/li&gt;
+&lt;li&gt;对于irun/xrun,使用uvm库时需: import uvm_pkg::*&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;基于uvm验证平台的封装&#34;&gt;基于uvm验证平台的封装&lt;/h3&gt;
+
+&lt;h4 id=&#34;为什么要对验证平台封装&#34;&gt;为什么要对验证平台封装？&lt;/h4&gt;
+
+&lt;p&gt;到目前为止，我们就可以利用基于uvm的验证平台跑用例进行验证了。经历了漫长痛苦的uvm环境开发之后，当我们在自己独立开发的uvm验证环境中，成功跑完第一条用例my_case0仿真用例的那一刻，发现之前的付出都是值得的，当我们利用自己制造的人生第一条用例my_case0找到人生第一个设计bug的那一刻，发现人生已经达到了巅峰。但是作为一名优秀的验证工程师，我们的成就不仅如此，因为我们的目的不仅仅是找到bug，而是快速高效的找到bug。&lt;/p&gt;
+
+&lt;p&gt;当基本验证平台可以使用，进入初期验证阶段之后，你会发现，可能会有不同的验证工程师在此验证环境中开发新的功能，可能会有不同的设计人员在此验证环境中复现bug，也可能包括自己在内的工程师需要在此验证环境中运行各种各样配置的用例，如果每次都需要自己去改变底层仿真命令或者告诉其它人怎么改底层仿真命令，你会发现整个人都不好了。而且如果所有人都自己去手动改环境底层代码跑用例，到最后整个验证平台也会变得非常杂乱，非常不好维护，并且就实际情况，大部分设计工程师是不接受每次跑用例都需要自己手动改代码的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;为了解决这些问题，使环境变得更加整洁高效，维护简单，便于扩展，我们将环境进行封装。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;封装的原则是什么&#34;&gt;封装的原则是什么？&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;对自己白盒： 所有的底层运行验证环境的编译选项和仿真选项都要自己维护开发；所有的新的开发需求需要自己来指定结构和位置；所有的内部uvm固有部件骨架都要自己维护开发。&lt;/li&gt;
+&lt;li&gt;对验证工程师灰盒： 熟悉整体环境运行原理；熟悉各编译和仿真选项含义，验证过程中知道如何增减选项；在指定的结构和位置开发新的功能；不需要对此uvm环境固有骨架进行全面掌握。&lt;/li&gt;
+&lt;li&gt;对设计工程师黑盒： 不需要知道任何环境内部构造，只需要按照验证工程师提供的脚本命令运行用例即可。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;如何对验证平台封装&#34;&gt;如何对验证平台封装？&lt;/h4&gt;
+
+&lt;p&gt;环境采用脚本封装，一般只需提供命令和接口选项，脚本可以使用Makefile，python，perl，shell等。以python脚本封装为例。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;仿真命令： ./runtest.py testname=my_case0 seed=123456 –dump –cov –funcov –debug –covmerge simpath=./sim
+
+&lt;ul&gt;
+&lt;li&gt;seed        : 提供仿真种子号&lt;/li&gt;
+&lt;li&gt;-dump       : 产生波形&lt;/li&gt;
+&lt;li&gt;-cov        : 打开code coverage收集&lt;/li&gt;
+&lt;li&gt;-funcov     : 打开function coverage收集&lt;/li&gt;
+&lt;li&gt;-debug      : 仿真结束后自动弹出波形&lt;/li&gt;
+&lt;li&gt;-covermerge : 仿真结束后自动merge coverage数据&lt;/li&gt;
+&lt;li&gt;simpath     : 指定生成log的文件夹&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;上述接口选项最终都会呈现在底层编译和仿真命令中，使用者可以根据需求打开关闭提供选项，而不必需要知道环境内部的细节。如果有新的需求，开发完毕后提供对应的接口即可，大大减少了使用的低效性。&lt;/p&gt;
+
+&lt;h4 id=&#34;封装脚本的构造&#34;&gt;封装脚本的构造&lt;/h4&gt;
+
+&lt;p&gt;封装脚本一般分为两部分： 单条用例运行脚本 和 回归用例运行脚本。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;单条用例运行脚本：
+
+&lt;ul&gt;
+&lt;li&gt;用户提供testcase list。&lt;/li&gt;
+&lt;li&gt;根据脚本提供用例名字在tclist找到对应的用例属性，包括uvm中提供的test名字(如my_case0),用例所在路径等。&lt;/li&gt;
+&lt;li&gt;在sim下创建以用例名字+种子号命名的文件夹，后面生成的这条用例的所有相关信息，包括log和波形等都会存放在这里。&lt;/li&gt;
+&lt;li&gt;根据脚本提供选项进行整个环境的编译工作。&lt;/li&gt;
+&lt;li&gt;根据脚本提供选项进行整个环境的仿真运行。&lt;/li&gt;
+&lt;li&gt;用例运行结束后，根据仿真产生的log，得到并打印出pass还是fail的信息，方便使用者进行快速判断。&lt;/li&gt;
+&lt;li&gt;使用者到对应的sim/testcase_name_seed/下查找所有相关log和波形，进行相关debug。&lt;/li&gt;
+&lt;li&gt;添加其它功能，例如coverage的merge，但是一般只有回归才会涉及到merge的工作，所以这部分功能可以放到回归脚本中。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;回归用例运行脚本：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;识别脚本提供的tclist中提供的回归组名，将所有指定组的用例进行仿真回归。&lt;/li&gt;
+&lt;li&gt;内部调用单条用例脚本，并将回归用例脚本输入参数全部转换为单条用例脚本输入参数需要的格式。&lt;/li&gt;
+&lt;li&gt;监测每条用例的仿真结果，并累加计数得到总的tc数，总pass tc数，总fail tc数，和总的没有产生仿真log的tc数。&lt;/li&gt;
+&lt;li&gt;判断是否所有用例运行结束，并打印最终回归报告。&lt;/li&gt;
+&lt;li&gt;如果打开coverge merge选项，会自动merge所有回归用例的coverage数据。&lt;/li&gt;
+&lt;li&gt;回归结束后在sim下生成pass，fail的tclist, 同样每条用例的结果也都存在以用例名字+种子号命名的文件夹中，可以实时查看。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;跑单条用例命令： ./rt.py testname=my_case0 seed=123456 –dump –cov –funcov –debug –covmerge simpath=./sim&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;跑回归用例命令： ./rt.py –regress –rgr_group=my_regression -seedrand –dump –cov –funcov –covmerge simpath=./sim&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;uvm验证平台的优化&#34;&gt;UVM验证平台的优化&lt;/h2&gt;
+
+&lt;h3 id=&#34;优化目的是什么&#34;&gt;优化目的是什么？&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;针对平台结构优化： 使环境结构简洁，清晰明了，重用性好，移植性强，拓展性高，让新的用户和开发者能够快速切入。&lt;/li&gt;
+&lt;li&gt;针对平台性能优化： 使环境运行速度提升，提高验证效率&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;如何优化验证平台&#34;&gt;如何优化验证平台？&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;针对平台结构优化：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;加入readme，包含运行方法等必要信息。&lt;/li&gt;
+&lt;li&gt;加入setup脚本，所需一切配置均在此一键完成。&lt;/li&gt;
+&lt;li&gt;环境中用到所有路径宏均统一管理，方便更改和移植。&lt;/li&gt;
+&lt;li&gt;运行中间文件统一管理，方便查看和删除。&lt;/li&gt;
+&lt;li&gt;目录结构清晰，文件夹命名需简洁易懂。&lt;/li&gt;
+&lt;li&gt;删除开发过程中的无效代码和目录。&lt;/li&gt;
+&lt;li&gt;加入必要信息打印开关，方便读取层次结构。&lt;/li&gt;
+&lt;li&gt;撰写平台使用手册，进行环境详细说明。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;针对平台性能优化：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;检查变量定义，减少存储空间占用，如需要超大容量数组时，需使用关联数组。&lt;/li&gt;
+&lt;li&gt;检查哪些任务可以并行执行，改成fork_join*多线程机制。&lt;/li&gt;
+&lt;li&gt;检查是否transaction约束过多，如过多速度会明显变慢。&lt;/li&gt;
+&lt;li&gt;检查dut文件列表，去掉不必要文件，减少环境编译时间。&lt;/li&gt;
+&lt;li&gt;检查是否有不必要打印，关掉以减少log输出占用的时间。&lt;/li&gt;
+&lt;li&gt;检查model，checker，driver中是否有过多占用时间的函数，重新考虑是否有高效替代方案。&lt;/li&gt;
+&lt;li&gt;利用第三方工具得到平台各个部件的时间占用分布，分析占用最多的几个部件原因，寻找解决方案。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;uvm验证平台目录组织结构&#34;&gt;uvm验证平台目录组织结构&lt;/h3&gt;
+
+&lt;p&gt;verif/my_ut/env下文件：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;agents/ ： agent文件目录，内含一个或多个agent，agent包含driver、sequencer、monitor组件，agent从行为上可以理解为与dut交互的模块或组织。&lt;/li&gt;
+&lt;li&gt;coverage/ ： coverage文件目录，内含一个或多个模块的覆盖率文件，也就是covergroup。&lt;/li&gt;
+&lt;li&gt;checker/ ： checker文件目录，也就是reference model和scoreboard文件，不过有时候会将两者融合成一个checker文件。&lt;/li&gt;
+&lt;li&gt;include/ ： include文件，一些环境路径的宏定义以及其他include文件存放在这里。&lt;/li&gt;
+&lt;li&gt;interface/ ： interface文件目录，内含一个或多个接口文件。&lt;/li&gt;
+&lt;li&gt;script/ ： script文件目录，一些验证平台封装的脚本文件存放在这里。&lt;/li&gt;
+&lt;li&gt;setup/ ： setup文件目录，一些平台初始化文件存放在这里，如环境变量的初始化和工具的配置。&lt;/li&gt;
+&lt;li&gt;tests/ ： tests文件目录，所有测试用例存放在这里。&lt;/li&gt;
+&lt;li&gt;readme ： readme文件，对环境和使用的说明文件。&lt;/li&gt;
+&lt;li&gt;tb.v ： tb文件，顶层testbench。&lt;/li&gt;
+&lt;li&gt;env_vcs.f ： env_vcs.f文件，针对vcs工具的filelist文件，包含设计和验证平台的文件列表。&lt;/li&gt;
+&lt;li&gt;env_xrun.f ： env_xrun.f文件，针对xrun工具的filelist文件，包含设计和验证平台的文件列表。&lt;/li&gt;
+&lt;li&gt;tc.list ： tc.list文件，包含所有测试用例信息，可为测试用例设定分组，方便回归测试。&lt;/li&gt;
+&lt;li&gt;my_env_cfg.sv ： my_env_cfg.sv文件，整个验证平台的配置文件，内含静态变量，可传递至平台任意模块，完成验证平台的配置。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>emacs插件之自动插入英文翻译</title>
@@ -1864,6 +2909,11 @@ verdi system.v ... alu.v -v lib.v -y ../special -ssv -ssy&lt;/code&gt;&lt;/pre&g
 &lt;td&gt;0.3&lt;/td&gt;
 &lt;td&gt;添加verilog X-Prop插件VRQ介绍&lt;/td&gt;
 &lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;0.4&lt;/td&gt;
+&lt;td&gt;添加综合后代码以及仿真结果&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -2233,7 +3283,7 @@ verdi system.v ... alu.v -v lib.v -y ../special -ssv -ssy&lt;/code&gt;&lt;/pre&g
 
 &lt;h2 id=&#34;我的测试程序&#34;&gt;我的测试程序&lt;/h2&gt;
 
-&lt;h3 id=&#34;测试代码&#34;&gt;测试代码&lt;/h3&gt;
+&lt;h3 id=&#34;rtl测试代码&#34;&gt;RTL测试代码&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2286,62 +3336,200 @@ verdi system.v ... alu.v -v lib.v -y ../special -ssv -ssy&lt;/code&gt;&lt;/pre&g
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;80
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;81
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;82
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;83
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;84
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;85
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;86
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;87
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;88
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;89
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;90
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;91
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;92
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;93
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;94
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;95
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;96
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;top_module&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-    &lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;xprop_tb&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 
-    &lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;cm&#34;&gt;/*AUTOWIRE*/&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Beginning of automatic wires (for undeclared instantiated-module outputs)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;                    &lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                   &lt;span class=&#34;c1&#34;&gt;// From i_xprop of xprop.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;                    &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                   &lt;span class=&#34;c1&#34;&gt;// From i_xprop of xprop.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;                    &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                   &lt;span class=&#34;c1&#34;&gt;// From i_xprop of xprop.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;                    &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;                   &lt;span class=&#34;c1&#34;&gt;// From i_xprop of xprop.v
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// End of automatics
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
 
-    &lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;initial&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;begin&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;//Two options have the same value
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bz&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 
-    &lt;span class=&#34;k&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-                &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
-                &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;//Two options have the different value
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bz&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 
-    &lt;span class=&#34;k&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;endcase&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;//test clk
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//set out4 pre_value is 0
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//set out4 pre_value is 0
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 
-    &lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;initial&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;begin&lt;/span&gt;
-        &lt;span class=&#34;c1&#34;&gt;//Two options have the same value
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bz&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-
-        &lt;span class=&#34;c1&#34;&gt;//Two options have the different value
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bz&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-
-        &lt;span class=&#34;c1&#34;&gt;//test clk
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-
-        &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$finish&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;$finish&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
     &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;xprop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i_xprop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;
+              &lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;                     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;                     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;                     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;                     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;                      &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;                      &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;                       &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;                       &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;                       &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;                       &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+              &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;                      &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
 
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// xprop_tb
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;xprop&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Outputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Inputs
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;   &lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;reg&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mb&#34;&gt;&amp;#39;b1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;endcase&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// xprop
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;综合后代码&#34;&gt;综合后代码&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;c1&#34;&gt;/////////////////////////////////////////////////////////////
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// Created by: Synopsys DC Expert(TM) in wire load mode
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// Version   : O-2018.06-SP5
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// Date      : Mon Feb 24 10:57:14 2020
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;/////////////////////////////////////////////////////////////
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;xprop&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;kt&#34;&gt;wire&lt;/span&gt;   &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+  &lt;span class=&#34;n&#34;&gt;DFFX1_LVT&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;out4_reg&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;D&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CLK&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Q&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;QN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;MUX21X1_LVT&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;U7&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;AND2X1_LVT&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;U8&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;OR2X1_LVT&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;U9&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h3 id=&#34;测试结果&#34;&gt;测试结果&lt;/h3&gt;
+&lt;h3 id=&#34;rtl测试结果&#34;&gt;RTL测试结果&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2360,10 +3548,16 @@ verdi system.v ... alu.v -v lib.v -y ../special -ssv -ssy&lt;/code&gt;&lt;/pre&g
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;Running Icarus Verilog simulator...
-VCD info: dumping is suppressed.
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;Chronologic VCS simulator copyright 1991-2018
+Contains Synopsys proprietary information.
+Compiler version O-2018.09-SP2_Full64; Runtime version O-2018.09-SP2_Full64;  Feb 24 17:03 2020
 x00
 x00
 000
@@ -2372,19 +3566,74 @@ x00
 111
 111
 111
+0
 1
+0
 1
-Hint: Total mismatched samples is 0 out of 0 samples
-
-Simulation finished at 138 ps
-Mismatches: 0 in 0 samples&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+$finish called from file &amp;#34;xprop_tb.v&amp;#34;, line 39.
+$finish at simulation time                  180
+           V C S   S i m u l a t i o n   R e p o r t
+Time: 180
+CPU Time:      0.370 seconds;       Data structure size:   0.0Mb
+Mon Feb 24 17:03:52 2020&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;门级仿真结果&#34;&gt;门级仿真结果&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;Chronologic VCS simulator copyright 1991-2018
+Contains Synopsys proprietary information.
+Compiler version O-2018.09-SP2_Full64; Runtime version O-2018.09-SP2_Full64;  Feb 24 17:02 2020
+xxx
+xxx
+000
+111
+xxx
+xxx
+111
+111
+0
+x
+0
+x
+$finish called from file &amp;#34;xprop_tb.v&amp;#34;, line 39.
+$finish at simulation time               180000
+           V C S   S i m u l a t i o n   R e p o r t
+Time: 180000 ps
+CPU Time:      0.360 seconds;       Data structure size:   0.0Mb
+Mon Feb 24 17:02:33 2020&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
 
-&lt;p&gt;使用工具为ncverilog。&lt;/p&gt;
-
-&lt;p&gt;通过测试结果可见，模拟仿真中if-else和case语句确实存在逻辑乐观处理的问题，而关于三目运算符的结果更符合真实的电路行为。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用工具为VCS。&lt;/li&gt;
+&lt;li&gt;对于综合，无论是三目运算符还是if-else还是case，综合工具都将其转为相同的选择逻辑电路，也就是无论选择RTL何种表达方式，都不影响门级仿真悲观处理的问题，与综合工具也无关，而是仿真工具解析电路的悲观处理导致的。&lt;/li&gt;
+&lt;li&gt;对于模拟仿真，RTL仿真中if-else和case语句确实存在逻辑乐观处理的问题，而关于三目运算符的结果更符合真实的电路行为； 门级仿真是悲观处理的。&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;我们的需求是什么&#34;&gt;我们的需求是什么？&lt;/h2&gt;
 
@@ -8695,446 +9944,6 @@ chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; print_declare.sh&lt;/code&g
 &lt;span class=&#34;c1&#34;&gt;# }}}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Formal验证技术总结</title>
-      <link>https://wenhui.space/post/digital_verifer/formal_verify/</link>
-      <pubDate>Wed, 08 Jan 2020 20:50:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/digital_verifer/formal_verify/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍本人使用形式化验证的一些经验总结。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;验证工具： Cadence 公司的 JasperGold&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;写在前头&#34;&gt;写在前头&lt;/h2&gt;
-
-&lt;p&gt;形式化验证是一种验证方法，而实际应用方向主要有两方面，一是综合前后的等价性检查，二是RTL设计的功能验证。本文所讲的是形式化验证方法在RTL设计功能验证方向的应用。&lt;/p&gt;
-
-&lt;h2 id=&#34;模拟仿真验证和形式化验证&#34;&gt;模拟仿真验证和形式化验证&lt;/h2&gt;
-
-&lt;p&gt;芯片验证的两个方法，一个是模拟仿真验证，另一个是形式化验证。&lt;/p&gt;
-
-&lt;p&gt;模拟仿真验证是目前最主流的验证方法，主要是以 UVM 为代表的验证方法学，特点就是搭建模拟仿真环境，通过随机化激励进行模拟仿真，reference module作为验证标准进行结果数据的check，以收集覆盖率的方式作为验证进度的参考，当代码覆盖率和功能点覆盖率达到100%时，做到sign off。由此看来，模拟仿真的优点就是基本不受设计复杂度的影响，而缺点就是验证环境搭建较复杂，测试激励手动添加，收集覆盖率周期较长，尤其是Corner场景的覆盖很让人头疼。&lt;/p&gt;
-
-&lt;p&gt;形式化验证从某层面看似乎让人省心。形式化方法简单的说就是用数学工具进行定义、开发和验证，它会对设计电路进行数学建模，然后穷举系统运行过程中电路所能达到的所有状态，以断言的形式完成设计电路的功能验证和规则检查（也可以通过reference model的形式，做结果数据的check）。听起来似乎完美，但是这要依赖强大的运算系统和EDA工具，否则会发生状态爆炸问题，长时间无法得出证明结果。以目前的形式化验证工具来看，还不足以吃进一个超复杂的设计电路，来完全替代模拟仿真的验证方法。&lt;/p&gt;
-
-&lt;p&gt;所以，在芯片的验证中，随机仿真验证和形式化验证往往是相辅相成，一个更适合系统级功能验证，一个更适合模块级的功能验证。除此之外，还有FPGA的硬件加速测试，这三种验证手段可谓是三位一体，相辅相成。&lt;/p&gt;
-
-&lt;h2 id=&#34;什么是形式化验证&#34;&gt;什么是形式化验证&lt;/h2&gt;
-
-&lt;p&gt;个人认为，形式化验证是基于严格的数学算法和模型，根据设计功能提取电路规则的属性描述，并穷举系统运行过程中电路所能达到的所有状态，自动进行数学分析和证明。验证过程如下：
-&lt;center&gt;
-&lt;img width=&#34;500&#34; src=&#34;https://wenhui.space/image/digital-verifer/formal.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt; 形式化验证示例 &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;以上的形式化验证过程就像做一道数学证明题，用数学方法证明该命题是否成立，而这个证明过程是验证工具完成的，工程师不需要关心。目前，业界主流的形式化验证工具主要有Cadence的 JasperGold 和 Synposys 的 VC-Formal。&lt;/p&gt;
-
-&lt;h2 id=&#34;sva语法&#34;&gt;SVA语法&lt;/h2&gt;
-
-&lt;p&gt;形式化验证使用的是 SVA (SystemVerilog Assertion) 语言，属于SV的一部分，下面对SVA基本的使用语法进行说明。&lt;/p&gt;
-
-&lt;p&gt;SVA的语法主要分为三种使用类型：assume、assert、cover。使用的基本规则为，先描述一个property，然后为property设置为assume或assert或cover，命名时习惯性将property名字添加“P_”前缀，将assume名字添加“ASM_”前缀，将assert名字添加“AST_”前缀，将cover名字添加“COV_”前缀。注：建议所有属性带时钟沿触发条件。&lt;/p&gt;
-
-&lt;h3 id=&#34;assume&#34;&gt;Assume&lt;/h3&gt;
-
-&lt;p&gt;Assum即假定之意，也就是假定某些信号符合某规则特性，最常见的就是给输入信号添加约束，下面对assume语法的使用做简单介绍：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;标准写法&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;endproperty&lt;/span&gt;
-&lt;span class=&#34;nl&#34;&gt;ASM_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;assume&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;精简写法&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;nl&#34;&gt;ASM_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;assume&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;assert&#34;&gt;Assert&lt;/h3&gt;
-
-&lt;p&gt;Assert即断言之意，也就是认为某些信号符合某规则特性，出现反例则报错，最常见的就是给关键信号依据特定属性设置断言，来进行特性检查，下面对assert语法的使用做简单介绍：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;标准写法&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;endproperty&lt;/span&gt;
-&lt;span class=&#34;nl&#34;&gt;AST_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;精简写法&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;nl&#34;&gt;AST_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;cover&#34;&gt;Cover&lt;/h3&gt;
-
-&lt;p&gt;cover即覆盖之意，也就是对某些信号的某规则特性进行采样，反馈是否覆盖该特性，下面对cover语法的使用做简单介绍：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;标准写法&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-          &lt;span class=&#34;p&#34;&gt;@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;endproperty&lt;/span&gt;
-&lt;span class=&#34;nl&#34;&gt;COV_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cover&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;P_property_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;精简写法&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;nl&#34;&gt;COV_property_name:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cov&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;property&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(@(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;posedge&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;jaspergold的使用&#34;&gt;JasperGold的使用&lt;/h2&gt;
-
-&lt;p&gt;本文使用的形式化验证工具是JasperGold，其常用的使用方法有两种类型，一个是SEC，对模块功能做对等性检查，另一个是FPV，基于规则特性的功能验证。这里只对FPV进行介绍，也就是 Formal Property Verifycation。&lt;/p&gt;
-
-&lt;h3 id=&#34;验证环境&#34;&gt;验证环境&lt;/h3&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;600&#34; src=&#34;https://wenhui.space/image/digital-verifer/JasperGold-env.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;FPV_project_name：整个FPV的验证环境。&lt;/li&gt;
-&lt;li&gt;Report：用来存放验证报告。&lt;/li&gt;
-&lt;li&gt;Source：整个FPV环境的文件源。&lt;/li&gt;
-&lt;li&gt;FPV_project_name.tcl：FPV验证环境的启动脚本。&lt;/li&gt;
-&lt;li&gt;Design：文件源中的设计文件，也可以不存放设计文件，而由design.flist指定设计文件。&lt;/li&gt;
-&lt;li&gt;Property：文件源中的验证文件（SVA），提取设计文件的属性。&lt;/li&gt;
-&lt;li&gt;Refer_model：此文件为参考模型文件，根据需求创建，非必须。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;启动脚本&#34;&gt;启动脚本&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;设置环境变量&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; FPV_ROOT    &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;FPV_project_path
-&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; DES_PATH    &lt;span class=&#34;nv&#34;&gt;$FPV_ROOT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;source&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;design
-&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; PRO_PATH    &lt;span class=&#34;nv&#34;&gt;$FPV_ROOT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;source&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;property&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;设置功能点收集选项&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;set_capture_elaborated_design&lt;/span&gt; on
-&lt;span class=&#34;nv&#34;&gt;check_cov&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;init &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;exclude_bind_hierarchies &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;enable_prove_based_proff_core&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;编译设计文件 (注：v2k指IEEE 2001 标准)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;analyze&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;v2k &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;f &lt;span class=&#34;nv&#34;&gt;$DES_PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;design.flist&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;编译验证文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;analyze&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;sva &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;f &lt;span class=&#34;nv&#34;&gt;$PRO_PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;property.flist&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;设置顶层&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;elaborate&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;top top_module_name&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;设置时钟和复位 (注：如果复位是低位有效，则为 ~reset_signal_name)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;clock&lt;/span&gt; clock_signal_name
-&lt;span class=&#34;nv&#34;&gt;reset&lt;/span&gt; reset_signal_name&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;设置最长验证时间&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;set_prove_time_limit&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;24&lt;/span&gt;h&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;启动验证&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;prove&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;all&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;生成报告&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;report&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;summary &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;force &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;result &lt;span class=&#34;err&#34;&gt;–&lt;/span&gt;file &lt;span class=&#34;err&#34;&gt;“&lt;/span&gt;report&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;FPV_project_name.rpt&lt;span class=&#34;err&#34;&gt;”&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;其他&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;以上只说明了基本设置，其他详细设置可参考手册或JasperGold的Tcl Command Help。&lt;/p&gt;
-
-&lt;h3 id=&#34;启动命令&#34;&gt;启动命令&lt;/h3&gt;
-
-&lt;p&gt;启动验证环境很简单，验证流程主要依靠启动脚本的设置，而验证环境的启动只需在终端敲下启动命令即可，如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;jg FPV_project_name.tcl&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;关于形式化验证的个人总结&#34;&gt;关于形式化验证的个人总结&lt;/h2&gt;
-
-&lt;h3 id=&#34;什么样的设计适合用形式化验证&#34;&gt;什么样的设计适合用形式化验证&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;规模较小：设计模块太大对应验证复杂度较高，导致验证时间过长。&lt;/li&gt;
-&lt;li&gt;功能独立：功能独立的设计更容易提取规则属性。&lt;/li&gt;
-&lt;li&gt;时序较短：时序较长会导致验证复杂度增大，验证时间指数增长。&lt;/li&gt;
-&lt;li&gt;接口清晰：接口清晰便于对输入添加约束，避免非法输入影响验证结果。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;形式化验证中影响验证时间的因素&#34;&gt;形式化验证中影响验证时间的因素&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;设计复杂度：设计复杂度高，肯定验证时间长，这也是为什么形式化验证不适合大的设计模块。&lt;/li&gt;
-&lt;li&gt;时序较长：形式化验证是所有状态的全遍历，时序每增加一个cycle，所增加的遍历空间并非只是此cycle，还包括此cycle与前几个cycle的状态组合，换句话说，时序增加，遍历空间指数增长。&lt;/li&gt;
-&lt;li&gt;设计中存在时序控制：比如advance_pipeline对pipeline进行使能控制的此类信号，以及所有影响流水线不能依次脉动流出的控制信号。&lt;/li&gt;
-&lt;li&gt;设置的特性检查：设置的特性检查越多越复杂，对应的验证时间越长，如果以reference model形式进行数据结果check，所需验证时间最长，但是若只提取设计特性又很难做到signoff标准。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;形式化验证不能验证完全是不是就无任何作用&#34;&gt;形式化验证不能验证完全是不是就无任何作用&lt;/h3&gt;
-
-&lt;p&gt;当然不是！&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;形式化验证工具进行了语法检查，可确定设计逻辑语法无误。&lt;/li&gt;
-&lt;li&gt;形式化验证工具进行了部分特性检查，可确定已验证的特性符合设计规则。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;换句话说，形式化验证不能验证完全，虽然不能做到sign off，但是可以将前期暴露的语法bug和设计bug进行修复，最终验证不完全，无非表明我不一定是对的，但也没找到我的错误，说明设计代码已经达到一定成熟度。&lt;/p&gt;
-
-&lt;h3 id=&#34;形式化验证工具的其他用途&#34;&gt;形式化验证工具的其他用途&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;完成设计不加任何特性检查，直接启动形式化验证工具，可将暴露的语法错误和警告修复，提高设计代码质量。当然反过来，验证人员可先启动形式化验证工具，将暴露的语法错误和警告提单给设计人员。&lt;/li&gt;
-&lt;li&gt;设计时对于显而易见的规则特性边设计边记录，待设计交付验证人员时，可先启动形式化验证，修复前期bug，提高设计代码质量。&lt;/li&gt;
-&lt;li&gt;模拟仿真中收集覆盖率，对于较难收到的功能点可利用形式化验证工具去设置cover，辅助模拟仿真创建定向用例。这里提两点，一是需要确定输入的场景作为输入约束，二是无需保证形式化验证的正确性，因为只是提取测试激励，正确性由模拟仿真保证。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;复杂设计如何完成验证&#34;&gt;复杂设计如何完成验证&lt;/h3&gt;
-
-&lt;p&gt;复杂的设计验证时间通常较长，不容易完成验证，但是，依据设计的特性，也是可以通过一些手段完成验证，下面以典型设计举例。&lt;/p&gt;
-
-&lt;h4 id=&#34;设计结构&#34;&gt;设计结构&lt;/h4&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/digital-verifer/formal2.png&#34;&gt;
-&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
-&lt;/center&gt;
-此设计有以下几个特点：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;设计中stage1输入，stage5输出，中间需寄存四拍。&lt;/li&gt;
-&lt;li&gt;设计中分为流水线控制信号、数据信号和控制信号、组合逻辑三个部分，流水线控制信号带复位。&lt;/li&gt;
-&lt;li&gt;设计中为单向流动，无bypass，也就是流水线前后独立，无反馈。&lt;/li&gt;
-&lt;li&gt;设计中带advance_pipeline，流水线的使能控制，也就是流水线可能锁定n拍后重新启动。&lt;/li&gt;
-&lt;li&gt;设计中模块支持多功能类型，也就是op_type。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&#34;复杂设计的形式化验证方案&#34;&gt;复杂设计的形式化验证方案&lt;/h4&gt;
-
-&lt;ol&gt;
-&lt;li&gt;依据功能类型，分类验证，各个功能依次验证。&lt;/li&gt;
-&lt;li&gt;约束输入，单功能验证仅提交一次，运算数据由工具遍历，验证功能正确性。&lt;/li&gt;
-&lt;li&gt;除流水线控制寄存器之外，其他寄存器不加复位，工具会将其初始值进行遍历，可等效为激励输入前模块的任何状态。&lt;/li&gt;
-&lt;li&gt;凡是影响流水线行进的输入，全部添加约束，可以约束停顿周期为1~2，或直接约束为无停顿，暂不验证流水线控制功能。&lt;/li&gt;
-&lt;li&gt;数据check语法采用单比特，如“data_a[3:0]==data_b[3:0]”改为“data_a[3]==data_b[3], data_a[2]==data_b[2] ……”，前者遍历空间是2^4，后者遍历空间2*4。&lt;/li&gt;
-&lt;li&gt;对流水线控制功能的验证，在其算法功能验证的正确基础上，将数据进行适当约束，减少遍历空间，主要验证流水线控制功能。&lt;/li&gt;
-&lt;li&gt;其他手段有待后续补充。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&#34;其他减少状态空间的方法&#34;&gt;其他减少状态空间的方法&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;抽象模型：如fifo或其他存储类模块，设计本身主要验证的是控制逻辑，从而可以减少存储单元来针对设计完成抽象模型，可以有效的减少状态空间。&lt;/li&gt;
-&lt;li&gt;黑盒化：将不关心的设计设置黑盒，可以有效的减少状态空间&lt;/li&gt;
-&lt;li&gt;断点：待了解&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;以上方法还未在实际工程中使用过，待后续总结&lt;/p&gt;
-
-&lt;h2 id=&#34;推荐书籍&#34;&gt;推荐书籍&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;《SystemVerilog Assertion应用指南》&lt;/li&gt;
-&lt;li&gt;《Formal Verification: An ESSential Toolkit For Modern VLSI Design》&lt;/li&gt;
-&lt;li&gt;以及其他EDA厂商提供的使用手册和培训资料（如哪位读者有此类资料，感谢分享）&lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
