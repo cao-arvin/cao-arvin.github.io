@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>一个实用的UVM框架</title>
+      <link>https://wenhui.space/post/digital_verifer/a_practical_framework_uvm/</link>
+      <pubDate>Mon, 24 Feb 2020 13:44:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/a_practical_framework_uvm/</guid>
+      <description>本文 主要介绍一个实用的UVM框架，该UVM框架为自己实际工作中的经验总结。 版本 说明 0.1 初版发布 文件结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</description>
+    </item>
+    
+    <item>
       <title>Verdi使用总结</title>
       <link>https://wenhui.space/post/digital_verifer/verdi_userguide/</link>
       <pubDate>Sat, 22 Feb 2020 14:45:00 +0800</pubDate>
@@ -45,6 +54,15 @@
       
       <guid>https://wenhui.space/post/digital_verifer/formal_verify/</guid>
       <description>本文 主要介绍本人使用形式化验证的一些经验总结。 版本 说明 0.1 初版发布 背景 验证工具： Cadence 公司的 JasperGold 写在前头 形式化验证是一种验证方法，而实际应用方向主要</description>
+    </item>
+    
+    <item>
+      <title>初识芯片验证（一）</title>
+      <link>https://wenhui.space/post/digital_verifer/beginner_verification_one/</link>
+      <pubDate>Sun, 05 Jan 2020 20:49:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/beginner_verification_one/</guid>
+      <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第一篇，主要介绍芯片开发概述、验证任务和目标、验证</description>
     </item>
     
     <item>

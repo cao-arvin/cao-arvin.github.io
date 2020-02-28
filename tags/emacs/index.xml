@@ -6,10 +6,19 @@
     <description>Recent content in emacs on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 22 Feb 2020 21:41:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Feb 2020 22:28:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>emacs插件之多媒体应用</title>
+      <link>https://wenhui.space/post/about_emacs/emacs_epa_package/</link>
+      <pubDate>Wed, 26 Feb 2020 22:28:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/about_emacs/emacs_epa_package/</guid>
+      <description>本文 主要介绍一款emacs插件&amp;ndash;epa(emacs-application-framework)。 版本 说明 0.1 初版发布 参考 gith</description>
+    </item>
     
     <item>
       <title>emacs插件之自动插入英文翻译</title>
