@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SystemVerilog on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/tags/systemverilog/</link>
+    <description>Recent content in SystemVerilog on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 08 Jan 2020 22:17:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://wenhui.space/tags/systemverilog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SystemVerilog学习（一）</title>
+      <link>https://wenhui.space/post/digital_verifer/study_systemverilog_one/</link>
+      <pubDate>Wed, 08 Jan 2020 22:17:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/study_systemverilog_one/</guid>
+      <description>本文 SystemVerilog学习系列主要介绍SystemVerilog语言的基础知识，是验证工程师必须熟练掌握的语言基础。此为第一篇，主要</description>
+    </item>
+    
+  </channel>
+</rss>
