@@ -8211,6 +8211,391 @@ c = 1&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     </item>
     
     <item>
+      <title>初识芯片验证（三）</title>
+      <link>https://wenhui.space/post/digital_verifer/beginner_verification_three/</link>
+      <pubDate>Sat, 18 Jan 2020 19:49:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/beginner_verification_three/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
+
+&lt;p&gt;初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第三篇，主要介绍计划的概述、计划的内容、计划的实现、计划的进程评估。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;初版发布&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;路科验证。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;概览&#34;&gt;概览&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;img width=&#34;800&#34; src=&#34;https://wenhui.space/image/digital-verifer/Beginner-Verification-Three.png&#34;&gt;
+&lt;div style=&#34;color:darkorange;&#34;&gt; &lt;b&gt;  &lt;/b&gt;  &lt;/div&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;计划的概述&#34;&gt;计划的概述&lt;/h2&gt;
+
+&lt;h3 id=&#34;验证计划是什么&#34;&gt;验证计划是什么&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;选择验证方法和构建验证环境前，首先需要知道验证计划是什么。&lt;/li&gt;
+&lt;li&gt;展开设计之前，设计人员和验证人员都会阅读功能描述文档，以理解设计的各项功能为前提，考虑如何实现和验证它。&lt;/li&gt;
+&lt;li&gt;实际项目执行中，功能描述文档和设计会不断更新，验证工程师要做好相应验证计划的更新。&lt;/li&gt;
+&lt;li&gt;验证计划在设计启动之前就已经诞生，且伴随着整个设计周期。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;计划的步骤&#34;&gt;计划的步骤&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;创建验证计划&lt;/li&gt;
+&lt;li&gt;选择验证方法&lt;/li&gt;
+&lt;li&gt;人力资源调配&lt;/li&gt;
+&lt;li&gt;构建验证平台和环境组件&lt;/li&gt;
+&lt;li&gt;开发测试用例&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;收集的材料&#34;&gt;收集的材料&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;结构功能描述&lt;/li&gt;
+&lt;li&gt;设计的各种操作使用模式&lt;/li&gt;
+&lt;li&gt;正常输入和错误输入场景下设计的行为&lt;/li&gt;
+&lt;li&gt;设计的接口&lt;/li&gt;
+&lt;li&gt;边界场景下设计的行为&lt;/li&gt;
+&lt;li&gt;设计在实际使用中的场景描述&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;计划的好处&#34;&gt;计划的好处&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使得设计和验证人员对于功能描述文档的理解保持一致。&lt;/li&gt;
+&lt;li&gt;将自然语言描述的功能通过可测试性语言来描述。&lt;/li&gt;
+&lt;li&gt;可以更合理的评估出工作量、人力安排和进度节点。&lt;/li&gt;
+&lt;li&gt;为验证人员提供明确的验证目标、任务和进度安排。&lt;/li&gt;
+&lt;li&gt;为功能文档提供反馈，修改文档中不明确、有歧义的描述。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;影响计划的因素&#34;&gt;影响计划的因素&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;验证计划是团队协作的产物，需要系统、设计、验证共同参与制定。&lt;/li&gt;
+&lt;li&gt;需要更新成百上千的测试用例，并且与计划中待测试功能一一对应。&lt;/li&gt;
+&lt;li&gt;考虑选中不同的验证方法，针对不同的设计，需要考虑使用模拟仿真、形式化验证或硬件加速验证，如需使用多平台验证，还要考虑如何实现技术平台上的兼容和跨越式复用。&lt;/li&gt;
+&lt;li&gt;添加新的设计需求，需要更新验证计划。新添加功能，要考虑额外的人力和进度影响。&lt;/li&gt;
+&lt;li&gt;多组参与验证，需要团队合作协调，以及测试用例的复用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;计划的内容&#34;&gt;计划的内容&lt;/h2&gt;
+
+&lt;h3 id=&#34;概述&#34;&gt;概述&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;技术角度考虑，需要有验证的功能点、验证的层次、测试用例、验证方法和覆盖率要求。&lt;/li&gt;
+&lt;li&gt;项目角度考虑，需要有使用工具、人力安排、进度安排和风险评估。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;验证的功能&#34;&gt;验证的功能&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;基本功能： 时钟、电源、复位、寄存器访问和基本功能特性，这些可以仿真模块级完成验证。&lt;/li&gt;
+&lt;li&gt;交互功能： 需要与其他模块交互的特性，需要在更高层次的子系统级或系统级完成验证。&lt;/li&gt;
+&lt;li&gt;次要功能： 这些会在项目后期完成验证，比如性能验证，即便没有达到要求不会存在致命影响，所以风险较低，放在最好验证。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;验证的层次&#34;&gt;验证的层次&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;结合验证功能点，需要清楚该功能点在何层次验证。&lt;/li&gt;
+&lt;li&gt;从验证效率和激励自由度来看，应该尽量在较低层次验证更多功能点。&lt;/li&gt;
+&lt;li&gt;在较高层次，应该侧重于系统集成测试。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;验证的方法&#34;&gt;验证的方法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;方法： 模拟仿真 or 形式化验证 or 硬件加速验证。&lt;/li&gt;
+&lt;li&gt;透明度： 黑盒 or 白盒 or 灰盒（建议尽可能使用黑盒）。&lt;/li&gt;
+&lt;li&gt;激励： 定向激励 or 随机约束激励。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;验证的用例&#34;&gt;验证的用例&lt;/h3&gt;
+
+&lt;p&gt;选择：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;更随机的测试方法，尽可能遍历可能的状态空间？&lt;/li&gt;
+&lt;li&gt;适中的随机约束，倾向于更贴近实际场景的随机激励？&lt;/li&gt;
+&lt;li&gt;采用定向测试，针对一些边界情况可以更有效的收集覆盖率？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;建议：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;验证初期，应该只发送一些基本的测试数据，约束范围尽可能窄。&lt;/li&gt;
+&lt;li&gt;验证中期，由于设计基本稳定，可扩大约束范围，以此更有效地完成验证。&lt;/li&gt;
+&lt;li&gt;验证后期，有一些边界场景通过随机约束激励无法有效收集覆盖率，需要采用定向用例。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;覆盖率的要求&#34;&gt;覆盖率的要求&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;覆盖率是衡量激励生成质量和功能点验证的量化指标。&lt;/li&gt;
+&lt;li&gt;无论何种验证，都需要采用覆盖率来确保给出了足够的激励，遍历设计可能的状态。&lt;/li&gt;
+&lt;li&gt;覆盖率可以分为代码覆盖率、功能覆盖率和断言覆盖率。&lt;/li&gt;
+&lt;li&gt;除了给出合法的激励之外，也要考虑给出错误的激励，来测试设计的稳定性和纠错能力。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;工具的选择&#34;&gt;工具的选择&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;模拟仿真工具&lt;/li&gt;
+&lt;li&gt;形式化验证工具&lt;/li&gt;
+&lt;li&gt;验证IP（如商用接口协议的验证IP）&lt;/li&gt;
+&lt;li&gt;断言IP&lt;/li&gt;
+&lt;li&gt;调试工具&lt;/li&gt;
+&lt;li&gt;硬件加速器&lt;/li&gt;
+&lt;li&gt;高层次验证语言&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;人力安排&#34;&gt;人力安排&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;不同验证方法对人力安排存在明显差别，除了考虑个人的实际经验外，也需要考虑他们是否熟悉该模块，也就是验证人员的知识和技术背景越贴合，越倾向于选择这样的验证人员，对于人力成本和验证风险都可以降低。&lt;/li&gt;
+&lt;li&gt;推荐一个完整的项目周期内，固定人员跟踪同一个设计模块，从搭建环境、用例编写、覆盖率收集，以及模块级、子系统级、系统级整个验证过程，这样安排项目风险较低，人员成长较快。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;进度安排&#34;&gt;进度安排&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;首先进度往往是从上向下传达的，项目有时间进度，验证工程师会有一个大概的进度要求。&lt;/li&gt;
+&lt;li&gt;工作量 = 人力 X 时间。&lt;/li&gt;
+&lt;li&gt;验证经理经常会处于人力不够充分或时间不够宽松的境地。时间往往是固定的，做好任务的安排和动态的人力分配，实现高效的资源配置是关键。&lt;/li&gt;
+&lt;li&gt;时间进度可修改吗？ 这无法回答，如果能更细致的量化和评估时间和人力安排，delay的风险会较低。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;风险评估&#34;&gt;风险评估&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;芯片结构不稳定： 添加或修改新的功能，会增加新的工作量。&lt;/li&gt;
+&lt;li&gt;工具的不稳定： 新的版本工具会增加新的特性，有可能提高工作效率，但是也会存在适应期。新的工具面临环境流程更新、技术培训等问题。&lt;/li&gt;
+&lt;li&gt;人力不稳定： 处于各种原因导致验证人员被临时替换，会加大验证风险。&lt;/li&gt;
+&lt;li&gt;设计交付时间的不稳定： 设计的delay会直接影响到验证。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;计划的实现&#34;&gt;计划的实现&lt;/h2&gt;
+
+&lt;h3 id=&#34;概述-1&#34;&gt;概述&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一份细致的验证计划也包括项目动向、更新内容和工程进度，清晰的计划更能保证时间和人力的平衡。&lt;/li&gt;
+&lt;li&gt;验证计划需要时常保持更新，给出合理的安排，从计划到实践的反馈，再到计划修改。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;如何制定验证计划&#34;&gt;如何制定验证计划&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;邀请相关人员参加会议（设计、验证、系统等）。&lt;/li&gt;
+&lt;li&gt;开会讨论验证方案。&lt;/li&gt;
+&lt;li&gt;确定测试场景。&lt;/li&gt;
+&lt;li&gt;创建验证环境。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;邀请人员&#34;&gt;邀请人员&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项目角色&lt;/th&gt;
+&lt;th&gt;关注角度&lt;/th&gt;
+&lt;th&gt;期望验证点&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;设计人员&lt;/td&gt;
+&lt;td&gt;设计实践&lt;/td&gt;
+&lt;td&gt;设计内部时序、状态机、内部逻辑&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;硅后测试人员&lt;/td&gt;
+&lt;td&gt;硅后模块功能测试&lt;/td&gt;
+&lt;td&gt;硅前测试用例移植到硅后测试&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;软件人员&lt;/td&gt;
+&lt;td&gt;模块在系统中的应用&lt;/td&gt;
+&lt;td&gt;软件正确的配置序列被测试&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;系统人员&lt;/td&gt;
+&lt;td&gt;结构和性能要求&lt;/td&gt;
+&lt;td&gt;设计框架符合要求，性能和效能可以早期测试&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;验证经理&lt;/td&gt;
+&lt;td&gt;进度、人力和优先级&lt;/td&gt;
+&lt;td&gt;给出合理安排，定期更新计划&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;验证人员&lt;/td&gt;
+&lt;td&gt;验证方法和环境&lt;/td&gt;
+&lt;td&gt;综合衡量其他角色意见，给出统一的解决方案&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&#34;开会讨论&#34;&gt;开会讨论&lt;/h3&gt;
+
+&lt;p&gt;作为会议组织者，首先明确开会的目的和议题：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;报告验证计划的内容。&lt;/li&gt;
+&lt;li&gt;确定验证功能点。&lt;/li&gt;
+&lt;li&gt;确定验证方案和时间节点。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一份验证计划的模板应该包含以下内容：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;设计功能简要概述。&lt;/li&gt;
+&lt;li&gt;硬件实现结构框图。&lt;/li&gt;
+&lt;li&gt;待验证的功能点。&lt;/li&gt;
+&lt;li&gt;验证环境结构。&lt;/li&gt;
+&lt;li&gt;测试用例构成。&lt;/li&gt;
+&lt;li&gt;编译脚本和回归测试。&lt;/li&gt;
+&lt;li&gt;覆盖率分析。&lt;/li&gt;
+&lt;li&gt;风险评估。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;确定测试场景&#34;&gt;确定测试场景&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;电源开关。&lt;/li&gt;
+&lt;li&gt;复位测试。&lt;/li&gt;
+&lt;li&gt;常规场景。&lt;/li&gt;
+&lt;li&gt;边缘场景。&lt;/li&gt;
+&lt;li&gt;错误场景。&lt;/li&gt;
+&lt;li&gt;性能压力测试。&lt;/li&gt;
+&lt;li&gt;选择验证层次和验证方法。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;创建验证环境&#34;&gt;创建验证环境&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;搭建环境时，创建不同的接口信号和激励组件来构建场景。&lt;/li&gt;
+&lt;li&gt;是否可复用验证资源，以及可用的vip。&lt;/li&gt;
+&lt;li&gt;监测组件收集数据，确定采样时序和事件，捕捉有效信号。&lt;/li&gt;
+&lt;li&gt;构建参考模型，模拟DUT行为。&lt;/li&gt;
+&lt;li&gt;检查组件比对结果，输出报告信息。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;计划的进程评估&#34;&gt;计划的进程评估&lt;/h2&gt;
+
+&lt;h3 id=&#34;概述-2&#34;&gt;概述&lt;/h3&gt;
+
+&lt;p&gt;在验证过程中，需要不断更新验证进度，从各项参数综合评估验证的完备性。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;回归测试pass率。&lt;/li&gt;
+&lt;li&gt;代码覆盖率。&lt;/li&gt;
+&lt;li&gt;断言覆盖率。&lt;/li&gt;
+&lt;li&gt;功能覆盖率。&lt;/li&gt;
+&lt;li&gt;bug曲线。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;回归测试pass率&#34;&gt;回归测试pass率&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一份回归测试表是将测试设计的所有功能点的用例合并为一个测试集。&lt;/li&gt;
+&lt;li&gt;回归测试表的主要功能是用来在设计bug修复后或性能优化后，对原有的功能仍然正常工作。&lt;/li&gt;
+&lt;li&gt;回归测试不仅确保设计修改不影响原功能，且不影响其他模块功能。&lt;/li&gt;
+&lt;li&gt;回归测试表中的测试用例，需要确保可以重现激励场景。这对于定向测试是容易实现的，而对于随机约束测试，需要保存随机种子，方便重新激励场景。&lt;/li&gt;
+&lt;li&gt;如果某层次回归测试通过，可向上迁移到新的验证层次，展开新的回归测试流程。&lt;/li&gt;
+&lt;li&gt;同一测试用例，不同层次回归测试，仿真时间不同，不同层次、不同设计规模、不同测试场景的复杂度，都会影响测试用例的仿真时间。&lt;/li&gt;
+&lt;li&gt;回归测试中，对验证平台的优化（运算资源和运算效率）的要求更高。&lt;/li&gt;
+&lt;li&gt;如果系统级回归测试发现bug，修复后需要从模块级回归测试开始运行。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;代码覆盖率&#34;&gt;代码覆盖率&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;代码覆盖率是用来衡量RTL代码是否被充分运行的指标。&lt;/li&gt;
+&lt;li&gt;通过工具开关可自动收集代码覆盖率，且可以将不同批次回归测试覆盖率数据进行合并。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;常见的代码覆盖率：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;语句覆盖率（statement coverage）： 程序每一行代码是否执行过。&lt;/li&gt;
+&lt;li&gt;条件覆盖率（condition coverage）： 每个判断条件中的操作数被覆盖情况。&lt;/li&gt;
+&lt;li&gt;分支覆盖率（branch coverage）： if、case、while、repeat、for等语句中各个分支执行情况。&lt;/li&gt;
+&lt;li&gt;事件覆盖率（event coverage）： 记录某个事件被触发的次数。&lt;/li&gt;
+&lt;li&gt;翻转覆盖率（toggle coverage）： 记录信号数据位 0-&amp;gt;1 和 1-&amp;gt;0 的翻转情况。&lt;/li&gt;
+&lt;li&gt;状态机覆盖率（FSM coverage）： 记录状态机各个状态的进入次数，以及状态间的跳转情况。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;断言覆盖率&#34;&gt;断言覆盖率&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;断言描述本身也支持覆盖率收集，一般可以模拟仿真、形式化验证和硬件加速仿真都可以收集。&lt;/li&gt;
+&lt;li&gt;仿真过程中，会判断断言的先决条件是否被触发，以及判断语句的成功与否。&lt;/li&gt;
+&lt;li&gt;依据仿真工具不同，断言覆盖率可分为动态仿真和形式化验证两种。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;功能覆盖率&#34;&gt;功能覆盖率&lt;/h3&gt;
+
+&lt;p&gt;功能覆盖率衡量设计的各项功能是否实现。功能覆盖率会关注设计的输入、输出和内部状态。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;输入： 检测数据端的输入和命令组合类型，以及控制信号与数据传输的组合情况。&lt;/li&gt;
+&lt;li&gt;输出： 检测是否有完整的数据传输类别，以及各种场景的反馈时序。&lt;/li&gt;
+&lt;li&gt;设计内部： 检查信号与功能点相对应，通过单一覆盖、交叉覆盖或时序覆盖来检查功能场景是否被触发。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注意： 功能覆盖率的收集需要依据功能点文档编写covergroup，且fail用例的覆盖率数据不能合并到回归测试的覆盖率数据中。&lt;/p&gt;
+
+&lt;h3 id=&#34;bug曲线&#34;&gt;bug曲线&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;验证过程中要记录和统计bug，bug管理工具一般具有提交、修改、完成、挂起四个状态。&lt;/li&gt;
+&lt;li&gt;每周统计新增bug数量和修复bug数量，绘制bug曲线。&lt;/li&gt;
+&lt;li&gt;依据bug曲线，如果能尽早的收敛，意味着后期发现bug的数量和可能性就越小，是设计稳定性的有效指标。&lt;/li&gt;
+&lt;li&gt;注意： 如果验证后期发现一个基本功能的严重bug，意味着我们很可能在之前验证过程中遗漏了一些重要场景的测试。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>Verilog中获取随机数</title>
       <link>https://wenhui.space/post/digital_designer/random_in_verilog/</link>
       <pubDate>Fri, 17 Jan 2020 10:12:00 +0800</pubDate>
@@ -8326,98 +8711,6 @@ c = 1&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;clk_shift_period&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CLK_PERIOD&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;random_num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
     &lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk_shift_period&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>简化verilog编码的全套解决方案</title>
-      <link>https://wenhui.space/post/digital_designer/verilog_coding_three_tools/</link>
-      <pubDate>Thu, 16 Jan 2020 00:04:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/digital_designer/verilog_coding_three_tools/</guid>
-      
-        <description>
-
-&lt;h2 id=&#34;本文&#34;&gt;本文&lt;/h2&gt;
-
-&lt;p&gt;主要介绍辅助verilog编码的三款工具，简化编码工作。&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;版本&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.1&lt;/td&gt;
-&lt;td&gt;初版发布&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;三大利器&#34;&gt;三大利器&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.wenhui.space/post/about%5Femacs/verilog%5Fmode%5Fuseguide/&#34;&gt;Emacs verilog-mode 的使用&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.wenhui.space/post/about%5Flinux/ep3%5Ftool/&#34;&gt;代码预处理工具ep3的使用&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.wenhui.space/post/about%5Flinux/verilog%5Fauto%5Fdeclare/&#34;&gt;verilog中reg和wire的自动声明&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;verilog编码我们需要写什么&#34;&gt;verilog编码我们需要写什么？&lt;/h2&gt;
-
-&lt;p&gt;如下代码，我们实际要写的，也就是真正的逻辑部分，而其他部分基本全部由以上三大利器完成。注意，正常使用顺序为：先ep3进行代码预处理，再verilog-mode进行AUTO处理，最后自动声明reg和wire。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-verilog&#34; data-lang=&#34;verilog&#34;&gt;&lt;span class=&#34;k&#34;&gt;module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;demo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOARG*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt;                &lt;span class=&#34;n&#34;&gt;clk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt;                &lt;span class=&#34;n&#34;&gt;din1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;          &lt;span class=&#34;n&#34;&gt;din2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;5&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt;               &lt;span class=&#34;n&#34;&gt;dout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endfor&lt;/span&gt;
-
-&lt;span class=&#34;cm&#34;&gt;/*AUTOWIRE*/&lt;/span&gt;
-&lt;span class=&#34;cm&#34;&gt;/*AUTOREG*/&lt;/span&gt;
-&lt;span class=&#34;cm&#34;&gt;/*AUTO DECLARE*/&lt;/span&gt;
-
-&lt;span class=&#34;k&#34;&gt;assign&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sig1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;din_b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;//.........other logic
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;sub_mod&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i_sub_mod&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*AUTOINST*/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-
-&lt;span class=&#34;k&#34;&gt;endmodule&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
