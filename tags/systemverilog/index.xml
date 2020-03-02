@@ -6,10 +6,19 @@
     <description>Recent content in SystemVerilog on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 14 Jan 2020 23:25:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jan 2020 20:17:00 +0800</lastBuildDate>
     
 	<atom:link href="https://wenhui.space/tags/systemverilog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SystemVerilog学习（三）</title>
+      <link>https://wenhui.space/post/digital_verifer/study_systemverilog_three/</link>
+      <pubDate>Thu, 16 Jan 2020 20:17:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/study_systemverilog_three/</guid>
+      <description>本文 SystemVerilog学习系列主要介绍SystemVerilog语言的基础知识，是验证工程师必须熟练掌握的语言基础。此为第三篇，主要</description>
+    </item>
     
     <item>
       <title>SystemVerilog学习（二）</title>
