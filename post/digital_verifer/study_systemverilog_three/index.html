@@ -64,14 +64,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wenhui.space/post/digital_verifer/study_systemverilog_three/" />
 <meta property="article:published_time" content="2020-01-16T20:17:00+08:00" />
-<meta property="article:modified_time" content="2020-03-02T17:39:35+08:00" />
+<meta property="article:modified_time" content="2020-03-02T20:12:38+08:00" />
 <meta itemprop="name" content="SystemVerilog学习（三）">
 <meta itemprop="description" content="本文 SystemVerilog学习系列主要介绍SystemVerilog语言的基础知识，是验证工程师必须熟练掌握的语言基础。此为第三篇，主要">
 
 
 <meta itemprop="datePublished" content="2020-01-16T20:17:00&#43;08:00" />
-<meta itemprop="dateModified" content="2020-03-02T17:39:35&#43;08:00" />
-<meta itemprop="wordCount" content="8067">
+<meta itemprop="dateModified" content="2020-03-02T20:12:38&#43;08:00" />
+<meta itemprop="wordCount" content="8096">
 
 
 
@@ -344,7 +344,7 @@
             <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片验证工程师 </a>
             
           </div>
-        <span class="more-meta"> 约 8067 字 </span>
+        <span class="more-meta"> 约 8096 字 </span>
           <span class="more-meta"> 预计阅读 17 分钟 </span>
 
         
@@ -1231,6 +1231,15 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="kn">package</span> <span class="n">regs_pkg</span><span class="p">;</span>
@@ -1246,6 +1255,15 @@
     <span class="no">`include</span> <span class="s">&#34;checker.sv&#34;</span>
     <span class="no">`include</span> <span class="s">&#34;env.sv&#34;</span>
 <span class="k">endpackage</span>
+
+<span class="c1">//导入包
+</span><span class="c1"></span><span class="k">module</span> <span class="n">tb</span><span class="p">;</span>
+    <span class="n">import</span> <span class="n">regs_pkg</span><span class="o">::*</span><span class="p">;</span>
+    <span class="n">import</span> <span class="n">arb_pkg</span><span class="o">::*</span><span class="p">;</span>
+
+    <span class="n">regs_mon</span> <span class="n">mon1</span> <span class="o">=</span> <span class="n">new</span><span class="p">();</span>
+    <span class="n">arb_mon</span> <span class="n">mon2</span> <span class="o">=</span> <span class="n">new</span><span class="p">();</span>
+<span class="k">endmodule</span>
 </code></pre></td></tr></table>
 </div>
 </div>

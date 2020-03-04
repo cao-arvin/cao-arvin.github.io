@@ -48,6 +48,15 @@
     </item>
     
     <item>
+      <title>初识芯片验证（四）</title>
+      <link>https://wenhui.space/post/digital_verifer/beginner_verification_four/</link>
+      <pubDate>Sun, 19 Jan 2020 22:49:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/beginner_verification_four/</guid>
+      <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第四篇，主要介绍验证周期、验证管理三要素、验证的收</description>
+    </item>
+    
+    <item>
       <title>初识芯片验证（三）</title>
       <link>https://wenhui.space/post/digital_verifer/beginner_verification_three/</link>
       <pubDate>Sat, 18 Jan 2020 19:49:00 +0800</pubDate>

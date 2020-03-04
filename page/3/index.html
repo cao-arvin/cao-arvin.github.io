@@ -333,6 +333,42 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/digital_designer/random_in_verilog/">Verilog中获取随机数</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-01-17" class="post-time">
+        2020-01-17
+      </time>
+      <div class="post-category">
+          <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片设计工程师 </a>
+          
+        </div>
+      <span class="more-meta"> 约 328 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      本文 主要介绍一种verilog语言中获取随机数的方法。 版本 说明 0.1 初版发布 代码展示 设计代码 1 2 3 4 5 function [31:0] get_random; input signed [31:0] min_num; input signed [31:0] max_num; get_random = min_num + {$random}%(max_num-min_num+1); endfunction // get_random 验证
+    </div>
+    <div class="read-more">
+      <a href="/post/digital_designer/random_in_verilog/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/digital_verifer/study_systemverilog_three/">SystemVerilog学习（三）</a>
     </h1>
     
@@ -344,7 +380,7 @@
           <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片验证工程师 </a>
           
         </div>
-      <span class="more-meta"> 约 8067 字 </span>
+      <span class="more-meta"> 约 8096 字 </span>
       <span class="more-meta"> 预计阅读 17 分钟 </span>
       
       
@@ -647,42 +683,6 @@
     </div>
     <div class="read-more">
       <a href="/post/polular_science/rank_and_abbreviation/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/digital_verifer/formal_verify/">Formal验证技术总结</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-01-08" class="post-time">
-        2020-01-08
-      </time>
-      <div class="post-category">
-          <a href="https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/"> 芯片验证工程师 </a>
-          
-        </div>
-      <span class="more-meta"> 约 4147 字 </span>
-      <span class="more-meta"> 预计阅读 9 分钟 </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      本文 主要介绍本人使用形式化验证的一些经验总结。 版本 说明 0.1 初版发布 背景 验证工具： Cadence 公司的 JasperGold 写在前头 形式化验证是一种验证方法，而实际应用方向主要
-    </div>
-    <div class="read-more">
-      <a href="/post/digital_verifer/formal_verify/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

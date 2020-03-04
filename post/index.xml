@@ -174,21 +174,21 @@
     </item>
     
     <item>
+      <title>初识芯片验证（四）</title>
+      <link>https://wenhui.space/post/digital_verifer/beginner_verification_four/</link>
+      <pubDate>Sun, 19 Jan 2020 22:49:00 +0800</pubDate>
+      
+      <guid>https://wenhui.space/post/digital_verifer/beginner_verification_four/</guid>
+      <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第四篇，主要介绍验证周期、验证管理三要素、验证的收</description>
+    </item>
+    
+    <item>
       <title>初识芯片验证（三）</title>
       <link>https://wenhui.space/post/digital_verifer/beginner_verification_three/</link>
       <pubDate>Sat, 18 Jan 2020 19:49:00 +0800</pubDate>
       
       <guid>https://wenhui.space/post/digital_verifer/beginner_verification_three/</guid>
       <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第三篇，主要介绍计划的概述、计划的内容、计划的实现</description>
-    </item>
-    
-    <item>
-      <title>Verilog中获取随机数</title>
-      <link>https://wenhui.space/post/digital_designer/random_in_verilog/</link>
-      <pubDate>Fri, 17 Jan 2020 10:12:00 +0800</pubDate>
-      
-      <guid>https://wenhui.space/post/digital_designer/random_in_verilog/</guid>
-      <description>本文 主要介绍一种verilog语言中获取随机数的方法。 版本 说明 0.1 初版发布 代码展示 设计代码 1 2 3 4 5 function [31:0] get_random; input signed [31:0] min_num; input signed [31:0] max_num; get_random = min_num + {$random}%(max_num-min_num+1); endfunction // get_random 验证</description>
     </item>
     
   </channel>
