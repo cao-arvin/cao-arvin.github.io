@@ -3,7 +3,7 @@
   
   <url>
     <loc>https://wenhui.space/categories/</loc>
-    <lastmod>2020-03-04T13:58:57+08:00</lastmod>
+    <lastmod>2020-03-05T18:06:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,21 +24,21 @@
   
   <url>
     <loc>https://wenhui.space/post/</loc>
-    <lastmod>2020-03-04T13:58:57+08:00</lastmod>
+    <lastmod>2020-03-05T18:06:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/tags/</loc>
-    <lastmod>2020-03-04T13:58:57+08:00</lastmod>
+    <lastmod>2020-03-05T18:06:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://wenhui.space/</loc>
-    <lastmod>2020-03-04T13:58:57+08:00</lastmod>
+    <lastmod>2020-03-05T18:06:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -73,7 +73,7 @@
   
   <url>
     <loc>https://wenhui.space/categories/%E8%8A%AF%E7%89%87%E9%AA%8C%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88/</loc>
-    <lastmod>2020-03-04T13:58:57+08:00</lastmod>
+    <lastmod>2020-03-05T18:06:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -282,6 +282,20 @@
   </url>
   
   <url>
+    <loc>https://wenhui.space/tags/systemverilog/</loc>
+    <lastmod>2020-03-05T18:06:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wenhui.space/post/digital_verifer/study_systemverilog_four/</loc>
+    <lastmod>2020-03-05T18:06:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://wenhui.space/post/digital_verifer/beginner_verification_four/</loc>
     <lastmod>2020-03-04T13:58:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -298,13 +312,6 @@
   <url>
     <loc>https://wenhui.space/post/digital_designer/random_in_verilog/</loc>
     <lastmod>2020-01-21T14:55:04+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://wenhui.space/tags/systemverilog/</loc>
-    <lastmod>2020-03-02T20:12:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
