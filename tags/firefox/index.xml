@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>firefox on Wenhui&#39;s Rotten Pen</title>
+    <link>https://wenhui.space/tags/firefox/</link>
+    <description>Recent content in firefox on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 30 Dec 2019 14:16:00 +0800</lastBuildDate>
+    
+        <atom:link href="https://wenhui.space/tags/firefox/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>为firefox安装插件</title>
+        <link>https://wenhui.space/docs/install_software/install_plugins_for_firefox/</link>
+        <pubDate>Mon, 30 Dec 2019 14:16:00 +0800</pubDate>
+        
+        <guid>https://wenhui.space/docs/install_software/install_plugins_for_firefox/</guid>
+        <description>本文 主要介绍了为firefox安装插件的小技巧。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版本： Mozilla Firefox 71.0 安装插件 打开</description>
+      </item>
+      
+      <item>
+        <title>Bitwarden的安装</title>
+        <link>https://wenhui.space/docs/install_software/install_bitwarden/</link>
+        <pubDate>Sun, 29 Dec 2019 22:16:00 +0800</pubDate>
+        
+        <guid>https://wenhui.space/docs/install_software/install_bitwarden/</guid>
+        <description>本文 主要介绍一款开源密码管理工具 Bitwarden 。 版本 说明 0.1 初版发布 0.2 更正 验证器秘钥（TOTP） 的理解 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版</description>
+      </item>
+      
+      <item>
+        <title>为firefox安装flash player插件</title>
+        <link>https://wenhui.space/docs/install_software/install_flash_player_for_firefox/</link>
+        <pubDate>Sun, 15 Dec 2019 21:22:00 +0800</pubDate>
+        
+        <guid>https://wenhui.space/docs/install_software/install_flash_player_for_firefox/</guid>
+        <description>本文 主要介绍了如何为firefox手动安装flash player插件。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版</description>
+      </item>
+      
+      <item>
+        <title>firefox的安装</title>
+        <link>https://wenhui.space/docs/install_software/install_firefox/</link>
+        <pubDate>Sat, 26 Oct 2019 20:15:00 +0800</pubDate>
+        
+        <guid>https://wenhui.space/docs/install_software/install_firefox/</guid>
+        <description>本文 主要介绍firefox浏览器和记录firefox浏览器的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 firefox版</description>
+      </item>
+      
+    
+  </channel>
+</rss>
