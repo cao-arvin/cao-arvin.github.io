@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Getting Started on Hugo Zzo Theme</title>
+    <link>http://example.org/en/docs/gettingstarted/</link>
+    <description>Recent content in Getting Started on Hugo Zzo Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>zzossig@gmail.com (zzossig)</managingEditor>
+    <webMaster>zzossig@gmail.com (zzossig)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 30 Jan 2020 10:08:56 +0900</lastBuildDate>
+    
+        <atom:link href="http://example.org/en/docs/gettingstarted/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>Quick Start</title>
+        <link>http://example.org/en/docs/gettingstarted/quickstart/</link>
+        <pubDate>Thu, 30 Jan 2020 10:16:47 +0900</pubDate>
+        <author>zzossig@gmail.com (zzossig)</author>
+        <atom:modified>Thu, 30 Jan 2020 10:16:47 +0900</atom:modified>
+        <guid>http://example.org/en/docs/gettingstarted/quickstart/</guid>
+        <description>If you don&amp;rsquo;t want to think of anything but want to get a working blog, do this. This guide assumes that you already installed the Hugo-extended version
+  Make a folder that will contain the blog source code.
+  Go to the folder directory you made in step 1, and create a new Hugo site by typing
+hugo new site . Keep in mind that there is a .</description>
+        
+        <dc:creator>zzossig</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>Installation</title>
+        <link>http://example.org/en/docs/gettingstarted/installation/</link>
+        <pubDate>Thu, 30 Jan 2020 00:38:25 +0900</pubDate>
+        <author>zzossig@gmail.com (zzossig)</author>
+        <atom:modified>Thu, 30 Jan 2020 00:38:25 +0900</atom:modified>
+        <guid>http://example.org/en/docs/gettingstarted/installation/</guid>
+        <description>You can download and unpack the theme manually from Github but it&amp;rsquo;s easier to use git to clone the repo.
+From the root of your site:
+$ git clone https://github.com/zzossig/hugo-theme-zzo.git themes/zzo If you use git to version control your site, highly recommended, it&amp;rsquo;s best to add the zzo theme as a submodule.
+From the root of your site:
+git submodule add https://github.com/zzossig/hugo-theme-zzo.git themes/zzo Updating From the root of your site:</description>
+        
+        <dc:creator>zzossig</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

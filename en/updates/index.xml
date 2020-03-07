@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Updates on Hugo Zzo Theme</title>
+    <link>http://example.org/en/updates/</link>
+    <description>Recent content in Updates on Hugo Zzo Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>zzossig@gmail.com (zzossig)</managingEditor>
+    <webMaster>zzossig@gmail.com (zzossig)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sat, 11 Jan 2020 14:09:21 +0900</lastBuildDate>
+    
+        <atom:link href="http://example.org/en/updates/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>February 2020</title>
+        <link>http://example.org/en/updates/feb2020/</link>
+        <pubDate>Thu, 30 Jan 2020 22:52:14 +0900</pubDate>
+        <author>zzossig@gmail.com (zzossig)</author>
+        <atom:modified>Thu, 30 Jan 2020 22:52:14 +0900</atom:modified>
+        <guid>http://example.org/en/updates/feb2020/</guid>
+        <description> [new feature] search result positioning (7c549e0) Better search, prepare for search result positioning (03a1bf2) [New Feature]publication page added (5f7b9aa) single page navigate within same sections (5f7b9aa) button shortcode added (a541461) twitter meta tag added (21738fb) meta_image front matter added (cc53aac) footer text markdownify (48b5281) share button(telegram, whatsapp) added (e30aa48)  </description>
+        
+        <dc:creator>zzossig</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>January 2020</title>
+        <link>http://example.org/en/updates/jan2020/</link>
+        <pubDate>Thu, 30 Jan 2020 22:52:14 +0900</pubDate>
+        <author>zzossig@gmail.com (zzossig)</author>
+        <atom:modified>Thu, 30 Jan 2020 22:52:14 +0900</atom:modified>
+        <guid>http://example.org/en/updates/jan2020/</guid>
+        <description> notice shortcode markdownify support (01daafb) share button design changed (b58c691) tabs shortcode added (d314aa4) ie11 support (541bbd5), (955de47), (9ee37b8) share button support (45fbc4c), (03e830d) bio component position swiching left, right (edcb680) showcase page added (a9f162d) more sidebar options (6d9ab52) font flickering issue solved with animation (f4f8d59) favicon generator support (c2a45b3) long logo support (a464d23) i18n applied to breadcrumbs (e81cd2d) kimbie theme added (a94fecf) jquery removed, author front matter added (8b9ecbd) navbar current menu highlight (3638675), (1bc2c74) support upcomming talks page (b96c310)  </description>
+        
+        <dc:creator>zzossig</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>December 2019</title>
+        <link>http://example.org/en/updates/dec2019/</link>
+        <pubDate>Thu, 30 Jan 2020 22:44:42 +0900</pubDate>
+        <author>zzossig@gmail.com (zzossig)</author>
+        <atom:modified>Thu, 30 Jan 2020 22:44:42 +0900</atom:modified>
+        <guid>http://example.org/en/updates/dec2019/</guid>
+        <description> talks page added (7478083) search keyword highlight support (d88ae40) copyright customization support (159e6cb) enableGitInfo added for display post update time (543f5e4) contact page added (af3611d) search engine changed to fuse.js (586dffd) busuanzi support, donation support (d182e8f) custom font support (f227b89) meta keywords added (55920e4) reveal.js basic usage completed (e08ce9b)  </description>
+        
+        <dc:creator>zzossig</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>November 2019</title>
+        <link>http://example.org/en/updates/nov2019/</link>
+        <pubDate>Thu, 30 Jan 2020 22:21:01 +0900</pubDate>
+        <author>zzossig@gmail.com (zzossig)</author>
+        <atom:modified>Thu, 30 Jan 2020 22:21:01 +0900</atom:modified>
+        <guid>http://example.org/en/updates/nov2019/</guid>
+        <description> image lazyloading support (152145f) comment added to config files (2fe99cc) clipboard icon positioning (564ca10) prism.js support, clipboard support (2c23acd) whoami, related, single page, archive page better ui (68d9875) whoami, related, single page, archive page better ui (68d9875) mobile search added (840d728) tag added to single page (2e0f52a) chart.js, viz, sequence diagram, wavedrom support (6cddb78) gravatar support, sticky sidebar, number pagination added (3ef4205) footer auto current year support (3608eb2) flowchart.js support (3ca6ba3) toc switch added (ee4bd8b) card, classic, compact summary mode support (25319a0) whoami UI update (8f40a67) add support for custom css, js (2d6e0c2)  </description>
+        
+        <dc:creator>zzossig</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
