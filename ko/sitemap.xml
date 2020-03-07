@@ -1,60 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.wenhui.space/ko/categories/</loc>
+    <loc>https://wenhui.space/ko/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.wenhui.space/en/categories/"
+                href="https://wenhui.space/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wenhui.space/zh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="https://www.wenhui.space/ko/categories/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://www.wenhui.space/ko/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.wenhui.space/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://www.wenhui.space/ko/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://www.wenhui.space/ko/series/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.wenhui.space/en/series/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://www.wenhui.space/ko/series/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://www.wenhui.space/ko/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.wenhui.space/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://www.wenhui.space/ko/tags/"
+                href="https://wenhui.space/ko/"
                 />
   </url>
   
