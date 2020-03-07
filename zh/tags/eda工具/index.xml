@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>EDA工具 on Wenhui&#39;s Rotten Pen</title>
-    <link>https://wenhui.space/zh/tags/eda%E5%B7%A5%E5%85%B7/</link>
+    <link>https://wenhui.space/zh/tags/eda%E5%B7%A5%E5%85%B7.html</link>
     <description>Recent content in EDA工具 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -16,10 +16,10 @@
       
       <item>
         <title>Verdi使用总结</title>
-        <link>https://wenhui.space/zh/docs/digital_verifer/other/verdi_userguide/</link>
+        <link>https://wenhui.space/zh/docs/digital_verifer/other/verdi_userguide.html</link>
         <pubDate>Sat, 22 Feb 2020 14:45:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/zh/docs/digital_verifer/other/verdi_userguide/</guid>
+        <guid>https://wenhui.space/zh/docs/digital_verifer/other/verdi_userguide.html</guid>
         <description>本文 主要介绍debug工具Verdi的使用，并对自己使用过程中的经验进行总结。 版本 说明 0.1 初版发布 参考 Verdi and Siloti Command Reference Verdi (Premier) Training 百度网盘分享资源 链接：h</description>
       </item>
       

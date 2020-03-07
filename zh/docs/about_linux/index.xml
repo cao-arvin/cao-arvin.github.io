@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>关于Linux on Wenhui&#39;s Rotten Pen</title>
-    <link>https://wenhui.space/zh/docs/about_linux/</link>
+    <link>https://wenhui.space/zh/docs/about_linux.html</link>
     <description>Recent content in 关于Linux on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -16,46 +16,46 @@
       
       <item>
         <title>Python简明教程</title>
-        <link>https://wenhui.space/zh/docs/about_linux/python_tutorial/</link>
+        <link>https://wenhui.space/zh/docs/about_linux/python_tutorial.html</link>
         <pubDate>Tue, 21 Jan 2020 14:51:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/zh/docs/about_linux/python_tutorial/</guid>
+        <guid>https://wenhui.space/zh/docs/about_linux/python_tutorial.html</guid>
         <description>本文 主要介绍有关python的一些基础知识。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 python： Python 2.7.13 参考 菜鸟教程：Pytho</description>
       </item>
       
       <item>
         <title>代码预处理工具ep3的使用</title>
-        <link>https://wenhui.space/zh/docs/about_linux/ep3_tool/</link>
+        <link>https://wenhui.space/zh/docs/about_linux/ep3_tool.html</link>
         <pubDate>Wed, 15 Jan 2020 22:23:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/zh/docs/about_linux/ep3_tool/</guid>
+        <guid>https://wenhui.space/zh/docs/about_linux/ep3_tool.html</guid>
         <description>本文 主要介绍一款代码预处理工具：ep3（基于Perl语言开发）。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 Perl： v5.24.1 参考 https://metacpan.org/search?q=ep3 http://www.lujun.org.cn/?p=2099 什</description>
       </item>
       
       <item>
         <title>verilog中reg和wire的自动声明</title>
-        <link>https://wenhui.space/zh/docs/about_linux/verilog_auto_declare/</link>
+        <link>https://wenhui.space/zh/docs/about_linux/verilog_auto_declare.html</link>
         <pubDate>Wed, 15 Jan 2020 22:22:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/zh/docs/about_linux/verilog_auto_declare/</guid>
+        <guid>https://wenhui.space/zh/docs/about_linux/verilog_auto_declare.html</guid>
         <description>本文 主要介绍一款自己开发的Python脚本： verilog中reg和wire的自动声明 。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian</description>
       </item>
       
       <item>
         <title>Linux常用操作记录</title>
-        <link>https://wenhui.space/zh/docs/about_linux/note_of_linux/</link>
+        <link>https://wenhui.space/zh/docs/about_linux/note_of_linux.html</link>
         <pubDate>Sun, 29 Dec 2019 15:18:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/zh/docs/about_linux/note_of_linux/</guid>
+        <guid>https://wenhui.space/zh/docs/about_linux/note_of_linux.html</guid>
         <description>本文 主要对日常linux系统使用中的一些技巧进行记录。 版本 说明 0.1 初版发布 0.2 添加VNC和分辨率设置 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 使用命令</description>
       </item>
       
       <item>
         <title>正则表达式语法简明教程</title>
-        <link>https://wenhui.space/zh/docs/about_linux/regular_expression/</link>
+        <link>https://wenhui.space/zh/docs/about_linux/regular_expression.html</link>
         <pubDate>Sat, 07 Dec 2019 21:18:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/zh/docs/about_linux/regular_expression/</guid>
+        <guid>https://wenhui.space/zh/docs/about_linux/regular_expression.html</guid>
         <description>本文 主要对正则表达式的常用语法进行整理和介绍。 版本 说明 0.1 初版发布 0.2 添加正则表达式在线测试网址 背景 Linux 什么是正则表达式？ 正则表达式（regula</description>
       </item>
       

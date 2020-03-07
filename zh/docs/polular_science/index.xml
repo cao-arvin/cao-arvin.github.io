@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>关于科普知识 on Wenhui&#39;s Rotten Pen</title>
-    <link>https://wenhui.space/zh/docs/polular_science/</link>
+    <link>https://wenhui.space/zh/docs/polular_science.html</link>
     <description>Recent content in 关于科普知识 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -16,10 +16,10 @@
       
       <item>
         <title>你应该知道的职级与英文缩写</title>
-        <link>https://wenhui.space/zh/docs/polular_science/rank_and_abbreviation/</link>
+        <link>https://wenhui.space/zh/docs/polular_science/rank_and_abbreviation.html</link>
         <pubDate>Wed, 08 Jan 2020 22:15:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/zh/docs/polular_science/rank_and_abbreviation/</guid>
+        <guid>https://wenhui.space/zh/docs/polular_science/rank_and_abbreviation.html</guid>
         <description>本文 主要介绍芯片相关公司的组织架构，和职级与职位及对应的英文缩写。 版本 说明 0.1 初版发布 0.2 增加常见职级职位英文缩写 写在前头 本文主要属于科普，目的</description>
       </item>
       

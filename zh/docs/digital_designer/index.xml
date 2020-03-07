@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>关于芯片设计 on Wenhui&#39;s Rotten Pen</title>
-    <link>https://wenhui.space/zh/docs/digital_designer/</link>
+    <link>https://wenhui.space/zh/docs/digital_designer.html</link>
     <description>Recent content in 关于芯片设计 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
@@ -16,10 +16,10 @@
       
       <item>
         <title>其他总结</title>
-        <link>https://wenhui.space/zh/docs/digital_designer/other/</link>
+        <link>https://wenhui.space/zh/docs/digital_designer/other.html</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://wenhui.space/zh/docs/digital_designer/other/</guid>
+        <guid>https://wenhui.space/zh/docs/digital_designer/other.html</guid>
         <description></description>
       </item>
       
