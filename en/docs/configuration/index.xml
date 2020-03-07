@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Configuration on Hugo Zzo Theme</title>
-    <link>http://example.org/en/docs/configuration/</link>
+    <link>https://www.wenhui.space/en/docs/configuration/</link>
     <description>Recent content in Configuration on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 30 Jan 2020 10:10:56 +0900</lastBuildDate>
     
-        <atom:link href="http://example.org/en/docs/configuration/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.wenhui.space/en/docs/configuration/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>Config Files</title>
-        <link>http://example.org/en/docs/configuration/configfiles/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/configfiles/</link>
         <pubDate>Thu, 30 Jan 2020 11:16:54 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 11:16:54 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/configfiles/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/configfiles/</guid>
         <description>Config folder structure Keep in mind the underscore on the _default folder. You have to have all of these files, otherwise the theme doesn&amp;rsquo;t work. root ├── config │ ├── _default │ │ ├── config.toml │ │ ├── languages.toml │ │ ├── menus.en.toml │ │ ├── params.toml config files config.toml 1 2 3 4 5 6 7 8</description>
         
         <dc:creator>zzossig</dc:creator>
@@ -42,11 +42,11 @@
       
       <item>
         <title>Author</title>
-        <link>http://example.org/en/docs/configuration/author/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/author/</link>
         <pubDate>Thu, 30 Jan 2020 11:54:22 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 11:54:22 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/author/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/author/</guid>
         <description>Multiple Author Just set the author information in the front-matter.
 1 2 3 4 5 6 7 8 9 10 11 12 13  ---title:...author:# author nameauthorEmoji:🤖# emoji for subtitle, summary meta dataauthorImage:&amp;#34;/images/whoami/avatar.jpg&amp;#34;# image path in the static folderauthorImageUrl:&amp;#34;&amp;#34;# your image url. We use `authorImageUrl` first. If not set, we use `authorImage`.authorDesc:# author descriptionsocialOptions:# override params.toml file socialOptionsemail:&amp;#34;&amp;#34;facebook:&amp;#34;&amp;#34;...---  </description>
         
@@ -61,11 +61,11 @@
       
       <item>
         <title>Favicon</title>
-        <link>http://example.org/en/docs/configuration/favicon/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/favicon/</link>
         <pubDate>Thu, 30 Jan 2020 11:58:18 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 11:58:18 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/favicon/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/favicon/</guid>
         <description>Not using favicon generator Just put your favicon.ico file at the root/static folder.
 Using favicon generator If you are using favicon genarator, the favicon works well on the mobile too. So, it is recommended.
   Set the useFaviconGenerator to true in the file at root/config/_default/params.toml
@@ -84,11 +84,11 @@ Using favicon generator If you are using favicon genarator, the favicon works we
       
       <item>
         <title>Language direction</title>
-        <link>http://example.org/en/docs/configuration/languagedir/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/languagedir/</link>
         <pubDate>Thu, 30 Jan 2020 11:45:49 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 11:45:49 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/languagedir/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/languagedir/</guid>
         <description>You can set the language direction in the languages.md config file. rtl - right to left ltr - left to right 1 2 3 4 5 6 7 8 9 10 11 [en] title = &amp;#34;Zzo&amp;#34; languageName = &amp;#34;English&amp;#34; weight = 1 languagedir = &amp;#34;rtl&amp;#34; [ko] title = &amp;#34;Zzo&amp;#34; languageName = &amp;#34;한국어&amp;#34; weight = 2 languagedir = &amp;#34;ltr&amp;#34;</description>
         
         <dc:creator>zzossig</dc:creator>
@@ -102,11 +102,11 @@ Using favicon generator If you are using favicon genarator, the favicon works we
       
       <item>
         <title>Table of Contents</title>
-        <link>http://example.org/en/docs/configuration/tableofcontents/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/tableofcontents/</link>
         <pubDate>Thu, 30 Jan 2020 12:08:37 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 12:08:37 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/tableofcontents/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/tableofcontents/</guid>
         <description>New param (since 2020-02-13) I added new param named tocLevels. Sometimes toc doesn&amp;rsquo;t work well with the below config params. So I added the new param and this will fix some toc related issues.
   Set tocLevels globally. In your params.toml file,
 1 2  ... tocLevels = [&amp;#34;h2&amp;#34;, &amp;#34;h3&amp;#34;, &amp;#34;h4&amp;#34;]     Set tocLevels locally. In your your post markdown file.
@@ -123,11 +123,11 @@ Using favicon generator If you are using favicon genarator, the favicon works we
       
       <item>
         <title>Multi Language</title>
-        <link>http://example.org/en/docs/configuration/multilanguage/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/multilanguage/</link>
         <pubDate>Thu, 30 Jan 2020 15:34:13 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 15:34:13 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/multilanguage/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/multilanguage/</guid>
         <description>To enable/disable the language translation button in the footer, edit the parameter enableLangChange in params.toml. The default language of this theme is English. If you want to use another language, follow these steps Make a menu file. root ├── config │ ├── _default │ │ ├── ... │ │ ├── menus.ko.toml 1 2 3 4 5 6 7 8 9 10 11</description>
         
         <dc:creator>zzossig</dc:creator>
@@ -141,11 +141,11 @@ Using favicon generator If you are using favicon genarator, the favicon works we
       
       <item>
         <title>Search</title>
-        <link>http://example.org/en/docs/configuration/search/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/search/</link>
         <pubDate>Fri, 07 Feb 2020 01:27:35 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Fri, 07 Feb 2020 01:27:35 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/search/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/search/</guid>
         <description>Zzo theme make search index for the search. So, in order to use the search, you need to add this config params to config.toml file.  1 2 3 4 5 6 7 8 9 10 11 12 13 14  ... [outputs] page = [&amp;#34;HTML&amp;#34;, &amp;#34;SearchIndex&amp;#34;] home = [&amp;#34;HTML&amp;#34;, &amp;#34;RSS&amp;#34;, &amp;#34;SearchIndex&amp;#34;] section = [&amp;#34;HTML&amp;#34;, &amp;#34;RSS&amp;#34;, &amp;#34;SearchIndex&amp;#34;] taxonomyTerm = [&amp;#34;HTML&amp;#34;, &amp;#34;RSS&amp;#34;, &amp;#34;SearchIndex&amp;#34;] taxonomy = [&amp;#34;HTML&amp;#34;, &amp;#34;RSS&amp;#34;, &amp;#34;SearchIndex&amp;#34;] [outputFormats] [outputFormats.SearchIndex] mediaType = &amp;#34;application/json&amp;#34; baseName = &amp;#34;index&amp;#34; isPlainText = true notAlternative = true   These config params make search index on every page.</description>
         
         <dc:creator>zzossig</dc:creator>
@@ -159,11 +159,11 @@ Using favicon generator If you are using favicon genarator, the favicon works we
       
       <item>
         <title>Codeblock</title>
-        <link>http://example.org/en/docs/configuration/codeblock/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/codeblock/</link>
         <pubDate>Sun, 09 Feb 2020 17:43:01 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Sun, 09 Feb 2020 17:43:01 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/codeblock/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/codeblock/</guid>
         <description>You should reference the official site documentation. https://gohugo.io/content-management/syntax-highlighting/
   Normal usage of code block
 ```javascript console.log(&#39;Hello World!&#39;); ```   You can set the code-block title and line number to $, &amp;gt; symbol.
@@ -181,11 +181,11 @@ Using favicon generator If you are using favicon genarator, the favicon works we
       
       <item>
         <title>Meta Image</title>
-        <link>http://example.org/en/docs/configuration/metaimage/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/metaimage/</link>
         <pubDate>Sat, 01 Feb 2020 18:49:15 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Sat, 01 Feb 2020 18:49:15 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/metaimage/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/metaimage/</guid>
         <description>We have front matter for the images used in link preview(twitter, facebook, etc&amp;hellip;)
 If the meta_image front-matter is not set, image front-matter will be used instead(as a default value).
 1 2 3 4 5 6  ---title:date:...meta_image:images/posts/myMetaImage.png---  The meta_image path is relative to the static folder. In the above example, image should be in the root/static/images/posts folder.

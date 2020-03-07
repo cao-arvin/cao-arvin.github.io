@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Docs on Hugo Zzo Theme</title>
-    <link>http://example.org/en/docs/</link>
+    <link>https://www.wenhui.space/en/docs/</link>
     <description>Recent content in Docs on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sat, 11 Jan 2020 14:09:21 +0900</lastBuildDate>
     
-        <atom:link href="http://example.org/en/docs/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.wenhui.space/en/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>Getting Started</title>
-        <link>http://example.org/en/docs/gettingstarted/</link>
+        <link>https://www.wenhui.space/en/docs/gettingstarted/</link>
         <pubDate>Thu, 30 Jan 2020 10:08:56 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 10:08:56 +0900</atom:modified>
-        <guid>http://example.org/en/docs/gettingstarted/</guid>
+        <guid>https://www.wenhui.space/en/docs/gettingstarted/</guid>
         <description></description>
         
         <dc:creator>zzossig</dc:creator>
@@ -42,11 +42,11 @@
       
       <item>
         <title>Configuration</title>
-        <link>http://example.org/en/docs/configuration/</link>
+        <link>https://www.wenhui.space/en/docs/configuration/</link>
         <pubDate>Thu, 30 Jan 2020 10:10:56 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 10:10:56 +0900</atom:modified>
-        <guid>http://example.org/en/docs/configuration/</guid>
+        <guid>https://www.wenhui.space/en/docs/configuration/</guid>
         <description></description>
         
         <dc:creator>zzossig</dc:creator>
@@ -60,11 +60,11 @@
       
       <item>
         <title>Pages</title>
-        <link>http://example.org/en/docs/pages/</link>
+        <link>https://www.wenhui.space/en/docs/pages/</link>
         <pubDate>Thu, 30 Jan 2020 10:10:56 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 10:10:56 +0900</atom:modified>
-        <guid>http://example.org/en/docs/pages/</guid>
+        <guid>https://www.wenhui.space/en/docs/pages/</guid>
         <description></description>
         
         <dc:creator>zzossig</dc:creator>
@@ -78,11 +78,11 @@
       
       <item>
         <title>Shortcodes</title>
-        <link>http://example.org/en/docs/shortcodes/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/</link>
         <pubDate>Thu, 30 Jan 2020 10:10:56 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 10:10:56 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/</guid>
         <description></description>
         
         <dc:creator>zzossig</dc:creator>
@@ -96,11 +96,11 @@
       
       <item>
         <title>Customization</title>
-        <link>http://example.org/en/docs/customization/</link>
+        <link>https://www.wenhui.space/en/docs/customization/</link>
         <pubDate>Thu, 30 Jan 2020 10:10:56 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 10:10:56 +0900</atom:modified>
-        <guid>http://example.org/en/docs/customization/</guid>
+        <guid>https://www.wenhui.space/en/docs/customization/</guid>
         <description></description>
         
         <dc:creator>zzossig</dc:creator>
@@ -114,11 +114,11 @@
       
       <item>
         <title>External Libraries</title>
-        <link>http://example.org/en/docs/externallibrary/</link>
+        <link>https://www.wenhui.space/en/docs/externallibrary/</link>
         <pubDate>Thu, 30 Jan 2020 10:08:56 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 10:08:56 +0900</atom:modified>
-        <guid>http://example.org/en/docs/externallibrary/</guid>
+        <guid>https://www.wenhui.space/en/docs/externallibrary/</guid>
         <description></description>
         
         <dc:creator>zzossig</dc:creator>

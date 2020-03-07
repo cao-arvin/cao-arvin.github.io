@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Customization on Hugo Zzo Theme</title>
-    <link>http://example.org/en/docs/customization/</link>
+    <link>https://www.wenhui.space/en/docs/customization/</link>
     <description>Recent content in Customization on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 30 Jan 2020 10:10:56 +0900</lastBuildDate>
     
-        <atom:link href="http://example.org/en/docs/customization/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.wenhui.space/en/docs/customization/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>Font</title>
-        <link>http://example.org/en/docs/customization/customfont/</link>
+        <link>https://www.wenhui.space/en/docs/customization/customfont/</link>
         <pubDate>Thu, 30 Jan 2020 15:40:17 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 15:40:17 +0900</atom:modified>
-        <guid>http://example.org/en/docs/customization/customfont/</guid>
+        <guid>https://www.wenhui.space/en/docs/customization/customfont/</guid>
         <description>Using embeded font   Make a file at root/data/font.toml
 1 2  title_font = &amp;#34;\&amp;#34;Montserrat\&amp;#34;, sans-serif&amp;#34; content_font = &amp;#34;\&amp;#34;muli\&amp;#34;, sans-serif&amp;#34;     We have 6 embeded font
  &amp;quot;\&amp;quot;Montserrat\&amp;quot;, sans-serif&amp;quot; &amp;quot;\&amp;quot;Merriweather\&amp;quot;, serif&amp;quot; &amp;quot;\&amp;quot;muli\&amp;quot;, sans-serif&amp;quot; &amp;quot;\&amp;quot;Courgette\&amp;quot;, cursive&amp;quot; &amp;quot;\&amp;quot;Source Sans Pro\&amp;quot;, sans-serif&amp;quot; &amp;quot;\&amp;quot;League Gothic\&amp;quot;, sans-serif&amp;quot;    Using custom css   Add custom css file
@@ -45,11 +45,11 @@
       
       <item>
         <title>Header</title>
-        <link>http://example.org/en/docs/customization/customheader/</link>
+        <link>https://www.wenhui.space/en/docs/customization/customheader/</link>
         <pubDate>Thu, 30 Jan 2020 15:39:49 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 15:39:49 +0900</atom:modified>
-        <guid>http://example.org/en/docs/customization/customheader/</guid>
+        <guid>https://www.wenhui.space/en/docs/customization/customheader/</guid>
         <description>You may want to change home page header. There are 4 options which is slider, image, text, empty.
   Set param at config/_default/params.toml(homeHeaderType) or set it in the front matter
   Make _index.md file at root/content/_index.md and copy &amp;amp; paste below.
@@ -67,11 +67,11 @@
       
       <item>
         <title>Syntax Highlight</title>
-        <link>http://example.org/en/docs/customization/customsyntax/</link>
+        <link>https://www.wenhui.space/en/docs/customization/customsyntax/</link>
         <pubDate>Thu, 30 Jan 2020 15:39:43 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 15:39:43 +0900</atom:modified>
-        <guid>http://example.org/en/docs/customization/customsyntax/</guid>
+        <guid>https://www.wenhui.space/en/docs/customization/customsyntax/</guid>
         <description>Make a file at root/data/skin.toml. We can set the code block color theme by theme
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  # https://xyproto.github.io/splash/docs/longer/all.html # restart hugo after change this value theme_light_chroma = &amp;#34;default&amp;#34; theme_dark_chroma = &amp;#34;default&amp;#34; theme_hacker_chroma = &amp;#34;default&amp;#34; theme_solarized_chroma = &amp;#34;default&amp;#34; theme_kimbie_chroma = &amp;#34;default&amp;#34; # possible value: default, dark, light, hacker, solarized, kimbie # restart hugo after change this value theme_light_chroma_background = &amp;#34;default&amp;#34; theme_dark_chroma_background = &amp;#34;default&amp;#34; theme_hacker_chroma_background = &amp;#34;default&amp;#34; theme_solarized_chroma_background = &amp;#34;default&amp;#34; theme_kimbie_chroma_background = &amp;#34;default&amp;#34;   skin.</description>
         
@@ -86,11 +86,11 @@
       
       <item>
         <title>Copyright</title>
-        <link>http://example.org/en/docs/customization/customcopyright/</link>
+        <link>https://www.wenhui.space/en/docs/customization/customcopyright/</link>
         <pubDate>Thu, 30 Jan 2020 15:40:24 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 15:40:24 +0900</atom:modified>
-        <guid>http://example.org/en/docs/customization/customcopyright/</guid>
+        <guid>https://www.wenhui.space/en/docs/customization/customcopyright/</guid>
         <description>If you want to add a link to the footer copyright, not just a text, you can customize it.
   In your config.toml file, set the copyright param like this.
 1 2 3  ... copyright = This is my {} copyright text ...   The {} part will be your copyright link.
@@ -108,11 +108,11 @@ You can use markdown syntax for a link.
       
       <item>
         <title>CSS</title>
-        <link>http://example.org/en/docs/customization/customcss/</link>
+        <link>https://www.wenhui.space/en/docs/customization/customcss/</link>
         <pubDate>Thu, 30 Jan 2020 15:39:37 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 15:39:37 +0900</atom:modified>
-        <guid>http://example.org/en/docs/customization/customcss/</guid>
+        <guid>https://www.wenhui.space/en/docs/customization/customcss/</guid>
         <description>Add this line of code to your params.toml file.
 1 2 3  ... custom_css = [&amp;#34;css/custom.css&amp;#34;, &amp;#34;scss/custom.scss&amp;#34;, ...] ...   config/_default/params.toml
   Add your file to assets folder. Filename must match with config params you set above.
@@ -129,11 +129,11 @@ assets/scss/custom.scss assets/css/custom.css   If you want to modify the Zzo th
       
       <item>
         <title>JS</title>
-        <link>http://example.org/en/docs/customization/customjs/</link>
+        <link>https://www.wenhui.space/en/docs/customization/customjs/</link>
         <pubDate>Thu, 30 Jan 2020 15:39:35 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 15:39:35 +0900</atom:modified>
-        <guid>http://example.org/en/docs/customization/customjs/</guid>
+        <guid>https://www.wenhui.space/en/docs/customization/customjs/</guid>
         <description>  Add this line of code to your params.toml file.
 ... custom_js = [&amp;quot;js/custom.js&amp;quot;, ...] ... config/_default/params.toml
   Add your file to assets folder. Filename must match with config params you set above.

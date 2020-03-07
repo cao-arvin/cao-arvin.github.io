@@ -7,7 +7,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Shortcodes on Hugo Zzo Theme</title>
-    <link>http://example.org/en/docs/shortcodes/</link>
+    <link>https://www.wenhui.space/en/docs/shortcodes/</link>
     <description>Recent content in Shortcodes on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
@@ -16,7 +16,7 @@
     <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 30 Jan 2020 10:10:56 +0900</lastBuildDate>
     
-        <atom:link href="http://example.org/en/docs/shortcodes/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.wenhui.space/en/docs/shortcodes/index.xml" rel="self" type="application/rss+xml" />
     
     
     
@@ -24,11 +24,11 @@
       
       <item>
         <title>Alert</title>
-        <link>http://example.org/en/docs/shortcodes/alert/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/alert/</link>
         <pubDate>Thu, 30 Jan 2020 16:40:04 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 16:40:04 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/alert/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/alert/</guid>
         <description>Alert is a colored text box.
 {{&amp;lt; alert theme=&amp;quot;warning&amp;quot; dir=&amp;quot;ltr&amp;quot; &amp;gt;}} # warning, success, info, danger **this** is a text {{&amp;lt; /alert &amp;gt;}} image Alert: Zzo alert shortcode   </description>
         
@@ -43,11 +43,11 @@
       
       <item>
         <title>Box</title>
-        <link>http://example.org/en/docs/shortcodes/box/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/box/</link>
         <pubDate>Thu, 30 Jan 2020 16:40:25 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 16:40:25 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/box/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/box/</guid>
         <description>  Markdownify box
 {{&amp;lt; boxmd &amp;gt;}} Some markdown contents {{&amp;lt; /boxmd &amp;gt;}}   Simple box
 {{&amp;lt; box &amp;gt;}} Some contents {{&amp;lt; /box &amp;gt;}}   image Box: Zzo box shortcode   </description>
@@ -63,11 +63,11 @@
       
       <item>
         <title>Code</title>
-        <link>http://example.org/en/docs/shortcodes/codeblock/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/codeblock/</link>
         <pubDate>Thu, 30 Jan 2020 16:40:37 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 16:40:37 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/codeblock/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/codeblock/</guid>
         <description>code / codes =&amp;gt; Tabbed code-block. indentation matters.
 {{&amp;lt; codes java javascript &amp;gt;}} {{&amp;lt; code &amp;gt;}} ```java System.out.println(&#39;Hello World!&#39;); ``` {{&amp;lt; /code &amp;gt;}} {{&amp;lt; code &amp;gt;}} ```javascript console.log(&#39;Hello World!&#39;); ``` {{&amp;lt; /code &amp;gt;}} {{&amp;lt; /codes &amp;gt;}} image Code Tab: Zzo code-block shortcode   </description>
         
@@ -82,11 +82,11 @@
       
       <item>
         <title>Expand</title>
-        <link>http://example.org/en/docs/shortcodes/expand/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/expand/</link>
         <pubDate>Thu, 30 Jan 2020 16:40:10 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 16:40:10 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/expand/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/expand/</guid>
         <description>Collapse contents with expand shortcode.
 {{&amp;lt; expand &amp;quot;Expand me&amp;quot; &amp;gt;}}Some Markdown Contents{{&amp;lt; /expand &amp;gt;}} image Code Tab: Zzo Expand shortcode   </description>
         
@@ -101,11 +101,11 @@
       
       <item>
         <title>Img</title>
-        <link>http://example.org/en/docs/shortcodes/img/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/img/</link>
         <pubDate>Thu, 30 Jan 2020 16:40:16 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 16:40:16 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/img/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/img/</guid>
         <description>image with title, caption, alt, width, height
 {{&amp;lt; img src=&amp;quot;/images/shortcodes/notice.png&amp;quot; title=&amp;quot;Notice&amp;quot; caption=&amp;quot;Zzo Notice shortcode&amp;quot; alt=&amp;quot;image alt&amp;quot; width=&amp;quot;500px&amp;quot; height=&amp;quot;500px&amp;quot; position=&amp;quot;center&amp;quot; &amp;gt;}}  Title: caption   </description>
         
@@ -120,11 +120,11 @@
       
       <item>
         <title>Notice</title>
-        <link>http://example.org/en/docs/shortcodes/notice/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/notice/</link>
         <pubDate>Thu, 30 Jan 2020 16:40:20 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 16:40:20 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/notice/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/notice/</guid>
         <description>1 2 3  {{&amp;lt; notice success &amp;gt;}} # success, info, warning, error success {{&amp;lt; /notice &amp;gt;}}    Notice: Zzo Notice shortcode   </description>
         
         <dc:creator>zzossig</dc:creator>
@@ -138,11 +138,11 @@
       
       <item>
         <title>Tab</title>
-        <link>http://example.org/en/docs/shortcodes/tab/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/tab/</link>
         <pubDate>Thu, 30 Jan 2020 16:40:40 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Thu, 30 Jan 2020 16:40:40 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/tab/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/tab/</guid>
         <description>tab / tabs =&amp;gt; Tabs make it easy to explore and switch between different views
 {{&amp;lt; tabs Windows MacOS Ubuntu &amp;gt;}} {{&amp;lt;/* tab &amp;gt;}} ### Windows section ```javascript console.log(&#39;Hello World!&#39;); ``` {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab &amp;gt;}} ### MacOS section Hello world! {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab &amp;gt;}} ### Ubuntu section Great! {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; /tabs &amp;gt;}} ⚠️Becareful that the content in the tab should be different from each other.</description>
         
@@ -157,11 +157,11 @@
       
       <item>
         <title>featuredImage</title>
-        <link>http://example.org/en/docs/shortcodes/featuredimage/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/featuredimage/</link>
         <pubDate>Mon, 24 Feb 2020 15:40:40 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Mon, 24 Feb 2020 15:40:40 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/featuredimage/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/featuredimage/</guid>
         <description>featuredImage shortcode displays the featured image specified in the image front-matter.
 You can use {{&amp;lt; featuredImage &amp;gt;}} shortcode anywhere in your post.
 You can also set optional params like this. {{&amp;lt; featuredImage alt=&amp;quot;featured image&amp;quot; width=50 height=50 &amp;gt;}}
@@ -178,11 +178,11 @@ You can also set optional params like this. {{&amp;lt; featuredImage alt=&amp;qu
       
       <item>
         <title>Button</title>
-        <link>http://example.org/en/docs/shortcodes/button/</link>
+        <link>https://www.wenhui.space/en/docs/shortcodes/button/</link>
         <pubDate>Sun, 02 Feb 2020 03:00:00 +0900</pubDate>
         <author>zzossig@gmail.com (zzossig)</author>
         <atom:modified>Sun, 02 Feb 2020 03:00:00 +0900</atom:modified>
-        <guid>http://example.org/en/docs/shortcodes/button/</guid>
+        <guid>https://www.wenhui.space/en/docs/shortcodes/button/</guid>
         <description>Simple button
 {{&amp;lt; button href=&amp;quot;https://...&amp;quot; &amp;gt;}}button{{&amp;lt; /button &amp;gt;}}   You can specify width, height
 {{&amp;lt; button href=&amp;quot;https://...&amp;quot; width=&amp;quot;100px&amp;quot; height=&amp;quot;36px&amp;quot; &amp;gt;}}button{{&amp;lt; /button &amp;gt;}}   Set color
