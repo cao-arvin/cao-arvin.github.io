@@ -2,51 +2,51 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>关于芯片验证 on Wenhui&#39;s Rotten Pen</title>
-    <link>https://wenhui.space/docs/digital_verifer/</link>
+    <link>https://www.wenhui.space/docs/digital_verifer/</link>
     <description>Recent content in 关于芯片验证 on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
     <lastBuildDate>Fri, 28 Feb 2020 10:08:56 +0900</lastBuildDate>
     
-        <atom:link href="https://wenhui.space/docs/digital_verifer/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.wenhui.space/docs/digital_verifer/index.xml" rel="self" type="application/rss+xml" />
     
     
     
       
       <item>
         <title>初识芯片验证系列</title>
-        <link>https://wenhui.space/docs/digital_verifer/beginner_verification/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://wenhui.space/docs/digital_verifer/beginner_verification/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/</guid>
         <description></description>
       </item>
       
       <item>
         <title>SV学习系列</title>
-        <link>https://wenhui.space/docs/digital_verifer/study_sv/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/study_sv/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://wenhui.space/docs/digital_verifer/study_sv/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/study_sv/</guid>
         <description></description>
       </item>
       
       <item>
         <title>UVM学习系列</title>
-        <link>https://wenhui.space/docs/digital_verifer/study_uvm/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/study_uvm/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://wenhui.space/docs/digital_verifer/study_uvm/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/study_uvm/</guid>
         <description></description>
       </item>
       
       <item>
         <title>其他总结</title>
-        <link>https://wenhui.space/docs/digital_verifer/other/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/other/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://wenhui.space/docs/digital_verifer/other/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/other/</guid>
         <description></description>
       </item>
       

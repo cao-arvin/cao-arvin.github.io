@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>git on Wenhui&#39;s Rotten Pen</title>
-    <link>https://wenhui.space/tags/git/</link>
+    <link>https://www.wenhui.space/tags/git/</link>
     <description>Recent content in git on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 20 Oct 2019 22:21:00 +0800</lastBuildDate>
     
-        <atom:link href="https://wenhui.space/tags/git/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.wenhui.space/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     
       
       <item>
         <title>git的安装</title>
-        <link>https://wenhui.space/docs/install_software/install_git/</link>
+        <link>https://www.wenhui.space/docs/install_software/install_git/</link>
         <pubDate>Sun, 20 Oct 2019 22:21:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/docs/install_software/install_git/</guid>
+        <guid>https://www.wenhui.space/docs/install_software/install_git/</guid>
         <description>本文 主要介绍git和记录git的安装过程。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 git版本： git version 2.11.0 参考 Deepin 系统下安装git 什么</description>
       </item>
       

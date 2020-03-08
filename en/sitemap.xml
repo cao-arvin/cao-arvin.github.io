@@ -3,21 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://wenhui.space/en/</loc>
+    <loc>https://www.wenhui.space/en/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="https://wenhui.space/ko/"
+                href="https://www.wenhui.space/ko/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://wenhui.space/"
+                href="https://www.wenhui.space/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://wenhui.space/en/"
+                href="https://www.wenhui.space/en/"
                 />
   </url>
   

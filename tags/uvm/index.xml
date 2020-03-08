@@ -2,60 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>UVM on Wenhui&#39;s Rotten Pen</title>
-    <link>https://wenhui.space/tags/uvm/</link>
+    <link>https://www.wenhui.space/tags/uvm/</link>
     <description>Recent content in UVM on Wenhui&#39;s Rotten Pen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
     <lastBuildDate>Tue, 25 Feb 2020 10:19:00 +0800</lastBuildDate>
     
-        <atom:link href="https://wenhui.space/tags/uvm/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.wenhui.space/tags/uvm/index.xml" rel="self" type="application/rss+xml" />
     
     
     
       
       <item>
         <title>UVM与验证平台</title>
-        <link>https://wenhui.space/docs/digital_verifer/other/uvm_and_verification_platforms/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/other/uvm_and_verification_platforms/</link>
         <pubDate>Tue, 25 Feb 2020 10:19:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/docs/digital_verifer/other/uvm_and_verification_platforms/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/other/uvm_and_verification_platforms/</guid>
         <description>本文 主要介绍什么是UVM和验证平台，以及如何搭建UVM验证平台。 版本 说明 0.1 初版发布 参考 参考自文彬师兄的UVM培训资料。 初识UVM 什么是UVM</description>
       </item>
       
       <item>
         <title>初识芯片验证（四）</title>
-        <link>https://wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_four/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_four/</link>
         <pubDate>Sun, 19 Jan 2020 22:49:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_four/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_four/</guid>
         <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第四篇，主要介绍验证周期、验证管理三要素、验证的收</description>
       </item>
       
       <item>
         <title>初识芯片验证（三）</title>
-        <link>https://wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_three/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_three/</link>
         <pubDate>Sat, 18 Jan 2020 19:49:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_three/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_three/</guid>
         <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第三篇，主要介绍计划的概述、计划的内容、计划的实现</description>
       </item>
       
       <item>
         <title>初识芯片验证（二）</title>
-        <link>https://wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_two/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_two/</link>
         <pubDate>Sun, 12 Jan 2020 19:49:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_two/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_two/</guid>
         <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第二篇，主要介绍测试平台、硬件设计描述、激励产生器</description>
       </item>
       
       <item>
         <title>初识芯片验证（一）</title>
-        <link>https://wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_one/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_one/</link>
         <pubDate>Sun, 05 Jan 2020 20:49:00 +0800</pubDate>
         
-        <guid>https://wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_one/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_one/</guid>
         <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第一篇，主要介绍芯片开发概述、验证任务和目标、验证</description>
       </item>
       
