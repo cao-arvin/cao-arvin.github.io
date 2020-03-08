@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docs on Wenhui&#39;s Rotten Pen</title>
+    <title>Docs on ZDoc</title>
     <link>https://wenhui.space/docs/</link>
-    <description>Recent content in Docs on Wenhui&#39;s Rotten Pen</description>
+    <description>Recent content in Docs on ZDoc</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
+    <language>en</language>
     <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
     <lastBuildDate>Fri, 28 Feb 2020 10:08:56 +0900</lastBuildDate>
     
