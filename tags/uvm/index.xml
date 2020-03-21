@@ -16,11 +16,20 @@
       
       <item>
         <title>UVM与验证平台</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/other/uvm_and_verification_platforms/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/creation/uvm_and_verification_platforms/</link>
         <pubDate>Tue, 25 Feb 2020 10:19:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/digital_verifer/other/uvm_and_verification_platforms/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/creation/uvm_and_verification_platforms/</guid>
         <description>本文 主要介绍什么是UVM和验证平台，以及如何搭建UVM验证平台。 版本 说明 0.1 初版发布 参考 参考自文彬师兄的UVM培训资料。 初识UVM 什么是UVM</description>
+      </item>
+      
+      <item>
+        <title>初识芯片验证（五）</title>
+        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_five/</link>
+        <pubDate>Thu, 23 Jan 2020 21:49:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_five/</guid>
+        <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第五篇，主要介绍验证的方法、UVM简介、UVM组件</description>
       </item>
       
       <item>

@@ -16,11 +16,20 @@
       
       <item>
         <title>正则表达式语法简明教程</title>
-        <link>https://www.wenhui.space/docs/about_linux/regular_expression/</link>
+        <link>https://www.wenhui.space/docs/about_linux/language_notes/regular_expression/</link>
         <pubDate>Sat, 07 Dec 2019 21:18:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/about_linux/regular_expression/</guid>
+        <guid>https://www.wenhui.space/docs/about_linux/language_notes/regular_expression/</guid>
         <description>本文 主要对正则表达式的常用语法进行整理和介绍。 版本 说明 0.1 初版发布 0.2 添加正则表达式在线测试网址 背景 Linux 什么是正则表达式？ 正则表达式（regula</description>
+      </item>
+      
+      <item>
+        <title>shell脚本使用记录</title>
+        <link>https://www.wenhui.space/docs/about_linux/script_notes/shell_script/</link>
+        <pubDate>Sun, 01 Dec 2019 14:18:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/about_linux/script_notes/shell_script/</guid>
+        <description>本文 主要对日常shell脚本使用中的一些技巧进行记录。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 shell： bash 字符串替换的小技巧</description>
       </item>
       
     

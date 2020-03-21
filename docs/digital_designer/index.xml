@@ -15,11 +15,29 @@
     
       
       <item>
-        <title>其他总结</title>
-        <link>https://www.wenhui.space/docs/digital_designer/other/</link>
+        <title>RTL编码</title>
+        <link>https://www.wenhui.space/docs/digital_designer/rtl_coding/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://www.wenhui.space/docs/digital_designer/other/</guid>
+        <guid>https://www.wenhui.space/docs/digital_designer/rtl_coding/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>典型例子</title>
+        <link>https://www.wenhui.space/docs/digital_designer/typical_demo/</link>
+        <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_designer/typical_demo/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>其他技巧</title>
+        <link>https://www.wenhui.space/docs/digital_designer/other_tips/</link>
+        <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_designer/other_tips/</guid>
         <description></description>
       </item>
       

@@ -16,10 +16,10 @@
       
       <item>
         <title>Formal验证技术总结</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/other/formal_verify/</link>
+        <link>https://www.wenhui.space/docs/digital_verifer/creation/formal_verify/</link>
         <pubDate>Wed, 08 Jan 2020 20:50:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/digital_verifer/other/formal_verify/</guid>
+        <guid>https://www.wenhui.space/docs/digital_verifer/creation/formal_verify/</guid>
         <description>本文 主要介绍本人使用形式化验证的一些经验总结。 版本 说明 0.1 初版发布 背景 验证工具： Cadence 公司的 JasperGold 写在前头 形式化验证是一种验证方法，而实际应用方向主要</description>
       </item>
       

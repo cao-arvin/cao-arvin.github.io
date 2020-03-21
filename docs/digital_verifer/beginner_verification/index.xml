@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>初识芯片验证（五）</title>
+        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_five/</link>
+        <pubDate>Thu, 23 Jan 2020 21:49:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_five/</guid>
+        <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第五篇，主要介绍验证的方法、UVM简介、UVM组件</description>
+      </item>
+      
+      <item>
         <title>初识芯片验证（四）</title>
         <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_four/</link>
         <pubDate>Sun, 19 Jan 2020 22:49:00 +0800</pubDate>
