@@ -15,6 +15,33 @@
     
       
       <item>
+        <title>为什么AArch64没有LDM和STM指令</title>
+        <link>https://www.wenhui.space/docs/about_arm/aarch64/aarch64_no_ldm_stm/</link>
+        <pubDate>Sat, 21 Mar 2020 22:28:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/about_arm/aarch64/aarch64_no_ldm_stm/</guid>
+        <description>本文 主要介绍为什么AArch64没有LDM和STM指令了，而是用LDP跟STP。 版本 说明 0.1 初版发布 写在前头 AArch32 指令集中包含多数据传输指令LDM</description>
+      </item>
+      
+      <item>
+        <title>CPU相关的科普知识</title>
+        <link>https://www.wenhui.space/docs/polular_science/cpu_knowledge/</link>
+        <pubDate>Sat, 21 Mar 2020 20:28:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/polular_science/cpu_knowledge/</guid>
+        <description>本文 主要主要对涉及CPU的一些基本知识和概念进行简单描述，作为科普知识。 版本 说明 0.1 初版发布 参考 各种网络资源。 CPU和SOC的区别 SoC = System on Ch</description>
+      </item>
+      
+      <item>
+        <title>ARM体系结构与汇编指令</title>
+        <link>https://www.wenhui.space/docs/about_arm/assembler/arm_architecture_and_assembly/</link>
+        <pubDate>Wed, 18 Mar 2020 20:32:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/about_arm/assembler/arm_architecture_and_assembly/</guid>
+        <description>本文 主要介绍ARM体系结构与汇编指令，这里的体系结构指ARMv7及以前版本，ARMv8相对之前的版本区别较大，不过熟悉以前的体系结构对ARM</description>
+      </item>
+      
+      <item>
         <title>推荐一款hugo主题</title>
         <link>https://www.wenhui.space/docs/create_blog_site/hugo_theme_zdoc/</link>
         <pubDate>Sat, 07 Mar 2020 16:46:00 +0800</pubDate>
