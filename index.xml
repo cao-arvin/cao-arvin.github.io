@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>一个简易bootloader框架</title>
+        <link>https://www.wenhui.space/docs/about_arm/aarch64/bootloader/</link>
+        <pubDate>Sun, 22 Mar 2020 15:47:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/about_arm/aarch64/bootloader/</guid>
+        <description>本文 主要介绍一个基于AArch64的bootloader程序框架，其结构和功能都比较简单，主要为CPU验证使用。 版本 说明 0.1 初版发布 背景 在CP</description>
+      </item>
+      
+      <item>
         <title>AArch64之异常处理</title>
         <link>https://www.wenhui.space/docs/about_arm/aarch64/aarch64_execption/</link>
         <pubDate>Sun, 22 Mar 2020 12:27:00 +0800</pubDate>
