@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>AArch64之异常处理</title>
+        <link>https://www.wenhui.space/docs/about_arm/aarch64/aarch64_execption/</link>
+        <pubDate>Sun, 22 Mar 2020 12:27:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/about_arm/aarch64/aarch64_execption/</guid>
+        <description>本文 主要介绍AArch64的一些异常基础知识，异常向量表的设定，以及AArch64的异常处理。 版本 说明 0.1 初版发布 关于异常的基础知识 什么是异常</description>
+      </item>
+      
+      <item>
         <title>为什么AArch64没有LDM和STM指令</title>
         <link>https://www.wenhui.space/docs/about_arm/aarch64/aarch64_no_ldm_stm/</link>
         <pubDate>Sat, 21 Mar 2020 22:28:00 +0800</pubDate>

@@ -971,7 +971,7 @@
     <meta name="description" content="" />
 <meta name="keywords" content="">
 <meta name="created" content="2019-12-29T15:18:00&#43;0800">
-<meta name="modified" content="2020-03-21T14:51:50&#43;0800">
+<meta name="modified" content="2020-03-22T12:01:23&#43;0800">
 
 
 <meta property="og:site_name" content="Wenhui&#39;s Rotten Pen">
@@ -996,7 +996,7 @@
     "@type": "WebPage",
     "headline": "Linux使用命令记录",
     "datePublished": "2019-12-29T15:18:00+08:00",
-    "dateModified": "2020-03-21T14:51:50+08:00",
+    "dateModified": "2020-03-22T12:01:23+08:00",
     "url" : "https://www.wenhui.space/docs/about_linux/use_notes/linux_use_notes/",
     "description": "本文 主要对日常linux系统使用使用的命令进行记录，方便后续自己查找以及分享给需要的朋友。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核：",
     "mainEntityOfPage": {
@@ -2249,6 +2249,14 @@
     </span>
   </span>
   <ul class="menu__list " data-data=/aarch64/ data-link=https://www.wenhui.space/docs/about_linux/use_notes/linux_use_notes/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/about_arm/aarch64/aarch64_execption/" class="menu__title " data-depth="1">AArch64之异常处理</a>
+        </li>
+      
     
       
         
@@ -3902,6 +3910,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/about_arm/aarch64/aarch64_execption/" class="menu__title " data-depth="1">AArch64之异常处理</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/about_arm/aarch64/aarch64_no_ldm_stm/" class="menu__title " data-depth="1">为什么AArch64没有LDM和STM指令</a>
         </li>
       
@@ -4021,7 +4037,53 @@
 <li>替换单个字符（小写变大写）： rename &lsquo;y/a-z/A-Z/&rsquo; * （替换表达式中y代表替换字符一一对应，即a替换为A，b替换为B&hellip; 最后*代表当前目录下所有文件，也可以*.v，代表所有带.v后缀的文件）</li>
 <li>替换特定字符串： rename &lsquo;s/abc/123/&rsquo; * （替换表达式中s代表特定字符串替换，即abc替换为123，最后*代表当前目录下所有文件，也可以*.v，代表所有带.v后缀的文件）</li>
 </ul>
-<hr />
+<h2 id="常用命令之grep">常用命令之grep</h2>
+<p>grep命令功能是搜索文本中包含的字符串，常用方法如下：</p>
+<ul>
+<li>grep “字符串” *     搜索当前目录下的所有文件，也可以使用 *.v 只搜索带.v后缀的文件（不包含子目录下的文件）</li>
+<li>grep -r “字符串” * -r或-R可以递归搜索，也就是搜索包含子目录以及子子目录等中的所有文件</li>
+<li>grep -i “字符串” *  忽略字符串中的大小写</li>
+<li>grep -n &ldquo;字符串&rdquo; *  列出字符串所在文件的行号</li>
+<li>grep实际使用中，由于某些特殊字符带有特殊含义，而在使用其本意时，需要结合转义字符\，比如字符串“**“，就需要加转义”\*\*“，不然会匹配成任意。</li>
+</ul>
+<p>终极使用：我会将此命令定义别名为gg（将下面代码赋值到.bashrc即可），这样终端命令行使用gg来达到“搜索当前目录以及子目录下所有文件，显示行号，搜索字符高亮显示”功能，这对熟悉他人文档环境时很有用，能够快速定位到自己想要搜索的内容，更快的熟悉文档环境。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">gg</span><span class="o">=</span><span class="s1">&#39;grep --color=auto -rn&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="常用命令之find">常用命令之find</h2>
+<p>find是查找文件的命令，常用就是查找文件名为xx的文件，使用方法如下，这里就是在（.）当前目录及其子目录下查找带.c后缀的文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">find . -name <span class="s2">&#34;*.c&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以搭配管道命令（可以理解为同时执行），如下命令指在 find . 结果中使用 grep搜索特定字符串：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">find . <span class="p">|</span> grep <span class="s2">&#34;文件名&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>还可以使用参数-maxdepth来指定层级深度，我的终极使用，我会将此命令定义别名为ff（将下面代码赋值到.bashrc即可），这样终端命令行使用ff来达到“查找当前目录并设定搜索深度，比如1代表仅当前目录，带特定字符串的文件名”，使用方法如：ff 3 &ldquo;*.c&rdquo;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">ff</span><span class="o">=</span><span class="s1">&#39;ff() { find . -maxdepth $1 -name $2;}; ff&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
   </article>
@@ -4060,6 +4122,8 @@
     <li><a href="#查看命令是否存在">查看命令是否存在</a></li>
     <li><a href="#head和tail">head和tail</a></li>
     <li><a href="#批量重命名rename">批量重命名rename</a></li>
+    <li><a href="#常用命令之grep">常用命令之grep</a></li>
+    <li><a href="#常用命令之find">常用命令之find</a></li>
   </ul>
 </nav>
   </div>
