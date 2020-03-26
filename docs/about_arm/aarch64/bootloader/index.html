@@ -971,7 +971,7 @@
     <meta name="description" content="" />
 <meta name="keywords" content="">
 <meta name="created" content="2020-03-22T15:47:00&#43;0800">
-<meta name="modified" content="2020-03-22T17:03:46&#43;0800">
+<meta name="modified" content="2020-03-26T14:30:28&#43;0800">
 
 
 <meta property="og:site_name" content="Wenhui&#39;s Rotten Pen">
@@ -996,9 +996,9 @@
     "@type": "WebPage",
     "headline": "一个简易bootloader框架",
     "datePublished": "2020-03-22T15:47:00+08:00",
-    "dateModified": "2020-03-22T17:03:46+08:00",
+    "dateModified": "2020-03-26T14:30:28+08:00",
     "url" : "https://www.wenhui.space/docs/about_arm/aarch64/bootloader/",
-    "description": "本文 主要介绍一个基于AArch64的bootloader程序框架，其结构和功能都比较简单，主要为CPU验证使用。 版本 说明 0.1 初版发布 背景 在CP",
+    "description": "本文 主要介绍一个基于AArch64的bootloader程序框架，其结构和功能都比较简单，主要为CPU验证使用。 版本 说明 0.1 初版发布 0.2 增加对A",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://www.wenhui.space/"
@@ -4016,6 +4016,10 @@
 <td>0.1</td>
 <td>初版发布</td>
 </tr>
+<tr>
+<td>0.2</td>
+<td>增加对A32的支持，并对程序结构进行了优化</td>
+</tr>
 </tbody>
 </table>
 <h2 id="背景">背景</h2>
@@ -5646,7 +5650,40 @@ SECTIONS
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="aarch32">AArch32</h2>
-<p>待补充。</p>
+<p>这里没有对AArch32做单独程序框架，而是采用了将AArch64和AArch32混合编程的方法。</p>
+<h2 id="aarch64与aarch32混合编程">AArch64与AArch32混合编程</h2>
+<p>ARMv8中，AArch64和AArch32是通过异常进行切换的。而A32和T32是通过bx指令进行切换的。如下图：</p>
+<center>
+<img width="600" src="/image/about-ARM/A64-A32.jpg">
+<div style="color:darkorange;"> <b>  </b>  </div>
+</center>
+<p>也就是CPU启动是在EL3，处于AArch64，在EL3设置EL2的架构为AArch32，设置好返回地址，通过ERET指令，切换到EL2，就可以执行A32指令了。</p>
+<p>这里会有一个问题，AArch64和AArch32的编译链接工具不同，无法进行混合的链接。解决办法是将A32测试程序生成elf文件再生成bin文件，在链接时链接A32的bin文件。顺便这里干脆把A64的测试程序也使用bin文件链接的方式，顶层只保留系统文件，这样结够更加清晰。另外A64和A32测试程序使用单独的环境，并且不依赖系统程序，可以在单独的环境进行编译调试。具体文件结构如下：</p>
+<pre><code class="language-nil" data-lang="nil">.
+├── a32_test
+│   ├── a32_test.s
+│   ├── link.lds
+│   ├── Makefile
+│   ├── test.c
+│   └── thumb_test.inc
+├── a64_test
+│   ├── a64_test.s
+│   ├── link.lds
+│   ├── Makefile
+│   └── test.c
+├── link.lds
+├── Makefile
+├── Makefile.def
+├── script
+│   └── readme.org
+└── system
+    ├── asmlib.inc
+    ├── evt.inc
+    ├── Makefile
+    ├── start.s
+    └── sysregs_init.inc
+</code></pre><p>在Makefile.def中定义了各种参数，其中包含对测试程序的调用，可以选择el0,el1,el2,el3，也可以打开和关闭A32的测试以及是否打印测试结果。</p>
+<p>代码中添加了必要的注释，这里就不展开介绍了，可以参考程序代码，分享如下： <strong>链接：<a href="https://pan.baidu.com/s/1vGm6wRuMbzm9-0rZUsPpFw">https://pan.baidu.com/s/1vGm6wRuMbzm9-0rZUsPpFw</a> 密码：nymn</strong></p>
 <hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
@@ -5699,6 +5736,7 @@ SECTIONS
       </ul>
     </li>
     <li><a href="#aarch32">AArch32</a></li>
+    <li><a href="#aarch64与aarch32混合编程">AArch64与AArch32混合编程</a></li>
   </ul>
 </nav>
   </div>
