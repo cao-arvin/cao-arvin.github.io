@@ -971,7 +971,7 @@
     <meta name="description" content="" />
 <meta name="keywords" content="">
 <meta name="created" content="2020-01-23T21:49:00&#43;0800">
-<meta name="modified" content="2020-03-10T22:47:51&#43;0800">
+<meta name="modified" content="2020-03-27T22:18:23&#43;0800">
 
 
 <meta property="og:site_name" content="Wenhui&#39;s Rotten Pen">
@@ -996,7 +996,7 @@
     "@type": "WebPage",
     "headline": "初识芯片验证（五）",
     "datePublished": "2020-01-23T21:49:00+08:00",
-    "dateModified": "2020-03-10T22:47:51+08:00",
+    "dateModified": "2020-03-27T22:18:23+08:00",
     "url" : "https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_five/",
     "description": "本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第五篇，主要介绍验证的方法、UVM简介、UVM组件",
     "keywords": ["SystemVerilog","UVM"],
@@ -4041,7 +4041,7 @@
 <li>动态仿真（dynamic simulation）</li>
 <li>静态检查（formal check）（包含形式化验证也包含代码静态检查）</li>
 <li>虚拟模型（virtual prototype）</li>
-<li>硬件加速器（hardware acceleration）</li>
+<li>硬件加速（hardware acceleration）</li>
 <li>电源功耗（power consumption）</li>
 <li>性能评估（performance evaluation）</li>
 </ul>
@@ -4216,7 +4216,113 @@
 <li>事务接口类（transaction interface）</li>
 </ul>
 <h2 id="uvm组件">UVM组件</h2>
+<ul>
+<li>验证组件按照功能划分，可以分为激励器（stimulator/driver）、监测器（monitor）和检查器（checker）。</li>
+<li>这三个核心组件与验证环境的三个关键特性相对应，也就是激励、监测和检查。</li>
+<li>从UVM基类继承的一个核心分支，即uvm_component类，它们是UVM类库中的重要成员，是构成整个验证环境框架的基础，uvm_component类依据不同功能，又分为以下几个子类：
+<ol>
+<li>uvm_driver</li>
+<li>uvm_monitor</li>
+<li>uvm_sequencer</li>
+<li>uvm_agent</li>
+<li>uvm_scoreboard</li>
+<li>uvm_env</li>
+<li>uvm_test</li>
+</ol>
+</li>
+</ul>
 <h2 id="uvm环境">UVM环境</h2>
+<p>uvm环境中很重要的一点是phase机制。</p>
+<ul>
+<li>传统的硬件设计模型在仿真开始前，已经完成例化和连接了。</li>
+<li>而SV的软件部分对象例化是在仿真开始后执行的。虽然对象例化时只是通过调用构建函数new()，但是单单通过new()函数无法实现验证环境的层次化，也就是保证例化的先后关系和各个组件之间的连接。</li>
+<li>如果需要实现高级功能，比如在顶层到底层的配置时，SV也无法在底层组件例化之前完成对底层的配置逻辑。</li>
+<li>因此，UVM验证环境构建时，引入phase机制，通过该机制可以很清晰的将UVM仿真阶段层次化。这里层次化，不仅仅是各个phase的执行顺序，还有同一个phase中的层次化组件之间的【phase也有先后关系。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>phase</th>
+<th>函数/任务</th>
+<th>执行顺序</th>
+<th>功能</th>
+<th>典型应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>build</td>
+<td>函数</td>
+<td>自顶向下</td>
+<td>创建和配置测试平台的结构</td>
+<td>创建组件和寄存器模型，设置或者获取设置</td>
+</tr>
+<tr>
+<td>connect</td>
+<td>函数</td>
+<td>自底向上</td>
+<td>建立组件之间的连接</td>
+<td>连接TLM的接口，连接寄存器模型和adapter</td>
+</tr>
+<tr>
+<td>end_of_elaboration</td>
+<td>函数</td>
+<td>自底向上</td>
+<td>测试环境的微调</td>
+<td>显示环境结构、打开文件，为组件添加额外配置</td>
+</tr>
+<tr>
+<td>start_of_simulation</td>
+<td>函数</td>
+<td>自底向上</td>
+<td>准备测试环境的仿真</td>
+<td>显示环境结构、设置断点，设置初始运行时的配置值</td>
+</tr>
+<tr>
+<td>run</td>
+<td>任务</td>
+<td>自底向上</td>
+<td>激励设计</td>
+<td>提供激励、采集数据、数据比较</td>
+</tr>
+<tr>
+<td>extract</td>
+<td>函数</td>
+<td>自底向上</td>
+<td>从测试环境中收集数据</td>
+<td>从测试平台提取剩余数据，从设计观察最终状态</td>
+</tr>
+<tr>
+<td>check</td>
+<td>函数</td>
+<td>自底向上</td>
+<td>检查任何不期望的行为</td>
+<td>检查不期望的数据</td>
+</tr>
+<tr>
+<td>report</td>
+<td>函数</td>
+<td>自底向上</td>
+<td>报告测试数据</td>
+<td>报告测试结果，并将其写入文件中</td>
+</tr>
+<tr>
+<td>final</td>
+<td>函数</td>
+<td>自顶向下</td>
+<td>完成测试活动、结束仿真</td>
+<td>关闭文件，结束联合仿真引擎</td>
+</tr>
+</tbody>
+</table>
+<center>
+<img width="800" src="/image/digital-verifer/uvm-phase1.png">
+<div style="color:darkorange;"> <b> phase执行顺序 </b>  </div>
+</center>
+<center>
+<img width="800" src="/image/digital-verifer/uvm-phase2.png">
+<div style="color:darkorange;"> <b> 创建测试平台 </b>  </div>
+</center>
 <hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
