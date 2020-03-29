@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>SV学习（五）</title>
+        <link>https://www.wenhui.space/docs/digital_verifer/study_sv/study_sv_five/</link>
+        <pubDate>Sat, 28 Mar 2020 19:31:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_verifer/study_sv/study_sv_five/</guid>
+        <description>本文 SystemVerilog学习系列主要介绍SystemVerilog语言的基础知识，是验证工程师必须熟练掌握的语言基础。此为第五篇，主要</description>
+      </item>
+      
+      <item>
         <title>一个简易bootloader框架</title>
         <link>https://www.wenhui.space/docs/about_arm/aarch64/bootloader/</link>
         <pubDate>Sun, 22 Mar 2020 15:47:00 +0800</pubDate>

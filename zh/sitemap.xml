@@ -133,6 +133,16 @@
   </url>
   
   <url>
+    <loc>https://www.wenhui.space/docs/digital_verifer/study_sv/study_sv_five/</loc>
+    <lastmod>2020-03-29T15:59:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.wenhui.space/tags/systemverilog/</loc>
+    <lastmod>2020-03-29T15:59:14+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.wenhui.space/docs/about_arm/aarch64/bootloader/</loc>
     <lastmod>2020-03-26T14:30:28+08:00</lastmod>
   </url>
@@ -290,11 +300,6 @@
                 hreflang="zh"
                 href="https://www.wenhui.space/"
                 />
-  </url>
-  
-  <url>
-    <loc>https://www.wenhui.space/tags/systemverilog/</loc>
-    <lastmod>2020-03-27T22:18:23+08:00</lastmod>
   </url>
   
   <url>
