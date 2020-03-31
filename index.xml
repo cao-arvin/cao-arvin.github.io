@@ -15,6 +15,24 @@
     
       
       <item>
+        <title>SV学习（七）</title>
+        <link>https://www.wenhui.space/docs/digital_verifer/study_sv/study_sv_seven/</link>
+        <pubDate>Tue, 31 Mar 2020 11:05:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_verifer/study_sv/study_sv_seven/</guid>
+        <description>本文 SystemVerilog学习系列主要介绍SystemVerilog语言的基础知识，是验证工程师必须熟练掌握的语言基础。此为第七篇，主要</description>
+      </item>
+      
+      <item>
+        <title>SV与UVM每日一问</title>
+        <link>https://www.wenhui.space/docs/digital_verifer/creation/sv_uvm_daily_question/</link>
+        <pubDate>Mon, 30 Mar 2020 17:41:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_verifer/creation/sv_uvm_daily_question/</guid>
+        <description>本文 主要记录SV与UVM的一些知识点，每日一问，每日一记。 版本 说明 0.1 初版发布 写在前头 本文非原创，内容来自路科验证，整理成文并持续更新。 每日一</description>
+      </item>
+      
+      <item>
         <title>SV学习（六）</title>
         <link>https://www.wenhui.space/docs/digital_verifer/study_sv/study_sv_six/</link>
         <pubDate>Mon, 30 Mar 2020 16:45:00 +0800</pubDate>
