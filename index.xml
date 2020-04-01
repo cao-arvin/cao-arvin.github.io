@@ -15,6 +15,24 @@
     
       
       <item>
+        <title>UVM学习（二）</title>
+        <link>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-two/</link>
+        <pubDate>Wed, 01 Apr 2020 18:22:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-two/</guid>
+        <description>本文 UVM学习系列主要介绍UVM的基础知识，UVM是目前芯片验证界最主流的验证方法学。此为第二篇，主要介绍核心基类、phase机制、conf</description>
+      </item>
+      
+      <item>
+        <title>UVM学习（一）</title>
+        <link>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-one/</link>
+        <pubDate>Tue, 31 Mar 2020 11:35:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-one/</guid>
+        <description>本文 UVM学习系列主要介绍UVM的基础知识，UVM是目前芯片验证界最主流的验证方法学。此为第一篇，主要介绍验证方法学概述、类库地图、工厂机制</description>
+      </item>
+      
+      <item>
         <title>SV学习（七）</title>
         <link>https://www.wenhui.space/docs/digital_verifer/study_sv/study_sv_seven/</link>
         <pubDate>Tue, 31 Mar 2020 11:05:00 +0800</pubDate>
