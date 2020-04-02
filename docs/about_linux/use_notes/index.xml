@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>Git原理详解及实用指南</title>
+        <link>https://www.wenhui.space/docs/about_linux/use_notes/git_introduction_and_userguide/</link>
+        <pubDate>Thu, 02 Apr 2020 19:45:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/about_linux/use_notes/git_introduction_and_userguide/</guid>
+        <description>本文 主要对版本控制工具Git进行简单介绍，以及一些高级场景的应用。 版本 说明 0.1 初版发布 背景 本文非原创，整理自掘金小册收费文章《Git 原理详解及</description>
+      </item>
+      
+      <item>
         <title>Linux系统设置记录</title>
         <link>https://www.wenhui.space/docs/about_linux/use_notes/linux_syscfg_notes/</link>
         <pubDate>Sat, 11 Jan 2020 15:18:00 +0800</pubDate>
