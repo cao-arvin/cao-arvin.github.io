@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>文档格式转换工具Pandoc</title>
+        <link>https://www.wenhui.space/docs/install_software/install_pandoc/</link>
+        <pubDate>Fri, 03 Apr 2020 19:29:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/install_software/install_pandoc/</guid>
+        <description>本文 主要介绍一款文档格式转换工具Pandoc，它可以支持多种文档类型之间转换，包括Markdown、LaTeX、reStructuredTe</description>
+      </item>
+      
+      <item>
         <title>Git原理详解及实用指南</title>
         <link>https://www.wenhui.space/docs/about_linux/use_notes/git_introduction_and_userguide/</link>
         <pubDate>Thu, 02 Apr 2020 19:45:00 +0800</pubDate>
