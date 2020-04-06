@@ -15,12 +15,21 @@
     
       
       <item>
+        <title>解决Org-Mode表格不对齐问题</title>
+        <link>https://www.wenhui.space/docs/about_emacs/org_mode_table_align/</link>
+        <pubDate>Mon, 06 Apr 2020 11:09:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/about_emacs/org_mode_table_align/</guid>
+        <description>本文 主要针对org-mode中英文混合编辑时表格不对齐问题，提出一种有效解决方法。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 em</description>
+      </item>
+      
+      <item>
         <title>emacs插件之多媒体应用</title>
         <link>https://www.wenhui.space/docs/about_emacs/emacs_epa_package/</link>
         <pubDate>Wed, 26 Feb 2020 22:28:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/about_emacs/emacs_epa_package/</guid>
-        <description>本文 主要介绍一款emacs插件&amp;ndash;epa(emacs-application-framework)。 版本 说明 0.1 初版发布 参考 gith</description>
+        <description>本文 主要介绍一款emacs插件&amp;ndash;epa(emacs-application-framework)。 版本 说明 0.1 初版发布 背景 主机： Thinkpad</description>
       </item>
       
       <item>

@@ -7,12 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Wed, 01 Apr 2020 18:22:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2020 14:29:00 +0800</lastBuildDate>
     
         <atom:link href="https://www.wenhui.space/tags/uvm/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>UVM学习（三）</title>
+        <link>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-three/</link>
+        <pubDate>Mon, 06 Apr 2020 14:29:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-three/</guid>
+        <description>本文 UVM学习系列主要介绍UVM的基础知识，UVM是目前芯片验证界最主流的验证方法学。此为第三篇，主要介绍UVM的组件，包括：uvm_dri</description>
+      </item>
       
       <item>
         <title>UVM学习（二）</title>
