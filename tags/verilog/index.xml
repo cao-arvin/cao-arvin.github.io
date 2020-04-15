@@ -20,7 +20,7 @@
         <pubDate>Mon, 24 Feb 2020 17:03:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/digital_designer/other_tips/resolve_dependencies_rtl_compile/</guid>
-        <description>本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 关于include 一般在文件中会用include来加载依赖的文件，</description>
+        <description>本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 0.2 修正对-y的理解，-y只是指定库文件目录 关于include 一般在</description>
       </item>
       
       <item>

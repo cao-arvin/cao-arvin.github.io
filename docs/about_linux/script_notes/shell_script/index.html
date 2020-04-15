@@ -971,7 +971,7 @@
     <meta name="description" content="" />
 <meta name="keywords" content="">
 <meta name="created" content="2019-12-01T14:18:00&#43;0800">
-<meta name="modified" content="2020-04-02T19:58:29&#43;0800">
+<meta name="modified" content="2020-04-15T23:09:53&#43;0800">
 
 
 <meta property="og:site_name" content="Wenhui&#39;s Rotten Pen">
@@ -996,9 +996,9 @@
     "@type": "WebPage",
     "headline": "shell脚本使用记录",
     "datePublished": "2019-12-01T14:18:00+08:00",
-    "dateModified": "2020-04-02T19:58:29+08:00",
+    "dateModified": "2020-04-15T23:09:53+08:00",
     "url" : "https://www.wenhui.space/docs/about_linux/script_notes/shell_script/",
-    "description": "本文 主要对日常shell脚本使用中的一些技巧进行记录。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 shell： bash 字符串替换的小技巧",
+    "description": "本文 主要对日常shell脚本使用中的一些技巧进行记录。 版本 说明 0.1 初版发布 0.2 添加字符截取、条件判断和循环等内容 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核：",
     "keywords": ["shell"],
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -4193,6 +4193,10 @@
 <td>0.1</td>
 <td>初版发布</td>
 </tr>
+<tr>
+<td>0.2</td>
+<td>添加字符截取、条件判断和循环等内容</td>
+</tr>
 </tbody>
 </table>
 <h2 id="背景">背景</h2>
@@ -4201,6 +4205,10 @@
 <li>系统： Deepin GNU/Linux 15.11</li>
 <li>内核： Debian 6.3.0-18+deb9u1</li>
 <li>shell： bash</li>
+</ul>
+<h2 id="学习网站">学习网站</h2>
+<ul>
+<li><a href="http://c.biancheng.net/shell/base/" target="_blank">shell基础</a></li>
 </ul>
 <h2 id="字符串替换的小技巧">字符串替换的小技巧</h2>
 <h3 id="在一个文件里替换一个字符串">在一个文件里替换一个字符串</h3>
@@ -4290,7 +4298,411 @@
 <p>更多无耻要求可以基于以上简单脚本进行嵌套实现，不再一一说明。</p>
 <h3 id="其他方案-emacs">其他方案：Emacs</h3>
 <p>如果你是Emacs用户的话，可以使用emacs的批量替换，具体可查看我的另一篇帖子 <a href="/post/about%5Femacs/emacs%5Fuse%5Ftips/" target="_blank">emacs的使用技巧记录</a>中 <strong>“Emacs 批量查找与替换”</strong> 章节。Emacs 批量查找与替换功能操作起来虽然比其他软件繁琐许多，但是你可以详细的看到要被替换的项，这一点相对于单纯的脚本替换是有安全性的。</p>
-<hr />
+<h2 id="字符串截取的小技巧">字符串截取的小技巧</h2>
+<h3 id="计数截取">计数截取</h3>
+<ul>
+<li>左边开始计数：${string: start :length}
+<ul>
+<li>start 是起始位置（从左边开始，从 0 开始计数）</li>
+<li>length 是要截取的长度（省略的话表示直到字符串的末尾）</li>
+</ul>
+</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span><span class="s2">&#34;c.biancheng.net&#34;</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">: 2: 9</span><span class="si">}</span>
+<span class="c1"># 结果：biancheng</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>右边开始计数：${string: 0-start :length}
+<ul>
+<li>右边开始计数时，起始数字是 1</li>
+<li>不管从哪边开始计数，截取方向都是从左到右。</li>
+</ul>
+</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span><span class="s2">&#34;c.biancheng.net&#34;</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">: 0-13: 9</span><span class="si">}</span>
+<span class="c1"># 结果：biancheng</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="指定子字符串截取">指定子字符串截取</h3>
+<ul>
+<li>截取右边字符：${string#*chars}
+<ul>
+<li>#*chars 表示忽略左边的所有字符，直到遇见 chars（chars 不会被截取）</li>
+<li>当有多个匹配时，只从左到右第一个有效</li>
+</ul>
+</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span><span class="s2">&#34;http://c.biancheng.net/index.html&#34;</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">#*/</span><span class="si">}</span>
+<span class="c1">#结果：/c.biancheng.net/index.html</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>截取右边字符：${string##*chars}
+<ul>
+<li>##*chars 表示忽略左边的所有字符，直到遇见 chars（chars 不会被截取）</li>
+<li>当有多个匹配时，只从左到右最后一个有效</li>
+</ul>
+</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span><span class="s2">&#34;http://c.biancheng.net/index.html&#34;</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">##*/</span><span class="si">}</span>
+<span class="c1">#结果：index.html</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>截取左边字符：${string%chars*}
+<ul>
+<li>%chars* 表示忽略右边的所有字符，直到遇见 chars（chars 不会被截取）</li>
+<li>当有多个匹配时，只从右到左第一个有效</li>
+</ul>
+</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span><span class="s2">&#34;http://c.biancheng.net/index.html&#34;</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">%/*</span><span class="si">}</span>
+<span class="c1">#结果：http://c.biancheng.net</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>截取左边字符：${string%%chars*}
+<ul>
+<li>%%chars* 表示忽略右边的所有字符，直到遇见 chars（chars 不会被截取）</li>
+<li>当有多个匹配时，只从右到左最后一个有效</li>
+</ul>
+</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span><span class="s2">&#34;http://c.biancheng.net/index.html&#34;</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">%%/*</span><span class="si">}</span>
+<span class="c1">#结果：http:</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>所谓字符串截取，也可以理解为删除特定字符串内容，比如删除行末尾空格（注意，变量末尾添加一个空格这步很重要，防止末尾无空格且中间有空格时，删除额外内容）：</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span><span class="s2">&#34;http://c.biancheng.net/index.html&#34;</span>
+<span class="nv">url</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">url</span><span class="si">}</span><span class="s2"> &#34;</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">url</span><span class="p">%% *</span><span class="si">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="总结">总结</h3>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${string: start :length}</td>
+<td>从 string 字符串的左边第 start 个字符开始，向右截取 length 个字符。</td>
+</tr>
+<tr>
+<td>${string: start}</td>
+<td>从 string 字符串的左边第 start 个字符开始截取，直到最后。</td>
+</tr>
+<tr>
+<td>${string: 0-start :length}</td>
+<td>从 string 字符串的右边第 start 个字符开始，向右截取 length 个字符。</td>
+</tr>
+<tr>
+<td>${string: 0-start}</td>
+<td>从 string 字符串的右边第 start 个字符开始截取，直到最后。</td>
+</tr>
+<tr>
+<td>${string#*chars}</td>
+<td>从 string 字符串第一次出现 *chars 的位置开始，截取 *chars 右边的所有字符。</td>
+</tr>
+<tr>
+<td>${string##*chars}</td>
+<td>从 string 字符串最后一次出现 *chars 的位置开始，截取 *chars 右边的所有字符。</td>
+</tr>
+<tr>
+<td>${string%*chars}</td>
+<td>从 string 字符串第一次出现 *chars 的位置开始，截取 *chars 左边的所有字符。</td>
+</tr>
+<tr>
+<td>${string%%*chars}</td>
+<td>从 string 字符串最后一次出现 *chars 的位置开始，截取 *chars 左边的所有字符。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="条件判断-if">条件判断 if</h2>
+<h3 id="if-elif-else-fi">if-elif-else-fi</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">((</span> <span class="nv">$age</span> &lt;<span class="o">=</span> <span class="m">18</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&#34;儿童&#34;</span>
+<span class="k">elif</span> <span class="o">((</span> <span class="nv">$age</span> &gt; <span class="m">18</span> <span class="o">&amp;&amp;</span> <span class="nv">$age</span> &lt;<span class="o">=</span> <span class="m">40</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&#34;青年&#34;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&#34;老年&#34;</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="数值比较">数值比较</h3>
+<ul>
+<li>数值的运算使用(())：支持 +、-、*、/、%</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">a</span><span class="o">=</span><span class="m">100</span>
+<span class="nv">b</span><span class="o">=</span><span class="m">50</span>
+<span class="nv">c</span><span class="o">=</span><span class="k">$((</span><span class="nv">$a</span> <span class="o">+</span> <span class="nv">$b</span><span class="k">))</span>
+<span class="nv">d</span><span class="o">=</span><span class="k">$((</span><span class="m">100</span> <span class="o">+</span> <span class="m">50</span><span class="k">))</span>
+<span class="nb">echo</span> <span class="nv">$c</span>
+<span class="nb">echo</span> <span class="nv">$d</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>数值的比较使用(())：支持 &gt;、&gt;=、&lt;、&lt;=、==、!=</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">a</span><span class="o">=</span><span class="m">100</span>
+<span class="nv">b</span><span class="o">=</span><span class="m">50</span>
+<span class="k">if</span> <span class="o">((</span><span class="nv">$a</span> &gt; <span class="nv">$b</span><span class="o">))</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&#34;max is a&#34;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&#34;max is b&#34;</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="字符串比较">字符串比较</h3>
+<ul>
+<li>字符表达式的比较使用 [[]]：支持 =、!=、-z 和 &amp;&amp;、|| 、! 运算符 （注意，中括号与表达式间要保留空格）</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># str1 或 str2 非空</span>
+<span class="k">if</span> <span class="o">[[</span> -z <span class="nv">$str1</span> <span class="o">||</span> -z <span class="nv">$str2</span> <span class="o">]]</span>
+<span class="c1"># 支持通配符</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">hest</span> <span class="o">=</span> h??t <span class="o">]]</span> <span class="c1"># ? 表示任意字符</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">hest</span> <span class="o">=</span> h*t <span class="o">]]</span> <span class="c1"># * 表示任意个任意字符</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>支持正则表达式：=~
+<ul>
+<li>^ 匹配字符串的开头（一个位置）；</li>
+<li>[0-9]{10} 匹配连续的十个数字；</li>
+<li>$匹配字符串的末尾（一个位置）</li>
+</ul>
+</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$tel</span> <span class="o">=</span>~ ^1<span class="o">[</span>0-9<span class="o">]{</span>10<span class="o">}</span>$ <span class="o">]]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&#34;你输入的是手机号码&#34;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&#34;你输入的不是手机号码&#34;</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="文件表达式">文件表达式</h3>
+<p>文件表达式的测试使用 [[]] ，其运算符如下：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-e filename</td>
+<td>如果 filename 存在，则为真</td>
+</tr>
+<tr>
+<td>-d filename</td>
+<td>如果 filename 为目录，则为真</td>
+</tr>
+<tr>
+<td>-f filename</td>
+<td>如果 filename 为常规文件，则为真</td>
+</tr>
+<tr>
+<td>-L filename</td>
+<td>如果 filename 为符号链接，则为真</td>
+</tr>
+<tr>
+<td>-r filename</td>
+<td>如果 filename 可读，则为真</td>
+</tr>
+<tr>
+<td>-w filename</td>
+<td>如果 filename 可写，则为真</td>
+</tr>
+<tr>
+<td>-x filename</td>
+<td>如果 filename 可执行，则为真</td>
+</tr>
+<tr>
+<td>filename1 -nt filename2</td>
+<td>如果 filename1 比 filename2 新，则为真</td>
+</tr>
+<tr>
+<td>filename1 -ot filename2</td>
+<td>如果 filename1 比 filename2 旧，则为真</td>
+</tr>
+</tbody>
+</table>
+<h2 id="循环for和while">循环for和while</h2>
+<h3 id="for">for</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">for</span> line in <span class="sb">`</span>cat filename<span class="sb">`</span> <span class="c1"># 或 for line in $(cat filename)</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$line</span>
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里有时候会出现问题，bash没有将换行符作为一行的分隔符，而是将空格作为了分隔符。这时候需要更改shell的系统变量IFS。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;\n&#39;</span>   <span class="c1"># 无效</span>
+<span class="nv">IFS</span><span class="o">=</span><span class="s2">$&#34;\n&#34;</span>  <span class="c1"># 无效</span>
+<span class="nv">IFS</span><span class="o">=</span><span class="s1">$&#39;\n&#39;</span>  <span class="c1"># 有效</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上这三个赋值看起来都比较像”将换行符赋值给IFS“，但实际上只有最后一种写法才是我想要的结果，一定要注意。</p>
+<ul>
+<li>IFS=‘\n’  //将字符n作为IFS的换行符。</li>
+<li>IFS=$&rdquo;\n&rdquo; //这里\n确实通过$转化为了换行符，但仅当被解释时（或被执行时）才被转化为换行符。</li>
+<li>IFS=$&rsquo;\n&rsquo; //这才是真正的换行符。</li>
+</ul>
+<h3 id="while">while</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">while</span> <span class="nb">read</span> -r line
+<span class="k">do</span>
+ <span class="nb">echo</span> <span class="nv">$line</span>
+<span class="k">done</span> &lt; filename
+</code></pre></td></tr></table>
+</div>
+</div><hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
   </article>
@@ -4325,6 +4737,7 @@
   <ul>
     <li><a href="#本文">本文</a></li>
     <li><a href="#背景">背景</a></li>
+    <li><a href="#学习网站">学习网站</a></li>
     <li><a href="#字符串替换的小技巧">字符串替换的小技巧</a>
       <ul>
         <li><a href="#在一个文件里替换一个字符串">在一个文件里替换一个字符串</a></li>
@@ -4333,6 +4746,27 @@
         <li><a href="#在一个文件里替换一组字符串">在一个文件里替换一组字符串</a></li>
         <li><a href="#更多无耻要求">更多无耻要求</a></li>
         <li><a href="#其他方案-emacs">其他方案：Emacs</a></li>
+      </ul>
+    </li>
+    <li><a href="#字符串截取的小技巧">字符串截取的小技巧</a>
+      <ul>
+        <li><a href="#计数截取">计数截取</a></li>
+        <li><a href="#指定子字符串截取">指定子字符串截取</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#条件判断-if">条件判断 if</a>
+      <ul>
+        <li><a href="#if-elif-else-fi">if-elif-else-fi</a></li>
+        <li><a href="#数值比较">数值比较</a></li>
+        <li><a href="#字符串比较">字符串比较</a></li>
+        <li><a href="#文件表达式">文件表达式</a></li>
+      </ul>
+    </li>
+    <li><a href="#循环for和while">循环for和while</a>
+      <ul>
+        <li><a href="#for">for</a></li>
+        <li><a href="#while">while</a></li>
       </ul>
     </li>
   </ul>

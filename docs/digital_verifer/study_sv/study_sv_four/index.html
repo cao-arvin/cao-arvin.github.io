@@ -971,7 +971,7 @@
     <meta name="description" content="" />
 <meta name="keywords" content="">
 <meta name="created" content="2020-01-20T22:17:00&#43;0800">
-<meta name="modified" content="2020-04-01T14:23:01&#43;0800">
+<meta name="modified" content="2020-04-07T15:25:42&#43;0800">
 
 
 <meta property="og:site_name" content="Wenhui&#39;s Rotten Pen">
@@ -996,7 +996,7 @@
     "@type": "WebPage",
     "headline": "SV学习（四）",
     "datePublished": "2020-01-20T22:17:00+08:00",
-    "dateModified": "2020-04-01T14:23:01+08:00",
+    "dateModified": "2020-04-07T15:25:42+08:00",
     "url" : "https://www.wenhui.space/docs/digital_verifer/study_sv/study_sv_four/",
     "description": "本文 SystemVerilog学习系列主要介绍SystemVerilog语言的基础知识，是验证工程师必须熟练掌握的语言基础。此为第四篇，主要",
     "keywords": ["SystemVerilog"],
@@ -4394,13 +4394,13 @@
 <pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="n">rand</span> <span class="kt">int</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">;</span>
 
 <span class="n">constraint</span> <span class="n">c_dist</span> <span class="p">{</span>
-    <span class="n">src</span> <span class="n">dist</span> <span class="p">{</span><span class="mh">0</span><span class="o">:=</span><span class="mh">40</span><span class="p">,</span> <span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">3</span><span class="p">]</span><span class="o">:=</span><span class="mh">60</span><span class="p">);}</span>
+    <span class="n">src</span> <span class="n">dist</span> <span class="p">{</span><span class="mh">0</span><span class="o">:=</span><span class="mh">40</span><span class="p">,</span> <span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">3</span><span class="p">]</span><span class="o">:=</span><span class="mh">60</span><span class="p">;}</span>
     <span class="c1">// src=1, weight=40/220
 </span><span class="c1"></span>    <span class="c1">// src=2, weight=60/220
 </span><span class="c1"></span>    <span class="c1">// src=3, weight=60/220
 </span><span class="c1"></span>    <span class="c1">// src=4, weight=60/220
 </span><span class="c1"></span>
-    <span class="n">dst</span> <span class="n">dist</span> <span class="p">{</span><span class="mh">0</span><span class="o">:/</span><span class="mh">40</span><span class="p">,</span> <span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">3</span><span class="p">]</span><span class="o">:/</span><span class="mh">60</span><span class="p">);}</span>
+    <span class="n">dst</span> <span class="n">dist</span> <span class="p">{</span><span class="mh">0</span><span class="o">:/</span><span class="mh">40</span><span class="p">,</span> <span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">3</span><span class="p">]</span><span class="o">:/</span><span class="mh">60</span><span class="p">;}</span>
     <span class="c1">// dst=1, weight=40/100
 </span><span class="c1"></span>    <span class="c1">// dst=2, weight=20/100
 </span><span class="c1"></span>    <span class="c1">// dst=3, weight=20/100
