@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>波形图绘制软件WaveDrom</title>
+        <link>https://www.wenhui.space/docs/install_software/install_wavedrom/</link>
+        <pubDate>Thu, 16 Apr 2020 21:39:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/install_software/install_wavedrom/</guid>
+        <description>本文 主要介绍一款波形图绘制软件WaveDrom，它可以通过代码形式来实现波形图的绘制。 版本 说明 0.1 初版发布 背景 WaveDrom 2.3.2 什么是WaveDrom Wav</description>
+      </item>
+      
+      <item>
         <title>文档格式转换工具Pandoc</title>
         <link>https://www.wenhui.space/docs/install_software/install_pandoc/</link>
         <pubDate>Fri, 03 Apr 2020 19:29:00 +0800</pubDate>
