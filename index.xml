@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>SV与UVM的问题记录</title>
+        <link>https://www.wenhui.space/docs/digital_verifer/creation/sv_and_uvm_note/</link>
+        <pubDate>Sun, 26 Apr 2020 16:42:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/digital_verifer/creation/sv_and_uvm_note/</guid>
+        <description>本文 主要对工作中遇到关于sv和uvm的问题，在此记录。 版本 说明 0.1 初版发布 记录 pkg不能添加interface pkg是软件域，只能添加clas</description>
+      </item>
+      
+      <item>
         <title>波形图绘制软件WaveDrom</title>
         <link>https://www.wenhui.space/docs/install_software/install_wavedrom/</link>
         <pubDate>Thu, 16 Apr 2020 21:39:00 +0800</pubDate>
@@ -326,7 +335,7 @@
         <pubDate>Wed, 22 Jan 2020 11:38:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/about_emacs/emacs_org_mode/</guid>
-        <description>本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 0.2 添加Org-Mode导出如何禁用下划线转下标 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 em</description>
+        <description>本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 0.2 添加Org-Mode导出如何禁用下划线转下标 0.3 添加代码块的介绍 背景 主机： Thinkpad S2 系统： Deepin</description>
       </item>
       
       <item>

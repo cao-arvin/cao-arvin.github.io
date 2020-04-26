@@ -971,7 +971,7 @@
     <meta name="description" content="" />
 <meta name="keywords" content="">
 <meta name="created" content="2020-01-22T11:38:00&#43;0800">
-<meta name="modified" content="2020-03-07T15:43:44&#43;0800">
+<meta name="modified" content="2020-04-26T22:01:01&#43;0800">
 
 
 <meta property="og:site_name" content="Wenhui&#39;s Rotten Pen">
@@ -996,9 +996,9 @@
     "@type": "WebPage",
     "headline": "emacs org-mode 的使用",
     "datePublished": "2020-01-22T11:38:00+08:00",
-    "dateModified": "2020-03-07T15:43:44+08:00",
+    "dateModified": "2020-04-26T22:01:01+08:00",
     "url" : "https://www.wenhui.space/docs/about_emacs/emacs_org_mode/",
-    "description": "本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 0.2 添加Org-Mode导出如何禁用下划线转下标 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 em",
+    "description": "本文 主要介绍emacs org-model 的使用方法。 版本 说明 0.1 初版发布 0.2 添加Org-Mode导出如何禁用下划线转下标 0.3 添加代码块的介绍 背景 主机： Thinkpad S2 系统： Deepin",
     "keywords": ["emacs"],
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -1526,6 +1526,14 @@
     </span>
   </span>
   <ul class="menu__list " data-data=/creation/ data-link=https://www.wenhui.space/docs/about_emacs/emacs_org_mode/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/digital_verifer/creation/sv_and_uvm_note/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
+        </li>
+      
     
       
         
@@ -3290,6 +3298,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/digital_verifer/creation/sv_and_uvm_note/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/digital_verifer/creation/sv_uvm_daily_question/" class="menu__title " data-depth="1">SV与UVM每日一问</a>
         </li>
       
@@ -4220,6 +4236,10 @@
 <td>0.2</td>
 <td>添加Org-Mode导出如何禁用下划线转下标</td>
 </tr>
+<tr>
+<td>0.3</td>
+<td>添加代码块的介绍</td>
+</tr>
 </tbody>
 </table>
 <h2 id="背景">背景</h2>
@@ -4745,7 +4765,115 @@ _下划线_
 <pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-export-with-sub-superscripts</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><hr />
+</div><h2 id="代码块">代码块</h2>
+<p>对于程序员来讲，写文章时免不了需要展示代码，org-mode的代码块的关键字是“#+BEGIN_SRC &hellip; #+END_SRC” ，在SRC后指明语言，可以支持缩进和语法高亮显示。示例如下（为了展示完整代码，对代码块关键字使用//进行了注释）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">//#+BEGIN_SRC verilog
+</span><span class="c1"></span>  <span class="k">module</span> <span class="n">tb</span><span class="p">;</span>
+      <span class="kt">reg</span> <span class="n">clk</span><span class="p">;</span>
+      <span class="k">initial</span> <span class="k">begin</span>
+          <span class="n">clk</span> <span class="o">=</span> <span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+      <span class="k">end</span>
+      <span class="k">always</span> <span class="p">#</span><span class="mh">5</span> <span class="n">clk</span> <span class="o">=</span> <span class="o">~</span><span class="n">clk</span><span class="p">;</span>
+  <span class="k">endmodule</span>
+<span class="c1">//#+END_SRC
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>高亮显示：如果在org-mode编辑时代码不支持高亮显示，首先查看语言名称是否拼写错误（支持的常用语言类型罗列在了下面），如果确认无误，代码仍未高亮显示，请将代码“(setq org-src-fontify-natively t)”添加到.emacs或.init.el文件。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>语言</th>
+<th>标识符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr>
+<td>C++</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>css</td>
+</tr>
+<tr>
+<td>Emacs Lisp</td>
+<td>emacs-lisp</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>java</td>
+</tr>
+<tr>
+<td>Javascript</td>
+<td>js</td>
+</tr>
+<tr>
+<td>LaTeX</td>
+<td>latex</td>
+</tr>
+<tr>
+<td>Lisp</td>
+<td>lisp</td>
+</tr>
+<tr>
+<td>MATLAB</td>
+<td>matlab</td>
+</tr>
+<tr>
+<td>Org mode</td>
+<td>org</td>
+</tr>
+<tr>
+<td>Perl</td>
+<td>perl</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>python</td>
+</tr>
+<tr>
+<td>shell</td>
+<td>sh</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>sql</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>缩进：在SRC代码块中，使用TAB键会按照语言格式自动缩进，如果未实现缩进，在非语言类型拼写错误下，请将代码“(setq org-src-tab-acts-natively t)”添加到.emacs或.init.el文件。（选中代码区域然后组合键C-M-\可以实现选择区域的自动缩进）</li>
+<li>快速输入代码块：代码块的标签当然可以手动编辑，不过emacs提供了快捷键：先输入“&lt;s”，然后按下TAB键，可自动创建代码块。其次还有以下快捷键，本人使用不多，读者可自行了解：
+<ul>
+<li>&lt;s + TAB 可以直接生成 #+BEGIN_SRC</li>
+<li>&lt;e + TAB 可以直接生成 #+BEGIN_EXAMPLE</li>
+<li>&lt;l + TAB 可以直接生成 #+BEGIN_EXPORT latex</li>
+</ul>
+</li>
+<li>另外光标在 SRC 区域的时候，C-c ' （单引号）可以弹出一个代码编辑区域。这里可以方便的编辑代码，编辑结束后kill此buffer即可。</li>
+</ul>
+<h2 id="输入法切换">输入法切换</h2>
+<p>emacs自带输入法，快捷键是Ctrl-\，这里倒不是要使用emacs的输入法，而是为了在不知道啥原因敲错，导致emacs为拼音输入时，可以自己切换回来。</p>
+<hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
   </article>
@@ -4843,6 +4971,8 @@ _下划线_
     </li>
     <li><a href="#gtd-时间任务管理">GTD（时间任务管理）</a></li>
     <li><a href="#org-mode导出如何禁用下划线转下标">Org-Mode导出如何禁用下划线转下标</a></li>
+    <li><a href="#代码块">代码块</a></li>
+    <li><a href="#输入法切换">输入法切换</a></li>
   </ul>
 </nav>
   </div>
