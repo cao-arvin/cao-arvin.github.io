@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EdrawMax on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/tags/edrawmax/</link>
+    <description>Recent content in EdrawMax on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 14 Jun 2020 19:01:00 +0800</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/tags/edrawmax/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>亿图图示的安装</title>
+        <link>https://www.wenhui.space/docs/01-software-install/install_edrawmax/</link>
+        <pubDate>Sun, 14 Jun 2020 19:01:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/01-software-install/install_edrawmax/</guid>
+        <description>本文 主要介绍一款画图软件（亿图图示），以及安装和使用。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 参考 亿图官网 亿图图示使用手册 亿图</description>
+      </item>
+      
+    
+  </channel>
+</rss>

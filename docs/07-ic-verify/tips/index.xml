@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>小技巧 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/docs/07-ic-verify/tips/</link>
+    <description>Recent content in 小技巧 on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 28 Feb 2020 10:08:56 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/docs/07-ic-verify/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>如何更好的解决RTL编译时依赖关系问题</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/tips/resolve-file-dependencies-for-rtl-compile/</link>
+        <pubDate>Mon, 24 Feb 2020 17:03:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/07-ic-verify/tips/resolve-file-dependencies-for-rtl-compile/</guid>
+        <description>本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 0.2 修正对-y的理解，-y只是指定库文件目录 关于include 一般在</description>
+      </item>
+      
+      <item>
+        <title>Verilog中获取随机数</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/tips/random-in-verilog/</link>
+        <pubDate>Fri, 17 Jan 2020 10:12:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/07-ic-verify/tips/random-in-verilog/</guid>
+        <description>本文 主要介绍一种verilog语言中获取随机数的方法。 版本 说明 0.1 初版发布 代码展示 逻辑实现 1 2 3 4 5 function [31:0] get_random; input signed [31:0] min_num; input signed [31:0] max_num; get_random = min_num + {$random}%(max_num-min_num+1); endfunction // get_random 逻辑</description>
+      </item>
+      
+    
+  </channel>
+</rss>

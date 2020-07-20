@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pandoc on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/tags/pandoc/</link>
+    <description>Recent content in Pandoc on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 03 Apr 2020 19:29:00 +0800</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/tags/pandoc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>文档格式转换工具Pandoc</title>
+        <link>https://www.wenhui.space/docs/01-software-install/install_pandoc/</link>
+        <pubDate>Fri, 03 Apr 2020 19:29:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/01-software-install/install_pandoc/</guid>
+        <description>本文 主要介绍一款文档格式转换工具Pandoc，它可以支持多种文档类型之间转换，包括Markdown、LaTeX、reStructuredTe</description>
+      </item>
+      
+    
+  </channel>
+</rss>

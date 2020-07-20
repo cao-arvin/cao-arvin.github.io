@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CPU设计 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/docs/08-ic-design/cpu/</link>
+    <description>Recent content in CPU设计 on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 28 Feb 2020 10:08:56 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/docs/08-ic-design/cpu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>ARM处理器基础介绍</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/cpu/arm-cpu-introduction/</link>
+        <pubDate>Wed, 08 Jul 2020 17:58:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/cpu/arm-cpu-introduction/</guid>
+        <description>本文 主要普及ARM处理器的基础知识，不涉及处理器微架构具体设计细节。 版本 说明 0.1 初版发布 参考 名称 作者 来源 ARM处理器详解 移知 网络 专业术语与缩略</description>
+      </item>
+      
+    
+  </channel>
+</rss>

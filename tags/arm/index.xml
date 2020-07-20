@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ARM on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/tags/arm/</link>
+    <description>Recent content in ARM on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sat, 21 Mar 2020 22:28:00 +0800</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/tags/arm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>为什么AArch64没有LDM和STM指令</title>
+        <link>https://www.wenhui.space/docs/09-arm/aarch64-no-ldm-stm/</link>
+        <pubDate>Sat, 21 Mar 2020 22:28:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/09-arm/aarch64-no-ldm-stm/</guid>
+        <description>本文 主要介绍为什么AArch64没有LDM和STM指令了，而是用LDP跟STP。 版本 说明 0.1 初版发布 写在前头 AArch32 指令集中包含多数据传输指令LDM</description>
+      </item>
+      
+    
+  </channel>
+</rss>

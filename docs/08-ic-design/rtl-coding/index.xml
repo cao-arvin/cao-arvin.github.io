@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RTL编码 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/docs/08-ic-design/rtl-coding/</link>
+    <description>Recent content in RTL编码 on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 28 Feb 2020 10:08:56 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/docs/08-ic-design/rtl-coding/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>verilog的编码风格</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/rtl-coding/verilog-coding-styleguide/</link>
+        <pubDate>Wed, 19 Feb 2020 14:35:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/rtl-coding/verilog-coding-styleguide/</guid>
+        <description>本文 主要介绍了一些verilog的编码风格准则。 版本 说明 0.1 初版发布 参考 RTL Coding Styles That Yield Simulation and Synthesis Mismatches（链接：https://pan.b</description>
+      </item>
+      
+      <item>
+        <title>关于Verilog中的case、casex、casez</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/rtl-coding/about-verilog-case/</link>
+        <pubDate>Tue, 18 Feb 2020 10:35:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/rtl-coding/about-verilog-case/</guid>
+        <description>本文 主要介绍Verilog语法中case，casex，casez的区别，以及建议使用方法。 版本 说明 0.1 初版发布 关于case 代码： 1 2 3 4 5 6 7</description>
+      </item>
+      
+      <item>
+        <title>简化verilog编码的全套解决方案</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/rtl-coding/verilog-coding-three-tools/</link>
+        <pubDate>Thu, 16 Jan 2020 00:04:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/rtl-coding/verilog-coding-three-tools/</guid>
+        <description>本文 主要介绍辅助verilog编码的三款工具，简化编码工作。 版本 说明 0.1 初版发布 三大利器 请查看往期博客： Emacs verilog-mode 的使用 代码预处理工具ep3的使用 v</description>
+      </item>
+      
+    
+  </channel>
+</rss>

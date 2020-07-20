@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>通用使用技巧 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/docs/06-linux-skills/usual-skills/</link>
+    <description>Recent content in 通用使用技巧 on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 28 Feb 2020 10:08:56 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/docs/06-linux-skills/usual-skills/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>Linux系统设置记录</title>
+        <link>https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_syscfg_notes/</link>
+        <pubDate>Sat, 11 Jan 2020 15:18:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_syscfg_notes/</guid>
+        <description>本文 主要对linux系统中对系统的一些设置操作进行记录，方便后续自己查找以及分享给需要的朋友。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内</description>
+      </item>
+      
+      <item>
+        <title>Linux安装工具记录</title>
+        <link>https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_tools_notes/</link>
+        <pubDate>Tue, 07 Jan 2020 15:18:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_tools_notes/</guid>
+        <description>本文 主要对日常linux系统中一些工具的安装过程进行记录，方便后续自己查找以及分享给需要的朋友。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11</description>
+      </item>
+      
+      <item>
+        <title>Linux使用命令记录</title>
+        <link>https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_use_notes/</link>
+        <pubDate>Sun, 29 Dec 2019 15:18:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_use_notes/</guid>
+        <description>本文 主要对日常linux系统使用使用的命令进行记录，方便后续自己查找以及分享给需要的朋友。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核：</description>
+      </item>
+      
+    
+  </channel>
+</rss>

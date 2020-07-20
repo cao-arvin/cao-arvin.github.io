@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>脚本使用技巧 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/docs/06-linux-skills/script-skills/</link>
+    <description>Recent content in 脚本使用技巧 on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 28 Feb 2020 10:08:56 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/docs/06-linux-skills/script-skills/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>shell脚本基础</title>
+        <link>https://www.wenhui.space/docs/06-linux-skills/script-skills/shell_script_basis/</link>
+        <pubDate>Thu, 16 Apr 2020 09:03:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/06-linux-skills/script-skills/shell_script_basis/</guid>
+        <description>本文 主要对shell脚本的基础语法知识进行记录。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 shell：bash 学习网站 shell</description>
+      </item>
+      
+      <item>
+        <title>verilog中reg和wire的自动声明</title>
+        <link>https://www.wenhui.space/docs/06-linux-skills/script-skills/verilog_auto_declare/</link>
+        <pubDate>Wed, 15 Jan 2020 22:22:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/06-linux-skills/script-skills/verilog_auto_declare/</guid>
+        <description>本文 主要介绍一款自己开发的Python脚本： verilog中reg和wire的自动声明 。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian</description>
+      </item>
+      
+      <item>
+        <title>shell脚本使用记录</title>
+        <link>https://www.wenhui.space/docs/06-linux-skills/script-skills/shell_script/</link>
+        <pubDate>Sun, 01 Dec 2019 14:18:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/06-linux-skills/script-skills/shell_script/</guid>
+        <description>本文 主要对日常shell脚本使用中的一些技巧进行记录。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 shell：bash 字符串替换的</description>
+      </item>
+      
+    
+  </channel>
+</rss>

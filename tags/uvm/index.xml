@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 06 Apr 2020 14:29:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2020 17:41:00 +0800</lastBuildDate>
     
         <atom:link href="https://www.wenhui.space/tags/uvm/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,84 +15,48 @@
     
       
       <item>
-        <title>UVM学习（三）</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-three/</link>
-        <pubDate>Mon, 06 Apr 2020 14:29:00 +0800</pubDate>
+        <title>每日一问</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-uvm-daily-question/</link>
+        <pubDate>Mon, 30 Mar 2020 17:41:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-three/</guid>
-        <description>本文 UVM学习系列主要介绍UVM的基础知识，UVM是目前芯片验证界最主流的验证方法学。此为第三篇，主要介绍UVM的组件，包括：uvm_dri</description>
+        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-uvm-daily-question/</guid>
+        <description>本文 主要记录SV与UVM的一些知识点，每日一问，每日一记。 版本 说明 0.1 初版发布 写在前头 本文非原创，内容来自路科验证，整理成文并持续更新。 每日一</description>
       </item>
       
       <item>
-        <title>UVM学习（二）</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-two/</link>
-        <pubDate>Wed, 01 Apr 2020 18:22:00 +0800</pubDate>
+        <title>UVM学习笔记（三）</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-three/</link>
+        <pubDate>Tue, 10 Mar 2020 22:05:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-two/</guid>
-        <description>本文 UVM学习系列主要介绍UVM的基础知识，UVM是目前芯片验证界最主流的验证方法学。此为第二篇，主要介绍核心基类、phase机制、conf</description>
+        <guid>https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-three/</guid>
+        <description>本文 芯片验证系列文章主要分为三部分：验证工程师与芯片验证、SV学习笔记、UVM学习笔记。此为 UVM学习笔记 部分第三篇，主要介绍UVM的组件，</description>
       </item>
       
       <item>
-        <title>UVM学习（一）</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-one/</link>
-        <pubDate>Tue, 31 Mar 2020 11:35:00 +0800</pubDate>
+        <title>UVM学习笔记（二）</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-two/</link>
+        <pubDate>Sun, 08 Mar 2020 20:05:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/digital_verifer/study_uvm/study-uvm-one/</guid>
-        <description>本文 UVM学习系列主要介绍UVM的基础知识，UVM是目前芯片验证界最主流的验证方法学。此为第一篇，主要介绍验证方法学概述、类库地图、工厂机制</description>
+        <guid>https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-two/</guid>
+        <description>本文 芯片验证系列文章主要分为三部分：验证工程师与芯片验证、SV学习笔记、UVM学习笔记。此为 UVM学习笔记 部分第二篇，主要介绍核心基类、ph</description>
       </item>
       
       <item>
-        <title>UVM与验证平台</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/creation/uvm_and_verification_platforms/</link>
+        <title>UVM学习笔记（一）</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-one/</link>
+        <pubDate>Sat, 07 Mar 2020 20:05:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-one/</guid>
+        <description>本文 芯片验证系列文章主要分为三部分：验证工程师与芯片验证、SV学习笔记、UVM学习笔记。此为 UVM学习笔记 部分第一篇，主要介绍验证方法学、类</description>
+      </item>
+      
+      <item>
+        <title>UVM与验证环境</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/uvm-and-verify-env/</link>
         <pubDate>Tue, 25 Feb 2020 10:19:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/digital_verifer/creation/uvm_and_verification_platforms/</guid>
+        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/uvm-and-verify-env/</guid>
         <description>本文 主要介绍什么是UVM和验证平台，以及如何搭建UVM验证平台。 版本 说明 0.1 初版发布 参考 参考自文彬师兄的UVM培训资料。 初识UVM 什么是UVM</description>
-      </item>
-      
-      <item>
-        <title>初识芯片验证（五）</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_five/</link>
-        <pubDate>Thu, 23 Jan 2020 21:49:00 +0800</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_five/</guid>
-        <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第五篇，主要介绍验证的方法、UVM简介、UVM组件</description>
-      </item>
-      
-      <item>
-        <title>初识芯片验证（四）</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_four/</link>
-        <pubDate>Sun, 19 Jan 2020 22:49:00 +0800</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_four/</guid>
-        <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第四篇，主要介绍验证周期、验证管理三要素、验证的收</description>
-      </item>
-      
-      <item>
-        <title>初识芯片验证（三）</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_three/</link>
-        <pubDate>Sat, 18 Jan 2020 19:49:00 +0800</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_three/</guid>
-        <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第三篇，主要介绍计划的概述、计划的内容、计划的实现</description>
-      </item>
-      
-      <item>
-        <title>初识芯片验证（二）</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_two/</link>
-        <pubDate>Sun, 12 Jan 2020 19:49:00 +0800</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_two/</guid>
-        <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第二篇，主要介绍测试平台、硬件设计描述、激励产生器</description>
-      </item>
-      
-      <item>
-        <title>初识芯片验证（一）</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_one/</link>
-        <pubDate>Sun, 05 Jan 2020 20:49:00 +0800</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/digital_verifer/beginner_verification/beginner_verification_one/</guid>
-        <description>本文 初识芯片验证系列主要介绍芯片验证的背景和基础知识，使读者对芯片验证有一个初步认识。此为第一篇，主要介绍芯片开发概述、验证任务和目标、验证</description>
       </item>
       
     

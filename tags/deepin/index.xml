@@ -16,28 +16,28 @@
       
       <item>
         <title>将软件添加到deepin启动器</title>
-        <link>https://www.wenhui.space/docs/install_software/add_software_to_deepin_launcher/</link>
+        <link>https://www.wenhui.space/docs/01-software-install/add_software_to_deepin_launcher/</link>
         <pubDate>Sun, 27 Oct 2019 12:51:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/install_software/add_software_to_deepin_launcher/</guid>
+        <guid>https://www.wenhui.space/docs/01-software-install/add_software_to_deepin_launcher/</guid>
         <description>本文 主要介绍了如何将手动安装的软件添加到deepin启动器中显示。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Deepin GNU/Linux 15.11 内核： Debian 6.3.0-18+deb9u1 操纵过程 手动安装的工</description>
       </item>
       
       <item>
         <title>为deepin系统安装无线网卡驱动</title>
-        <link>https://www.wenhui.space/docs/install_software/install_rtl8821ce_wireless_drive/</link>
+        <link>https://www.wenhui.space/docs/01-software-install/install_rtl8821ce_wireless_drive/</link>
         <pubDate>Mon, 14 Oct 2019 21:22:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/install_software/install_rtl8821ce_wireless_drive/</guid>
+        <guid>https://www.wenhui.space/docs/01-software-install/install_rtl8821ce_wireless_drive/</guid>
         <description>本文 主要介绍如何为deepin系统安装 rtl8821ce 无线网卡驱动。 版本 说明 0.1 初版发布 背景 主机： Thinkpad S2 系统： Win10 deppin版本： Deepin GNU/Linux 15.11 无线驱动：rtl882</description>
       </item>
       
       <item>
         <title>deepin系统安装</title>
-        <link>https://www.wenhui.space/docs/install_software/install_deepin_os/</link>
+        <link>https://www.wenhui.space/docs/01-software-install/install_deepin_os/</link>
         <pubDate>Sun, 13 Oct 2019 20:30:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/install_software/install_deepin_os/</guid>
+        <guid>https://www.wenhui.space/docs/01-software-install/install_deepin_os/</guid>
         <description>本文 主要介绍deepin系统和记录deepin系统的安装过程。 版本 说明 0.1 初版发布 参考 deepin官网-如何安装 实操：安装深度DeepinLi</description>
       </item>
       

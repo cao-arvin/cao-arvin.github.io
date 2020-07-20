@@ -15,92 +15,92 @@
     
       
       <item>
-        <title>关于生活</title>
-        <link>https://www.wenhui.space/docs/about_life/</link>
+        <title>关于软件安装</title>
+        <link>https://www.wenhui.space/docs/01-software-install/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://www.wenhui.space/docs/about_life/</guid>
+        <guid>https://www.wenhui.space/docs/01-software-install/</guid>
         <description></description>
       </item>
       
       <item>
         <title>关于emacs</title>
-        <link>https://www.wenhui.space/docs/about_emacs/</link>
+        <link>https://www.wenhui.space/docs/02-emacs/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://www.wenhui.space/docs/about_emacs/</guid>
+        <guid>https://www.wenhui.space/docs/02-emacs/</guid>
         <description></description>
       </item>
       
       <item>
-        <title>关于芯片验证</title>
-        <link>https://www.wenhui.space/docs/digital_verifer/</link>
+        <title>关于生活</title>
+        <link>https://www.wenhui.space/docs/03-life/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://www.wenhui.space/docs/digital_verifer/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>关于芯片设计</title>
-        <link>https://www.wenhui.space/docs/digital_designer/</link>
-        <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/digital_designer/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>关于Windows</title>
-        <link>https://www.wenhui.space/docs/about_windows/</link>
-        <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/about_windows/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>关于Linux</title>
-        <link>https://www.wenhui.space/docs/about_linux/</link>
-        <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/about_linux/</guid>
+        <guid>https://www.wenhui.space/docs/03-life/</guid>
         <description></description>
       </item>
       
       <item>
         <title>关于博客搭建</title>
-        <link>https://www.wenhui.space/docs/create_blog_site/</link>
+        <link>https://www.wenhui.space/docs/04-build-blog-site/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://www.wenhui.space/docs/create_blog_site/</guid>
+        <guid>https://www.wenhui.space/docs/04-build-blog-site/</guid>
         <description></description>
       </item>
       
       <item>
-        <title>关于软件安装</title>
-        <link>https://www.wenhui.space/docs/install_software/</link>
+        <title>关于Windows使用技巧</title>
+        <link>https://www.wenhui.space/docs/05-windows-skills/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://www.wenhui.space/docs/install_software/</guid>
+        <guid>https://www.wenhui.space/docs/05-windows-skills/</guid>
         <description></description>
       </item>
       
       <item>
-        <title>关于科普知识</title>
-        <link>https://www.wenhui.space/docs/polular_science/</link>
+        <title>关于Linux使用技巧</title>
+        <link>https://www.wenhui.space/docs/06-linux-skills/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://www.wenhui.space/docs/polular_science/</guid>
+        <guid>https://www.wenhui.space/docs/06-linux-skills/</guid>
         <description></description>
       </item>
       
       <item>
-        <title>关于ARM</title>
-        <link>https://www.wenhui.space/docs/about_arm/</link>
+        <title>关于IC验证</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/</link>
         <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://www.wenhui.space/docs/about_arm/</guid>
+        <guid>https://www.wenhui.space/docs/07-ic-verify/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>关于IC设计</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/</link>
+        <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>关于ARM架构</title>
+        <link>https://www.wenhui.space/docs/09-arm/</link>
+        <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/09-arm/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>科普知识</title>
+        <link>https://www.wenhui.space/docs/10-polular-science/</link>
+        <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/10-polular-science/</guid>
         <description></description>
       </item>
       

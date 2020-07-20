@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WaveDrom on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/tags/wavedrom/</link>
+    <description>Recent content in WaveDrom on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 16 Apr 2020 21:39:00 +0800</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/tags/wavedrom/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>波形图绘制软件WaveDrom</title>
+        <link>https://www.wenhui.space/docs/01-software-install/install_wavedrom/</link>
+        <pubDate>Thu, 16 Apr 2020 21:39:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/01-software-install/install_wavedrom/</guid>
+        <description>本文 主要介绍一款波形图绘制软件WaveDrom，它可以通过代码形式来实现波形图的绘制。 版本 说明 0.1 初版发布 背景 WaveDrom 2.3.2 什么是WaveDrom Wav</description>
+      </item>
+      
+    
+  </channel>
+</rss>

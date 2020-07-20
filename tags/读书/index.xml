@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Wed, 19 Feb 2020 21:11:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0800</lastBuildDate>
     
         <atom:link href="https://www.wenhui.space/tags/%E8%AF%BB%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,11 +15,20 @@
     
       
       <item>
-        <title>我的收藏-中国烹饪古籍丛刊</title>
-        <link>https://www.wenhui.space/docs/about_life/ancient_chinese_cooking_books/</link>
+        <title>随笔与摘录</title>
+        <link>https://www.wenhui.space/docs/03-life/essays_and_excerpts/</link>
+        <pubDate>Mon, 04 May 2020 00:00:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/03-life/essays_and_excerpts/</guid>
+        <description>本文 主要记录自己生活中的一些所思所想和平日阅读中好文的摘录。 版本 说明 0.1 初版发布 名人语录 王世襄 一个人要想取得点成就，至少具备三个条件： 有一些能</description>
+      </item>
+      
+      <item>
+        <title>我的收藏之中国烹饪古籍丛刊</title>
+        <link>https://www.wenhui.space/docs/03-life/ancient_chinese_cooking_books/</link>
         <pubDate>Wed, 19 Feb 2020 21:11:00 +0800</pubDate>
         
-        <guid>https://www.wenhui.space/docs/about_life/ancient_chinese_cooking_books/</guid>
+        <guid>https://www.wenhui.space/docs/03-life/ancient_chinese_cooking_books/</guid>
         <description>本文 主要分享我收藏的中国烹饪古籍丛刊，文件为电子扫描版PDF格式。 介绍 中国烹饪古籍丛刊是由中国商业出版社出版的，好像最早是1984年9月出版</description>
       </item>
       

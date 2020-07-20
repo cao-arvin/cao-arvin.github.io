@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>科普知识 on Wenhui&#39;s Rotten Pen</title>
+    <link>https://www.wenhui.space/docs/10-polular-science/</link>
+    <description>Recent content in 科普知识 on Wenhui&#39;s Rotten Pen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 28 Feb 2020 10:08:56 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.wenhui.space/docs/10-polular-science/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>浮点数的表示和运算</title>
+        <link>https://www.wenhui.space/docs/10-polular-science/floating-point/</link>
+        <pubDate>Mon, 25 May 2020 09:54:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/10-polular-science/floating-point/</guid>
+        <description>本文 主要介绍计算机中浮点的表示和运算方法。 版本 说明 0.1 初版发布 背景 处理器有一个很重要的运算单元就是浮点运算，也是处理器性能很关键的一个指标。在</description>
+      </item>
+      
+      <item>
+        <title>CPU相关的科普知识</title>
+        <link>https://www.wenhui.space/docs/10-polular-science/cpu-knowledge/</link>
+        <pubDate>Sat, 21 Mar 2020 20:28:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/10-polular-science/cpu-knowledge/</guid>
+        <description>本文 主要对涉及CPU的一些基本知识和概念进行简单描述，作为科普知识。 版本 说明 0.1 初版发布 参考 各种网络资源。 CPU和SOC的区别 SoC = System on Chip</description>
+      </item>
+      
+      <item>
+        <title>你应该知道的职级与英文缩写</title>
+        <link>https://www.wenhui.space/docs/10-polular-science/rank-of-organization/</link>
+        <pubDate>Wed, 08 Jan 2020 22:15:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/10-polular-science/rank-of-organization/</guid>
+        <description>本文 主要介绍芯片相关公司的组织架构，和职级与职位及对应的英文缩写。 版本 说明 0.1 初版发布 0.2 增加常见职级职位英文缩写 写在前头 本文主要属于科普，目的</description>
+      </item>
+      
+    
+  </channel>
+</rss>
