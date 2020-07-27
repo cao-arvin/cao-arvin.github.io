@@ -15,6 +15,33 @@
     
       
       <item>
+        <title>浅谈熔断和幽灵</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/</link>
+        <pubDate>Fri, 24 Jul 2020 15:52:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/</guid>
+        <description>本文 主要针对CPU的两个漏洞熔断（Meltdown）和幽灵（Spectre），谈谈自己的理解。 版本 说明 0.1 初版发布 参考 名称 作者 来源 谈谈幽灵和熔</description>
+      </item>
+      
+      <item>
+        <title>DynamIQ Power Management</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/</link>
+        <pubDate>Wed, 22 Jul 2020 15:45:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/</guid>
+        <description>本文 主要介绍ARM DynamIQ架构下的功耗管理策略。 版本 说明 0.1 初版发布 参考 名称 作者 来源 dsu_trm_100453_0002_00_en ARM ARM官网 cortex_a75_trm_100403_0300_00_en ARM ARM官网 AMBA低功耗接口（一）</description>
+      </item>
+      
+      <item>
+        <title>电子书下载</title>
+        <link>https://www.wenhui.space/docs/03-life/ebook-download/</link>
+        <pubDate>Mon, 20 Jul 2020 22:56:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/03-life/ebook-download/</guid>
+        <description>本文 主要介绍我在网上下载电子书的一些渠道。 版本 说明 0.1 初版发布 Java知识分享网站 Java知识分享网站，在这里可以搜索到很多关于计算机相关的书</description>
+      </item>
+      
+      <item>
         <title>跨时钟域数据传输</title>
         <link>https://www.wenhui.space/docs/08-ic-design/typical/clock-domain-crossing/</link>
         <pubDate>Fri, 17 Jul 2020 14:19:00 +0800</pubDate>

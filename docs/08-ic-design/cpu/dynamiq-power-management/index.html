@@ -1,0 +1,5341 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DynamIQ Power Management – Wenhui&#39;s Rotten Pen</title>
+    
+
+
+<script src="/js/enquire.min.dfb99dee1e029d51d6cfb672d847929890b1585402de17f5ed092edd72a688b4.js"></script>
+
+<script defer src="/js/fuse.min.94c78ad70b02749822921660cf4e9f0b3701bc0680c421afb784a78228de0275.js"></script>
+
+<script defer src="/js/lazysizes.min.31dd6a2d3a1ec0f78a8df007535cf23f03aeb5c70f026e6d6a19dac3b3acc340.js"></script>
+
+<script defer src="/js/helper/getParents.min.1618c696be7c98933f9a92677f518b512a74e55bdbb976b09936b4182e93181b.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.93a331f96194789a542f33690bbe4f0c102c7e78ffc018217f5a1c33010bad91.js"></script>
+
+<script>
+  "use strict";
+
+  
+  var languagedir = JSON.parse("\"ltr\"");
+
+  window.onload = function() {
+
+    
+    var toggleSidebarElem = document.getElementById("toggle-sidebar");
+    var tocBodyElem = document.querySelector('.toc__body');
+    var tocLabelElem = document.querySelector('.toc__label');
+    var listMainElem = document.getElementById('list-main');
+    var listSideElem = document.getElementById('list-side');
+    var sliderIcons = document.querySelectorAll('.slider__icon');
+
+    toggleSidebarElem ?
+      toggleSidebarElem.addEventListener('change', function (e) {
+        if (e.target.checked) {
+          if (tocBodyElem) {
+            fadeIn(tocBodyElem, 200);
+          }
+          if (tocLabelElem) {
+            fadeIn(tocLabelElem, 200);
+          }
+          if (listMainElem && listSideElem) {
+            listMainElem.className = 'm';
+            listSideElem.className = 'r';
+          }
+
+          sliderIcons && sliderIcons.forEach(function (elem) {
+            if (elem.classList.contains('hide')) {
+              elem.classList.remove('hide');
+            } else {
+              elem.classList.add('hide');
+            }
+          });
+
+        } else {
+          if (tocBodyElem) {
+            fadeOut(tocBodyElem, 200);
+          }
+          if (tocLabelElem) {
+            fadeOut(tocLabelElem, 200);
+          }
+          if (listMainElem && listSideElem) {
+            listMainElem.className = 'mr';
+            listSideElem.className = 'hide';
+          }
+
+          sliderIcons && sliderIcons.forEach(function (elem) {
+            if (elem.classList.contains('hide')) {
+              elem.classList.remove('hide');
+            } else {
+              elem.classList.add('hide');
+            }
+          });
+        }
+      }) : null;
+    
+
+    
+    var navCollapseBtn = document.getElementById('navCollapseBtn');
+    navCollapseBtn ? navCollapseBtn.addEventListener('click', function(e) {
+      var navCollapse = document.querySelector('.navbar__collapse');
+      
+      if (navCollapse) {
+        var dataOpen = navCollapse.getAttribute('data-open');
+
+        if (dataOpen === 'true') {
+          navCollapse.setAttribute('data-open', 'false');
+          navCollapse.style.maxHeight = 0;
+        } else {
+          navCollapse.setAttribute('data-open', 'true');
+          navCollapse.style.maxHeight = navCollapse.scrollHeight + "px";
+        }
+      }
+    }) : null;
+    
+
+
+    
+    var expandBtn = document.querySelectorAll('.expand__button');
+
+    for (let i = 0; i < expandBtn.length; i++) {
+      expandBtn[i].addEventListener("click", function () {
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          this.querySelector('svg').classList.add('expand-icon__right');
+          this.querySelector('svg').classList.remove('expand-icon__down');
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          this.querySelector('svg').classList.remove('expand-icon__right');
+          this.querySelector('svg').classList.add('expand-icon__down');
+        }
+      });
+    }
+    
+
+    
+    
+    var root = document.getElementById('root');
+    var toggleToLightBtn = document.getElementById('toggleToLight');
+    var toggleToDarkBtn = document.getElementById('toggleToDark');
+
+    toggleToDark.onclick = function(e) {
+      root.className = 'theme__dark';
+      localStorage.setItem('theme', 'dark');
+      toggleToLightBtn.className = 'navbar__icons--icon';
+      toggleToDarkBtn.className = 'hide';
+    }
+
+    toggleToLight.onclick = function (e) {
+      root.className = 'theme__light';
+      localStorage.setItem('theme', 'light');
+      toggleToLightBtn.className = 'hide';
+      toggleToDarkBtn.className = 'navbar__icons--icon';
+    }
+
+
+    
+    document.querySelectorAll('.menu__list').forEach(function(elem) {
+      if (elem.classList.contains('active')) {
+        elem.style.maxHeight = elem.scrollHeight + "px"; 
+      }
+    });
+    
+    document.querySelectorAll('.menu__title--collapse').forEach(function(elem) {
+      elem.addEventListener('click', function (e) {
+        var content = this.nextElementSibling;
+        var menuTitleIcon = this.querySelector('.menu__title--icon');
+        if (!content) {
+          return null;
+        }
+
+        var parent = elem.parentNode;
+        while (parent.classList.contains('menu__list') && parent.classList.contains('active')) {
+          console.log('parent');
+          parent.style.maxHeight = 100 * parent.children.length + "px";
+          parent = parent.parentNode;
+        }
+
+        if (content.style.maxHeight) {
+          console.log('null');
+          content.style.maxHeight = null;
+          content.classList.remove('active');
+          menuTitleIcon.classList.add('right');
+          
+          if (languagedir === 'rtl') {
+            menuTitleIcon.classList.remove('downrtl');
+          } else {
+            menuTitleIcon.classList.remove('down');
+          }
+        } else {
+          console.log('scrollHeight');
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.classList.add('active');
+          menuTitleIcon.classList.remove('right');
+          
+          if (languagedir === 'rtl') {
+            menuTitleIcon.classList.add('downrtl');
+          } else {
+            menuTitleIcon.classList.add('down');
+          }
+        }
+      });
+    });
+    
+
+
+    
+    var mobileLogo = document.getElementById('mobileLogo');
+    var modal = document.getElementById("myModal");
+    var drawer = document.getElementById('myDrawer');
+    var drawerCloseBtn = document.querySelector('.drawer__close');
+
+    var openDrawer = function() {
+      modal.style.opacity = 1;
+
+      if (languagedir === 'rtl') {
+        modal.style.right = 0;
+        drawer.style.right = 0;
+      } else {
+        modal.style.left = 0;
+        drawer.style.left = 0;
+      }
+    }
+
+    var closeDrawer = function() {
+      modal.style.opacity = 0;
+
+      if (languagedir === 'rtl') {
+        drawer.style.right = '-100%';
+      } else {
+        drawer.style.left = '-100%';
+      }
+
+      
+      setTimeout(function () {
+        if (languagedir === 'rtl') {
+          modal.style.right = '-100%';
+        } else {
+          modal.style.left = '-100%';
+        }
+      }, 250);
+    }
+
+    mobileLogo.onclick = function () {
+      openDrawer();
+      localStorage.setItem('isDrawerOpen', 'true');
+    }
+
+    modal.onclick = function () {
+      closeDrawer();
+      localStorage.setItem('isDrawerOpen', 'false');
+    }
+
+    drawerCloseBtn.onclick = function () {
+      closeDrawer();
+      localStorage.setItem('isDrawerOpen', 'false');
+    }
+  
+
+
+  
+    var lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var tocElem = document.querySelector('.toc');
+    var tableOfContentsElem = tocElem ? tocElem.querySelector('#TableOfContents') : null;
+    var singleContentsElem = document.querySelector('.single__contents');
+    var dataBGImgs = document.querySelectorAll('div[data-bgimg]');
+
+    
+    var tocLevels = JSON.parse("[\"h2\",\"h3\",\"h4\"]");
+
+    if (tocLevels) {
+      tocLevels = tocLevels.toString();
+    } else {
+      tocLevels = "h1, h2, h3, h4, h5, h6";
+    }
+
+    
+    var isLandingBgImg = JSON.parse("null");
+    
+    var isHome = JSON.parse("false");
+
+    function setNavbarBG(scrollTop) {
+      if (isHome && isLandingBgImg && Object.keys(isLandingBgImg).length) {
+        if (isLandingBgImg.height <= scrollTop) {
+          dataBGImgs.forEach(function(elem) {
+            elem.setAttribute('data-bgimg', 'false');
+          });
+        } else {
+          dataBGImgs.forEach(function (elem) {
+            elem.setAttribute('data-bgimg', 'true');
+          });
+        }
+      }
+    }
+    setNavbarBG(lastScrollTop);
+
+    window.onscroll = function () {
+      var st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) { 
+        singleContentsElem ? 
+        singleContentsElem.querySelectorAll(tocLevels.toString()).forEach(function(elem) {
+          if (document.documentElement.scrollTop >= elem.offsetTop) {
+            if (tableOfContentsElem) {
+              var id = elem.getAttribute('id');
+              tocElem.querySelectorAll('a').forEach(function (elem) {
+                elem.classList.remove('active');
+              });
+              tocElem.querySelector('a[href="#' + id + '"]') ? 
+              tocElem.querySelector('a[href="#' + id + '"]').classList.add('active') : null;
+            }
+          }
+        }) : null;
+        setNavbarBG(st);
+      } else { 
+        singleContentsElem ? 
+        singleContentsElem.querySelectorAll(tocLevels.toString()).forEach(function(elem) {
+          if (document.documentElement.scrollTop >= elem.offsetTop) {
+            if (tableOfContentsElem) {
+              var id = elem.getAttribute('id');
+              tocElem.querySelectorAll('a').forEach(function (elem) {
+                elem.classList.remove('active');
+              });
+              tocElem.querySelector('a[href="#' + id + '"]') ? 
+              tocElem.querySelector('a[href="#' + id + '"]').classList.add('active') : null;
+            }
+          }
+        }) : null;
+        setNavbarBG(st);
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    };
+    
+
+
+
+    
+    var mobileSearchInputElem = document.querySelector('#search-mobile');
+    var mobileSearchClassElem = document.querySelector('.mobile-search');
+    var mobileSearchBtnElem = document.querySelector('#mobileSearchBtn');
+    var mobileSearchCloseBtnElem = document.querySelector('#search-mobile-close');
+    var mobileSearchContainer = document.querySelector('#search-mobile-container');
+    var mobileSearchResultsElem = document.querySelector('#search-mobile-results');
+    var htmlElem = document.querySelector('html');
+
+    if (mobileSearchClassElem) {
+      mobileSearchClassElem.style.display = 'none';
+    }
+
+    mobileSearchBtnElem ? 
+    mobileSearchBtnElem.addEventListener('click', function () {
+      if (mobileSearchContainer) {
+        mobileSearchContainer.style.display = 'block';
+      }
+
+      if (mobileSearchInputElem) {
+        mobileSearchInputElem.focus();
+      }
+
+      if (htmlElem) {
+        htmlElem.style.overflowY = 'hidden';
+      }
+    }) : null;
+
+    mobileSearchCloseBtnElem ? 
+    mobileSearchCloseBtnElem.addEventListener('click', function() {
+      if (mobileSearchContainer) {
+        mobileSearchContainer.style.display = 'none';
+      }
+
+      if (mobileSearchInputElem) {
+        mobileSearchInputElem.value = '';
+      }
+      
+      if (mobileSearchResultsElem) {
+        while (mobileSearchResultsElem.firstChild) {
+          mobileSearchResultsElem.removeChild(mobileSearchResultsElem.firstChild);
+        }
+      }
+
+      if (htmlElem) {
+        htmlElem.style.overflowY = 'visible';
+      }
+    }) : null;
+
+    mobileSearchInputElem ? 
+    mobileSearchInputElem.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if (mobileSearchContainer) {
+          mobileSearchContainer.style.display = 'none';
+        }
+        
+        if (mobileSearchInputElem) {
+          mobileSearchInputElem.value = '';
+        }
+
+        if (mobileSearchResultsElem) {
+          while (mobileSearchResultsElem.firstChild) {
+            mobileSearchResultsElem.removeChild(mobileSearchResultsElem.firstChild);
+          }
+        }
+        if (htmlElem) {
+          htmlElem.style.overflowY = 'visible';
+        }
+      }
+    }) : null;
+  
+
+
+  
+    var localTheme = localStorage.getItem('theme');
+    var rootEleme = document.getElementById('root');
+    var selectThemeElem = document.querySelectorAll('.select-theme');
+    var selectThemeItemElem = document.querySelectorAll('.select-theme__item');
+    
+    if (localTheme) {
+      selectThemeItemElem ? 
+      selectThemeItemElem.forEach(function (elem) {
+        if (elem.text.trim() === localTheme) {
+          elem.classList.add('is-active');
+        } else {
+          elem.classList.remove('is-active');
+        }
+      }) : null;
+    }
+
+    selectThemeItemElem ? 
+    selectThemeItemElem.forEach(function (v, i) {
+      v.addEventListener('click', function (e) {
+        var selectedThemeVariant = e.target.text.trim();
+        localStorage.setItem('theme', selectedThemeVariant);
+
+        rootEleme.removeAttribute('class');
+        rootEleme.classList.add(`theme__${selectedThemeVariant}`);
+        selectThemeElem.forEach(function(rootElem) {
+          rootElem.querySelectorAll('a').forEach(function (elem) {
+            if (elem.classList) {
+              if (elem.text.trim() === selectedThemeVariant) {
+                if (!elem.classList.contains('is-active')) {
+                  elem.classList.add('is-active');
+                }
+              } else {
+                if (elem.classList.contains('is-active')) {
+                  elem.classList.remove('is-active');
+                }
+              }
+            }
+          });
+        });
+
+        if (window.mermaid) {
+          if (selectedThemeVariant === "dark" || selectedThemeVariant === "hacker") {
+            mermaid.initialize({ theme: 'dark' });
+            location.reload();
+          } else {
+            mermaid.initialize({ theme: 'default' });
+            location.reload();
+          }
+        }
+
+        var utterances = document.querySelector('iframe');
+        if (utterances) {
+          utterances.contentWindow.postMessage({
+            type: 'set-theme',
+            theme: selectedThemeVariant === "dark" || selectedThemeVariant === "hacker" ? 'photon-dark' : selectedThemeVariant === 'kimbie' ? 'github-dark-orange' : 'github-light',
+          }, 'https://utteranc.es');
+        }
+      });
+    }) : null;
+  
+
+
+  
+    
+    var searchURL = JSON.parse("\"https://www.wenhui.space/\"");
+    var searchResults = null;
+    var searchMenu = null;
+    var searchText = null;
+    
+    
+    var enableSearchHighlight = JSON.parse("true");
+    
+    var enableSearch = JSON.parse("true");
+
+    var fuse = null;
+
+    if (enableSearch) {
+      (function initFuse() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', searchURL + "index.json");
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
+              keys: ['title', 'description', 'content'],
+              includeMatches: enableSearchHighlight,
+              shouldSort: true,
+              threshold: 0.4,
+              location: 0,
+              distance: 100,
+              maxPatternLength: 32,
+              minMatchCharLength: 1,
+            });
+          }
+          else {
+            console.error(`[${xhr.status}]Error:`, xhr.statusText);
+          }
+        };
+        xhr.send();
+      })();
+    }
+    
+    function makeLi(ulElem, obj) {
+      var li = document.createElement('li');
+      li.className = 'search-result__item';
+      
+      var a = document.createElement('a');
+      a.innerHTML = obj.title;
+      a.setAttribute('class', 'search-result__item--title');
+      a.setAttribute('href', obj.permalink);
+
+      var descDiv = document.createElement('div');
+      descDiv.setAttribute('class', 'search-result__item--desc');
+      if (obj.description) {
+        descDiv.innerHTML = obj.description;
+      } else if (obj.content) {
+        descDiv.innerHTML = obj.content.substring(0, 80);
+      }
+      
+      li.appendChild(a);
+      li.appendChild(descDiv);
+      ulElem.appendChild(li);
+    }
+
+    function makeHighlightLi(ulElem, obj) {
+      var li = document.createElement('li');
+      li.className = 'search-result__item';
+      var descDiv = null;
+
+      var a = document.createElement('a');
+      a.innerHTML = obj.item.title;
+      a.setAttribute('class', 'search-result__item--title');
+      a.setAttribute('href', obj.item.uri);
+
+      if (obj.matches && obj.matches.length) {
+        for (var i = 0; i < obj.matches.length; i++) {
+          if ('title' === obj.matches[i].key) {
+            a = document.createElement('a');
+            a.innerHTML = generateHighlightedText(obj.matches[i].value, obj.matches[i].indices);
+            a.setAttribute('class', 'search-result__item--title');
+            a.setAttribute('href', obj.item.uri);
+          }
+          
+          if ('description' === obj.matches[i].key) {
+            descDiv = document.createElement('div');
+            descDiv.setAttribute('class', 'search-result__item--desc');
+            descDiv.innerHTML = generateHighlightedText(obj.item.description, obj.matches[i].indices);
+          } else if ('content' === obj.matches[i].key) {
+            if (!descDiv) {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = generateHighlightedText(obj.item.content.substring(0, 80), obj.matches[i].indices);
+            }
+          } else {
+            if (obj.item.description) {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = obj.item.description;
+            } else {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = obj.item.content.substring(0, 80);
+            }
+          }
+        }
+
+        li.appendChild(a);
+        if (descDiv) {
+          li.appendChild(descDiv);
+        }
+        if (li) {
+          ulElem.appendChild(li);
+        }
+      }
+    }
+
+    function renderSearchResults(searchText, results) {
+      searchResults = document.getElementById('search-results');
+      searchMenu = document.getElementById('search-menu');
+      searchResults.setAttribute('class', 'dd is-active');
+      
+      var ul = document.createElement('ul');
+      ul.setAttribute('class', 'dd-content search-content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.setAttribute('href', result.uri);
+          a.setAttribute('class', 'dd-item');
+          a.appendChild(li);
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.title;
+          titleDiv.setAttribute('class', 'search-result__item--title');
+
+          var descDiv = document.createElement('div');
+          descDiv.setAttribute('class', 'search-result__item--desc');
+          if (result.description) {
+            descDiv.innerHTML = result.description;
+          } else if (result.content) {
+            descDiv.innerHTML = result.content.substring(0, 80);
+          }
+
+          li.appendChild(titleDiv);
+          li.appendChild(descDiv);
+          ul.appendChild(a);
+        });
+      } else {
+        var li = document.createElement('li');
+        li.setAttribute('class', 'dd-item');
+        li.innerText = 'No results found';
+        ul.appendChild(li);
+      }
+
+      while (searchMenu.hasChildNodes()) {
+        searchMenu.removeChild(
+          searchMenu.lastChild
+        );
+      }
+      
+      searchMenu.appendChild(ul);
+    }
+
+    function renderSearchHighlightResults(searchText, results) {
+      searchResults = document.getElementById('search-results');
+      searchMenu = document.getElementById('search-menu');
+      searchResults.setAttribute('class', 'dd is-active');
+
+      var ul = document.createElement('ul');
+      ul.setAttribute('class', 'dd-content search-content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          var descDiv = null;
+
+          a.setAttribute('href', result.item.uri);
+          a.setAttribute('class', 'dd-item');
+          a.appendChild(li);
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.item.title;
+          titleDiv.setAttribute('class', 'search-result__item--title');
+          
+          if (result.matches && result.matches.length) {
+            for (var i = 0; i < result.matches.length; i++) {
+              if ('title' === result.matches[i].key) {
+                titleDiv.innerHTML = generateHighlightedText(result.matches[i].value, result.matches[i].indices);
+              }
+
+              if ('description' === result.matches[i].key) {
+                descDiv = document.createElement('div');
+                descDiv.setAttribute('class', 'search-result__item--desc');
+                descDiv.innerHTML = generateHighlightedText(result.item.description, result.matches[i].indices);
+              } else if ('content' === result.matches[i].key) {
+                if (!descDiv) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'search-result__item--desc');
+                  descDiv.innerHTML = generateHighlightedText(result.item.content.substring(0, 80), result.matches[i].indices);
+                }
+              } else {
+                if (result.item.description) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'search-result__item--desc');
+                  descDiv.innerHTML = result.item.description;
+                } else {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'search-result__item--desc');
+                  descDiv.innerHTML = result.item.content.substring(0, 80);
+                }
+              }
+            }
+            
+            li.appendChild(titleDiv);
+            if (descDiv) {
+              li.appendChild(descDiv);
+            }
+            ul.appendChild(a);
+          }
+        });
+      } else {
+        var li = document.createElement('li');
+        li.setAttribute('class', 'dd-item');
+        li.innerText = 'No results found';
+        ul.appendChild(li);
+      }
+
+      while (searchMenu.hasChildNodes()) {
+        searchMenu.removeChild(
+          searchMenu.lastChild
+        );
+      }
+      searchMenu.appendChild(ul);
+    }
+
+    function renderSearchResultsMobile(searchText, results) {
+      searchResults = document.getElementById('search-mobile-results');
+
+      var content = document.createElement('div');
+      content.setAttribute('class', 'mobile-search__content');
+
+      if (results.length > 0) {
+        results.forEach(function (result) {
+          var item = document.createElement('a');
+          item.setAttribute('href', result.uri);
+          item.innerHTML = '<div class="mobile-search__item"><div class="mobile-search__item--title">📄 ' + result.title + '</div><div class="mobile-search__item--desc">' + (result.description ? result.description : result.content) + '</div></div>';
+          content.appendChild(item);
+        });
+      } else {
+        var item = document.createElement('span');
+        content.appendChild(item);
+      }
+
+      let wrap = document.getElementById('search-mobile-results');
+      while (wrap.firstChild) {
+        wrap.removeChild(wrap.firstChild)
+      }
+      searchResults.appendChild(content);      
+    }
+
+    function renderSearchHighlightResultsMobile(searchText, results) {
+      searchResults = document.getElementById('search-mobile-results');
+
+      var ul = document.createElement('div');
+      ul.setAttribute('class', 'mobile-search__content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          var descDiv = null;
+
+          a.setAttribute('href', result.item.uri);
+          a.appendChild(li);
+          li.setAttribute('class', 'mobile-search__item');
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.item.title;
+          titleDiv.setAttribute('class', 'mobile-search__item--title');
+          
+          if (result.matches && result.matches.length) {
+            for (var i = 0; i < result.matches.length; i++) {
+              if ('title' === result.matches[i].key) {
+                titleDiv.innerHTML = generateHighlightedText(result.matches[i].value, result.matches[i].indices);
+              }
+
+              if ('description' === result.matches[i].key) {
+                descDiv = document.createElement('div');
+                descDiv.setAttribute('class', 'mobile-search__item--desc');
+                descDiv.innerHTML = generateHighlightedText(result.item.description, result.matches[i].indices);
+              } else if ('content' === result.matches[i].key) {
+                if (!descDiv) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = generateHighlightedText(result.item.content.substring(0, 150), result.matches[i].indices);
+                }
+              } else {
+                if (result.item.description) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = result.item.description;
+                } else {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = result.item.content.substring(0, 150);
+                }
+              }
+            }
+            
+            li.appendChild(titleDiv);
+            if (descDiv) {
+              li.appendChild(descDiv);
+            }
+            ul.appendChild(a);
+          }
+        });
+      } else {
+        var item = document.createElement('span');
+        ul.appendChild(item);
+      }
+
+      let wrap = document.getElementById('search-mobile-results');
+      while (wrap.firstChild) {
+        wrap.removeChild(wrap.firstChild)
+      }
+      searchResults.appendChild(ul);
+    }
+
+    function generateHighlightedText(text, regions) {
+      if (!regions) {
+        return text;
+      }
+
+      var content = '', nextUnhighlightedRegionStartingIndex = 0;
+
+      regions.forEach(function(region) {
+        if (region[0] === region[1]) {
+          return null;
+        }
+        
+        content += '' +
+          text.substring(nextUnhighlightedRegionStartingIndex, region[0]) +
+          '<span class="search__highlight">' +
+            text.substring(region[0], region[1] + 1) +
+          '</span>' +
+        '';
+        nextUnhighlightedRegionStartingIndex = region[1] + 1;
+      });
+
+      content += text.substring(nextUnhighlightedRegionStartingIndex);
+
+      return content;
+    };
+
+    var searchElem = document.getElementById('search');
+    var searchMobile = document.getElementById('search-mobile');
+    var searchResultsContainer = document.getElementById('search-results');
+
+    searchElem ? 
+    searchElem.addEventListener('input', function(e) {
+      if (!e.target.value | window.innerWidth < 770) {
+        searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dd') : null;
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+
+      if (enableSearchHighlight) {
+        renderSearchHighlightResults(searchText, results);
+      } else {
+        renderSearchResults(searchText, results);
+      }
+
+      var dropdownItems = searchResultsContainer.querySelectorAll('.dd-item');
+      dropdownItems ? dropdownItems.forEach(function (item) {
+        item.addEventListener('mousedown', function (e) {
+          console.log('mousedown');
+          e.target.click();
+        });
+      }) : null;
+    }) : null;
+
+    searchElem ? 
+    searchElem.addEventListener('blur', function() {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+      searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dd') : null;
+    }) : null;
+
+    searchElem ? 
+    searchElem.addEventListener('click', function(e) {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+      if (!e.target.value) {
+        searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dd') : null;
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+
+      if (enableSearchHighlight) {
+        renderSearchHighlightResults(searchText, results);
+      } else {
+        renderSearchResults(searchText, results);
+      }
+
+      var dropdownItems = searchResultsContainer.querySelectorAll('.dd-item');
+      dropdownItems ? dropdownItems.forEach(function (item) {
+        item.addEventListener('mousedown', function (e) {
+          console.log('mousedown');
+          e.target.click();
+        });
+      }) : null;
+    }) : null;
+
+    var searchMenuElem = document.getElementById("search-menu");
+    var activeItem = document.querySelector('#search-menu .dd-item.is-active');
+    var activeIndex = null;
+    var items = null;
+    var searchContainerMaxHeight = 350;
+
+    searchElem ? 
+    searchElem.addEventListener('keydown', function(e) {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+
+      var items = document.querySelectorAll('#search-menu .dd-item');
+      
+      if (e.key === 'ArrowDown') {
+        if (activeIndex === null) {
+          activeIndex = 0;
+          items[activeIndex].classList.remove('is-active');
+        } else {
+          items[activeIndex].classList.remove('is-active');
+          activeIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        }
+        items[activeIndex].classList.add('is-active');
+
+        let overflowedPixel = items[activeIndex].offsetTop + items[activeIndex].clientHeight - searchContainerMaxHeight;
+        if (overflowedPixel > 0) {
+          document.querySelector(".search-content").scrollTop += items[activeIndex].getBoundingClientRect().height;
+        } else if (activeIndex === 0) {
+          document.querySelector(".search-content").scrollTop = 0;
+        }
+      } else if (e.key === 'ArrowUp') {
+        if (activeIndex === null) {
+          activeIndex = items.length - 1;
+          items[activeIndex].classList.remove('is-active');
+        } else {
+          items[activeIndex].classList.remove('is-active');
+          activeIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        }
+        items[activeIndex].classList.add('is-active');
+        
+        let overflowedPixel = items[activeIndex].offsetTop + items[activeIndex].clientHeight - searchContainerMaxHeight;
+        if (overflowedPixel < 0) {
+          document.querySelector(".search-content").scrollTop -= items[activeIndex].getBoundingClientRect().height;
+        } else {
+          document.querySelector(".search-content").scrollTop = overflowedPixel + items[activeIndex].getBoundingClientRect().height;
+        }
+      } else if (e.key === 'Enter') {
+        var currentItemLink = items[activeIndex].getAttribute('href');
+        if (currentItemLink) {
+          location.href = currentItemLink;
+        }
+      } else if (e.key === 'Escape') {
+        e.target.value = null;
+        if (searchResults) {
+          searchResults.classList.remove('is-active');
+        }
+      }
+    }) : null;
+
+    searchMobile ? 
+    searchMobile.addEventListener('input', function(e) {
+      if (!e.target.value) {
+        let wrap = document.getElementById('search-mobile-results');
+        while (wrap.firstChild) {
+          wrap.removeChild(wrap.firstChild);
+        }
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+      
+      if (enableSearchHighlight) {
+        renderSearchHighlightResultsMobile(searchText, results);
+      } else {
+        renderSearchResultsMobile(searchText, results);
+      }
+
+      var dropdownItems = searchResultsContainer.querySelectorAll('.dd-item');
+      dropdownItems ? dropdownItems.forEach(function (item) {
+        item.addEventListener('mousedown', function (e) {
+          console.log('mousedown');
+          e.target.click();
+        });
+      }) : null;
+    }) : null;
+  
+  }
+</script>
+    
+
+
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    <meta name="description" content="" />
+<meta name="keywords" content="">
+<meta name="created" content="2020-07-22T15:45:00&#43;0800">
+<meta name="modified" content="2020-07-22T15:45:00&#43;0800">
+
+
+<meta property="og:site_name" content="Wenhui&#39;s Rotten Pen">
+<meta property="og:title" content="DynamIQ Power Management">
+<meta property="og:url" content="https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.65.3" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/">
+<link rel="manifest" href="/manifest.json">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/logo.svg" sizes="any" type="image/svg+xml" />
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "DynamIQ Power Management",
+    "datePublished": "2020-07-22T15:45:00+08:00",
+    "dateModified": "2020-07-22T15:45:00+08:00",
+    "url" : "https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/",
+    "description": "本文 主要介绍ARM DynamIQ架构下的功耗管理策略。 版本 说明 0.1 初版发布 参考 名称 作者 来源 dsu_trm_100453_0002_00_en ARM ARM官网 cortex_a75_trm_100403_0300_00_en ARM ARM官网 AMBA低功耗接口（一）",
+    "keywords": ["CPU"],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.wenhui.space/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Wenhui's Rotten Pen",
+      "url": "https://www.wenhui.space/"
+    }
+  }
+</script>
+
+    
+
+</head>
+
+<body id="root" class="theme__light">
+    <script>
+        var localTheme = localStorage.getItem('theme');
+        if (localTheme) {
+            document.getElementById('root').className = `theme__${localTheme}`;
+        }        
+    </script>
+    
+    <div id="container">
+        <div id="myDrawer" class="drawer" style="">
+  <div class="drawer__header">
+    <a href="/" class="drawer__header--text">
+      Wenhui&#39;s Rotten Pen
+    </a>
+    <div class="grow"></div>
+    <div class="drawer__close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
+    </div>
+  </div>
+
+  <div class="drawer__body">
+    <div class="menu">
+  <h6 class="menu__label">
+    
+      DynamIQ Power Management
+    
+  </h6>
+  <ul>
+    
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于软件安装
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/01-software-install/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_edrawmax/" class="menu__title " data-depth="0">亿图图示的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_wavedrom/" class="menu__title " data-depth="0">波形图绘制软件WaveDrom</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_pandoc/" class="menu__title " data-depth="0">文档格式转换工具Pandoc</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/google_assistant/" class="menu__title " data-depth="0">最简单易用的谷歌访问助手</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_plugins_for_firefox/" class="menu__title " data-depth="0">为firefox安装插件</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_bitwarden/" class="menu__title " data-depth="0">Bitwarden的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_flash_player_for_firefox/" class="menu__title " data-depth="0">为firefox安装flash player插件</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_hugo/" class="menu__title " data-depth="0">hugo的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_picgo/" class="menu__title " data-depth="0">PicGo的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_goldendict/" class="menu__title " data-depth="0">GoldenDict的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/add_software_to_deepin_launcher/" class="menu__title " data-depth="0">将软件添加到deepin启动器</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_firefox/" class="menu__title " data-depth="0">firefox的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_git/" class="menu__title " data-depth="0">git的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_emacs/" class="menu__title " data-depth="0">emacs的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_rtl8821ce_wireless_drive/" class="menu__title " data-depth="0">为deepin系统安装无线网卡驱动</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_deepin_os/" class="menu__title " data-depth="0">deepin系统安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/thinkpad_s2/" class="menu__title " data-depth="0">My Black Boy</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于emacs
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/02-emacs/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/org_mode_table_align/" class="menu__title " data-depth="0">解决Org-Mode表格不对齐问题</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_epa_package/" class="menu__title " data-depth="0">emacs插件之多媒体应用</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_insert_english_translate/" class="menu__title " data-depth="0">emacs插件之自动插入英文翻译</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_company_english/" class="menu__title " data-depth="0">emacs插件之英文自动补全</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_org_mode/" class="menu__title " data-depth="0">emacs org-mode 的使用</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_folding_mode/" class="menu__title " data-depth="0">emacs使用folding-mode</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_auto_insert/" class="menu__title " data-depth="0">emacs 中使用模板文件</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/verilog_perl_useguide/" class="menu__title " data-depth="0">Emacs Verilog Perl 的使用</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/verilog_mode_useguide/" class="menu__title " data-depth="0">Emacs verilog-mode 的使用</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_use_tips/" class="menu__title " data-depth="0">emacs的使用技巧记录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_package_install/" class="menu__title " data-depth="0">emacs如何安装插件</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_useguide/" class="menu__title " data-depth="0">emacs的基本使用</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于生活
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/03-life/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/ebook-download/" class="menu__title " data-depth="0">电子书下载</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/essays_and_excerpts/" class="menu__title " data-depth="0">随笔与摘录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/food-comics/" class="menu__title " data-depth="0">我的收藏之美食漫画</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/ancient_chinese_cooking_books/" class="menu__title " data-depth="0">我的收藏之中国烹饪古籍丛刊</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/my_cooking_dishes/" class="menu__title " data-depth="0">我的美食拙作</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/food_map_beijing/" class="menu__title " data-depth="0">我的美食地图之北京</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/food_map_xian/" class="menu__title " data-depth="0">我的美食地图之西安</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于博客搭建
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/04-build-blog-site/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/hugo_theme_zdoc/" class="menu__title " data-depth="0">推荐一款hugo主题</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/org_mode_and_ox_hugo/" class="menu__title " data-depth="0">使用org-mode和ox-hugo写博客</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/modify_url_for_blog/" class="menu__title " data-depth="0">给自己的博客自定义域名</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/hugo_content_tips/" class="menu__title " data-depth="0">hugo博客内容的使用技巧</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/hugo_deploy_to_github/" class="menu__title " data-depth="0">将hugo博客部署到github</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/markdown/" class="menu__title " data-depth="0">markdown语法</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/hugo_usage/" class="menu__title " data-depth="0">hugo的使用</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于Windows使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/05-windows-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/05-windows-skills/save_web_content_to_local/" class="menu__title " data-depth="0">如何保存网页内容到本地</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/05-windows-skills/create_wps_tepmlate/" class="menu__title " data-depth="0">WPS如何使用文档模板</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/05-windows-skills/some_advices_of_word/" class="menu__title " data-depth="0">关于word编辑文档的一些建议</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于Linux使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/06-linux-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    语言使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/language-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/language-skills/python_tutorial/" class="menu__title " data-depth="1">Python简明教程</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/language-skills/regular_expression/" class="menu__title " data-depth="1">正则表达式语法简明教程</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    脚本使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/script-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/script-skills/shell_script_basis/" class="menu__title " data-depth="1">shell脚本基础</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/script-skills/verilog_auto_declare/" class="menu__title " data-depth="1">verilog中reg和wire的自动声明</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/script-skills/shell_script/" class="menu__title " data-depth="1">shell脚本使用记录</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    工具使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/tools-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/git_introduction_and_userguide/" class="menu__title " data-depth="1">Git原理详解及实用指南</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/ep3_tool/" class="menu__title " data-depth="1">代码预处理工具ep3的使用</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    通用使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/usual-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_syscfg_notes/" class="menu__title " data-depth="1">Linux系统设置记录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_tools_notes/" class="menu__title " data-depth="1">Linux安装工具记录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_use_notes/" class="menu__title " data-depth="1">Linux使用命令记录</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于IC验证
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/07-ic-verify/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    培训材料
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/training/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-three/" class="menu__title " data-depth="1">UVM学习笔记（三）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-two/" class="menu__title " data-depth="1">UVM学习笔记（二）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-one/" class="menu__title " data-depth="1">UVM学习笔记（一）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-eight/" class="menu__title " data-depth="1">SV学习笔记（八）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-seven/" class="menu__title " data-depth="1">SV学习笔记（七）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-six/" class="menu__title " data-depth="1">SV学习笔记（六）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-five/" class="menu__title " data-depth="1">SV学习笔记（五）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-four/" class="menu__title " data-depth="1">SV学习笔记（四）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-three/" class="menu__title " data-depth="1">SV学习笔记（三）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-two/" class="menu__title " data-depth="1">SV学习笔记（二）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-one/" class="menu__title " data-depth="1">SV学习笔记（一）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-five/" class="menu__title " data-depth="1">验证工程师与芯片验证（五）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-four/" class="menu__title " data-depth="1">验证工程师与芯片验证（四）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-three/" class="menu__title " data-depth="1">验证工程师与芯片验证（三）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-two/" class="menu__title " data-depth="1">验证工程师与芯片验证（二）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-one/" class="menu__title " data-depth="1">验证工程师与芯片验证（一）</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    工具使用
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/tools/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/tools/verdi_userguide/" class="menu__title " data-depth="1">Verdi使用总结</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    小技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/tips/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/tips/resolve-file-dependencies-for-rtl-compile/" class="menu__title " data-depth="1">如何更好的解决RTL编译时依赖关系问题</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/tips/random-in-verilog/" class="menu__title " data-depth="1">Verilog中获取随机数</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    形式化验证
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/formal/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/formal/formal/" class="menu__title " data-depth="1">Formal验证技术总结</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    一些记录
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/verify-notes/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-uvm-daily-question/" class="menu__title " data-depth="1">每日一问</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/uvm-and-verify-env/" class="menu__title " data-depth="1">UVM与验证环境</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/x-propagation/" class="menu__title " data-depth="1">关于X-Propagation问题</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/digital-verifer/" class="menu__title " data-depth="1">芯片验证工程师</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse active" data-depth="0">
+    关于IC设计
+    <span class="menu__title--icon down">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list active" data-data=/08-ic-design/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse active" data-depth="1">
+    CPU设计
+    <span class="menu__title--icon down">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list active" data-data=/cpu/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/" class="menu__title " data-depth="1">浅谈熔断和幽灵</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/" class="menu__title active" data-depth="1">DynamIQ Power Management</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/arm-cpu-introduction/" class="menu__title " data-depth="1">ARM处理器基础介绍</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    典型电路设计
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/typical/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/typical/clock-domain-crossing/" class="menu__title " data-depth="1">跨时钟域数据传输</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/typical/booth-and-wallace/" class="menu__title " data-depth="1">Booth算法与Wallace树</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    RTL编码
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/rtl-coding/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/rtl-coding/verilog-coding-styleguide/" class="menu__title " data-depth="1">verilog的编码风格</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/rtl-coding/about-verilog-case/" class="menu__title " data-depth="1">关于Verilog中的case、casex、casez</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/rtl-coding/verilog-coding-three-tools/" class="menu__title " data-depth="1">简化verilog编码的全套解决方案</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于ARM架构
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/09-arm/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/bootloader/" class="menu__title " data-depth="0">一个简易bootloader框架</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/aarch64-execption/" class="menu__title " data-depth="0">AArch64之异常处理</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/aarch64-no-ldm-stm/" class="menu__title " data-depth="0">为什么AArch64没有LDM和STM指令</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/arm-and-assemb/" class="menu__title " data-depth="0">ARM(a32)体系结构与汇编指令</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    科普知识
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/10-polular-science/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/10-polular-science/floating-point/" class="menu__title " data-depth="0">浮点数的表示和运算</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/10-polular-science/cpu-knowledge/" class="menu__title " data-depth="0">CPU相关的科普知识</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/10-polular-science/rank-of-organization/" class="menu__title " data-depth="0">你应该知道的职级与英文缩写</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+  </ul>
+</div>
+
+
+
+<script>
+  var menuTitle = document.querySelectorAll('.menu__title');
+  var modal = document.getElementById("myModal");
+  var drawer = document.getElementById('myDrawer');
+
+  var closeDrawer = function () {
+    setTimeout(function () {
+      modal.style.opacity = 0;
+      drawer.style.left = '-100%';
+      modal.style.left = '-100%';
+    }, 250);
+  }
+
+  menuTitle ? 
+  menuTitle.forEach(function(elem) {
+    elem.onclick = function() {
+      closeDrawer();
+      localStorage.setItem('isDrawerOpen', 'false');
+    }
+  }) : null;
+</script>
+  </div>
+</div>
+<div id="myModal" class="modal" style=""></div>
+
+<script>
+  var isDrawerOpen = localStorage.getItem('isDrawerOpen');
+  var modal = document.getElementById("myModal");
+  var drawer = document.getElementById('myDrawer');
+  
+  
+  var languagedir = JSON.parse("\"ltr\"");
+
+  var openDrawer = function () {
+    modal.style.opacity = 1;
+    
+    if (languagedir === "rtl") {
+      modal.style.right = 0;
+      drawer.style.right = 0;
+    } else {
+      modal.style.left = 0;
+      drawer.style.left = 0;
+    }
+  }
+
+  if (isDrawerOpen && isDrawerOpen === 'true') {
+    openDrawer();
+  }
+</script>
+        
+<nav class="nav">
+  <div class="navbar__wrapper" data-bgimg="false">
+    <div class="divider">
+      <div class="navbar lmr">
+        <div id="siteLogo" class="navbar__logo--wrapper">
+  
+    &nbsp;&nbsp;
+  
+  
+    <a href="/" title="" rel="home" class="navbar__logo--text-link">
+      <h6 class="navbar__logo--text" data-bgimg="false">Wenhui&#39;s Rotten Pen</h6>
+    </a>
+  
+</div>
+        
+        <div class="navbar__menu--wrapper">
+          <div id="tabletLogo" class="hide">
+  
+    <a href="/" rel="home" class="navbar__logo--link">
+      <div class="navbar__icons--icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z"/></svg>
+      </div>
+    </a>
+  
+</div>
+          <div id="mobileLogo" class="hide">
+  <a href="#" class="navbar__logo--link">
+    <div class="navbar__icons--icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1z"/></svg>
+    </div>
+  </a>
+</div>
+          <span id="navMenuMobile" class="hide">
+  <button id="navCollapseBtn" class="navbar__dropdown--title" aria-label="Section Menu" data-dir="ltr">
+    
+      docs
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7c-.39-.39-.39-1.02 0-1.41.39-.38 1.03-.39 1.42 0z"/></svg>
+  </button>
+  <div class="navbar__collapse" data-open="false">
+  <ul>
+    
+
+  
+  
+  
+  
+  <li class="navbar__menu--mobile-item active">
+    <a href="/docs" class="active">Docs</a>
+  </li>
+
+  
+  
+  
+  
+  <li class="navbar__menu--mobile-item ">
+    <a href="/blog" class="">Blog</a>
+  </li>
+
+  
+  
+  
+  
+  <li class="navbar__menu--mobile-item ">
+    <a href="/about" class="">About</a>
+  </li>
+
+  
+  
+  
+  
+  <li class="navbar__menu--mobile-item ">
+    <a href="/links" class="">Links</a>
+  </li>
+
+  </ul>
+</div>
+</span>
+          <ul id="navMenu" class="navbar__menu">
+            
+
+  
+  
+  
+  
+  <li class="navbar__menu--item active">
+    <a href="/docs" data-bgimg="false">Docs</a>
+  </li>
+
+  
+  
+  
+  
+  <li class="navbar__menu--item ">
+    <a href="/blog" data-bgimg="false">Blog</a>
+  </li>
+
+  
+  
+  
+  
+  <li class="navbar__menu--item ">
+    <a href="/about" data-bgimg="false">About</a>
+  </li>
+
+  
+  
+  
+  
+  <li class="navbar__menu--item ">
+    <a href="/links" data-bgimg="false">Links</a>
+  </li>
+
+          </ul>
+        </div>
+        <div class="grow"></div>
+        <div id="siteSearch">
+          
+
+<div class="search" data-bgimg="false">
+  <span class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+  </span>
+  <input id="search" aria-label="Site Search" class="input" type="text" autocomplete="off" placeholder="Search">
+  <div id="search-results" class="dropdown">
+    <div id="search-menu" class="dropdown-menu">
+    </div>
+  </div>
+</div>
+
+
+        </div>
+        <div id="mobileSearch" class="hide">
+          
+<div id="mobileSearchBtn" class="mobile-search__btn">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+</div>
+
+<div id="search-mobile-container" class="mobile-search hide">
+  <div class="mobile-search__top">
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search..." class="mobile-search__top--input"/>
+    <div id="search-mobile-close" class="mobile-search__top--icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
+    </div>
+  </div>
+  <div id="search-mobile-results" class="mobile-search__body">
+    
+  </div>
+</div>
+
+        </div>
+        <div class="navbar__icons">
+  
+  
+<button id="toggleToDark" class="navbar__icons--icon" aria-label="Toggle to dark mode">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none" /><path fill="currentColor" d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+</button>
+<button id="toggleToLight" class="navbar__icons--icon" aria-label="Toggle to light mode">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/></svg>
+</button>
+<script>
+  var theme = localStorage.getItem('theme');
+  var toggleToLightBtn = document.getElementById('toggleToLight');
+  var toggleToDarkBtn = document.getElementById('toggleToDark');
+
+  if (theme && theme === 'dark') {
+    toggleToLightBtn.className = 'navbar__icons--icon';
+    toggleToDarkBtn.className = 'hide';
+  } else {
+    toggleToLightBtn.className = 'hide';
+    toggleToDarkBtn.className = 'navbar__icons--icon';
+  }
+</script>
+
+  <div class="navbar__icons--icon">
+    <a href="" title="Github repository" aria-label="Github repository" target="_blank" rel="noreferrer">
+    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path d="M10.9,2.1c-4.6,0.5-8.3,4.2-8.8,8.7c-0.5,4.7,2.2,8.9,6.3,10.5C8.7,21.4,9,21.2,9,20.8v-1.6c0,0-0.4,0.1-0.9,0.1 c-1.4,0-2-1.2-2.1-1.9c-0.1-0.4-0.3-0.7-0.6-1C5.1,16.3,5,16.3,5,16.2C5,16,5.3,16,5.4,16c0.6,0,1.1,0.7,1.3,1c0.5,0.8,1.1,1,1.4,1 c0.4,0,0.7-0.1,0.9-0.2c0.1-0.7,0.4-1.4,1-1.8c-2.3-0.5-4-1.8-4-4c0-1.1,0.5-2.2,1.2-3C7.1,8.8,7,8.3,7,7.6c0-0.4,0-0.9,0.2-1.3 C7.2,6.1,7.4,6,7.5,6c0,0,0.1,0,0.1,0C8.1,6.1,9.1,6.4,10,7.3C10.6,7.1,11.3,7,12,7s1.4,0.1,2,0.3c0.9-0.9,2-1.2,2.5-1.3 c0,0,0.1,0,0.1,0c0.2,0,0.3,0.1,0.4,0.3C17,6.7,17,7.2,17,7.6c0,0.8-0.1,1.2-0.2,1.4c0.7,0.8,1.2,1.8,1.2,3c0,2.2-1.7,3.5-4,4 c0.6,0.5,1,1.4,1,2.3v2.6c0,0.3,0.3,0.6,0.7,0.5c3.7-1.5,6.3-5.1,6.3-9.3C22,6.1,16.9,1.4,10.9,2.1z"/></svg>
+    </a>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  var siteLogo = document.getElementById('siteLogo');
+  var tabletLogo = document.getElementById('tabletLogo');
+  var mobileLogo = document.getElementById('mobileLogo');
+  var navMenu = document.getElementById('navMenu');
+  var navMenuMobile = document.getElementById('navMenuMobile');
+  var siteSearch = document.getElementById('siteSearch');
+  var mobileSearch = document.getElementById('mobileSearch');
+  
+  enquire.register("screen and (max-width:1280px)", {
+    match: function () {
+      siteLogo.className = 'navbar__logo--wrapper';
+      tabletLogo.className = 'hide';
+      mobileLogo.className = 'hide';
+      navMenu.className = 'navbar__menu';
+      navMenuMobile.className = 'hide';
+      siteSearch.className = '';
+      mobileSearch.className = 'hide';
+    },
+    unmatch: function () {
+      siteLogo.className = 'navbar__logo--wrapper';
+      tabletLogo.className = 'hide';
+      mobileLogo.className = 'hide';
+      navMenu.className = 'navbar__menu';
+      navMenuMobile.className = 'hide';
+      siteSearch.className = '';
+      mobileSearch.className = 'hide';
+    },
+  }).register("screen and (max-width:960px)", {
+    match: function () {
+      siteLogo.className = 'hide';
+      tabletLogo.className = '';
+      mobileLogo.className = 'hide';
+      navMenu.className = 'navbar__menu';
+      navMenuMobile.className = 'hide';
+      siteSearch.className = 'hide';
+      mobileSearch.className = 'navbar__icons--icon';
+    },
+    unmatch: function () {
+      siteLogo.className = 'navbar__logo--wrapper';
+      tabletLogo.className = 'hide';
+      mobileLogo.className = 'hide';
+      navMenu.className = 'navbar__menu';
+      navMenuMobile.className = 'hide';
+      siteSearch.className = '';
+      mobileSearch.className = 'hide';
+    },
+  }).register("screen and (max-width:600px)", {
+    match: function () {
+      siteLogo.className = 'hide';
+      tabletLogo.className = 'hide';
+      mobileLogo.className = '';
+      navMenu.className = 'hide';
+      navMenuMobile.className = '';
+      siteSearch.className = 'hide';
+      mobileSearch.className = 'navbar__icons--icon';
+    },
+    unmatch: function () {
+      siteLogo.className = 'hide';
+      tabletLogo.className = '';
+      mobileLogo.className = 'hide';
+      navMenu.className = 'navbar__menu';
+      navMenuMobile.className = 'hide';
+      siteSearch.className = 'hide';
+      mobileSearch.className = 'navbar__icons--icon';
+    },
+  });
+</script>
+
+        
+ <div class="top">
+  <div class="header__wrapper bgcolor__header">
+    <div class="divider">
+      <div class="lmr">
+        <h2 class="title">DynamIQ Power Management</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="header__wrapper bgcolor__breadcrumb">
+    <div class="divider">
+      <div class="lmr flexbox">
+        
+          <nav class="breadcrumb" aria-label="breadcrumbs" data-is-blog="false">
+  <ol>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li >
+    
+      <a href="https://www.wenhui.space/" class="capitalize">Wenhui&#39;s Rotten Pen</a>
+    
+  </li>
+  
+  
+  <li >
+    
+      <a href="https://www.wenhui.space/docs/" class="capitalize">Docs</a>
+    
+  </li>
+  
+  
+  <li >
+    
+      <a href="https://www.wenhui.space/docs/08-ic-design/" class="capitalize">关于IC设计</a>
+    
+  </li>
+  
+  
+  <li >
+    
+      <a href="https://www.wenhui.space/docs/08-ic-design/cpu/" class="capitalize">CPU设计</a>
+    
+  </li>
+  
+  
+  <li  class="is-active" >
+    
+      <span>DynamIQ Power Management</span>
+    
+  </li>
+  
+  </ol>
+  
+</nav>
+        
+        <div class="grow"></div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+  <div class="mid">
+  <div class="divider">
+    
+    <nav id="single-menu" class="l" data-dir="ltr">
+      
+        <div class="menu">
+  <h6 class="menu__label">
+    
+      DynamIQ Power Management
+    
+  </h6>
+  <ul>
+    
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于软件安装
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/01-software-install/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_edrawmax/" class="menu__title " data-depth="0">亿图图示的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_wavedrom/" class="menu__title " data-depth="0">波形图绘制软件WaveDrom</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_pandoc/" class="menu__title " data-depth="0">文档格式转换工具Pandoc</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/google_assistant/" class="menu__title " data-depth="0">最简单易用的谷歌访问助手</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_plugins_for_firefox/" class="menu__title " data-depth="0">为firefox安装插件</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_bitwarden/" class="menu__title " data-depth="0">Bitwarden的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_flash_player_for_firefox/" class="menu__title " data-depth="0">为firefox安装flash player插件</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_hugo/" class="menu__title " data-depth="0">hugo的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_picgo/" class="menu__title " data-depth="0">PicGo的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_goldendict/" class="menu__title " data-depth="0">GoldenDict的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/add_software_to_deepin_launcher/" class="menu__title " data-depth="0">将软件添加到deepin启动器</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_firefox/" class="menu__title " data-depth="0">firefox的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_git/" class="menu__title " data-depth="0">git的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_emacs/" class="menu__title " data-depth="0">emacs的安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_rtl8821ce_wireless_drive/" class="menu__title " data-depth="0">为deepin系统安装无线网卡驱动</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/install_deepin_os/" class="menu__title " data-depth="0">deepin系统安装</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/01-software-install/thinkpad_s2/" class="menu__title " data-depth="0">My Black Boy</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于emacs
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/02-emacs/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/org_mode_table_align/" class="menu__title " data-depth="0">解决Org-Mode表格不对齐问题</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_epa_package/" class="menu__title " data-depth="0">emacs插件之多媒体应用</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_insert_english_translate/" class="menu__title " data-depth="0">emacs插件之自动插入英文翻译</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_company_english/" class="menu__title " data-depth="0">emacs插件之英文自动补全</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_org_mode/" class="menu__title " data-depth="0">emacs org-mode 的使用</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_folding_mode/" class="menu__title " data-depth="0">emacs使用folding-mode</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_auto_insert/" class="menu__title " data-depth="0">emacs 中使用模板文件</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/verilog_perl_useguide/" class="menu__title " data-depth="0">Emacs Verilog Perl 的使用</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/verilog_mode_useguide/" class="menu__title " data-depth="0">Emacs verilog-mode 的使用</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_use_tips/" class="menu__title " data-depth="0">emacs的使用技巧记录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_package_install/" class="menu__title " data-depth="0">emacs如何安装插件</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/02-emacs/emacs_useguide/" class="menu__title " data-depth="0">emacs的基本使用</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于生活
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/03-life/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/ebook-download/" class="menu__title " data-depth="0">电子书下载</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/essays_and_excerpts/" class="menu__title " data-depth="0">随笔与摘录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/food-comics/" class="menu__title " data-depth="0">我的收藏之美食漫画</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/ancient_chinese_cooking_books/" class="menu__title " data-depth="0">我的收藏之中国烹饪古籍丛刊</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/my_cooking_dishes/" class="menu__title " data-depth="0">我的美食拙作</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/food_map_beijing/" class="menu__title " data-depth="0">我的美食地图之北京</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/03-life/food_map_xian/" class="menu__title " data-depth="0">我的美食地图之西安</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于博客搭建
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/04-build-blog-site/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/hugo_theme_zdoc/" class="menu__title " data-depth="0">推荐一款hugo主题</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/org_mode_and_ox_hugo/" class="menu__title " data-depth="0">使用org-mode和ox-hugo写博客</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/modify_url_for_blog/" class="menu__title " data-depth="0">给自己的博客自定义域名</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/hugo_content_tips/" class="menu__title " data-depth="0">hugo博客内容的使用技巧</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/hugo_deploy_to_github/" class="menu__title " data-depth="0">将hugo博客部署到github</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/markdown/" class="menu__title " data-depth="0">markdown语法</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/04-build-blog-site/hugo_usage/" class="menu__title " data-depth="0">hugo的使用</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于Windows使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/05-windows-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/05-windows-skills/save_web_content_to_local/" class="menu__title " data-depth="0">如何保存网页内容到本地</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/05-windows-skills/create_wps_tepmlate/" class="menu__title " data-depth="0">WPS如何使用文档模板</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/05-windows-skills/some_advices_of_word/" class="menu__title " data-depth="0">关于word编辑文档的一些建议</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于Linux使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/06-linux-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    语言使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/language-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/language-skills/python_tutorial/" class="menu__title " data-depth="1">Python简明教程</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/language-skills/regular_expression/" class="menu__title " data-depth="1">正则表达式语法简明教程</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    脚本使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/script-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/script-skills/shell_script_basis/" class="menu__title " data-depth="1">shell脚本基础</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/script-skills/verilog_auto_declare/" class="menu__title " data-depth="1">verilog中reg和wire的自动声明</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/script-skills/shell_script/" class="menu__title " data-depth="1">shell脚本使用记录</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    工具使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/tools-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/git_introduction_and_userguide/" class="menu__title " data-depth="1">Git原理详解及实用指南</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/ep3_tool/" class="menu__title " data-depth="1">代码预处理工具ep3的使用</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    通用使用技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/usual-skills/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_syscfg_notes/" class="menu__title " data-depth="1">Linux系统设置记录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_tools_notes/" class="menu__title " data-depth="1">Linux安装工具记录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/usual-skills/linux_use_notes/" class="menu__title " data-depth="1">Linux使用命令记录</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于IC验证
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/07-ic-verify/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    培训材料
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/training/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-three/" class="menu__title " data-depth="1">UVM学习笔记（三）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-two/" class="menu__title " data-depth="1">UVM学习笔记（二）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/uvm-study-note-one/" class="menu__title " data-depth="1">UVM学习笔记（一）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-eight/" class="menu__title " data-depth="1">SV学习笔记（八）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-seven/" class="menu__title " data-depth="1">SV学习笔记（七）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-six/" class="menu__title " data-depth="1">SV学习笔记（六）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-five/" class="menu__title " data-depth="1">SV学习笔记（五）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-four/" class="menu__title " data-depth="1">SV学习笔记（四）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-three/" class="menu__title " data-depth="1">SV学习笔记（三）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-two/" class="menu__title " data-depth="1">SV学习笔记（二）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/sv-study-note-one/" class="menu__title " data-depth="1">SV学习笔记（一）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-five/" class="menu__title " data-depth="1">验证工程师与芯片验证（五）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-four/" class="menu__title " data-depth="1">验证工程师与芯片验证（四）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-three/" class="menu__title " data-depth="1">验证工程师与芯片验证（三）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-two/" class="menu__title " data-depth="1">验证工程师与芯片验证（二）</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/training/verifier-and-verify-one/" class="menu__title " data-depth="1">验证工程师与芯片验证（一）</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    工具使用
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/tools/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/tools/verdi_userguide/" class="menu__title " data-depth="1">Verdi使用总结</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    小技巧
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/tips/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/tips/resolve-file-dependencies-for-rtl-compile/" class="menu__title " data-depth="1">如何更好的解决RTL编译时依赖关系问题</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/tips/random-in-verilog/" class="menu__title " data-depth="1">Verilog中获取随机数</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    形式化验证
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/formal/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/formal/formal/" class="menu__title " data-depth="1">Formal验证技术总结</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    一些记录
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/verify-notes/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-uvm-daily-question/" class="menu__title " data-depth="1">每日一问</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/uvm-and-verify-env/" class="menu__title " data-depth="1">UVM与验证环境</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/x-propagation/" class="menu__title " data-depth="1">关于X-Propagation问题</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/digital-verifer/" class="menu__title " data-depth="1">芯片验证工程师</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse active" data-depth="0">
+    关于IC设计
+    <span class="menu__title--icon down">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list active" data-data=/08-ic-design/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse active" data-depth="1">
+    CPU设计
+    <span class="menu__title--icon down">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list active" data-data=/cpu/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/" class="menu__title " data-depth="1">浅谈熔断和幽灵</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/" class="menu__title active" data-depth="1">DynamIQ Power Management</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/arm-cpu-introduction/" class="menu__title " data-depth="1">ARM处理器基础介绍</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    典型电路设计
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/typical/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/typical/clock-domain-crossing/" class="menu__title " data-depth="1">跨时钟域数据传输</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/typical/booth-and-wallace/" class="menu__title " data-depth="1">Booth算法与Wallace树</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+      
+        
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="1">
+    RTL编码
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/rtl-coding/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/rtl-coding/verilog-coding-styleguide/" class="menu__title " data-depth="1">verilog的编码风格</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/rtl-coding/about-verilog-case/" class="menu__title " data-depth="1">关于Verilog中的case、casex、casez</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/rtl-coding/verilog-coding-three-tools/" class="menu__title " data-depth="1">简化verilog编码的全套解决方案</a>
+        </li>
+      
+    
+  </ul>
+  
+
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    关于ARM架构
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/09-arm/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/bootloader/" class="menu__title " data-depth="0">一个简易bootloader框架</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/aarch64-execption/" class="menu__title " data-depth="0">AArch64之异常处理</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/aarch64-no-ldm-stm/" class="menu__title " data-depth="0">为什么AArch64没有LDM和STM指令</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/arm-and-assemb/" class="menu__title " data-depth="0">ARM(a32)体系结构与汇编指令</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+      
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  <span class="menu__title--collapse " data-depth="0">
+    科普知识
+    <span class="menu__title--icon right">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
+      
+    </span>
+  </span>
+  <ul class="menu__list " data-data=/10-polular-science/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/dynamiq-power-management/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/10-polular-science/floating-point/" class="menu__title " data-depth="0">浮点数的表示和运算</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/10-polular-science/cpu-knowledge/" class="menu__title " data-depth="0">CPU相关的科普知识</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/10-polular-science/rank-of-organization/" class="menu__title " data-depth="0">你应该知道的职级与英文缩写</a>
+        </li>
+      
+    
+  </ul>
+  
+
+    
+  </ul>
+</div>
+
+
+      
+    </nav>
+
+    <article id="list-main" class="m" data-dir="ltr">
+      
+  <label class="switch">
+    <input id="toggle-sidebar" aria-label="Toggle Sidebar Visibility" type="checkbox" checked />
+    <span class="slider">
+      <span class="slider__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
+      </span>
+      <span class="slider__icon hide">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
+      </span>
+    </span>
+  </label>
+
+      <div class="single" data-display="block">
+  
+
+  <article class="single__contents" data-dir="ltr">
+    <h2 id="本文">本文</h2>
+<p>主要介绍ARM DynamIQ架构下的功耗管理策略。</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1</td>
+<td>初版发布</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考">参考</h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作者</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsu_trm_100453_0002_00_en</td>
+<td>ARM</td>
+<td>ARM官网</td>
+</tr>
+<tr>
+<td>cortex_a75_trm_100403_0300_00_en</td>
+<td>ARM</td>
+<td>ARM官网</td>
+</tr>
+<tr>
+<td>AMBA低功耗接口（一）Q_Channel</td>
+<td>lujun</td>
+<td>个人博客：骏的世界</td>
+</tr>
+</tbody>
+</table>
+<h2 id="专业术语与缩略语">专业术语与缩略语</h2>
+<table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>全称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dsu</td>
+<td>DynamIQ Shared Unit</td>
+<td>DSU包含L3 Memory System、control logic、 external interfaces，以支持DynamIQ cluster 结构</td>
+</tr>
+<tr>
+<td>trm</td>
+<td>Technical Reference Manual</td>
+<td>参考手册</td>
+</tr>
+<tr>
+<td>PMU</td>
+<td>Power Management Unit</td>
+<td>功耗管理单元</td>
+</tr>
+<tr>
+<td>DVFS</td>
+<td>Dynamic Voltage and Frequency Scaling</td>
+<td>动态电压和频率频率调节</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="背景">背景</h2>
+<h3 id="多核处理器">多核处理器</h3>
+<p>在早期的单核处理器中，往往通过提高时钟频率来提高性能，但随着频率的提高，设计难度会加大，性能提升效益却降低，以及功耗不断增大导致的散热问题，使得单核处理器性能提升越来越难，典型的就是Intel Pentium 4处理器。</p>
+<p>多核处理器称为性能提升的最佳解决方案，也就是单芯片集成多个处理器核心，来替代复杂性较高的单线程处理器。通过多核的硬件结构，搭配多线程编程，使得处理器性能显著提升。在现代的多核硬件结构中，内存对多个CPU核是共享的，CPU核一般都是对称的，因此多核属于共享存储的对称多处理器（Symmetric Multi-processor，SMP）。</p>
+<p>根据上文已知，多核处理器间共享内存，每个核处理一个进程，那么不同进程间并行执行就会遇到数据竞争的问题，如何解决数据竞争问题是多核处理器设计中的关键。</p>
+<h3 id="一般的cluster架构">一般的cluster架构</h3>
+<ul>
+<li>一个cluster，最多4个对称的core。</li>
+<li>每个core都有L1 Cache（D&amp;I）。</li>
+<li>程序运行在一个cluster中的core。</li>
+<li>cluster内有L2 cache，4个core共享。</li>
+<li>cluster内有snoop control unit，来维护L1 cache的数据一致性。</li>
+<li>cluster内有中断控制器，将中断信息分配给对应的cpu。</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-131.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<h3 id="big-dot-little架构">big.LITTLE架构</h3>
+<ul>
+<li>先来说一下为什么需要big.LITTLE架构？
+<ol>
+<li>从应用场景来分析，分为两类，一是对性能要求高，比如看打游戏，二是对性能要求不高，但尽可能降低功耗，如收发邮件。</li>
+<li>大小核的设计，就是根据不同应用场景，来选用高性能核运行还是低功耗核运行。</li>
+<li>典型的是低功耗核Coretex-A7和高性能核Coretex-A15，同属于ARMv7架构。</li>
+</ol>
+</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-129.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>两个cluster，每个cluster最多4个对称的core。</li>
+<li>每个core都有L1 Cache（D&amp;I）。</li>
+<li>程序运行在两个个cluster中的core。</li>
+<li>每个cluster内有L2 cache，4个core共享。</li>
+<li>每个cluster内有snoop control unit，来维护L1 cache的数据一致性。</li>
+<li>cluster之间通过互连和内存来维护cache数据一致性(CCI [Cache Coherent Interconnect])。</li>
+<li>两个cluster共享一个中断控制器，将中断信息分配给对应的cluster，cluster再分配给对应的core。</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-132.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<h3 id="dynamiq架构">DynamIQ架构</h3>
+<ul>
+<li>DynamIQ cluster结构中，可以将不同类型的core放到一个cluster中。比如，将性能高的core，和功耗低的core放进一个cluster。如果没有DynamIQ，需要将其放在2个不同cluster中的</li>
+<li>DynamIQ cluster结构中，增加了异步桥的设计，每个核可以工作在不同的频率，也可以单独的控制每个核开关。</li>
+<li>DynamIQ cluster结构中，core之间通过Shared Memory（L3 cache）来完成cache数据一致性。</li>
+<li>DynamIQ cluster结构中，共享一个中断控制器，将中断信息通过异步桥再分配给对应的core。</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-01.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>举例：Kirin 980
+<ol>
+<li>Kirin 970采用传统的big.LITTLE，Kirin 980采用DynamIQ big.LITTLE。</li>
+<li>性能提高75%，效能提高58%。</li>
+<li>两个Big core，A76 2.6G</li>
+<li>两个Middle core， A76 1.92G</li>
+<li>四个Little core， A55 1.8G</li>
+</ol>
+</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-134.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<h2 id="power-domains">Power domains</h2>
+<ul>
+<li>DynamIQ cluster中对不同电源域可以采取上电/下电操作：
+<ol>
+<li>单个CPU core、L3 cache、cluster logic、debug。</li>
+<li>Cortex-A55还支持SIMD logic独立的电源域.</li>
+<li>以上电源域在实现时可选择性实现。</li>
+</ol>
+</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-02.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<h2 id="dsu-power-modes">dsu power modes</h2>
+<ul>
+<li>
+<p><strong>ON(Logic ON, RAMs ON)</strong> :</p>
+<ol>
+<li>所有core和dsu logic开启。</li>
+<li>仅通过必要的时钟门控降低动态功耗。</li>
+</ol>
+</li>
+<li>
+<p><strong>Functional retention(Logic ON, RAMs RET)</strong> ：</p>
+<ol>
+<li>在不访问L3 cache时，可将L3 cache置于retention状态（数据保持）。</li>
+<li>暂停对L3 cache的访问，直到切换为ON状态，但core依然在运行。</li>
+<li>可以通过任何一个cluster内的core，来禁用或启用dsu的fun_ret mode。</li>
+<li>可以通过软件设定L3 cache进入fun_ret mode的超时值。</li>
+</ol>
+</li>
+<li>
+<p><strong>Memory retention(Logic RET, RAMs RET)</strong> ：</p>
+<ol>
+<li>cluster的休眠模式。</li>
+<li>关闭dsu logic，同时L3 cache数据保持。</li>
+<li>cluster内的所有core必须处于OFF(powerdown)状态。</li>
+<li>mem_ret mode不能维护cache一致性，所以需要在cluster外部无cache一致性维护需求的前提下开启（实际上，只有在cluster是唯一的active cluster时，才可以进入mem_ret mode）。</li>
+</ol>
+</li>
+<li>
+<p><strong>OFF(Logic OFF, RAMs OFF)</strong> ：</p>
+<ol>
+<li>关闭cluster内所有power domain。</li>
+<li>当cluster请求关闭时，应先将L3 cache的数据更新到内存。</li>
+</ol>
+</li>
+<li>
+<p><strong>以上power mode低功耗深度依次增加</strong> 。</p>
+</li>
+</ul>
+<h2 id="dsu-power-modes-transitions">dsu power modes transitions</h2>
+<table>
+<thead>
+<tr>
+<th>Start mode</th>
+<th>End mode</th>
+<th>DSU behavior</th>
+<th>Partner implemented behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OFF</td>
+<td>ON</td>
+<td>The L3 cache and snoop filter are initialized. The cluster is brought into coherency with the rest of the system.</td>
+<td>Power applied, isolation disabled.</td>
+</tr>
+<tr>
+<td>MEM_RET</td>
+<td>ON</td>
+<td>The cluster is brought into coherency with the rest of the system.</td>
+<td>Power applied, isolation disabled.</td>
+</tr>
+<tr>
+<td>MEM_RET</td>
+<td>FUNC_RET</td>
+<td>The cluster is brought into coherency with the rest of the system, but the RAMs remain in retention.</td>
+<td>Power applied, clamps and isolation remain enabled.</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>FUNC_RET</td>
+<td>Waits for all memory transactions to complete. The clock to the retention domain is gated. L3 cache and snoop filter RAMs are put into retention.</td>
+<td>RAM clamps and isolation enabled.</td>
+</tr>
+<tr>
+<td>FUNC_RET</td>
+<td>ON</td>
+<td>L3 cache and snoop filter RAMs are taken out of retention.</td>
+<td>RAM clamps and isolation disabled.</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>OFF</td>
+<td>Waits for all memory transactions to complete. L3 cache allocation is disabled. The L3 cache is cleaned and invalidated. The cluster is removed from system coherency.</td>
+<td>DSU clamps and isolation to the rest of the system are enabled.</td>
+</tr>
+<tr>
+<td>ON or FUNC_RET</td>
+<td>MEM_RET</td>
+<td>Waits for all memory transactions to complete. The cluster is removed from system coherency. This mode is only useful when the cluster is the only master active.</td>
+<td>DSU clamps and isolation to the rest of the system are enabled.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="core-power-modes">core power modes</h2>
+<ul>
+<li>
+<p><strong>ON</strong> :</p>
+<ol>
+<li>core已经启动，可以全面运行。</li>
+<li>可以通过P-channel或tying PREQ LOW初始化为ON mode。</li>
+<li>所有缓存均可访问且保持一致性。</li>
+</ol>
+</li>
+<li>
+<p><strong>Standby</strong> ：</p>
+<ol>
+<li>core的待机模式，时钟树的顶部被添加时钟门控。</li>
+<li>所有core logic和RAM处于retention状态。</li>
+<li>WFI和WFE指令，将core置于低功耗待机模式。</li>
+</ol>
+</li>
+<li>
+<p><strong>OFF</strong> ：</p>
+<ol>
+<li>全断电并且不保留任何状态，core logic和RAM关闭。</li>
+<li>OFF可以针对整个cluster，也可以针对单个core。</li>
+<li>cold reset可以在此模式对core进行reset。</li>
+<li>可以通过P-channel将core初始化为此模式。</li>
+</ol>
+</li>
+<li>
+<p><strong>Off (emulated)</strong> ：</p>
+<ol>
+<li>所有core logic和RAM保持ON状态。</li>
+<li>可以在外部声明core warm reset，以模拟断电场景，同时保持内核调试状态并允许调试访问。</li>
+</ol>
+</li>
+<li>
+<p><strong>Core dynamic retention</strong> ：</p>
+<ol>
+<li>所有core logic和RAM处于retention状态。</li>
+<li>但是支持Snoop、GIC、debug访问。</li>
+</ol>
+</li>
+<li>
+<p><strong>Debug Memory Retention/Debug recovery</strong> ：</p>
+<ol>
+<li>可用于协助对外部watchdog触发的复位事件进行事后调试。</li>
+<li>允许重置之前可以观察到重置之前存在的L1、L2 cache的数据。</li>
+<li>cache的数据将保留，并且在过渡回ON模式时不会更改。</li>
+</ol>
+</li>
+<li>
+<p><strong>Advanced SIMD retention (Cortex-A55 only)</strong> ：</p>
+<ol>
+<li>SIMD logic处于retention状态，其余core逻辑不影响。</li>
+<li>当需要在此模式下执行SIMD指令时，将暂停，直到内核进入开启模式为止。</li>
+</ol>
+</li>
+</ul>
+<h2 id="core-power-modes-transitions">core power modes transitions</h2>
+<center>
+<img width="60%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-04.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<h2 id="example-for-arm-cortex-a75">example for ARM Cortex-A75</h2>
+<h3 id="about-power-management">About power management</h3>
+<p>Cortex-A75内核提供了功耗控制的动态和静态功机制：</p>
+<ul>
+<li>
+<p>Dynamic power management includes the following features:</p>
+<ol>
+<li>Architectural clock gating.</li>
+<li>Per-core Dynamic Voltage and Frequency Scaling (DVFS).</li>
+</ol>
+</li>
+<li>
+<p>Static power management includes the following features:</p>
+<ol>
+<li>Dynamic retention.</li>
+<li>Powerdown</li>
+</ol>
+</li>
+</ul>
+<h3 id="voltage-domains">Voltage domains</h3>
+<p>Cortex-A75内核支持VCPU电压域和VSYS电压域：</p>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-05.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>电压域之间存在异步桥逻辑。</p>
+<ul>
+<li>异步桥的Cortex-A75核心逻辑和核心时钟域位于VCPU电压域中。</li>
+<li>异步桥的DSU时钟域在VSYS电压域中。</li>
+</ul>
+<h3 id="power-domains">Power domains</h3>
+<ul>
+<li>PDCPU power domain：包括所有core logic，包括core内的异步桥logic。
+<ol>
+<li>Advanced SIMD和floating-point单元属于PDCPU power domain，不支持额外独立的power domain。</li>
+<li>L1 and L2 RAMs属于PDCPU power domain，不支持额外独立的power domain。</li>
+</ol>
+</li>
+<li>PDSYS power domain：包括dsu logic和异步桥logic。</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-06.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>下图显示了cluster中的电源域，其中所有相同颜色的都属于同一个电源域。该示例显示了四个Cortex-A75内核。Cortex-A75内核的数量可以变化，并且域数量根据存在的Cortex-A75内核的数量而增加。</p>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-07.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<table>
+<thead>
+<tr>
+<th>Power domain</th>
+<th>Descripti</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PDCPU<n></td>
+<td>The domain includes the Advanced SIMD and floating-point block, the micro and main TLBs, L1 and L2 RAMs, and Debug registers associated with the Cortex-A75 core. <n> is the number of Cortex-A75 cores. The number represents core 0, core 1, core 2, and core 3. If a core is not present, the corresponding power domain is not present.</td>
+</tr>
+<tr>
+<td>PDSYS</td>
+<td>Top-level DSU power domain.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="architectural-clock-gating-modes--standby">Architectural clock gating modes(Standby)</h3>
+<p>Wait for Interrupt (WFI) and Wait for Event (WFE) are features of Armv8-A architecture that put the core in a low-power standby mode by architecturally disabling the clock at the top of the clock tree. The core is fully powered and retains all the state in standby mode.</p>
+<h4 id="core-wait-for-interrupt">Core Wait for Interrupt</h4>
+<p>当core执行WFI指令时，core将等待core内的所有指令retire，然后再进入低功耗状态。WFI指令确保以程序顺序retire在WFI指令之前发生的所有显式内存访问。此外，WFI指令可确保store指令已更新cache或已issue到L3 memory system。</p>
+<p>当内核处于WFI低功耗状态时，如果检测到以下任何事件时，将临时启用core内的时钟，而不会导致core退出WFI低功耗状态：</p>
+<ul>
+<li>L3 memory snoop request</li>
+<li>A cache or TLB maintenance operation</li>
+<li>APB access to the debug or trace registers</li>
+<li>GIC CPU access through the AXI4 stream channel</li>
+</ul>
+<p>发生以下情况之一时，发生从WFI低功率状态退出：</p>
+<ul>
+<li>WFI wake-up events.</li>
+<li>reset</li>
+</ul>
+<h4 id="core-wait-for-event">Core Wait for Event</h4>
+<p>当core执行WFE指令时，core会等待core内的所有指令retire，然后再进入低功耗状态。如果设置了事件寄存器，则执行WFE不会导致进入待机状态，而是清除事件寄存器。</p>
+<p>当内核处于WFE低功耗状态时，如果检测到以下任何事件时，将临时启用core内的时钟，而不会导致core退出WFE低功耗状态：</p>
+<ul>
+<li>L3 memory snoop request</li>
+<li>A cache or TLB maintenance operation</li>
+<li>APB access to the debug or trace registers</li>
+<li>GIC CPU access through the AXI4 stream channel</li>
+</ul>
+<p>发生以下情况之一时，发生从WFE低功率状态退出：</p>
+<ul>
+<li>WFE wake-up events</li>
+<li>The EVENTI input signal is asserted</li>
+<li>reset</li>
+</ul>
+<h3 id="power-control">power control</h3>
+<p>所有power mode转换都是在电源控制器（PMU）的请求下执行的，使用P-channel接口与Cortex-A75内核进行通信。</p>
+<p>每个core都有一个P-channel，而cluster有一个P-channel。 Cortex-A75 core可以通过 <strong>PACTIVE</strong> 发出当前power mode，电源控制器可以通过 <strong>PREQ</strong> 和 <strong>PSTATE</strong> 发出power mode的切换请求。然后，Cortex-A75 core在接受请求之前，执行达到请求的功耗模式所需的所有操作，例如门控时钟，刷新缓存或禁用一致性。</p>
+<p>如果请求无效，或者是由于转换不正确，或者是因为状态已更改，使得状态不再合适，那么该请求将被拒绝。</p>
+<p>具体控制协议参考P-channel。</p>
+<h3 id="core-power-modes">Core power modes</h3>
+<p>下图显示了每个核心域P通道支持的模式，以及它们之间的合法转换：</p>
+<center>
+<img width="60%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-08.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>具体各个power mode的含义，请参看上文介绍。</p>
+<h3 id="encoding-for-power-modes">Encoding for power modes</h3>
+<p>下图展示了每个core P-channel支持的模式的编码：</p>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-09.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<h3 id="power-domain-states-for-power-modes">Power domain states for power modes</h3>
+<ul>
+<li>Power state description：</li>
+</ul>
+<center>
+<img width="60%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-10.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>Supported core power domain states：</li>
+</ul>
+<center>
+<img width="60%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-11.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<h3 id="power-up-and-down-sequences">Power up and down sequences</h3>
+<h4 id="core-powerdown">Core powerdown</h4>
+<p>要使core 解除cache一致性，为core powerdown做好准备，必须执行以下掉电步骤：</p>
+<ol>
+<li>Save all architectural states.</li>
+<li>Configure the GIC distributor to disable or reroute interrupts away from this core.</li>
+<li>Set the CPUPWRCTLR.CORE_PWRDN_EN bit to 1 to indicate to the power controller that a powerdown is requested.</li>
+<li>Execute an ISB instruction.</li>
+<li>Execute a WFI instruction</li>
+</ol>
+<p>在执行WFI之后，在电源控制器的指导下，所有L1和L2 cache禁用，L1和L2 cache刷新以及与L3 memory system的通信均在硬件中执行。</p>
+<h4 id="core-powerup">Core powerup</h4>
+<p>要在reset后使core保持cache一致性，不需要任何软件操作。</p>
+<h3 id="debug-over-powerdown">Debug over powerdown</h3>
+<p>Cortex-A75 core支持掉电调试，这使调试器即使在掉电后也能保持与core的连接。掉电调试逻辑是DebugBlock的一部分，它在cluster外部，在掉电调试过程中必须保持通电。</p>
+<h2 id="q-channel">Q-channel</h2>
+<h3 id="概述">概述</h3>
+<p>AMBA提供了，低功耗的接口。用于实现power控制功能。目前，AMBA里面，包含2种低功耗接口。</p>
+<ul>
+<li>Q-Channel：实现简单的power控制，如上电，下电。</li>
+<li>P-Channel：实现更精细的power控制，如全上电，半上电，1/4上电等。</li>
+</ul>
+<p>在一些场景下，组件只有两种power状态，分别为power-up，power-down。因此对这种组件的power控制，只需要对其上电，断电即可。用Q-Channel，即可实现。</p>
+<h3 id="接口">接口</h3>
+<p>以下是Q-Channel的接口：</p>
+<center>
+<img width="60%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-13.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>分为device端和power controller端（下文均简称为PMU）。device端，就是需要被电源控制的组件，比如core，外设等。PMU端，就是提供电源管理的组件。</p>
+<p>在Q-Channel中，将device的power状态，分成了2种，</p>
+<ul>
+<li>operational状态： device处于工作状态，简单理解为上电状态，下文称为上电状态</li>
+<li>quiescent状态：device处于停止状态，简单理解为断电状态，下文称为断电状态</li>
+</ul>
+<p>接口如下</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>说明</th>
+<th>驱动端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QREQn</td>
+<td>power controller发送power请求信号，为高表示上电，为低表示断电</td>
+<td>PMU</td>
+</tr>
+<tr>
+<td>QACCEPTn</td>
+<td>为高，表示device接受外部power请求</td>
+<td>Device</td>
+</tr>
+<tr>
+<td>QDENY</td>
+<td>为高，表示device拒绝外部power请求</td>
+<td>Device</td>
+</tr>
+<tr>
+<td>QACTIVE</td>
+<td>提供给device，向PMU发送power请求，更改自己的power状态，为高表示device需要PMU将自己置为上电状态，为低表示device需要PMU将自己置为断电状态</td>
+<td>Device</td>
+</tr>
+</tbody>
+</table>
+<h3 id="q-channel接口的握手状态">Q-Channel接口的握手状态</h3>
+<p>ARM对Q-Channel的interface，定义了几种握手状态：</p>
+<ul>
+<li>Q_RUN：device处于上电状态。</li>
+<li>Q_REQUEST：device处于上电状态，但是在idle状态时，可以接收power request，进入断电状态。</li>
+<li>Q_STOPPED：device进入了断电状态。</li>
+<li>Q_EXIT：等待被提供时钟或者power的状态。当device得到外部提供的时钟或者power时，将QACCEPTn拉高，进入Q_RUN状态。</li>
+<li>Q_DENIED: device拒绝外部power的请求，不进入断电状态，而保持上电状态。</li>
+<li>Q_CONTINUE：PMU在Q_DENIED状态后，将QREQn拉高后的状态。</li>
+</ul>
+<p>以下是编码：</p>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-14.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>以下是状态转移图：</p>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-15.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>对于握手信号，有以下的规则：</p>
+<ul>
+<li>REQn只能在QACCEPTn为高并且QDENY为低时，才可以从高变为低。</li>
+<li>QREQn满足以下条件，才可以从低变为高：QACCEPTn和QDENY都为低；QACCEPTn和QDENY都为高。</li>
+<li>QACCEPTn只能在QREQn和QDENY都为低情况下，才可以从高变为低。</li>
+<li>QACCEPTn只能在QREQn和QDENY都为高情况下，才可以从低变为高。</li>
+<li>QDENY只能在QREQn和QACCEPTn都为高情况下，才可以从高变为低。</li>
+<li>QDENY只能在QREQn为低并且QACCEPTn为高情况下，才可以从低变为高。</li>
+</ul>
+<h3 id="q-channel的握手协议">Q_Channel的握手协议</h3>
+<h4 id="device接受pmu的power请求">device接受PMU的power请求</h4>
+<p>以下是握手协议时序图：</p>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-16.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>在T1，QREQn和QACCEPTn为高，Q_Channel进入Q_RUN状态。</li>
+<li>在T2，QREQn为低，PMU请求device进入断电状态，然后等待外设响应，此时Q_Channel进入Q_REQUEST状态。</li>
+<li>在T3，QACCEPTn为低，表示device接收PMU的请求，将自己进入断电状态。此时Q_Channel进入Q_STOPPED状态。</li>
+<li>在T4，QREQn为高，PMU请求device进入上电状态，然后等待外设响应。此时Q_Channel进入Q_EXIT状态。</li>
+<li>在T5，QACCEPTn为高，表示device接收PMU的请求，将自己进入上电状态。此时Q_Channel进入Q_RUN状态。</li>
+</ul>
+<h4 id="device拒绝pmu的power请求">device拒绝PMU的power请求</h4>
+<p>当外部PMU给device发送power请求，device可以拒绝该power请求。PMU收到device的拒绝响应后，应取消该power请求。</p>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-17.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>在T1，QREQn和QACCEPTn为高，Q_Channel进入Q_RUN状态。</li>
+<li>在T2，QREQn为低，PMU请求device进入断电状态，然后等待外设响应，此时Q_Channel进入Q_REQUEST状态。</li>
+<li>在T3，QDENY为高，表示device拒绝PMU的请求，自己保持上电状态。此时Q_Channel进入Q_DENIED状态。</li>
+<li>在T4，PMU接收到device的拒绝响应，将QREQn拉高，PMU请求device进入上电状态，然后等待外设响应。此时Q_Channel进入Q_CONTINUE状态。</li>
+<li>在T5，QDENY为低，表示device接收PMU的上电请求，将自己保持上电状态。此时Q_Channel进入Q_RUN状态。</li>
+</ul>
+<h3 id="device复位信号与q-channel的结合">device复位信号与Q_Channel的结合</h3>
+<p>复位信号，需要和Q_Channel的信号，进行组合。一般来说，复位信号，也会由PMU来控制。</p>
+<h4 id="resetn复位有效时-qreqn为低">RESETn复位有效时，QREQn为低</h4>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-18.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>T2时刻，RESETn为高，复位取消。</li>
+<li>T3时刻，QREQn为高，PMU向device请求上电。Q_Channel进入Q_EXIT状态。</li>
+<li>T4时刻，QACCEPTn为高，device接受PMU的上电请求。Q_Channel进入Q_RUN状态。</li>
+<li>T5时刻，QREQn为低，PMU向device请求断电，Q_Channel进入Q_REQUEST状态。T6时刻，QACCEPTn为低，device接受PMU的断电请求。Q_Channel进入Q_STOPPED。</li>
+<li>T7时刻，将RESETn拉低。</li>
+</ul>
+<h4 id="resetn复位有效时-qreqn为高">RESETn复位有效时，QREQn为高</h4>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-19.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>T2时刻，QREQn拉高，PMU向device请求上电。Q_Channel进入Q_EXIT状态。</li>
+<li>T3时刻，因为RESETn为低，复位有效，device将QACCEPTn保持为低，Q_Channel保持Q_EXIT状态。</li>
+<li>T4时刻，因为RESETn为高，复位无效。device将QACCEPTn拉低，响应PMU的上电请求。Q_Channel进入Q_RUN状态。</li>
+<li>T5时刻，QREQn拉低，PMU向device请求断电，Q_Channel进入Q_REQUEST状态。</li>
+<li>T6时刻，device将QACCEPTn拉低，响应PMU的断电请求。Q_Channel进入Q_STOPPED状态。</li>
+<li>T7时刻，RESETn拉低。</li>
+</ul>
+<h3 id="qactive">QACTIVE</h3>
+<p>QACTIVE，是提供给device，给PMU发送power请求的信号。可以由多个来源的组合。如果为高，那么PMU要给自己上电，并且之后，不能给自己断电。</p>
+<p>QACTIVE和握手信号（QREQn，QACCEPTn，QDENY）是独立开的。</p>
+<h4 id="请求上电和请求下电">请求上电和请求下电</h4>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-20.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>T1时刻，device将QACTIVE拉高，向PMU发起退出断电请求。</li>
+<li>T2时刻，PMU将QREQn拉高，Q_Channel进入Q_EXIT状态。</li>
+<li>T3时刻，进入Q_RUN状态。</li>
+<li>T4时刻，device将QACTIVE拉低，device向PMU发起进入断电请求。</li>
+<li>T5时刻，PMU将QREQn拉低，Q_Channel进入Q_REQUEST状态。</li>
+<li>T6时刻，进入Q_STOPPED状态。</li>
+</ul>
+<h4 id="pmu不允许断电">PMU不允许断电</h4>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-21.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>T1时刻，device将QACTIVE拉高，向PMU发起上电请求。</li>
+<li>T2时刻，PMU将QREQn拉高，Q_Channel进入Q_EXIT状态。</li>
+<li>T3时刻，进入Q_RUN状态。之后，device处于上电状态。</li>
+<li>T4时刻，PMU将QREQn拉低，PMU想让device进入断电状态，但是QACTIVE为高，表示device要一直处于上电状态。因此QACCEPTn持续保持高，Q_Channel一直维持在Q_REQUEST状态。device维持在上电状态。</li>
+<li>T5时刻，因为之前QACTIVE拉低，device想进入断电状态，device将QACCEPTn拉低，响应PMU的断电请求，然后Q_Channel进入Q_STOPPED状态。device进入断电状态。</li>
+</ul>
+<h2 id="p-channel">P-channel</h2>
+<h3 id="概述">概述</h3>
+<p>为了满足复杂的power管理的需求，ARM提供了P-Channel的低功耗接口，来满足这样的应用场景。</p>
+<p>P-Channel，提出了一个概念，叫power state transition。在P-Channel的应用场景中，power的状态有很多，这个是实现是自己定义的。power的各个状态之间，是可以切换的。</p>
+<p>2个最基本的状态：</p>
+<ul>
+<li>lower-power状态：在这个状态下，power消耗比较少，device处于低功耗状态（具有部分功能）</li>
+<li>higher-power状态：在这个状态，power消耗比较大，device处于正常状态（具有完整功能）</li>
+</ul>
+<h3 id="接口">接口</h3>
+<center>
+<img width="60%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-12.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>分为device端和power控制端（下文简称PMU）。</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>说明</th>
+<th>驱动端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PACTIVE [N-1:0]</td>
+<td>提供wakeup功能</td>
+<td>device</td>
+</tr>
+<tr>
+<td>PSTATE [M-1:0]</td>
+<td>需要切换的目的power状态</td>
+<td>PMU</td>
+</tr>
+<tr>
+<td>PREQ</td>
+<td>为高，表示power状态切换请求</td>
+<td>PMU</td>
+</tr>
+<tr>
+<td>PACCEPT</td>
+<td>为高，表示device接受power状态切换请求</td>
+<td>device</td>
+</tr>
+<tr>
+<td>PDENY</td>
+<td>为高，表示device拒绝power状态切换请求</td>
+<td>device</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>PACCEPT和PDENY在握手中，只能有一个为高。</li>
+<li>PACCEPT表示接受请求，PDENY表示拒绝请求。</li>
+<li>PACCEPT，PDENY，PREQ，PSTATE，必须是从寄存器直接输出。</li>
+</ul>
+<h3 id="其他">其他</h3>
+<p>待补充</p>
+<hr />
+<p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
+
+  </article>
+</div>
+      
+<div class="grow"></div>
+<nav class="pagination-single">
+  
+    
+      <a href="https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/" title="浅谈熔断和幽灵" class="pagination-single__left">
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
+        </div>
+        <div class="pagination-single__right-title">浅谈熔断和幽灵</div>
+      </a>
+    
+    <div class="grow"></div>
+    
+      <a href="https://www.wenhui.space/docs/08-ic-design/cpu/arm-cpu-introduction/" title="ARM处理器基础介绍" class="pagination-single__right">
+        <div class="pagination-single__left-title">ARM处理器基础介绍</div>
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
+        </div>
+      </a>
+    
+  
+</nav>
+
+
+      
+    </article>
+    
+    <section id="list-side" class="r" data-dir="ltr">
+      
+        <div class="toc">
+  <h6 class="toc__label">文章目录</h6>
+  <div class="toc__body">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#本文">本文</a></li>
+    <li><a href="#参考">参考</a></li>
+    <li><a href="#专业术语与缩略语">专业术语与缩略语</a></li>
+    <li><a href="#背景">背景</a>
+      <ul>
+        <li><a href="#多核处理器">多核处理器</a></li>
+        <li><a href="#一般的cluster架构">一般的cluster架构</a></li>
+        <li><a href="#big-dot-little架构">big.LITTLE架构</a></li>
+        <li><a href="#dynamiq架构">DynamIQ架构</a></li>
+      </ul>
+    </li>
+    <li><a href="#power-domains">Power domains</a></li>
+    <li><a href="#dsu-power-modes">dsu power modes</a></li>
+    <li><a href="#dsu-power-modes-transitions">dsu power modes transitions</a></li>
+    <li><a href="#core-power-modes">core power modes</a></li>
+    <li><a href="#core-power-modes-transitions">core power modes transitions</a></li>
+    <li><a href="#example-for-arm-cortex-a75">example for ARM Cortex-A75</a>
+      <ul>
+        <li><a href="#about-power-management">About power management</a></li>
+        <li><a href="#voltage-domains">Voltage domains</a></li>
+        <li><a href="#power-domains">Power domains</a></li>
+        <li><a href="#architectural-clock-gating-modes--standby">Architectural clock gating modes(Standby)</a>
+          <ul>
+            <li><a href="#core-wait-for-interrupt">Core Wait for Interrupt</a></li>
+            <li><a href="#core-wait-for-event">Core Wait for Event</a></li>
+          </ul>
+        </li>
+        <li><a href="#power-control">power control</a></li>
+        <li><a href="#core-power-modes">Core power modes</a></li>
+        <li><a href="#encoding-for-power-modes">Encoding for power modes</a></li>
+        <li><a href="#power-domain-states-for-power-modes">Power domain states for power modes</a></li>
+        <li><a href="#power-up-and-down-sequences">Power up and down sequences</a>
+          <ul>
+            <li><a href="#core-powerdown">Core powerdown</a></li>
+            <li><a href="#core-powerup">Core powerup</a></li>
+          </ul>
+        </li>
+        <li><a href="#debug-over-powerdown">Debug over powerdown</a></li>
+      </ul>
+    </li>
+    <li><a href="#q-channel">Q-channel</a>
+      <ul>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#接口">接口</a></li>
+        <li><a href="#q-channel接口的握手状态">Q-Channel接口的握手状态</a></li>
+        <li><a href="#q-channel的握手协议">Q_Channel的握手协议</a>
+          <ul>
+            <li><a href="#device接受pmu的power请求">device接受PMU的power请求</a></li>
+            <li><a href="#device拒绝pmu的power请求">device拒绝PMU的power请求</a></li>
+          </ul>
+        </li>
+        <li><a href="#device复位信号与q-channel的结合">device复位信号与Q_Channel的结合</a>
+          <ul>
+            <li><a href="#resetn复位有效时-qreqn为低">RESETn复位有效时，QREQn为低</a></li>
+            <li><a href="#resetn复位有效时-qreqn为高">RESETn复位有效时，QREQn为高</a></li>
+          </ul>
+        </li>
+        <li><a href="#qactive">QACTIVE</a>
+          <ul>
+            <li><a href="#请求上电和请求下电">请求上电和请求下电</a></li>
+            <li><a href="#pmu不允许断电">PMU不允许断电</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#p-channel">P-channel</a>
+      <ul>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#接口">接口</a></li>
+        <li><a href="#其他">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+      
+    </section>
+
+  </div>
+</div>
+
+
+
+
+
+<script defer src="/js/helper/getParents.min.js"></script>
+
+<script defer src="/js/helper/closest.min.js"></script>
+
+<script defer src="/js/helper/prev.min.js"></script>
+
+<script defer src="/js/helper/prop.min.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    'use strict';
+    
+    
+    var tables = document.querySelectorAll('.single__contents > table');
+    for (let i = 0; i < tables.length; i++) {
+      var table = tables[i];
+      var wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
+      table.parentElement.replaceChild(wrapper, table);
+      wrapper.appendChild(table);
+    }
+    
+
+    
+    
+    
+    var lib = JSON.parse("null");
+
+    if (lib && lib.includes('mermaid')) {
+      var themeVariant = localStorage.getItem('theme') || 'light';
+
+      if (themeVariant === "dark") {
+        mermaid.initialize({ theme: 'dark' });
+      } else {
+        mermaid.initialize({ theme: 'default' });
+      }
+      
+      var mermaids = [];
+      [].push.apply(mermaids, document.getElementsByClassName('language-mermaid'));
+      mermaids.forEach(function(elem) {
+        var elemParentNode = elem.parentNode;
+
+        if (elemParentNode !== document.body) {
+          elemParentNode.parentNode.insertBefore(elem, elemParentNode);
+          elemParentNode.parentNode.removeChild(elemParentNode);
+        }
+
+        var newElemWrapper = document.createElement('div');
+        newElemWrapper.classList.add('mermaid');
+        newElemWrapper.innerHTML = elem.innerHTML;
+        elem.replaceWith(newElemWrapper);
+      });
+    }
+    
+    
+
+    
+    if (lib && lib.includes('katex')) {
+      var mathElements = document.getElementsByClassName('math');
+      var options = {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false }
+        ],
+      };
+
+      renderMathInElement(document.querySelector('.single__contents'), options);
+    }
+    
+
+
+    
+    if (lib && lib.includes('flowchartjs')) {
+      
+      var options = JSON.parse("{\"arrow-end\":\"block\",\"element-color\":\"black\",\"fill\":\"white\",\"flowstate\":{\"approved\":{\"fill\":\"#58C4A3\",\"font-size\":12,\"no-text\":\"n/a\",\"yes-text\":\"APPROVED\"},\"current\":{\"fill\":\"yellow\",\"font-color\":\"red\",\"font-weight\":\"bold\"},\"future\":{\"fill\":\"#FFFF99\"},\"invalid\":{\"fill\":\"#444444\"},\"past\":{\"fill\":\"#CCCCCC\",\"font-size\":12},\"rejected\":{\"fill\":\"#C45879\",\"font-size\":12,\"no-text\":\"REJECTED\",\"yes-text\":\"n/a\"},\"request\":{\"fill\":\"blue\"}},\"font-color\":\"black\",\"font-size\":14,\"line-color\":\"black\",\"line-length\":50,\"line-width\":3,\"no-text\":\"no\",\"scale\":1,\"symbols\":{\"end\":{\"class\":\"end-element\"},\"start\":{\"element-color\":\"green\",\"fill\":\"yellow\",\"font-color\":\"red\"}},\"text-margin\":10,\"x\":0,\"y\":0,\"yes-text\":\"yes\"}");
+      var jsonContent = null;
+
+      var flowchartPrefix = "language-flowchart";
+      var index = 0;
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + flowchartPrefix + "]"), function(x){
+          x.style.display = 'none'
+          x.parentNode.style.backgroundColor = "transparent"
+          jsonContent = x.innerText;
+
+          var node0 = document.createElement('div');
+          node0.id = 'flowchart' + index;
+          x.parentNode.insertBefore(node0, x);
+
+          var diagram = flowchart.parse(jsonContent);
+          diagram.drawSVG("flowchart"+index, options);
+
+          index +=1;
+      });      
+    }
+    
+
+
+    
+    if (lib && lib.includes('chart')) {
+      var borderColor = "#666";
+      var bgColor = "#ddd";
+      var borderWidth = 2;
+
+      Chart.defaults.global.elements.rectangle.borderWidth = borderWidth;
+      Chart.defaults.global.elements.rectangle.borderColor = borderColor;
+      Chart.defaults.global.elements.rectangle.backgroundColor = bgColor;
+
+      Chart.defaults.global.elements.line.borderWidth = borderWidth;
+      Chart.defaults.global.elements.line.borderColor = borderColor;
+      Chart.defaults.global.elements.line.backgroundColor = bgColor;
+
+      Chart.defaults.global.elements.point.borderWidth = borderWidth;
+      Chart.defaults.global.elements.point.borderColor = borderColor;
+      Chart.defaults.global.elements.point.backgroundColor = bgColor;
+
+      var chartPrefix = "language-chart";
+      var index = 0;
+      var jsonContent = null;
+
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + chartPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('canvas');
+        var source = null;
+        node0.height = 200;
+        node0.style.height = 200;
+        node0.id = 'myChart' + index;
+        source = JSON.parse(jsonContent);
+        x.parentNode.insertBefore(node0, x);
+        var ctx = document.getElementById('myChart' + index).getContext('2d');
+        var myChart = new Chart(ctx, source);
+        index += 1;
+      });            
+    }
+    
+
+
+    
+    if (lib && lib.includes('viz')) {
+      var vizPrefix = "language-viz-";
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + vizPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        var engine;
+        x.getAttribute("class").split(" ").forEach(function (cls) {
+          if (cls.startsWith(vizPrefix)) {
+            engine = cls.substr(vizPrefix.length);
+          }
+        });
+        var viz = new Viz();
+        viz.renderSVGElement(x.innerText, { engine: engine })
+          .then(function (element) {
+            element.style.width = "100%";
+            x.parentNode.insertBefore(element, x);
+          })
+      });
+    }
+    
+    
+  });
+</script>
+<script>
+  var listSide = document.getElementById('list-side');
+  var listMain = document.getElementById('list-main');
+  var singleMenu = document.getElementById('single-menu');
+
+  enquire.register("screen and (max-width:1280px)", {
+    match: function () {
+      listSide.className = 'r';
+      listMain.className = 'm';
+      singleMenu.className = 'l';
+    },
+    unmatch: function () {
+      listSide.className = 'r';
+      listMain.className = 'm';
+      singleMenu.className = 'l';
+    },
+  }).register("screen and (max-width:960px)", {
+    match: function () {
+      listSide.className = 'hide';
+      listMain.className = 'mr';
+      singleMenu.className = 'l';
+    },
+    unmatch: function () {
+      listSide.className = 'r';
+      listMain.className = 'm';
+      singleMenu.className = 'l';
+    },
+  }).register("screen and (max-width:600px)", {
+    match: function () {
+      listSide.className = 'hide';
+      listMain.className = 'lmr';
+      singleMenu.className = 'hide';
+    },
+    unmatch: function () {
+      listSide.className = 'hide';
+      listMain.className = 'mr';
+      singleMenu.className = 'l';
+      
+    },
+  });
+</script>
+
+        
+<div class="bot">
+  <footer class="footer">
+    <div class="divider">
+      <div class="lmr">
+        
+          <p class="caption">
+            ©2019-2020, All Rights Reserved
+          </p>
+          
+              <p class="caption">Powered by <a href="https://gohugo.io/" rel="noreferrer">Hugo</a> and the <a href="https://github.com/zzossig/hugo-theme-zdoc" rel="noreferrer">zDoc theme</a></p>
+          
+        
+      </div>
+    </div>
+  </footer>
+</div>
+
+    </div>
+
+</body>
+
+</html>

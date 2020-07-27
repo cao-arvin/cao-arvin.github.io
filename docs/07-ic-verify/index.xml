@@ -51,48 +51,12 @@
       </item>
       
       <item>
-        <title>SV与UVM的问题记录</title>
-        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/</link>
-        <pubDate>Sun, 26 Apr 2020 16:42:00 +0800</pubDate>
+        <title>一些记录</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/</link>
+        <pubDate>Fri, 28 Feb 2020 10:08:56 +0900</pubDate>
         
-        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/</guid>
-        <description>本文 主要对工作中遇到关于sv和uvm的问题，在此记录。 版本 说明 0.1 初版发布 记录 pkg不能添加interface pkg是软件域，只能添加clas</description>
-      </item>
-      
-      <item>
-        <title>每日一问</title>
-        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-uvm-daily-question/</link>
-        <pubDate>Mon, 30 Mar 2020 17:41:00 +0800</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-uvm-daily-question/</guid>
-        <description>本文 主要记录SV与UVM的一些知识点，每日一问，每日一记。 版本 说明 0.1 初版发布 写在前头 本文非原创，内容来自路科验证，整理成文并持续更新。 每日一</description>
-      </item>
-      
-      <item>
-        <title>UVM与验证环境</title>
-        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/uvm-and-verify-env/</link>
-        <pubDate>Tue, 25 Feb 2020 10:19:00 +0800</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/uvm-and-verify-env/</guid>
-        <description>本文 主要介绍什么是UVM和验证平台，以及如何搭建UVM验证平台。 版本 说明 0.1 初版发布 参考 参考自文彬师兄的UVM培训资料。 初识UVM 什么是UVM</description>
-      </item>
-      
-      <item>
-        <title>关于X-Propagation问题</title>
-        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/x-propagation/</link>
-        <pubDate>Wed, 12 Feb 2020 19:47:00 +0800</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/x-propagation/</guid>
-        <description>本文 主要介绍数字电路设计中X-Propagation问题以及其解决方案。 版本 说明 0.1 初版发布 0.2 添加EDA工具的使用 0.3 添加verilog X-Pr</description>
-      </item>
-      
-      <item>
-        <title>芯片验证工程师</title>
-        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/digital-verifer/</link>
-        <pubDate>Sat, 04 Jan 2020 22:41:00 +0800</pubDate>
-        
-        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/digital-verifer/</guid>
-        <description>本文 主要介绍芯片验证工程师的成长之路，包括职位概述、技术入门、能力提升和角色转换。 写在前头，本文内容是根据自己的工作经验和行业了解，以及师兄</description>
+        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/</guid>
+        <description></description>
       </item>
       
     
