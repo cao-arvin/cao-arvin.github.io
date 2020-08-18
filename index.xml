@@ -15,6 +15,33 @@
     
       
       <item>
+        <title>FPU验证那些事</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/</link>
+        <pubDate>Tue, 11 Aug 2020 22:39:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/</guid>
+        <description>本文 主要介绍关于浮点运算单元的一些基础知识，和作为验证师应该关注的点。 版本 说明 0.1 初版发布 专业术语与缩略语 缩写 全称 说明 FPU Floatpoint Unit 浮点运算单元 IEE</description>
+      </item>
+      
+      <item>
+        <title>基于Python实现ARM随机指令生成器</title>
+        <link>https://www.wenhui.space/docs/09-arm/random-instr-generator/</link>
+        <pubDate>Sun, 09 Aug 2020 14:59:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/09-arm/random-instr-generator/</guid>
+        <description>本文 主要介绍一个基于Python实现的ARM随机指令生成器。 版本 说明 0.1 初版发布 背景 在CPU验证中，出于各种原因，经常需要通过汇编程序来实现定</description>
+      </item>
+      
+      <item>
+        <title>DPU验证环境全套解决方案</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/</link>
+        <pubDate>Thu, 06 Aug 2020 18:14:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/</guid>
+        <description>本文 主要介绍一个关于处理器中DPU模块的验证环境。 版本 说明 0.1 初版发布 专业术语与缩略语 缩写 全称 说明 IFU Instruction Fetch Unit 取指令部件 DPU Data Processing Unit 数据运算部件 DCU/LSU Data Cache</description>
+      </item>
+      
+      <item>
         <title>浅谈熔断和幽灵</title>
         <link>https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/</link>
         <pubDate>Fri, 24 Jul 2020 15:52:00 +0800</pubDate>
@@ -47,7 +74,7 @@
         <pubDate>Fri, 17 Jul 2020 14:19:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/08-ic-design/typical/clock-domain-crossing/</guid>
-        <description>本文 主要讲解跨时钟域的数据传输处理，重点是异步fifo。 版本 说明 0.1 初版发布 参考 名称 作者 来源 各种网络资源 网络 专业术语与缩略语 缩写 全称 说明 CDC clock domain</description>
+        <description>本文 主要讲解跨时钟域的数据传输处理，重点是异步fifo。 版本 说明 0.1 初版发布 0.2 添加格雷码转换逻辑 0.3 补充问题 0.4 补充问题：非2次幂fifo深度的处</description>
       </item>
       
       <item>
@@ -159,6 +186,15 @@
       </item>
       
       <item>
+        <title>Git的基本使用命令</title>
+        <link>https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/</link>
+        <pubDate>Thu, 02 Apr 2020 09:08:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/</guid>
+        <description>本文 主要记录对版本控制工具Git的基本使用命令。 版本 说明 0.1 初版发布 学习资源 Git 完整命令手册地址 菜鸟教程-Git教程 廖雪峰-Git教程 新手入门 建</description>
+      </item>
+      
+      <item>
         <title>每日一问</title>
         <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-uvm-daily-question/</link>
         <pubDate>Mon, 30 Mar 2020 17:41:00 +0800</pubDate>
@@ -173,7 +209,7 @@
         <pubDate>Sun, 22 Mar 2020 15:47:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/09-arm/bootloader/</guid>
-        <description>本文 主要介绍一个基于AArch64的bootloader程序框架，其结构和功能都比较简单，主要为CPU验证使用。 版本 说明 0.1 初版发布 0.2 增加对A</description>
+        <description>本文 主要介绍一个基于ARM的bootloader程序框架，其结构和功能都比较简单，主要作为CPU验证中裸机程序代码框架使用。 版本 说明 0.1 初版发</description>
       </item>
       
       <item>
@@ -272,7 +308,7 @@
         <pubDate>Mon, 24 Feb 2020 17:03:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/07-ic-verify/tips/resolve-file-dependencies-for-rtl-compile/</guid>
-        <description>本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 0.2 修正对-y的理解，-y只是指定库文件目录 关于include 一般在</description>
+        <description>本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 0.2 修正对-y的理解，-y只是指定库文件目录 0.3 使用-y对覆盖率收集的</description>
       </item>
       
       <item>

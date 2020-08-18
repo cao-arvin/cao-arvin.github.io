@@ -123,6 +123,31 @@
   </url>
   
   <url>
+    <loc>https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/</loc>
+    <lastmod>2020-08-11T22:39:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.wenhui.space/tags/arm/</loc>
+    <lastmod>2020-08-09T14:59:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.wenhui.space/tags/python/</loc>
+    <lastmod>2020-08-09T14:59:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.wenhui.space/docs/09-arm/random-instr-generator/</loc>
+    <lastmod>2020-08-09T14:59:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/</loc>
+    <lastmod>2020-08-06T18:14:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/</loc>
     <lastmod>2020-07-24T15:52:00+08:00</lastmod>
   </url>
@@ -243,6 +268,11 @@
   </url>
   
   <url>
+    <loc>https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/</loc>
+    <lastmod>2020-04-02T09:08:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.wenhui.space/tags/systemverilog/</loc>
     <lastmod>2020-03-30T17:41:00+08:00</lastmod>
   </url>
@@ -265,11 +295,6 @@
   <url>
     <loc>https://www.wenhui.space/docs/09-arm/aarch64-execption/</loc>
     <lastmod>2020-03-22T12:27:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.wenhui.space/tags/arm/</loc>
-    <lastmod>2020-03-21T22:28:00+08:00</lastmod>
   </url>
   
   <url>
@@ -445,11 +470,6 @@
   <url>
     <loc>https://www.wenhui.space/docs/02-emacs/emacs_org_mode/</loc>
     <lastmod>2020-06-15T10:01:35+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.wenhui.space/tags/python/</loc>
-    <lastmod>2020-06-15T16:33:29+08:00</lastmod>
   </url>
   
   <url>
@@ -644,7 +664,7 @@
   
   <url>
     <loc>https://www.wenhui.space/links/</loc>
-    <lastmod>2020-06-15T16:55:20+08:00</lastmod>
+    <lastmod>2019-12-22T20:55:00+08:00</lastmod>
   </url>
   
   <url>

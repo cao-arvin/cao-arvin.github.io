@@ -15,12 +15,21 @@
     
       
       <item>
+        <title>基于Python实现ARM随机指令生成器</title>
+        <link>https://www.wenhui.space/docs/09-arm/random-instr-generator/</link>
+        <pubDate>Sun, 09 Aug 2020 14:59:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/09-arm/random-instr-generator/</guid>
+        <description>本文 主要介绍一个基于Python实现的ARM随机指令生成器。 版本 说明 0.1 初版发布 背景 在CPU验证中，出于各种原因，经常需要通过汇编程序来实现定</description>
+      </item>
+      
+      <item>
         <title>一个简易bootloader框架</title>
         <link>https://www.wenhui.space/docs/09-arm/bootloader/</link>
         <pubDate>Sun, 22 Mar 2020 15:47:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/09-arm/bootloader/</guid>
-        <description>本文 主要介绍一个基于AArch64的bootloader程序框架，其结构和功能都比较简单，主要为CPU验证使用。 版本 说明 0.1 初版发布 0.2 增加对A</description>
+        <description>本文 主要介绍一个基于ARM的bootloader程序框架，其结构和功能都比较简单，主要作为CPU验证中裸机程序代码框架使用。 版本 说明 0.1 初版发</description>
       </item>
       
       <item>

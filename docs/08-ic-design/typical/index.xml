@@ -20,7 +20,7 @@
         <pubDate>Fri, 17 Jul 2020 14:19:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/08-ic-design/typical/clock-domain-crossing/</guid>
-        <description>本文 主要讲解跨时钟域的数据传输处理，重点是异步fifo。 版本 说明 0.1 初版发布 参考 名称 作者 来源 各种网络资源 网络 专业术语与缩略语 缩写 全称 说明 CDC clock domain</description>
+        <description>本文 主要讲解跨时钟域的数据传输处理，重点是异步fifo。 版本 说明 0.1 初版发布 0.2 添加格雷码转换逻辑 0.3 补充问题 0.4 补充问题：非2次幂fifo深度的处</description>
       </item>
       
       <item>

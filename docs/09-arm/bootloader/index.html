@@ -998,7 +998,8 @@
     "datePublished": "2020-03-22T15:47:00+08:00",
     "dateModified": "2020-03-22T15:47:00+08:00",
     "url" : "https://www.wenhui.space/docs/09-arm/bootloader/",
-    "description": "本文 主要介绍一个基于AArch64的bootloader程序框架，其结构和功能都比较简单，主要为CPU验证使用。 版本 说明 0.1 初版发布 0.2 增加对A",
+    "description": "本文 主要介绍一个基于ARM的bootloader程序框架，其结构和功能都比较简单，主要作为CPU验证中裸机程序代码框架使用。 版本 说明 0.1 初版发",
+    "keywords": ["ARM"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://www.wenhui.space/"
@@ -1714,6 +1715,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/" class="menu__title " data-depth="1">Git的基本使用命令</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/ep3_tool/" class="menu__title " data-depth="1">代码预处理工具ep3的使用</a>
         </li>
       
@@ -2114,6 +2123,22 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/" class="menu__title " data-depth="1">FPU验证那些事</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/" class="menu__title " data-depth="1">DPU验证环境全套解决方案</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
         </li>
       
@@ -2364,6 +2389,14 @@
     </span>
   </span>
   <ul class="menu__list active" data-data=/09-arm/ data-link=https://www.wenhui.space/docs/09-arm/bootloader/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/random-instr-generator/" class="menu__title " data-depth="0">基于Python实现ARM随机指令生成器</a>
+        </li>
+      
     
       
         
@@ -3510,6 +3543,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/" class="menu__title " data-depth="1">Git的基本使用命令</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/ep3_tool/" class="menu__title " data-depth="1">代码预处理工具ep3的使用</a>
         </li>
       
@@ -3910,6 +3951,22 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/" class="menu__title " data-depth="1">FPU验证那些事</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/" class="menu__title " data-depth="1">DPU验证环境全套解决方案</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
         </li>
       
@@ -4165,6 +4222,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/09-arm/random-instr-generator/" class="menu__title " data-depth="0">基于Python实现ARM随机指令生成器</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/09-arm/bootloader/" class="menu__title active" data-depth="0">一个简易bootloader框架</a>
         </li>
       
@@ -4275,7 +4340,7 @@
 
   <article class="single__contents" data-dir="ltr">
     <h2 id="本文">本文</h2>
-<p>主要介绍一个基于AArch64的bootloader程序框架，其结构和功能都比较简单，主要为CPU验证使用。</p>
+<p>主要介绍一个基于ARM的bootloader程序框架，其结构和功能都比较简单，主要作为CPU验证中裸机程序代码框架使用。</p>
 <table>
 <thead>
 <tr>
@@ -4288,45 +4353,92 @@
 <td>0.1</td>
 <td>初版发布</td>
 </tr>
-<tr>
-<td>0.2</td>
-<td>增加对A32的支持，并对程序结构进行了优化</td>
-</tr>
 </tbody>
 </table>
 <h2 id="背景">背景</h2>
 <p>在CPU验证中，出于各种原因，经常需要通过汇编程序来实现定向测试，不管是TOP验证环境还是UT验证环境，都有这样的需求。</p>
-<p>TOP环境的定向测试就像raven测试集，提供elf文件然后生成二进制指令码存入指令存储器模型，指定复位地址，整个CPU就可以运行起来了。我们的汇编程序定向测试也可以生成elf文件，使用同样的方式运行在TOP验证环境，当然这里的功能正确性的保证还需要ARM提供的参考模型fastmodel，我们需要做的仅仅是想办法灌入测试指令。</p>
-<p>UT环境中，有些与指令耦合度较高的模块，使用汇编程序的测试用例也是很有必要的。这里与指令耦合度高是指，容易从指令码转换为模块接口信号，比如DPU模块，DPU前接IFU模块，IFU对指令码进行预译码然后交给DPU，这里在DPU验证环境中只需要将IFU的预译码逻辑植入就可以将指令码转为DPU的接口信号，从而实现汇编程序定向测试的支持。</p>
-<h2 id="工具下载">工具下载</h2>
-<p>ARM编译器下载网址：<a href="https://releases.linaro.org/components/toolchain/binaries/">https://releases.linaro.org/components/toolchain/binaries/</a>。</p>
-<p>本文AArch64使用aarch64-linux-gnu； AArch32使用armv8l-linux-gnueabihf。</p>
-<h2 id="bootloader需要做什么">Bootloader需要做什么</h2>
-<p>以下只是我这个非专业人士的了解，仅供参考。</p>
+<p>TOP环境中，需要提供elf文件并生成二进制码存入指令存储器，然后指定复位地址，启动后整个CPU就可以运行起来了。通过编写汇编程序并编译为elf文件，可实现CPU的定向测试。有了elf文件只是解决了激励的问题，关于功能正确性的保证还需要ARM提供的仿真模型fastmodel。</p>
+<p>UT环境中，有些dut是与指令耦合度比较高的模块，使用汇编程序的方式实现定向测试也是非常必要的。这里与指令耦合度高是指，容易从指令码转换为模块接口信号，比如DPU模块。DPU前接IFU模块，IFU对指令码进行预译码后交给DPU，所以只需要将IFU的预译码逻辑植入DPU验证环境，就可以实现将指令码转为DPU的接口信号，从而实现以汇编程序实现DPU的定向测试。</p>
+<h2 id="编译工具">编译工具</h2>
 <ul>
+<li>A64：aarch64-linux-gnu</li>
+<li>A32：armv8l-linux-gnueabihf</li>
+</ul>
+<p>下载网址： <a href="https://releases.linaro.org/components/toolchain/binaries/">https://releases.linaro.org/components/toolchain/binaries/</a></p>
+<h2 id="bootloader需要做什么">Bootloader需要做什么</h2>
+<p>我对Linux Kernel的了解比较粗浅，所以下文内容仅供参考。</p>
+<ol>
 <li>初始化系统寄存器</li>
 <li>设置异常向量表</li>
 <li>初始化栈和堆</li>
 <li>检查和初始化外设</li>
 <li>初始化内存管理、开启mmu和cache</li>
 <li>&hellip;&hellip;</li>
+</ol>
+<p>此bootloader框架主要作为CPU验证中裸机程序代码框架使用，所以只需要完成系统寄存器的初始化和异常向量表，如果会用到c程序则需要初始化栈，其他功能在此bootloader框架中并未实现。</p>
+<h2 id="文件结构">文件结构</h2>
+<pre><code class="language-nil" data-lang="nil">simple_bootloader
+├── a32_test
+│   ├── a32_test.s
+│   ├── link.lds
+│   ├── Makefile
+│   ├── your_testcode.s
+│   └── thumb_test.inc
+├── a64_test
+│   ├── a64_test.s
+│   ├── link.lds
+│   ├── Makefile
+│   └── your_testcode.s
+├── link.lds
+├── Makefile
+├── Makefile.def
+└── system
+    ├── asmlib.inc
+    ├── evt.inc
+    ├── Makefile
+    ├── start.s
+    └── sysregs_init.inc
+</code></pre><p>整个代码环境分为三个部分：System、A64_test、A32_test。</p>
+<ul>
+<li>System：整个程序执行流程的控制。</li>
+<li>A64_test：A64指令类型的测试程序。</li>
+<li>A32_test：A32以及Thumb类型的测试程序。</li>
 </ul>
-<p>而我们只需要完成系统寄存器的初始化和异常向量表，如果使用c程序的话需要初始化栈。</p>
-<h2 id="aarch64">AArch64</h2>
-<h3 id="文件结构">文件结构</h3>
-<pre><code class="language-nil" data-lang="nil">  ├── hello.c
-  ├── Makefile
-  └── sys
-      ├── asmlib.s
-      ├── evt.s
-      ├── link.lds
-      ├── main_test.s
-      ├── Makefile.rule
-      ├── start.s
-      └── sysregs_init.s
-</code></pre><p>主要程序在sys目录下，每个文件内容后文会一一说明。hello.c是测试程序，可以自己定义，可以是汇编程序，也可以是简单的c程序。</p>
-<h3 id="start-dot-s">start.s</h3>
-<p>start.s是主程序，也是整个程序的入口。代码如下：</p>
+<h2 id="aarch64与aarch32混合编程">AArch64与AArch32混合编程</h2>
+<p>ARMv8中，AArch64和AArch32是通过异常进行切换的。而A32和T32是通过bx指令进行切换的。如下图：</p>
+<center>
+<img width="80%" src="/image/09-ARM/bootloader-01.jpg">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>也就是CPU启动是在EL3，处于AArch64，在EL3设置EL2的架构为AArch32，设置好返回地址，通过ERET指令，切换到EL2，就可以执行A32指令了。</p>
+<p>这里会有一个问题，AArch64和AArch32的编译链接工具不同，无法进行混合的链接。解决办法是将A32测试程序生成elf文件再生成bin文件，在链接时链接A32的bin文件。这里干脆把A64的测试程序也使用bin文件链接的方式，而顶层只保留系统文件，这样结够更加清晰。另外A64测试程序、A32测试程序、系统程序相互独立，可以在单独的环境进行编译调试。</p>
+<h2 id="system目录">system目录</h2>
+<p>system目录下的文件主要实现对指令执行流程的控制、系统寄存器的配置、异常向量表和异常等级切换、A64和A32执行状态切换等内容。</p>
+<h3 id="start-dot-s文件">start.s文件</h3>
+<p>start.s是主程序，也是整个程序的入口，主要功能是整个程序执行流程的控制，执行流程如下：</p>
+<ol>
+<li>程序启动时处于A64状态，在EL3异常等级。</li>
+<li>关闭多核，仅开启cpu0运行。</li>
+<li>系统寄存器配置。</li>
+<li>设置栈空间和进行栈指针初始化。</li>
+<li>切换至EL0状态。</li>
+<li>（可配置编译选项）在EL0下执行A64测试程序，并打印执行结果（TEST PASSED / FAILED）。</li>
+<li>通过SVC指令切换至EL1状态。</li>
+<li>（可配置编译选项）在EL1下执行A64测试程序，并打印执行结果（TEST PASSED / FAILED）。</li>
+<li>通过HVC指令切换至EL2状态。</li>
+<li>（可配置编译选项）在EL2下执行A64测试程序，并打印执行结果（TEST PASSED / FAILED）。</li>
+<li>通过SMC指令切换至EL3状态。</li>
+<li>（可配置编译选项）在EL3下执行A64测试程序，并打印执行结果（TEST PASSED / FAILED）。</li>
+<li>（可配置编译选项）设置scr_el3，通过异常返回，切换至A32状态，并执行A32测试程序以及Thumb测试程序。</li>
+<li>程序执行结束。</li>
+</ol>
+<p>以下是代码内容：</p>
+<ul>
+<li>global声明标号为全局，这样其他文件程序可以直接使用该标号</li>
+<li>这里通过svc hvc smc来产生异常，改变exception level，来实现在不同level下测试程序，注意这里exception level的改变需要配合异常处理程序来实现。</li>
+<li>start程序就是整个程序的入口，并在这里调用其他子程序。</li>
+</ul>
+<!--listend-->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -4360,6 +4472,42 @@
 </span><span class="lnt">29
 </span><span class="lnt">30
 </span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-asm" data-lang="asm">        <span class="na">.global</span> <span class="no">_start</span>
@@ -4370,38 +4518,485 @@
         <span class="nf">bl</span> <span class="no">_stack_init</span>
         <span class="nf">bl</span> <span class="no">_el3_to_el0_ns</span>
 
-        <span class="na">.global</span> <span class="no">_test</span>
-<span class="nl">_test:</span>
-        <span class="err">//</span><span class="nf">for</span> <span class="no">test</span> <span class="no">code</span>
         <span class="err">//----------------------------</span>
+        <span class="na">.global</span> <span class="no">_sys_a64_test</span>
+<span class="nl">_sys_a64_test:</span>
         <span class="err">//</span><span class="nf">el0</span> <span class="no">test</span>
-        <span class="nf">bl</span> <span class="no">_main_test</span>
+        <span class="na">.if</span> <span class="no">TEST_A64_EL0</span><span class="err">==</span><span class="mi">1</span>
+        <span class="nf">bl</span> <span class="no">_a64_test</span>
+        <span class="nf">bl</span> <span class="no">_print_result</span>
+        <span class="na">.endif</span>
 
         <span class="err">//</span><span class="nf">el1</span> <span class="no">test</span>
         <span class="nf">svc</span> <span class="c">#0x0
-</span><span class="c"></span>        <span class="no">bl</span> <span class="no">_main_test</span>
+</span><span class="c"></span>        <span class="no">.if</span> <span class="no">TEST_A64_EL1</span><span class="err">==</span><span class="mi">1</span>
+        <span class="nf">bl</span> <span class="no">_main_test</span>
+        <span class="nf">bl</span> <span class="no">_print_result</span>
+        <span class="na">.endif</span>
 
         <span class="err">//</span><span class="nf">el2</span> <span class="no">test</span>
         <span class="nf">hvc</span> <span class="c">#0x0
-</span><span class="c"></span>        <span class="no">bl</span> <span class="no">_main_test</span>
+</span><span class="c"></span>        <span class="no">.if</span> <span class="no">TEST_A64_EL2</span><span class="err">==</span><span class="mi">1</span>
+        <span class="nf">bl</span> <span class="no">_main_test</span>
+        <span class="nf">bl</span> <span class="no">_print_result</span>
+        <span class="na">.endif</span>
 
         <span class="err">//</span><span class="nf">el3</span> <span class="no">test</span>
         <span class="nf">smc</span> <span class="c">#0x0
-</span><span class="c"></span>        <span class="no">bl</span> <span class="no">_main_test</span>
+</span><span class="c"></span>        <span class="no">.if</span> <span class="no">TEST_A64_EL3</span><span class="err">==</span><span class="mi">1</span>
+        <span class="nf">bl</span> <span class="no">_main_test</span>
+        <span class="nf">bl</span> <span class="no">_print_result</span>
+        <span class="na">.endif</span>
+        <span class="err">//----------------------------</span>
+
+
+        <span class="err">//----------------------------</span>
+        <span class="na">.if</span> <span class="no">TEST_A32</span><span class="err">==</span><span class="mi">1</span>
+        <span class="err">//</span><span class="nf">el3</span> <span class="no">to</span> <span class="no">usermode</span>
+        <span class="nf">mov</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#0x30          //RES1
+</span><span class="c"></span>        <span class="no">orr</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(1 &lt;&lt; 0)  //non-secure
+</span><span class="c"></span>        <span class="no">orr</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(1 &lt;&lt; 8)  //HVC enable
+</span><span class="c"></span>        <span class="no">orr</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(1 &lt;&lt; 10) //set aarch32 el2
+</span><span class="c"></span>        <span class="no">msr</span> <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">mov</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#0x1d0
+</span><span class="c"></span>        <span class="no">msr</span> <span class="no">spsr_el3</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">adr</span> <span class="no">x9</span><span class="p">,</span> <span class="no">_a32_test</span>
+        <span class="nf">msr</span> <span class="no">elr_el3</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">eret</span>
+        <span class="err">//</span><span class="nf">run</span> <span class="no">a32</span> <span class="no">test</span>
+        <span class="na">.endif</span>
+
+        <span class="na">.global</span> <span class="no">_back_from_a32</span>
+<span class="nl">_back_from_a32:</span>
+        <span class="nf">bl</span> <span class="no">_print_result</span>
         <span class="err">//----------------------------</span>
 
         <span class="nf">bl</span> <span class="no">_end_cpu</span>
-
         <span class="nf">b</span> <span class="p">.</span>
+
+        <span class="na">.include</span> <span class="s">&#34;./asmlib.inc&#34;</span>
+        <span class="na">.include</span> <span class="s">&#34;./sysregs_init.inc&#34;</span>
+        <span class="na">.include</span> <span class="s">&#34;./evt.inc&#34;</span>
 </code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>global： 声明标号为全局，这样其他文件程序可以直接使用该标号</li>
-<li>这里通过svc hvc smc来产生异常，改变exception level，来实现在不同level下测试程序，如果不需要可以将bl _main_test注释掉，注意这里exception level的改变需要配合异常处理程序来实现。</li>
-<li>start程序就是整个程序的入口，并在这里调用其他子程序。</li>
+</div><h3 id="asmlib-dot-inc文件">asmlib.inc文件</h3>
+<p>asmlib.inc是各个子程序的集合，通过start.s中bl实现子程序调用，包含如下：</p>
+<ol>
+<li>关闭多核，仅开启cpu0运行（目的是使fastmodel的trace信息中只保留主核）。</li>
+<li>栈的初始化（初始化栈之后才可以使用c语言）。</li>
+<li>打印pass或fail（通过x0来判断是否fail）。</li>
+<li>结束程序执行。</li>
+<li>el3切换到el0。</li>
+</ol>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm">        <span class="err">//{{{</span> <span class="err">关闭非主核</span>
+        <span class="na">.global</span> <span class="no">_disable_mp</span>
+<span class="nl">_disable_mp:</span>
+        <span class="nf">mrs</span> <span class="no">x9</span><span class="p">,</span>  <span class="no">mpidr_el1</span>
+        <span class="nf">and</span> <span class="no">x9</span><span class="p">,</span>  <span class="no">x9</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">cbnz</span> <span class="no">x9</span><span class="p">,</span>  <span class="no">_cpu_sleep</span>
+        <span class="nf">ret</span>
+<span class="nl">_cpu_sleep:</span>
+        <span class="nf">wfi</span>
+        <span class="nf">b</span> <span class="no">_cpu_sleep</span>
+        <span class="err">//}}}</span>
+
+
+        <span class="err">//{{{</span> <span class="err">初始化栈</span>
+        <span class="na">.global</span> <span class="no">_stack_init</span>
+<span class="nl">_stack_init:</span>
+        <span class="err">//</span><span class="nf">STACK_TOP_ADDR</span>  <span class="err">=</span> <span class="no">BOARD_BASE_ADDR</span> <span class="err">+</span> <span class="no">BOARD_MEM_SIZE</span> <span class="p">-</span> <span class="no">RESERVE_MEM_TOP</span>
+        <span class="err">//</span>                <span class="err">=</span> <span class="nf">RVBAR</span> <span class="err">+</span> <span class="mi">2</span><span class="no">G</span> <span class="p">-</span> <span class="mi">1</span><span class="no">M</span>
+        <span class="err">//</span><span class="nf">EACH_STACK_SIZE</span> <span class="err">=</span> <span class="mi">64</span><span class="no">M</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="no">RVBAR</span>
+        <span class="nf">ldr</span> <span class="no">x10</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x7ff00000</span>
+        <span class="nf">add</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span>      <span class="err">//</span><span class="no">x9</span><span class="p">:</span> <span class="no">STACK_TOP_ADDR</span>
+        <span class="nf">ldr</span> <span class="no">x1</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x04000000</span>  <span class="err">//</span><span class="no">x1</span><span class="p">:</span> <span class="no">EACH_STACK_SIZE</span>
+        <span class="nf">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">CurrentEL</span>
+        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b11 &lt;&lt; 2)
+</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">3</span><span class="no">f</span>
+        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b10 &lt;&lt; 2)
+</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">2</span><span class="no">f</span>
+        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b01 &lt;&lt; 2)
+</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">1</span><span class="no">f</span>
+        <span class="nf">b</span> <span class="p">.</span>  <span class="err">//系统启动不会在</span><span class="no">el0状态</span><span class="err">，这里设置个死循环</span>
+
+<span class="err">3:</span>
+        <span class="nf">mov</span> <span class="no">sp</span><span class="p">,</span> <span class="no">x0</span> <span class="err">//</span><span class="no">sp_el3</span>
+        <span class="nf">sub</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x1</span>
+<span class="err">2:</span>
+        <span class="nf">msr</span> <span class="no">sp_el2</span><span class="p">,</span> <span class="no">x0</span>
+        <span class="nf">sub</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x1</span>
+<span class="err">1:</span>
+        <span class="nf">msr</span> <span class="no">sp_el1</span><span class="p">,</span> <span class="no">x0</span>
+        <span class="nf">sub</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x1</span>
+<span class="err">0:</span>
+        <span class="nf">msr</span> <span class="no">sp_el0</span><span class="p">,</span> <span class="no">x0</span>
+
+        <span class="nf">ret</span>
+        <span class="err">//}}}</span>
+
+        <span class="err">//{{{</span> <span class="err">打印测试结果</span>
+        <span class="na">.global</span> <span class="no">_print_result</span>
+<span class="nl">_print_result:</span>
+        <span class="na">.if</span> <span class="no">PRINT_RESULT</span><span class="err">==</span><span class="mi">1</span>
+        <span class="nf">and</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">sub</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">cbz</span> <span class="no">x9</span><span class="p">,</span> <span class="no">_test_fail</span>
+        <span class="nf">b</span> <span class="no">_test_pass</span>
+        <span class="na">.else</span>
+        <span class="nf">ret</span>
+        <span class="na">.endif</span>
+
+<span class="nl">_test_pass:</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x13000000</span> <span class="err">//</span><span class="no">Tube</span> <span class="no">address</span>
+        <span class="nf">adr</span> <span class="no">x10</span><span class="p">,</span> <span class="no">_pass_message_</span>
+        <span class="nf">ldrb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">],</span> <span class="c">#1
+</span><span class="c"></span><span class="no">_loop_print_pass</span><span class="p">:</span>
+        <span class="nf">strb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x9</span><span class="p">]</span>
+        <span class="nf">ldrb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">],</span> <span class="c">#1
+</span><span class="c"></span>        <span class="no">cbnz</span> <span class="no">w11</span><span class="p">,</span> <span class="no">_loop_print_pass</span>
+        <span class="nf">ret</span>
+
+<span class="nl">_test_fail:</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x13000000</span> <span class="err">//</span><span class="no">Tube</span> <span class="no">address</span>
+        <span class="nf">adr</span> <span class="no">x10</span><span class="p">,</span> <span class="no">_fail_message_</span>
+        <span class="nf">ldrb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">],</span> <span class="c">#1
+</span><span class="c"></span><span class="no">_loop_print_fail</span><span class="p">:</span>
+        <span class="nf">strb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x9</span><span class="p">]</span>
+        <span class="nf">ldrb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">],</span> <span class="c">#1
+</span><span class="c"></span>        <span class="no">cbnz</span> <span class="no">w11</span><span class="p">,</span> <span class="no">_loop_print_fail</span>
+        <span class="nf">ret</span>
+
+        <span class="na">.align</span> <span class="mi">2</span>
+<span class="nl">_pass_message_:</span>   <span class="na">.asciz</span> <span class="s">&#34;*** TEST PASSED ***\n&#34;</span>
+<span class="nl">_fail_message_:</span>   <span class="na">.asciz</span> <span class="s">&#34;*** TEST FAILED ***\n&#34;</span>
+        <span class="err">//}}}</span>
+        <span class="na">.align</span> <span class="mi">2</span>
+
+        <span class="err">//{{{</span> <span class="err">结束</span><span class="nf">CPU</span>
+        <span class="na">.global</span> <span class="no">_end_cpu</span>
+<span class="nl">_end_cpu:</span>
+        <span class="nf">mov</span> <span class="no">w9</span><span class="p">,</span> <span class="c">#0x04
+</span><span class="c"></span>        <span class="no">ldr</span> <span class="no">x10</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x13000000</span> <span class="err">//</span><span class="no">Tube</span> <span class="no">address</span>
+        <span class="nf">strb</span> <span class="no">w9</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">]</span>
+        <span class="nf">dsb</span> <span class="no">sy</span>
+        <span class="nf">ret</span>
+        <span class="err">//}}}</span>
+
+        <span class="err">//{{{</span> <span class="nf">el3切换到el0_ns</span>
+        <span class="na">.global</span> <span class="no">_el3_to_el0_ns</span>
+<span class="nl">_el3_to_el0_ns:</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x000002c0</span>
+        <span class="nf">msr</span> <span class="no">spsr_el3</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">adr</span> <span class="no">x9</span><span class="p">,</span> <span class="no">_sys_a64_test</span>
+        <span class="nf">msr</span> <span class="no">elr_el3</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">eret</span>
+        <span class="err">//}}}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="sysregs-init-dot-inc文件">sysregs_init.inc文件</h3>
+<p>sysregs_init.inc文件主要是对系统寄存器进行初始化配置，这里要结合设计进行适配，使设计和程序运行状态保持一致。具体相关寄存器的含义请查看ARM手册。</p>
+<p>以下是代码内容：</p>
+<ul>
+<li>注意：这里 &ldquo;b.eq 1f&rdquo; 的用法，1是指标号，f代表向下寻找，这属于常用的汇编技巧。</li>
+<li>注意：系统寄存器配置后需要使用isb指令隔离命令，是因为系统寄存器可能存在多个备份来解决负载问题，使用isb指令可以实现各个副本的更新，使其保持一致。</li>
 </ul>
-<h3 id="evt-dot-s">evt.s</h3>
-<p>evt.s是指异常向量表（exception vector table），异常向量表是ARM定义好的，可以查看之前文章，这里只是按照异常向量表来进行代码实现，如下：</p>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm">        <span class="err">//{{{</span> <span class="err">初始化系统寄存器</span>
+        <span class="na">.global</span> <span class="no">_sysregs_init</span>
+<span class="nl">_sysregs_init:</span>
+        <span class="nf">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">CurrentEL</span>
+        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b11 &lt;&lt; 2)
+</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">3</span><span class="no">f</span>
+        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b10 &lt;&lt; 2)
+</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">2</span><span class="no">f</span>
+        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b01 &lt;&lt; 2)
+</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">1</span><span class="no">f</span>
+        <span class="nf">b</span> <span class="p">.</span>  <span class="err">//系统启动不会在</span><span class="no">el0状态</span><span class="err">，这里设置个死循环</span>
+
+<span class="err">3:</span>
+        <span class="err">//</span><span class="nf">scr_el3</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000000000430</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
+        <span class="nf">msr</span> <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x1
+</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
+</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">scr_el3</span>
+        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#8, #1  // set scr_el3.hce to 1
+</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0, #1  // set scr_el3.ns to 1
+</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#10, #1 // set scr_el3.rw to 1
+</span><span class="c"></span>        <span class="no">msr</span> <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x9</span>
+
+        <span class="err">//</span><span class="nf">cptr_el3</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000000000000</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
+        <span class="nf">msr</span> <span class="no">cptr_el3</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x1
+</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
+</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">cptr_el3</span>
+        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#10, #1 // set scr_el3.tfp to 0
+</span><span class="c"></span>        <span class="no">msr</span> <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x9</span>
+
+        <span class="err">//</span><span class="nf">sctlr_el3</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000000c50838</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
+        <span class="nf">msr</span> <span class="no">sctlr_el3</span><span class="p">,</span> <span class="no">x9</span>
+
+        <span class="err">//</span> <span class="nf">exception</span> <span class="no">entry</span> <span class="no">vector</span> <span class="no">addr</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="no">_vector_table_route_to_el3</span>
+        <span class="nf">msr</span> <span class="no">vbar_el3</span><span class="p">,</span> <span class="no">x9</span>
+
+<span class="err">2:</span>
+        <span class="err">//</span><span class="nf">hcr_el2</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000080000002</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
+        <span class="nf">msr</span> <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x1
+</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
+</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">hcr_el2</span>
+        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#34, #1  // set hcr_el2.e2h to 1
+</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#27, #1  // set hcr_el2.tge to 0
+</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#31, #1  // set hcr_el2.rw to 1
+</span><span class="c"></span>        <span class="no">msr</span> <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x9</span>
+
+        <span class="err">//</span><span class="nf">cptr_el2</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x00000000000033ff</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
+        <span class="nf">msr</span> <span class="no">cptr_el2</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x3
+</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
+</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">cptr_el2</span>
+        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#20, #2  // set cptr_el2.fpen to 11
+</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#10, #1  // set cptr_el2.tfp to 0
+</span><span class="c"></span>        <span class="no">msr</span> <span class="no">cptr_el2</span><span class="p">,</span> <span class="no">x9</span>
+
+        <span class="err">//</span> <span class="nf">exception</span> <span class="no">entry</span> <span class="no">vector</span> <span class="no">addr</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="no">_vector_table_route_to_el2</span>
+        <span class="nf">msr</span> <span class="no">vbar_el2</span><span class="p">,</span> <span class="no">x9</span>
+
+<span class="err">1:</span>
+        <span class="err">//</span><span class="nf">cpacr_el1</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000000000000</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
+        <span class="nf">msr</span> <span class="no">cpacr_el1</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x3
+</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
+</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">cpacr_el1</span>
+        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#20, #2  // set cpacr_el1.fpen to 11
+</span><span class="c"></span>        <span class="no">msr</span> <span class="no">cpacr_el1</span><span class="p">,</span> <span class="no">x9</span>
+
+        <span class="err">//</span> <span class="nf">exception</span> <span class="no">entry</span> <span class="no">vector</span> <span class="no">addr</span>
+        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="no">_vector_table_route_to_el1</span>
+        <span class="nf">msr</span> <span class="no">vbar_el1</span><span class="p">,</span> <span class="no">x9</span>
+
+        <span class="err">//</span><span class="nf">barrier</span> <span class="no">instr</span> <span class="no">and</span> <span class="no">Synchronize</span> <span class="no">the</span> <span class="no">sysregs</span>
+        <span class="nf">isb</span>
+        <span class="nf">dsb</span> <span class="no">sy</span>
+        <span class="nf">ret</span>
+        <span class="err">//}}}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="evt-dot-inc文件">evt.inc文件</h3>
+<p>evt.inc文件主要设置异常向量表，以及设置一些异常处理行为这些异常处理行为仅仅为了实现此测试环境的程序执行控制，并没有具体实际含义。关于异常向量表的详细描述，可以浏览之前的博客《AArch64之异常处理》，以及ARM手册。</p>
+<p>以下是代码内容：</p>
+<ul>
+<li>注意：每一级异常向量要2K对齐，因为VBAR_EL3/2/1寄存器低11bit是reserve的。</li>
+<li>注意：sync异常处理没有进行异常返回，而是使用ret返回elr，这样配合svc hvc smc指令来实现el0 -&gt; el1 -&gt; el2 -&gt; el3。</li>
+</ul>
+<!--listend-->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">  1
@@ -4867,6 +5462,34 @@
 </span><span class="lnt">461
 </span><span class="lnt">462
 </span><span class="lnt">463
+</span><span class="lnt">464
+</span><span class="lnt">465
+</span><span class="lnt">466
+</span><span class="lnt">467
+</span><span class="lnt">468
+</span><span class="lnt">469
+</span><span class="lnt">470
+</span><span class="lnt">471
+</span><span class="lnt">472
+</span><span class="lnt">473
+</span><span class="lnt">474
+</span><span class="lnt">475
+</span><span class="lnt">476
+</span><span class="lnt">477
+</span><span class="lnt">478
+</span><span class="lnt">479
+</span><span class="lnt">480
+</span><span class="lnt">481
+</span><span class="lnt">482
+</span><span class="lnt">483
+</span><span class="lnt">484
+</span><span class="lnt">485
+</span><span class="lnt">486
+</span><span class="lnt">487
+</span><span class="lnt">488
+</span><span class="lnt">489
+</span><span class="lnt">490
+</span><span class="lnt">491
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-asm" data-lang="asm"><span class="err">/*</span> <span class="nf">Vector</span> <span class="no">offsets</span> <span class="no">from</span> <span class="no">vector</span> <span class="no">table</span> <span class="no">base</span> <span class="no">address</span>
@@ -5150,8 +5773,15 @@
 <span class="err">//--------------------------------------------------------</span>
 <span class="err">//</span><span class="nf">rt2el1_current_withspel0</span>
 <span class="nl">_rt2el1_current_withspel0_sync:</span>
-<span class="err">//</span>        <span class="nf">eret</span>
+        <span class="err">//</span>        <span class="nf">eret</span>
+        <span class="nf">and</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x1</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">sub</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">cbz</span> <span class="no">x9</span><span class="p">,</span> <span class="mi">1</span><span class="no">f</span>
         <span class="nf">mrs</span> <span class="no">x30</span><span class="p">,</span> <span class="no">elr_el1</span>
+        <span class="nf">ret</span>
+<span class="err">1:</span>
+        <span class="nf">adr</span> <span class="no">x10</span><span class="p">,</span> <span class="no">_back_from_a32</span>
+        <span class="nf">mov</span> <span class="no">x30</span><span class="p">,</span> <span class="no">x10</span>
         <span class="nf">ret</span>
 
 <span class="nl">_rt2el1_current_withspel0_irq:</span>
@@ -5165,8 +5795,15 @@
 
 <span class="err">//</span><span class="nf">rt2el1_current_withspelx</span>
 <span class="nl">_rt2el1_current_withspelx_sync:</span>
-<span class="err">//</span>        <span class="nf">eret</span>
+        <span class="err">//</span>        <span class="nf">eret</span>
+        <span class="nf">and</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x1</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">sub</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">cbz</span> <span class="no">x9</span><span class="p">,</span> <span class="mi">1</span><span class="no">f</span>
         <span class="nf">mrs</span> <span class="no">x30</span><span class="p">,</span> <span class="no">elr_el1</span>
+        <span class="nf">ret</span>
+<span class="err">1:</span>
+        <span class="nf">adr</span> <span class="no">x10</span><span class="p">,</span> <span class="no">_back_from_a32</span>
+        <span class="nf">mov</span> <span class="no">x30</span><span class="p">,</span> <span class="no">x10</span>
         <span class="nf">ret</span>
 
 <span class="nl">_rt2el1_current_withspelx_irq:</span>
@@ -5180,8 +5817,15 @@
 
 <span class="err">//</span><span class="nf">rt2el1_LoA64toHi</span>
 <span class="nl">_rt2el1_LoA64toHi_sync:</span>
-<span class="err">//</span>        <span class="nf">eret</span>
+        <span class="err">//</span>        <span class="nf">eret</span>
+        <span class="nf">and</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x1</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">sub</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">cbz</span> <span class="no">x9</span><span class="p">,</span> <span class="mi">1</span><span class="no">f</span>
         <span class="nf">mrs</span> <span class="no">x30</span><span class="p">,</span> <span class="no">elr_el1</span>
+        <span class="nf">ret</span>
+<span class="err">1:</span>
+        <span class="nf">adr</span> <span class="no">x10</span><span class="p">,</span> <span class="no">_back_from_a32</span>
+        <span class="nf">mov</span> <span class="no">x30</span><span class="p">,</span> <span class="no">x10</span>
         <span class="nf">ret</span>
 
 <span class="nl">_rt2el1_LoA64toHi_irq:</span>
@@ -5195,8 +5839,15 @@
 
 <span class="err">//</span><span class="nf">rt2el1_LoA32toHi</span>
 <span class="nl">_rt2el1_LoA32toHi_sync:</span>
-<span class="err">//</span>        <span class="nf">eret</span>
+        <span class="err">//</span>        <span class="nf">eret</span>
+        <span class="nf">and</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x1</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">sub</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">cbz</span> <span class="no">x9</span><span class="p">,</span> <span class="mi">1</span><span class="no">f</span>
         <span class="nf">mrs</span> <span class="no">x30</span><span class="p">,</span> <span class="no">elr_el1</span>
+        <span class="nf">ret</span>
+<span class="err">1:</span>
+        <span class="nf">adr</span> <span class="no">x10</span><span class="p">,</span> <span class="no">_back_from_a32</span>
+        <span class="nf">mov</span> <span class="no">x30</span><span class="p">,</span> <span class="no">x10</span>
         <span class="nf">ret</span>
 
 <span class="nl">_rt2el1_LoA32toHi_irq:</span>
@@ -5334,12 +5985,33 @@
         <span class="err">//}}}</span>
 </code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>注意，每一级异常向量要2K对齐，因为VBAR_EL3/2/1寄存器低11bit是reserve的。</li>
-<li>注意，sync异常处理没有进行异常返回，而是使用ret返回elr，这样配合svc hvc smc指令来实现el0 -&gt; el1 -&gt; el2 -&gt; el3。</li>
-</ul>
-<h3 id="main-test-dot-s">main_test.s</h3>
-<p>main_test.s只是个测试程序调用的地方，注意这里提供了check结果打印功能，最后返回时寄存器x0值为0xff的话，fail，如果不需要Check，也要保证寄存器x0值为非0xff，否则trace结果有“TEST FAILED”关键字。</p>
+</div><h3 id="makefile">Makefile</h3>
+<p>Makefile定义了System目录下文件的编译规则，目的是得到start.o文件。其实这里就只有start.s文件，其他文件通过include方式添加到start.s文件。</p>
+<p>Makefile.def是一些编译参数的定义。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="err">include</span> <span class="err">../Makefile.def</span>
+
+<span class="nf">build</span><span class="o">:</span>
+        <span class="k">$(</span>ASM_A64<span class="k">)</span> -march<span class="o">=</span><span class="k">$(</span>MARCH<span class="k">)</span> <span class="k">$(</span>DEFINES<span class="k">)</span> -c start.s -o start.o
+
+<span class="nf">clean</span><span class="o">:</span>
+        rm -f *.o
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="a64-test目录">a64_test目录</h2>
+<p>a64_test目录下的文件主要是a64类型测试程序，如果需要，这里可以一同编译没有外部依赖的c程序。</p>
+<h3 id="a64-test-dot-s文件">a64_test.s文件</h3>
+<p>a64_test.s是a64类型测试程序，可以跳转至c函数，也可以嵌入your_testcode.s测试程序。check code是程序自检的一种实现，设置x0为ff时，将print出&quot;TEST FAILED&rdquo;，设置x0为其他值时，将print出&quot;TEST PASSED&rdquo;。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -5366,32 +6038,32 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm">        <span class="na">.global</span> <span class="no">_main_test</span>
-<span class="nl">_main_test:</span>
+<pre class="chroma"><code class="language-asm" data-lang="asm">        <span class="na">.global</span> <span class="no">_a64_test</span>
+<span class="nl">_a64_test:</span>
         <span class="nf">stp</span> <span class="no">x29</span><span class="p">,</span> <span class="no">x30</span><span class="p">,</span> <span class="p">[</span><span class="no">sp</span><span class="p">,</span> <span class="c">#-16]! //Push lr to stack
 </span><span class="c"></span>
         <span class="err">//</span><span class="nf">test</span> <span class="no">code</span> <span class="no">is</span> <span class="no">here</span>
         <span class="err">//----------------------------------</span>
-        <span class="nf">bl</span> <span class="no">hello_world</span> <span class="err">//</span> <span class="no">c</span> <span class="no">function</span>
-
-        <span class="nf">mov</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#0xff
-</span><span class="c"></span>        <span class="err">//</span><span class="p">----------------------------------</span>
+        <span class="err">//</span><span class="nf">bl</span> <span class="no">main</span> <span class="err">//</span> <span class="no">c</span> <span class="no">function</span>
+        <span class="na">.include</span> <span class="s">&#34;./your_testcode.s&#34;</span>
+        <span class="err">//----------------------------------</span>
 
         <span class="err">//</span><span class="nf">check</span> <span class="no">code</span> <span class="no">is</span> <span class="no">here</span>
         <span class="err">//----------------------------------</span>
         <span class="err">//</span> <span class="nf">pass</span> <span class="p">:</span> <span class="no">x0</span><span class="err">=</span><span class="mi">0x11</span>
         <span class="err">//</span> <span class="nf">fail</span> <span class="p">:</span> <span class="no">x0</span><span class="err">=</span><span class="mi">0xff</span>
 
-        <span class="nf">mov</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#0x11
+        <span class="nf">mov</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#0x11
 </span><span class="c"></span>        <span class="err">//</span><span class="p">----------------------------------</span>
 
         <span class="nf">ldp</span> <span class="no">x29</span><span class="p">,</span> <span class="no">x30</span><span class="p">,</span> <span class="p">[</span><span class="no">sp</span><span class="p">],</span> <span class="c">#16 //Pop lr from stack
 </span><span class="c"></span>
-        <span class="nf">b</span> <span class="no">_print_result</span>
+        <span class="nf">ret</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="sysregs-init-dot-s">sysregs_init.s</h3>
-<p>sysregs_init.s就是系统寄存器初始化，ARMv8的系统寄存器控制比较复杂，需要使用者根据具体项目进行配置。</p>
+</div><h3 id="link-dot-lds文件">link.lds文件</h3>
+<p>link.lds是链接脚本，编译是文件各自独立的，编译后还需要将各个编译后的文件链接在一起，链接脚本就是用来指定链接规则，或者说为各个编译后的文件指定存储位置。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -5417,171 +6089,98 @@
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span><span class="lnt">78
-</span><span class="lnt">79
-</span><span class="lnt">80
-</span><span class="lnt">81
-</span><span class="lnt">82
-</span><span class="lnt">83
-</span><span class="lnt">84
-</span><span class="lnt">85
-</span><span class="lnt">86
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm">        <span class="err">//{{{</span> <span class="err">初始化系统寄存器</span>
-        <span class="na">.global</span> <span class="no">_sysregs_init</span>
-<span class="nl">_sysregs_init:</span>
-        <span class="nf">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">CurrentEL</span>
-        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b11 &lt;&lt; 2)
-</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">3</span><span class="no">f</span>
-        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b10 &lt;&lt; 2)
-</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">2</span><span class="no">f</span>
-        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b01 &lt;&lt; 2)
-</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">1</span><span class="no">f</span>
-        <span class="nf">b</span> <span class="p">.</span>  <span class="err">//系统启动不会在</span><span class="no">el0状态</span><span class="err">，这里设置个死循环</span>
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">OUTPUT_FORMAT</span><span class="p">(</span><span class="err">&#34;</span><span class="no">elf64-littleaarch64</span><span class="err">&#34;</span><span class="p">)</span>
+<span class="nf">OUTPUT_ARCH</span><span class="p">(</span><span class="no">aarch64</span><span class="p">)</span>
 
-<span class="err">3:</span>
-        <span class="err">//</span><span class="nf">scr_el3</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000000000430</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
-        <span class="nf">msr</span> <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x9</span>
-        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x1
-</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
-</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">scr_el3</span>
-        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#8, #1  // set scr_el3.hce to 1
-</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0, #1  // set scr_el3.ns to 1
-</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#10, #1 // set scr_el3.rw to 1
-</span><span class="c"></span>        <span class="no">msr</span> <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x9</span>
+<span class="nf">SECTIONS</span>
+<span class="err">{</span>
+        <span class="err">.</span> <span class="err">=</span> <span class="err">0</span><span class="nf">x0</span><span class="c">;
+</span><span class="c"></span>
+        <span class="na">.setup</span> <span class="p">:</span> <span class="err">{</span>
+               <span class="nf">a64_test.o</span>
+        <span class="err">}</span>
 
-        <span class="err">//</span><span class="nf">cptr_el3</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000000000000</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
-        <span class="nf">msr</span> <span class="no">cptr_el3</span><span class="p">,</span> <span class="no">x9</span>
-        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x1
-</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
-</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">cptr_el3</span>
-        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#10, #1 // set scr_el3.tfp to 0
-</span><span class="c"></span>        <span class="no">msr</span> <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="na">.text</span> <span class="p">:</span> <span class="err">{</span>
+                <span class="err">*</span> <span class="err">(</span><span class="na">.text</span><span class="p">)</span>
+        <span class="err">}</span>
 
-        <span class="err">//</span><span class="nf">sctlr_el3</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000000c50838</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
-        <span class="nf">msr</span> <span class="no">sctlr_el3</span><span class="p">,</span> <span class="no">x9</span>
+        <span class="na">.data</span> <span class="p">:</span> <span class="err">{</span>
+                <span class="err">*</span> <span class="err">(</span><span class="na">.data</span><span class="p">)</span>
+        <span class="err">}</span>
 
-        <span class="err">//</span> <span class="nf">exception</span> <span class="no">entry</span> <span class="no">vector</span> <span class="no">addr</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="no">_vector_table_route_to_el3</span>
-        <span class="nf">msr</span> <span class="no">vbar_el3</span><span class="p">,</span> <span class="no">x9</span>
-
-<span class="err">2:</span>
-        <span class="err">//</span><span class="nf">hcr_el2</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000080000002</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
-        <span class="nf">msr</span> <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x9</span>
-        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x1
-</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
-</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">hcr_el2</span>
-        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#34, #1  // set hcr_el2.e2h to 1
-</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#27, #1  // set hcr_el2.tge to 0
-</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#31, #1  // set hcr_el2.rw to 1
-</span><span class="c"></span>        <span class="no">msr</span> <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x9</span>
-
-        <span class="err">//</span><span class="nf">cptr_el2</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x00000000000033ff</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
-        <span class="nf">msr</span> <span class="no">cptr_el2</span><span class="p">,</span> <span class="no">x9</span>
-        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x3
-</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
-</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">cptr_el2</span>
-        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#20, #2  // set cptr_el2.fpen to 11
-</span><span class="c"></span>        <span class="no">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#10, #1  // set cptr_el2.tfp to 0
-</span><span class="c"></span>        <span class="no">msr</span> <span class="no">cptr_el2</span><span class="p">,</span> <span class="no">x9</span>
-
-        <span class="err">//</span> <span class="nf">exception</span> <span class="no">entry</span> <span class="no">vector</span> <span class="no">addr</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="no">_vector_table_route_to_el2</span>
-        <span class="nf">msr</span> <span class="no">vbar_el2</span><span class="p">,</span> <span class="no">x9</span>
-
-<span class="err">1:</span>
-        <span class="err">//</span><span class="nf">cpacr_el1</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x0000000000000000</span> <span class="err">//</span><span class="no">rtl默认的初始值</span>
-        <span class="nf">msr</span> <span class="no">cpacr_el1</span><span class="p">,</span> <span class="no">x9</span>
-        <span class="nf">mov</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#0x3
-</span><span class="c"></span>        <span class="no">mov</span> <span class="no">x11</span><span class="p">,</span> <span class="c">#0x0
-</span><span class="c"></span>        <span class="no">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">cpacr_el1</span>
-        <span class="nf">bfi</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span><span class="p">,</span> <span class="c">#20, #2  // set cpacr_el1.fpen to 11
-</span><span class="c"></span>        <span class="no">msr</span> <span class="no">cpacr_el1</span><span class="p">,</span> <span class="no">x9</span>
-
-        <span class="err">//</span> <span class="nf">exception</span> <span class="no">entry</span> <span class="no">vector</span> <span class="no">addr</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="no">_vector_table_route_to_el1</span>
-        <span class="nf">msr</span> <span class="no">vbar_el1</span><span class="p">,</span> <span class="no">x9</span>
-
-        <span class="err">//</span><span class="nf">barrier</span> <span class="no">instr</span> <span class="no">and</span> <span class="no">Synchronize</span> <span class="no">the</span> <span class="no">sysregs</span>
-        <span class="nf">isb</span>
-        <span class="nf">dsb</span> <span class="no">sy</span>
-        <span class="nf">ret</span>
-        <span class="err">//}}}</span>
+        <span class="na">.bss</span> <span class="p">:</span> <span class="err">{</span>
+                <span class="err">*</span> <span class="err">(</span><span class="na">.bss</span><span class="p">)</span>
+        <span class="err">}</span>
+<span class="err">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>注意，这里 b.eq 1f 的用法，1是指标号，f代表向下寻找，这属于常用的汇编技巧。</li>
-<li>注意，系统寄存器配置后需要使用isb指令隔离命令，是因为系统寄存器可能存在多个备份来解决负载问题，使用isb指令可以实现各个副本的更新，保持一致。</li>
-</ul>
-<h3 id="asmlib-dot-s">asmlib.s</h3>
-<p>asmlib.s就是各个子程序的集合，包括如下：</p>
+</div><h3 id="your-testcode-dot-s文件">your_testcode.s文件</h3>
+<p>your_testcode.s文件是自定义的a64类型测试程序，将其独立出来，为了避免使用者不小心更改Bootloader程序框架。</p>
+<h3 id="makefile">Makefile</h3>
+<p>Makefile定义了a64_test目录下文件的编译规则，目的是得到a64_test.bin文件。主要经过以下几步：</p>
 <ul>
-<li>关闭非主核（主要是为fastmodel跑出的trace只保留主核）</li>
-<li>栈的初始化，初始化栈之后才可以使用c语言</li>
-<li>打印测试结果信息</li>
-<li>结束cpu</li>
-<li>el3切换到el0 np secure状态</li>
+<li>将a64_test目录下所有.s和.c文件编译为.o文件。</li>
+<li>根据link.lds描述的链接规则，链接为elf文件。</li>
+<li>将elf文件转换为bin文件。</li>
+</ul>
+<p>Makefile.def是一些编译参数的定义。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="err">include</span> <span class="err">../Makefile.def</span>
+
+<span class="nv">SRC_C</span> <span class="o">=</span> <span class="k">$(</span>wildcard *.c<span class="k">)</span>
+<span class="nv">SRC_S</span> <span class="o">=</span> <span class="k">$(</span>wildcard *.s<span class="k">)</span>
+<span class="nv">OBJ_C</span> <span class="o">=</span> <span class="k">$(</span>patsubst %.c, %.o, <span class="k">$(</span>notdir <span class="k">$(</span>SRC_C<span class="k">)))</span>
+<span class="nv">OBJ_S</span> <span class="o">=</span> <span class="k">$(</span>patsubst %.s, %.o, <span class="k">$(</span>notdir <span class="k">$(</span>SRC_S<span class="k">)))</span>
+
+<span class="nf">build</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJ_S</span><span class="k">)</span> <span class="k">$(</span><span class="nv">OBJ_C</span><span class="k">)</span>
+        <span class="k">$(</span>LD_A64<span class="k">)</span> -T link.lds <span class="k">$(</span>DEFINES<span class="k">)</span> $^ -o a64_test.elf
+        <span class="k">$(</span>OBJCOPY_A64<span class="k">)</span> -O binary a64_test.elf  a64_test.bin
+        <span class="k">$(</span>OBJDUMP_A64<span class="k">)</span> -D a64_test.elf &gt; a64_test.dis
+
+<span class="nf">%.o</span><span class="o">:</span> %.<span class="n">s</span>
+        <span class="k">$(</span>ASM_A64<span class="k">)</span> -march<span class="o">=</span><span class="k">$(</span>MARCH<span class="k">)</span> <span class="k">$(</span>DEFINES<span class="k">)</span> -c $^ -o <span class="nv">$@</span>
+
+<span class="nf">%.o</span><span class="o">:</span> %.<span class="n">c</span>
+        <span class="k">$(</span>CC_A64<span class="k">)</span> -c $^ -o <span class="nv">$@</span> -nostdlib
+
+<span class="nf">clean</span><span class="o">:</span>
+        rm -f *.o *.dis *.bin *.elf
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="a32-test目录">a32_test目录</h2>
+<p>a32_test目录下的文件主要是a32类型测试程序，如果需要，这里可以一同编译没有外部依赖的c程序。</p>
+<h3 id="a32-test-dot-s文件">a32_test.s文件</h3>
+<p>a32_test.s是a32类型测试程序，可以跳转至c函数，也可以嵌入your_testcode.s测试程序。check code是程序自检的一种实现，设置r0为ff时，将print出&quot;TEST FAILED&rdquo;，设置r0为其他值时，将print出&quot;TEST PASSED&rdquo;。</p>
+<ul>
+<li>&ldquo;.code 32&quot;声明为a32类型程序。</li>
+<li>&ldquo;.text&quot;声明为程序段。</li>
+<li>通过跳转至&rdquo;_t32_test +1&quot;的地址，可以切换至Thumb状态。</li>
+<li>从Thumb状态返回，是通过异常返回实现的，这里设置r1为ff，是配合异常处理程序完成程序执行控制。</li>
 </ul>
 <!--listend-->
 <div class="highlight"><div class="chroma">
@@ -5627,196 +6226,382 @@
 </span><span class="lnt">39
 </span><span class="lnt">40
 </span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span><span class="lnt">78
-</span><span class="lnt">79
-</span><span class="lnt">80
-</span><span class="lnt">81
-</span><span class="lnt">82
-</span><span class="lnt">83
-</span><span class="lnt">84
-</span><span class="lnt">85
-</span><span class="lnt">86
-</span><span class="lnt">87
-</span><span class="lnt">88
-</span><span class="lnt">89
-</span><span class="lnt">90
-</span><span class="lnt">91
-</span><span class="lnt">92
-</span><span class="lnt">93
-</span><span class="lnt">94
-</span><span class="lnt">95
-</span><span class="lnt">96
-</span><span class="lnt">97
-</span><span class="lnt">98
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm">        <span class="err">//{{{</span> <span class="err">关闭非主核</span>
-        <span class="na">.global</span> <span class="no">_disable_mp</span>
-<span class="nl">_disable_mp:</span>
-        <span class="nf">mrs</span> <span class="no">x9</span><span class="p">,</span>  <span class="no">mpidr_el1</span>
-        <span class="nf">and</span> <span class="no">x9</span><span class="p">,</span>  <span class="no">x9</span><span class="p">,</span> <span class="c">#0xff
-</span><span class="c"></span>        <span class="no">cbnz</span> <span class="no">x9</span><span class="p">,</span>  <span class="no">_cpu_sleep</span>
-        <span class="nf">ret</span>
-<span class="nl">_cpu_sleep:</span>
-        <span class="nf">wfi</span>
-        <span class="nf">b</span> <span class="no">_cpu_sleep</span>
-        <span class="err">//}}}</span>
+<pre class="chroma"><code class="language-asm" data-lang="asm">        <span class="na">.code</span> <span class="mi">32</span>
+        <span class="na">.text</span>
 
+        <span class="na">.global</span> <span class="no">_a32_test</span>
+<span class="nl">_a32_test:</span>
+        <span class="err">//</span><span class="nf">Push</span> <span class="no">stack</span> <span class="no">for</span> <span class="no">lr</span>
+        <span class="nf">push</span> <span class="err">{</span><span class="no">r7</span><span class="p">,</span> <span class="no">lr</span><span class="err">}</span>
+        <span class="nf">sub</span> <span class="no">sp</span><span class="p">,</span> <span class="c">#8
+</span><span class="c"></span>        <span class="no">add</span> <span class="no">r7</span><span class="p">,</span> <span class="no">sp</span><span class="p">,</span> <span class="c">#0
+</span><span class="c"></span>
+        <span class="err">//=====================================</span>
+        <span class="err">//</span><span class="nf">add</span> <span class="no">your</span> <span class="no">test</span> <span class="no">code</span>
+        <span class="err">//</span><span class="nf">bl</span> <span class="no">main</span> <span class="err">//</span><span class="no">c</span> <span class="no">function</span>
+        <span class="na">.include</span> <span class="s">&#34;./your_testcode.s&#34;</span>
 
-        <span class="err">//{{{</span> <span class="err">初始化栈</span>
-        <span class="na">.global</span> <span class="no">_stack_init</span>
-<span class="nl">_stack_init:</span>
-        <span class="err">//</span><span class="nf">STACK_TOP_ADDR</span>  <span class="err">=</span> <span class="no">BOARD_BASE_ADDR</span> <span class="err">+</span> <span class="no">BOARD_MEM_SIZE</span> <span class="p">-</span> <span class="no">RESERVE_MEM_TOP</span>
-        <span class="err">//</span>                <span class="err">=</span> <span class="nf">RVBAR</span> <span class="err">+</span> <span class="mi">2</span><span class="no">G</span> <span class="p">-</span> <span class="mi">1</span><span class="no">M</span>
-        <span class="err">//</span><span class="nf">EACH_STACK_SIZE</span> <span class="err">=</span> <span class="mi">64</span><span class="no">M</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="no">RVBAR</span>
-        <span class="nf">ldr</span> <span class="no">x10</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x7ff00000</span>
-        <span class="nf">add</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x10</span>      <span class="err">//</span><span class="no">x9</span><span class="p">:</span> <span class="no">STACK_TOP_ADDR</span>
-        <span class="nf">ldr</span> <span class="no">x1</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x04000000</span>  <span class="err">//</span><span class="no">x1</span><span class="p">:</span> <span class="no">EACH_STACK_SIZE</span>
-        <span class="nf">mrs</span> <span class="no">x9</span><span class="p">,</span> <span class="no">CurrentEL</span>
-        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b11 &lt;&lt; 2)
-</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">3</span><span class="no">f</span>
-        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b10 &lt;&lt; 2)
-</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">2</span><span class="no">f</span>
-        <span class="nf">cmp</span> <span class="no">x9</span><span class="p">,</span> <span class="c">#(0b01 &lt;&lt; 2)
-</span><span class="c"></span>        <span class="no">b.eq</span> <span class="mi">1</span><span class="no">f</span>
-        <span class="nf">b</span> <span class="p">.</span>  <span class="err">//系统启动不会在</span><span class="no">el0状态</span><span class="err">，这里设置个死循环</span>
+        <span class="err">//</span><span class="nf">add</span> <span class="no">your</span> <span class="no">check</span> <span class="no">code</span>
+        <span class="nf">mov</span> <span class="no">r0</span><span class="p">,</span> <span class="c">#0x11
+</span><span class="c"></span>        <span class="no">mov</span> <span class="no">r0</span><span class="p">,</span> <span class="c">#0xff
+</span><span class="c"></span>        <span class="err">//=====================================</span>
 
-<span class="err">3:</span>
-        <span class="nf">mov</span> <span class="no">sp</span><span class="p">,</span> <span class="no">x0</span> <span class="err">//</span><span class="no">sp_el3</span>
-        <span class="nf">sub</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x1</span>
-<span class="err">2:</span>
-        <span class="nf">msr</span> <span class="no">sp_el2</span><span class="p">,</span> <span class="no">x0</span>
-        <span class="nf">sub</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x1</span>
-<span class="err">1:</span>
-        <span class="nf">msr</span> <span class="no">sp_el1</span><span class="p">,</span> <span class="no">x0</span>
-        <span class="nf">sub</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x1</span>
-<span class="err">0:</span>
-        <span class="nf">msr</span> <span class="no">sp_el0</span><span class="p">,</span> <span class="no">x0</span>
+        <span class="err">//</span><span class="nf">Pop</span> <span class="no">stack</span> <span class="no">for</span> <span class="no">lr</span>
+        <span class="nf">adds</span> <span class="no">r7</span><span class="p">,</span> <span class="c">#8
+</span><span class="c"></span>        <span class="no">mov</span> <span class="no">sp</span><span class="p">,</span> <span class="no">r7</span>
+        <span class="nf">pop</span> <span class="err">{</span><span class="no">r7</span><span class="p">,</span> <span class="no">pc</span><span class="err">}</span>
 
-        <span class="nf">ret</span>
-        <span class="err">//}}}</span>
+        <span class="err">//</span><span class="nf">a32</span> <span class="no">to</span> <span class="no">thumb</span>
+        <span class="err">//=====================================</span>
+        <span class="na">.if</span> <span class="no">TEST_THUMB</span><span class="err">==</span><span class="mi">1</span>
+        <span class="nf">adr</span> <span class="no">r8</span><span class="p">,</span> <span class="no">_t32_test</span>
+        <span class="nf">add</span> <span class="no">r8</span><span class="p">,</span> <span class="no">r8</span><span class="p">,</span> <span class="c">#0x1
+</span><span class="c"></span>        <span class="no">blx</span> <span class="no">r8</span>
+        <span class="na">.endif</span>
+        <span class="err">//=====================================</span>
 
-        <span class="err">//{{{</span> <span class="err">打印测试结果</span>
-        <span class="na">.global</span> <span class="no">_print_result</span>
-<span class="nl">_print_result:</span>
-        <span class="nf">sub</span> <span class="no">x9</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#0xff
-</span><span class="c"></span>        <span class="no">cbz</span> <span class="no">x9</span><span class="p">,</span> <span class="no">_test_fail</span>
+        <span class="err">//</span><span class="nf">usermode</span> <span class="no">to</span> <span class="no">el1</span>
+        <span class="err">//=====================================</span>
+        <span class="nf">mov</span> <span class="no">r1</span><span class="p">,</span> <span class="c">#0xff //for evt Judgemen
+</span><span class="c"></span>        <span class="no">eret</span>
+        <span class="err">//=====================================</span>
 
-<span class="nl">_test_pass:</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x13000000</span> <span class="err">//</span><span class="no">Tube</span> <span class="no">address</span>
-        <span class="nf">adr</span> <span class="no">x10</span><span class="p">,</span> <span class="no">_pass_message_</span>
-        <span class="nf">ldrb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">],</span> <span class="c">#1
-</span><span class="c"></span><span class="no">_loop_print_pass</span><span class="p">:</span>
-        <span class="nf">strb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x9</span><span class="p">]</span>
-        <span class="nf">ldrb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">],</span> <span class="c">#1
-</span><span class="c"></span>        <span class="no">cbnz</span> <span class="no">w11</span><span class="p">,</span> <span class="no">_loop_print_pass</span>
-        <span class="nf">ret</span>
-
-<span class="nl">_test_fail:</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x13000000</span> <span class="err">//</span><span class="no">Tube</span> <span class="no">address</span>
-        <span class="nf">adr</span> <span class="no">x10</span><span class="p">,</span> <span class="no">_fail_message_</span>
-        <span class="nf">ldrb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">],</span> <span class="c">#1
-</span><span class="c"></span><span class="no">_loop_print_fail</span><span class="p">:</span>
-        <span class="nf">strb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x9</span><span class="p">]</span>
-        <span class="nf">ldrb</span> <span class="no">w11</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">],</span> <span class="c">#1
-</span><span class="c"></span>        <span class="no">cbnz</span> <span class="no">w11</span><span class="p">,</span> <span class="no">_loop_print_fail</span>
-        <span class="nf">ret</span>
-
-        <span class="na">.align</span> <span class="mi">2</span>
-<span class="nl">_pass_message_:</span>   <span class="na">.asciz</span> <span class="s">&#34;*** TEST PASSED OK ***\n&#34;</span>
-<span class="nl">_fail_message_:</span>   <span class="na">.asciz</span> <span class="s">&#34;*** TEST FAILED ***\n&#34;</span>
-        <span class="err">//}}}</span>
-        <span class="na">.align</span> <span class="mi">2</span>
-
-        <span class="err">//{{{</span> <span class="err">结束</span><span class="nf">CPU</span>
-        <span class="na">.global</span> <span class="no">_end_cpu</span>
-<span class="nl">_end_cpu:</span>
-        <span class="nf">mov</span> <span class="no">w9</span><span class="p">,</span> <span class="c">#0x04
-</span><span class="c"></span>        <span class="no">ldr</span> <span class="no">x10</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x13000000</span> <span class="err">//</span><span class="no">Tube</span> <span class="no">address</span>
-        <span class="nf">strb</span> <span class="no">w9</span><span class="p">,</span> <span class="p">[</span><span class="no">x10</span><span class="p">]</span>
-        <span class="nf">dsb</span> <span class="no">sy</span>
-        <span class="nf">ret</span>
-        <span class="err">//}}}</span>
-
-        <span class="err">//{{{</span> <span class="nf">el3切换到el0_ns</span>
-        <span class="na">.global</span> <span class="no">_el3_to_el0_ns</span>
-<span class="nl">_el3_to_el0_ns:</span>
-        <span class="nf">ldr</span> <span class="no">x9</span><span class="p">,</span> <span class="err">=</span><span class="mi">0x000002c0</span>
-        <span class="nf">msr</span> <span class="no">spsr_el3</span><span class="p">,</span> <span class="no">x9</span>
-        <span class="nf">adr</span> <span class="no">x9</span><span class="p">,</span> <span class="no">_test</span>
-        <span class="nf">msr</span> <span class="no">elr_el3</span><span class="p">,</span> <span class="no">x9</span>
-        <span class="nf">eret</span>
-        <span class="err">//}}}</span>
+        <span class="na">.include</span> <span class="s">&#34;./thumb_test.inc&#34;</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="link-dot-lds">link.lds</h3>
-<p>link.lds是链接脚本，编译是文件各自独立的，编译后还需要将各个编译后的文件链接在一起，链接脚本就是用来指定链接规则，或者说为各个编译后的文件指定存储位置。</p>
-<pre><code class="language-nil" data-lang="nil">OUTPUT_ARCH(aarch64)
-ENTRY(_start)
-
-SECTIONS
-{
-        . = RVBAR;
-
-        .setup : {
-                start.o
-                evt.o
-        }
-
-        .text : {
-                * (.text)
-        }
-
-        .data : {
-                * (.data)
-        }
-
-        .bss : {
-                * (.bss)
-        }
-}
-</code></pre><ul>
-<li>注意，RVBAR是一个宏参数，在链接时传递，指明存储程序的开始地址。RVBAR是指 Reset Vector Base Address Register，也就是保存复位后程序初始地址的寄存器。</li>
+</div><h3 id="thumb-test-dot-inc文件">thumb_test.inc文件</h3>
+<p>thumb_test.inc文件是thumb类型执行程序，</p>
+<ul>
+<li>&ldquo;.code 16&quot;声明为thumb类型程序。</li>
+<li>&ldquo;.syntax unified&quot;是一个指示，说明下面的指令是ARM和THUMB通用格式的8字节对齐，可以提高访问速度。</li>
+<li>通过跳转至&rdquo;_t32_test +1&quot;的地址，可以切换至Thumb状态；通过&quot;bx lr&quot;返回a32状态。</li>
+<li>为了避免使用者不小心更改bootloader程序框架，也可以在此通过include方式添加独立的thumb测试程序。</li>
 </ul>
-<h3 id="makefile-dot-rule">Makefile.rule</h3>
-<p>Makefile.rule内容主要是编译和链接处理命令，之所以定义Makefile.rule，而不是将其整个写在Makefile，主要考虑是只将参数定义暴露给用户，而底层逻辑不需要用户关心。</p>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm">        <span class="na">.code</span> <span class="mi">16</span>
+        <span class="na">.syntax</span> <span class="no">unified</span>
+
+        <span class="na">.global</span> <span class="no">_t32_test</span>
+<span class="nl">_t32_test:</span>
+        <span class="err">//================================</span>
+        <span class="err">//</span> <span class="nf">add</span> <span class="no">your</span> <span class="no">test</span> <span class="no">code</span>
+        <span class="nf">moval</span> <span class="no">r5</span><span class="p">,</span> <span class="c">#0
+</span><span class="c"></span>        <span class="err">//================================</span>
+
+        <span class="err">//================================</span>
+<span class="nl">_t16_test:</span>
+        <span class="err">//</span> <span class="nf">add</span> <span class="no">your</span> <span class="no">test</span> <span class="no">code</span>
+        <span class="nf">movs</span> <span class="no">r5</span><span class="p">,</span> <span class="c">#0
+</span><span class="c"></span>        <span class="err">//================================</span>
+
+        <span class="nf">bx</span> <span class="no">lr</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="link-dot-lds文件">link.lds文件</h3>
+<p>link.lds是链接脚本，编译是文件各自独立的，编译后还需要将各个编译后的文件链接在一起，链接脚本就是用来指定链接规则，或者说为各个编译后的文件指定存储位置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">OUTPUT_FORMAT</span><span class="p">(</span><span class="err">&#34;</span><span class="no">elf32-littlearm</span><span class="err">&#34;</span><span class="p">)</span>
+<span class="nf">OUTPUT_ARCH</span><span class="p">(</span><span class="no">arm</span><span class="p">)</span>
+
+<span class="nf">SECTIONS</span>
+<span class="err">{</span>
+        <span class="err">.</span> <span class="err">=</span> <span class="err">0</span><span class="nf">x0</span><span class="c">;
+</span><span class="c"></span>
+        <span class="na">.setup</span> <span class="p">:</span> <span class="err">{</span>
+               <span class="nf">a32_test.o</span>
+        <span class="err">}</span>
+
+        <span class="na">.text</span> <span class="p">:</span> <span class="err">{</span>
+                <span class="err">*</span> <span class="err">(</span><span class="na">.text</span><span class="p">)</span>
+        <span class="err">}</span>
+
+        <span class="na">.data</span> <span class="p">:</span> <span class="err">{</span>
+                <span class="err">*</span> <span class="err">(</span><span class="na">.data</span><span class="p">)</span>
+        <span class="err">}</span>
+
+        <span class="na">.bss</span> <span class="p">:</span> <span class="err">{</span>
+                <span class="err">*</span> <span class="err">(</span><span class="na">.bss</span><span class="p">)</span>
+        <span class="err">}</span>
+<span class="err">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="your-testcode-dot-s文件">your_testcode.s文件</h3>
+<p>your_testcode.s文件是自定义的a32类型测试程序，将其独立出来，为了避免使用者不小心更改Bootloader程序框架。</p>
+<h3 id="makefile">Makefile</h3>
+<p>Makefile定义了a32_test目录下文件的编译规则，目的是得到a32_test.bin文件。主要经过以下几步：</p>
+<ul>
+<li>将a64_test目录下所有.s和.c文件编译为.o文件。</li>
+<li>根据link.lds描述的链接规则，链接为elf文件。</li>
+<li>将elf文件转换为bin文件。</li>
+</ul>
+<p>Makefile.def是一些编译参数的定义。注意，这里使用的编译工具与a64_test下的不同，具体可查看Makefile.def。</p>
+<p>注意：a32 编译支持浮点和SIMD，需要添加编译参数 &ldquo;-mfpu=neon-fp-armv8&rdquo;。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="err">include</span> <span class="err">../Makefile.def</span>
+
+<span class="nv">SRC_C</span> <span class="o">=</span> <span class="k">$(</span>wildcard *.c<span class="k">)</span>
+<span class="nv">SRC_S</span> <span class="o">=</span> <span class="k">$(</span>wildcard *.s<span class="k">)</span>
+<span class="nv">OBJ_C</span> <span class="o">=</span> <span class="k">$(</span>patsubst %.c, %.o, <span class="k">$(</span>notdir <span class="k">$(</span>SRC_C<span class="k">)))</span>
+<span class="nv">OBJ_S</span> <span class="o">=</span> <span class="k">$(</span>patsubst %.s, %.o, <span class="k">$(</span>notdir <span class="k">$(</span>SRC_S<span class="k">)))</span>
+
+<span class="nf">build</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJ_S</span><span class="k">)</span> <span class="k">$(</span><span class="nv">OBJ_C</span><span class="k">)</span>
+        <span class="k">$(</span>LD_A64<span class="k">)</span> -T link.lds <span class="k">$(</span>DEFINES<span class="k">)</span> $^ -o a64_test.elf
+        <span class="k">$(</span>OBJCOPY_A64<span class="k">)</span> -O binary a64_test.elf  a64_test.bin
+        <span class="k">$(</span>OBJDUMP_A64<span class="k">)</span> -D a64_test.elf &gt; a64_test.dis
+
+<span class="nf">%.o</span><span class="o">:</span> %.<span class="n">s</span>
+        <span class="k">$(</span>ASM_A64<span class="k">)</span> -march<span class="o">=</span><span class="k">$(</span>MARCH<span class="k">)</span> <span class="k">$(</span>DEFINES<span class="k">)</span> -mfpu<span class="o">=</span>neon-fp-armv8 -c $^ -o <span class="nv">$@</span>
+
+<span class="nf">%.o</span><span class="o">:</span> %.<span class="n">c</span>
+        <span class="k">$(</span>CC_A64<span class="k">)</span> -c $^ -o <span class="nv">$@</span> -nostdlib
+
+<span class="nf">clean</span><span class="o">:</span>
+        rm -f *.o *.dis *.bin *.elf
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="simple-bootloader目录">simple_bootloader目录</h2>
+<p>simple_bootloader目录是整个程序框架的根目录，主要内容是通过Makefile和link.lds将system、a64_test、a32_test下生成的bin文件，链接到一起，合并成一个elf文件，并通过Makefile.def实现环境的参数化。</p>
+<h3 id="link-dot-lds文件">link.lds文件</h3>
+<ul>
+<li>&ldquo;ENTRY(_start)&quot;，将_start设置为程序入口，_start在start.s内定义。</li>
+<li>指定链接顺序，start.o在最前，其次是a64_test.bin，最后是a32_test.bin。</li>
+<li>&ldquo;. = RVBAR;&ldquo;设置reset地址为当前地址，也就是最开始的_start位置。</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">OUTPUT_FORMAT</span><span class="p">(</span><span class="err">&#34;</span><span class="no">elf64_littleaarch64</span><span class="err">&#34;</span><span class="p">)</span>
+<span class="nf">OUTPUT_ARCH</span><span class="p">(</span><span class="no">aarch64</span><span class="p">)</span>
+<span class="nf">TARGET</span><span class="p">(</span><span class="no">binary</span><span class="p">)</span>
+
+<span class="nf">ENTRY</span><span class="p">(</span><span class="no">_start</span><span class="p">)</span>
+
+<span class="nf">INPUT</span><span class="p">(.</span><span class="err">/</span><span class="no">a64_test.bin</span><span class="p">)</span>
+<span class="nf">INPUT</span><span class="p">(.</span><span class="err">/</span><span class="no">a32_test.bin</span><span class="p">)</span>
+
+<span class="nf">SECTIONS</span>
+<span class="err">{</span>
+        <span class="err">.</span> <span class="err">=</span> <span class="nf">RVBAR</span><span class="c">;
+</span><span class="c"></span>
+        <span class="na">.setup</span> <span class="p">:</span> <span class="err">{</span>
+                <span class="nf">start.o</span>
+        <span class="err">}</span>
+
+        <span class="na">.text</span> <span class="p">:</span> <span class="err">{</span>
+                <span class="err">*</span> <span class="err">(</span><span class="na">.text</span><span class="p">)</span>
+        <span class="err">}</span>
+
+        <span class="nf">_a64_test</span> <span class="err">=</span> <span class="p">.</span><span class="c">;
+</span><span class="c"></span>        <span class="no">.a64_test</span> <span class="p">:</span> <span class="err">{</span>
+                  <span class="nf">a64_test.bin</span>
+        <span class="err">}</span>
+
+        <span class="nf">_a32_test</span> <span class="err">=</span> <span class="p">.</span><span class="c">;
+</span><span class="c"></span>        <span class="no">.a32_test</span> <span class="p">:</span> <span class="err">{</span>
+                  <span class="nf">a32_test.bin</span>
+        <span class="err">}</span>
+
+        <span class="na">.data</span> <span class="p">:</span> <span class="err">{</span>
+              <span class="err">*</span> <span class="err">(</span><span class="na">.data</span><span class="p">)</span>
+        <span class="err">}</span>
+
+        <span class="na">.bss</span> <span class="p">:</span> <span class="err">{</span>
+             <span class="err">*</span> <span class="err">(</span><span class="na">.bss</span><span class="p">)</span>
+        <span class="err">}</span>
+<span class="err">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="makefile-dot-def">Makefile.def</h3>
+<p>Makefile.def定义了环境的编译参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="c">#===============================================
+</span><span class="c"></span><span class="nv">RVBAR</span> <span class="o">=</span> 0x0
+<span class="nv">MARCH</span> <span class="o">=</span> armv8.2-a+crypto+fp16+dot
+<span class="nv">COMPILER_A64</span> <span class="o">=</span> <span class="s2">&#34;aarch64-linux-gnu&#34;</span>
+<span class="nv">COMPILER_A32</span> <span class="o">=</span> <span class="s2">&#34;aarch32-linux-gnu&#34;</span>
+<span class="nv">FNAME</span> <span class="o">=</span> your_testcode
+<span class="nv">DEFINES</span> <span class="o">+=</span> --defsym <span class="nv">RVBAR</span><span class="o">=</span><span class="k">$(</span>RVBAR<span class="k">)</span>
+<span class="nv">DEFINES</span> <span class="o">+=</span> --defsym <span class="nv">TEST_A64_EL0</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">DEFINES</span> <span class="o">+=</span> --defsym <span class="nv">TEST_A64_EL1</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">DEFINES</span> <span class="o">+=</span> --defsym <span class="nv">TEST_A64_EL2</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">DEFINES</span> <span class="o">+=</span> --defsym <span class="nv">TEST_A64_EL3</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">DEFINES</span> <span class="o">+=</span> --defsym <span class="nv">TEST_A32</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">DEFINES</span> <span class="o">+=</span> --defsym <span class="nv">TEST_THUMB</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">DEFINES</span> <span class="o">+=</span> --defsym <span class="nv">PRINT_RESULT</span><span class="o">=</span><span class="m">1</span>
+<span class="c">#===============================================
+</span><span class="c"></span>
+<span class="c">#===============================================
+</span><span class="c"></span><span class="nv">ASM_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-as
+<span class="nv">CC_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-gcc
+<span class="nv">LD_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-ld
+<span class="nv">OBJDUMP_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-objdump
+<span class="nv">OBJCOPY_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-objcopy
+
+<span class="nv">ASM_A32</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A32<span class="k">)</span>-as
+<span class="nv">CC_A32</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A32<span class="k">)</span>-gcc
+<span class="nv">LD_A32</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A32<span class="k">)</span>-ld
+<span class="nv">OBJDUMP_A32</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A32<span class="k">)</span>-objdump
+<span class="nv">OBJCOPY_A32</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A32<span class="k">)</span>-objcopy
+
+<span class="nv">PROJ_PATH</span> <span class="o">=</span> <span class="k">$(</span>shell <span class="nb">pwd</span><span class="k">)</span>
+<span class="nv">SYS</span> <span class="o">=</span> <span class="k">$(</span>PROJ_PATH<span class="k">)</span>/system/
+<span class="nv">A64</span> <span class="o">=</span> <span class="k">$(</span>PROJ_PATH<span class="k">)</span>/a64_test/
+<span class="nv">A32</span> <span class="o">=</span> <span class="k">$(</span>PROJ_PATH<span class="k">)</span>/a32_test/
+<span class="c">#===============================================
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="makefile文件">Makefile文件</h3>
+<p>Makefile文件主要调用system、a64_test、a32_test下的Makefile分别进行编译，最后根据总的link.lds进行链接，合成总的elf文件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -5847,116 +6632,35 @@ SECTIONS
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nv">SYS_PATH</span> <span class="o">=</span> <span class="k">$(</span>PROJ_PATH<span class="k">)</span>/sys/
-<span class="nv">SYS_OBJS</span> <span class="o">=</span> start.o asmlib.o evt.o main_test.o sysregs_init.o
-<span class="nv">OBJS</span> <span class="o">=</span> <span class="k">$(</span>SYS_OBJS<span class="k">)</span> <span class="k">$(</span>TST_OBJS<span class="k">)</span>
-<span class="nv">DEFINES</span> <span class="o">:=</span> --defsym <span class="nv">RVBAR</span><span class="o">=</span><span class="k">$(</span>RVBAR<span class="k">)</span>
-
-<span class="nv">ASM_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-as
-<span class="nv">CC_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-gcc
-<span class="nv">LD_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-ld
-<span class="nv">OBJDUMP_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-objdump
-<span class="nv">OBJCOPY_A64</span> <span class="o">=</span> <span class="k">$(</span>COMPILER_A64<span class="k">)</span>-objcopy
+<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="err">include</span> <span class="err">./Makefile.def</span>
 
 <span class="c">#=======================================
 </span><span class="c"></span>
-<span class="nf">build</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-        <span class="k">$(</span>LD_A64<span class="k">)</span> -T <span class="k">$(</span>SYS_PATH<span class="k">)</span>/link.lds <span class="k">$(</span>DEFINES<span class="k">)</span> $^ -o <span class="k">$(</span>FNAME<span class="k">)</span>.elf
+<span class="nf">build</span><span class="o">:</span> <span class="n">sys</span> <span class="n">a</span>64 <span class="n">a</span>32
+        <span class="k">$(</span>LD_A64<span class="k">)</span> -T link.lds <span class="k">$(</span>DEFINES<span class="k">)</span> start.o a32_test.bin a64_test.bin -o <span class="k">$(</span>FNAME<span class="k">)</span>.elf
         <span class="k">$(</span>OBJCOPY_A64<span class="k">)</span> -O binary <span class="k">$(</span>FNAME<span class="k">)</span>.elf  <span class="k">$(</span>FNAME<span class="k">)</span>.bin
         <span class="k">$(</span>OBJDUMP_A64<span class="k">)</span> -D <span class="k">$(</span>FNAME<span class="k">)</span>.elf &gt; <span class="k">$(</span>FNAME<span class="k">)</span>.dis
 
-<span class="nf">%.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">SYS_PATH</span><span class="k">)</span>/%.<span class="n">s</span>
-        <span class="k">$(</span>ASM_A64<span class="k">)</span> -march<span class="o">=</span><span class="k">$(</span>MARCH<span class="k">)</span> <span class="k">$(</span>DEFINES<span class="k">)</span> -c $^ -o <span class="nv">$@</span>
+<span class="nf">a64</span><span class="o">:</span>
+        make -C <span class="k">$(</span>A64<span class="k">)</span> build
+        cp <span class="k">$(</span>A64<span class="k">)</span>/a64_test.bin <span class="k">$(</span>PROJ_PATH<span class="k">)</span>/
 
-<span class="nf">%.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">PROJ_PATH</span><span class="k">)</span>/%.<span class="n">c</span>
-        <span class="k">$(</span>CC_A64<span class="k">)</span> -c $^ -o <span class="nv">$@</span> -nostdlib
+<span class="nf">a32</span><span class="o">:</span>
+        make -C <span class="k">$(</span>A32<span class="k">)</span> build
+        cp <span class="k">$(</span>A32<span class="k">)</span>/a32_test.bin <span class="k">$(</span>PROJ_PATH<span class="k">)</span>/
+
+<span class="nf">sys</span><span class="o">:</span>
+        make -C <span class="k">$(</span>SYS<span class="k">)</span> build
+        cp <span class="k">$(</span>SYS<span class="k">)</span>/start.o <span class="k">$(</span>PROJ_PATH<span class="k">)</span>/
 
 <span class="nf">clean</span><span class="o">:</span>
+        make -C <span class="k">$(</span>A64<span class="k">)</span> clean
+        make -C <span class="k">$(</span>A32<span class="k">)</span> clean
+        make -C <span class="k">$(</span>SYS<span class="k">)</span> clean
         rm *.o *.dis *.bin *.elf -f
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="makefile">Makefile</h3>
-<p>主要是用户需要自定义的参数</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nv">RVBAR</span> <span class="o">=</span> 0x0
-<span class="nv">MARCH</span> <span class="o">=</span> armv8.2-a+crypto
-<span class="c">#COMPILER_A64 = &#34;../tools/aarch64_bin/aarch64-linux-gnu&#34;
-</span><span class="c"></span><span class="nv">COMPILER_A64</span> <span class="o">=</span> <span class="s2">&#34;../gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu&#34;</span>
-<span class="nv">FNAME</span> <span class="o">=</span> test_a64
-<span class="nv">TST_OBJS</span> <span class="o">=</span> hello.o
-<span class="nv">PROJ_PATH</span> <span class="o">=</span> <span class="k">$(</span>shell <span class="nb">pwd</span><span class="k">)</span>
-
-<span class="err">include</span> <span class="k">$(</span><span class="nv">PROJ_PATH</span><span class="k">)</span><span class="err">/sys/Makefile.rule</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="hello-dot-c">hello.c</h3>
-<p>随便写了写。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">hello_world</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
-  <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="aarch32">AArch32</h2>
-<p>这里没有对AArch32做单独程序框架，而是采用了将AArch64和AArch32混合编程的方法。</p>
-<h2 id="aarch64与aarch32混合编程">AArch64与AArch32混合编程</h2>
-<p>ARMv8中，AArch64和AArch32是通过异常进行切换的。而A32和T32是通过bx指令进行切换的。如下图：</p>
-<center>
-<img width="80%" src="/image/09-ARM/bootloader-01.jpg">
-<div style="color:black;"> <b>  </b>  </div>
-</center>
-<p>也就是CPU启动是在EL3，处于AArch64，在EL3设置EL2的架构为AArch32，设置好返回地址，通过ERET指令，切换到EL2，就可以执行A32指令了。</p>
-<p>这里会有一个问题，AArch64和AArch32的编译链接工具不同，无法进行混合的链接。解决办法是将A32测试程序生成elf文件再生成bin文件，在链接时链接A32的bin文件。顺便这里干脆把A64的测试程序也使用bin文件链接的方式，顶层只保留系统文件，这样结够更加清晰。另外A64和A32测试程序使用单独的环境，并且不依赖系统程序，可以在单独的环境进行编译调试。具体文件结构如下：</p>
-<pre><code class="language-nil" data-lang="nil">.
-├── a32_test
-│   ├── a32_test.s
-│   ├── link.lds
-│   ├── Makefile
-│   ├── test.c
-│   └── thumb_test.inc
-├── a64_test
-│   ├── a64_test.s
-│   ├── link.lds
-│   ├── Makefile
-│   └── test.c
-├── link.lds
-├── Makefile
-├── Makefile.def
-├── script
-│   └── readme.org
-└── system
-    ├── asmlib.inc
-    ├── evt.inc
-    ├── Makefile
-    ├── start.s
-    └── sysregs_init.inc
-</code></pre><p>在Makefile.def中定义了各种参数，其中包含对测试程序的调用，可以选择el0,el1,el2,el3，也可以打开和关闭A32的测试以及是否打印测试结果。</p>
-<p>代码中添加了必要的注释，这里就不展开介绍了，可以参考程序代码，分享如下： <strong>链接：<a href="https://pan.baidu.com/s/1vGm6wRuMbzm9-0rZUsPpFw">https://pan.baidu.com/s/1vGm6wRuMbzm9-0rZUsPpFw</a> 密码：nymn</strong></p>
-<hr />
+</div><hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
   </article>
@@ -5965,6 +6669,13 @@ SECTIONS
 <div class="grow"></div>
 <nav class="pagination-single">
   
+    
+      <a href="https://www.wenhui.space/docs/09-arm/random-instr-generator/" title="基于Python实现ARM随机指令生成器" class="pagination-single__left">
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
+        </div>
+        <div class="pagination-single__right-title">基于Python实现ARM随机指令生成器</div>
+      </a>
     
     <div class="grow"></div>
     
@@ -5991,24 +6702,43 @@ SECTIONS
   <ul>
     <li><a href="#本文">本文</a></li>
     <li><a href="#背景">背景</a></li>
-    <li><a href="#工具下载">工具下载</a></li>
+    <li><a href="#编译工具">编译工具</a></li>
     <li><a href="#bootloader需要做什么">Bootloader需要做什么</a></li>
-    <li><a href="#aarch64">AArch64</a>
+    <li><a href="#文件结构">文件结构</a></li>
+    <li><a href="#aarch64与aarch32混合编程">AArch64与AArch32混合编程</a></li>
+    <li><a href="#system目录">system目录</a>
       <ul>
-        <li><a href="#文件结构">文件结构</a></li>
-        <li><a href="#start-dot-s">start.s</a></li>
-        <li><a href="#evt-dot-s">evt.s</a></li>
-        <li><a href="#main-test-dot-s">main_test.s</a></li>
-        <li><a href="#sysregs-init-dot-s">sysregs_init.s</a></li>
-        <li><a href="#asmlib-dot-s">asmlib.s</a></li>
-        <li><a href="#link-dot-lds">link.lds</a></li>
-        <li><a href="#makefile-dot-rule">Makefile.rule</a></li>
+        <li><a href="#start-dot-s文件">start.s文件</a></li>
+        <li><a href="#asmlib-dot-inc文件">asmlib.inc文件</a></li>
+        <li><a href="#sysregs-init-dot-inc文件">sysregs_init.inc文件</a></li>
+        <li><a href="#evt-dot-inc文件">evt.inc文件</a></li>
         <li><a href="#makefile">Makefile</a></li>
-        <li><a href="#hello-dot-c">hello.c</a></li>
       </ul>
     </li>
-    <li><a href="#aarch32">AArch32</a></li>
-    <li><a href="#aarch64与aarch32混合编程">AArch64与AArch32混合编程</a></li>
+    <li><a href="#a64-test目录">a64_test目录</a>
+      <ul>
+        <li><a href="#a64-test-dot-s文件">a64_test.s文件</a></li>
+        <li><a href="#link-dot-lds文件">link.lds文件</a></li>
+        <li><a href="#your-testcode-dot-s文件">your_testcode.s文件</a></li>
+        <li><a href="#makefile">Makefile</a></li>
+      </ul>
+    </li>
+    <li><a href="#a32-test目录">a32_test目录</a>
+      <ul>
+        <li><a href="#a32-test-dot-s文件">a32_test.s文件</a></li>
+        <li><a href="#thumb-test-dot-inc文件">thumb_test.inc文件</a></li>
+        <li><a href="#link-dot-lds文件">link.lds文件</a></li>
+        <li><a href="#your-testcode-dot-s文件">your_testcode.s文件</a></li>
+        <li><a href="#makefile">Makefile</a></li>
+      </ul>
+    </li>
+    <li><a href="#simple-bootloader目录">simple_bootloader目录</a>
+      <ul>
+        <li><a href="#link-dot-lds文件">link.lds文件</a></li>
+        <li><a href="#makefile-dot-def">Makefile.def</a></li>
+        <li><a href="#makefile文件">Makefile文件</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>

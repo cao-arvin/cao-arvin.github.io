@@ -998,7 +998,7 @@
     "datePublished": "2020-07-17T14:19:00+08:00",
     "dateModified": "2020-07-17T14:19:00+08:00",
     "url" : "https://www.wenhui.space/docs/08-ic-design/typical/clock-domain-crossing/",
-    "description": "本文 主要讲解跨时钟域的数据传输处理，重点是异步fifo。 版本 说明 0.1 初版发布 参考 名称 作者 来源 各种网络资源 网络 专业术语与缩略语 缩写 全称 说明 CDC clock domain",
+    "description": "本文 主要讲解跨时钟域的数据传输处理，重点是异步fifo。 版本 说明 0.1 初版发布 0.2 添加格雷码转换逻辑 0.3 补充问题 0.4 补充问题：非2次幂fifo深度的处",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://www.wenhui.space/"
@@ -1714,6 +1714,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/" class="menu__title " data-depth="1">Git的基本使用命令</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/ep3_tool/" class="menu__title " data-depth="1">代码预处理工具ep3的使用</a>
         </li>
       
@@ -2114,6 +2122,22 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/" class="menu__title " data-depth="1">FPU验证那些事</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/" class="menu__title " data-depth="1">DPU验证环境全套解决方案</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
         </li>
       
@@ -2364,6 +2388,14 @@
     </span>
   </span>
   <ul class="menu__list " data-data=/09-arm/ data-link=https://www.wenhui.space/docs/08-ic-design/typical/clock-domain-crossing/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/random-instr-generator/" class="menu__title " data-depth="0">基于Python实现ARM随机指令生成器</a>
+        </li>
+      
     
       
         
@@ -3519,6 +3551,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/" class="menu__title " data-depth="1">Git的基本使用命令</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/ep3_tool/" class="menu__title " data-depth="1">代码预处理工具ep3的使用</a>
         </li>
       
@@ -3919,6 +3959,22 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/" class="menu__title " data-depth="1">FPU验证那些事</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/" class="menu__title " data-depth="1">DPU验证环境全套解决方案</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
         </li>
       
@@ -4174,6 +4230,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/09-arm/random-instr-generator/" class="menu__title " data-depth="0">基于Python实现ARM随机指令生成器</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/09-arm/bootloader/" class="menu__title " data-depth="0">一个简易bootloader框架</a>
         </li>
       
@@ -4297,6 +4361,18 @@
 <td>0.1</td>
 <td>初版发布</td>
 </tr>
+<tr>
+<td>0.2</td>
+<td>添加格雷码转换逻辑</td>
+</tr>
+<tr>
+<td>0.3</td>
+<td>补充问题</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>补充问题：非2次幂fifo深度的处理</td>
+</tr>
 </tbody>
 </table>
 <h2 id="参考">参考</h2>
@@ -4345,7 +4421,44 @@
 <li>两位数据格雷码：00 01 11 10</li>
 <li>三位数据格雷码：000 001 011 010 110 111 101 100</li>
 </ol>
-<h2 id="数据同步">数据同步</h2>
+<p>转换逻辑：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">// Binary to Gray
+</span><span class="c1"></span><span class="n">g</span><span class="p">[</span><span class="mh">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mh">1</span><span class="p">]</span> <span class="o">^</span> <span class="n">b</span><span class="p">[</span><span class="mh">0</span><span class="p">];</span>
+<span class="n">g</span><span class="p">[</span><span class="mh">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mh">2</span><span class="p">]</span> <span class="o">^</span> <span class="n">b</span><span class="p">[</span><span class="mh">1</span><span class="p">];</span>
+<span class="n">g</span><span class="p">[</span><span class="mh">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mh">3</span><span class="p">]</span> <span class="o">^</span> <span class="n">b</span><span class="p">[</span><span class="mh">2</span><span class="p">];</span>
+<span class="n">g</span><span class="p">[</span><span class="mh">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mh">4</span><span class="p">]</span> <span class="o">^</span> <span class="n">b</span><span class="p">[</span><span class="mh">3</span><span class="p">];</span>
+<span class="p">...</span>
+<span class="n">g</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">^</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">];</span> <span class="c1">//b[n-1:0]为常规二进制数，这里b[n]设置为0。g[n-1:0]为格雷码。
+</span><span class="c1"></span>
+<span class="c1">// Gray to Binary
+</span><span class="c1"></span><span class="n">b</span><span class="p">[</span><span class="mh">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="mh">0</span><span class="p">]</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="mh">1</span><span class="p">]</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="mh">2</span><span class="p">]</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="mh">3</span><span class="p">]</span> <span class="o">^</span> <span class="p">...</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span>
+<span class="n">b</span><span class="p">[</span><span class="mh">1</span><span class="p">]</span> <span class="o">=</span>        <span class="n">g</span><span class="p">[</span><span class="mh">1</span><span class="p">]</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="mh">2</span><span class="p">]</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="mh">3</span><span class="p">]</span> <span class="o">^</span> <span class="p">...</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span>
+<span class="n">b</span><span class="p">[</span><span class="mh">2</span><span class="p">]</span> <span class="o">=</span>               <span class="n">g</span><span class="p">[</span><span class="mh">2</span><span class="p">]</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="mh">3</span><span class="p">]</span> <span class="o">^</span> <span class="p">...</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span>
+<span class="n">b</span><span class="p">[</span><span class="mh">3</span><span class="p">]</span> <span class="o">=</span>                      <span class="n">g</span><span class="p">[</span><span class="mh">3</span><span class="p">]</span> <span class="o">^</span> <span class="p">...</span> <span class="o">^</span> <span class="n">g</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span>
+<span class="p">...</span>
+<span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span> <span class="o">=</span>                                 <span class="n">g</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="数据同步">数据同步</h2>
 <p>如果一个时钟域直接去采样另一个时钟域的数据，可能会采样到数据的亚稳态，采样到的亚稳态数据，随着时间延长，亚稳态数据可能逐渐稳定为高电平，也可能逐渐稳定为低电平，也有可能依旧处于亚稳态。这时候的采样数据是无效的，直到下一次采样才能拿到有效数据。如下图：</p>
 <center>
 <img width="80%" align=center src="/image/08-IC-Design/typical/CDC-01.png">
@@ -4406,7 +4519,7 @@
 <h3 id="总结">总结</h3>
 <p>通过在跨时钟域数据传输电路中添加fifo结构，可以实现两个时钟域的解耦，也就是wr时钟域只负责数据写入fifo，rd时钟域只负责从fifo读出数据， <strong>fifo深度越大，两个时钟域相关性越小</strong> 。（异步fifo的使用是解决跨时钟域问题最典型的方法，对于由高频向低频进行连续数据传输时，可显著提高传输性能）</p>
 <p>fifo的真实读写指针是rd时钟域的rd_ptr0和wr时钟域的wr_ptr0，两者代表作fifo真实的空满。但是wr时钟域在做full判断时，需要将rd_ptr0进行两级同步到rd_ptr2，rd时钟域在做empty判断时与其类似。由于两级同步电路的存在，以及同步错误（延迟一拍）的存在，wr时钟域的rd_ptr2可能不等于读时钟域的rd_ptr0，这时候根据rd_ptr2和wr_ptr0做出的full信号，可能是 <strong>虚满</strong> ； <strong>虚空</strong> 与其类似。但是 <strong>虚空虚满只会延迟传输时间，并不影响传输功能</strong> 。</p>
-<h2 id="其他问题">其他问题</h2>
+<h2 id="补充问题">补充问题</h2>
 <h3 id="同步器之前的组合逻辑">同步器之前的组合逻辑</h3>
 <p>如果在两级同步电路之前添加组合逻辑，会产生额外的毛刺或增加不稳定性，影响一个时钟域的同步寄存器对另一个时钟域的采样。如下图：</p>
 <center>
@@ -4426,6 +4539,35 @@
 <p>如下图，单独看System框的复位策略，是一个异步复位电路，即复位信号有效时不管时钟信号是否处于有效沿，输出都会被复位。但是如果复位信号在时钟信号的上升沿发生时，这时候的输出就是亚稳态。reset_gen框中电路图是实现异步复位同步释放的关键（两级同步电路）。</p>
 <center>
 <img width="80%" align=center src="/image/08-IC-Design/typical/CDC-07.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<h3 id="关于毛刺">关于毛刺</h3>
+<p>电路中的毛刺是无法避免的，原因是一个组合逻辑的数据结果，可能与多个数据源以及多个操作路径有关，数据源到来时间不一致，或者操作路径间的长短不一样，都会使组合逻辑的数据结果产生毛刺，同步电路会保证这些毛刺产生在时钟周期内，换句话说，在时钟沿采样时，组合逻辑的数据结果是稳定的最终结果。</p>
+<p>而异步时序中，采样时机无法保证，这时毛刺就会造成采样数据错误。解决方法还是通过格雷码，即使发生采样错误不会导致功能错误。</p>
+<h3 id="异步fifo中读写地址多bit跳变">异步fifo中读写地址多bit跳变</h3>
+<ul>
+<li>
+<p>问题说明：慢时钟域同步快时钟域时候，在慢时钟域的一个周期内，经历多次快时钟域的地址更新，那么对应的格雷码就会有多个bit发生变化，此场景会不会影响地址同步的正确性？</p>
+</li>
+<li>
+<p>答案：不会！ 这里的多bit跳变是在偷换概念，问题中的多bit跳变指的是快时钟域地址同步到慢时钟域时，地址的多次加一。这不会影响电路功能，格雷码解决的问题是慢时钟域向快时钟域采样时刻，保证地址单bit跳变，这里快时钟域的地址也是在快时钟的沿触发下依次加一的，所以采样时不会发生多bit跳变。（换句话说，多bit跳变是指，读时钟域的读地址或写时钟域的写地址，在沿触发前后的地址变化）</p>
+</li>
+</ul>
+<h3 id="非2次幂fifo深度的处理">非2次幂fifo深度的处理</h3>
+<p>前面所说的fifo深度都是2次幂，在wrap around时能够保持格雷码特性，也就是单bit跳变。那么如何实现任意深度的异步fifo呢？</p>
+<p>这时候我们利用格雷码的另一个特性，那就是对称性。如下图4 bit格雷码为例，以中间为对称的两个数，也保持了单bit跳变的特性，所以我们可以利用这个特性来实现任意深度的异步fifo。但是对于地址更新逻辑和空满判断逻辑需要另外处理。</p>
+<center>
+<img width="40%" align=center src="/image/08-IC-Design/typical/CDC-08.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>先来看常规深度为8的异步fifo，地址更新采用+1即可，空满判断逻辑使用高位[3]和低位地址是否相同来实现：</p>
+<center>
+<img width="50%" align=center src="/image/08-IC-Design/typical/CDC-09.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<p>再来看深度为7的异步fifo，地址更新依然采用+1，但是要注意从1开始到14结束，对14加1要跳变为1，空判断逻辑与深度为8时逻辑相同，但是满判断逻辑需要通过地址差是否为7来实现：</p>
+<center>
+<img width="50%" align=center src="/image/08-IC-Design/typical/CDC-10.png">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <hr />
@@ -4482,10 +4624,13 @@
         <li><a href="#总结">总结</a></li>
       </ul>
     </li>
-    <li><a href="#其他问题">其他问题</a>
+    <li><a href="#补充问题">补充问题</a>
       <ul>
         <li><a href="#同步器之前的组合逻辑">同步器之前的组合逻辑</a></li>
         <li><a href="#异步复位同步释放">异步复位同步释放</a></li>
+        <li><a href="#关于毛刺">关于毛刺</a></li>
+        <li><a href="#异步fifo中读写地址多bit跳变">异步fifo中读写地址多bit跳变</a></li>
+        <li><a href="#非2次幂fifo深度的处理">非2次幂fifo深度的处理</a></li>
       </ul>
     </li>
   </ul>

@@ -7,12 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 21 Jan 2020 14:51:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2020 14:59:00 +0800</lastBuildDate>
     
         <atom:link href="https://www.wenhui.space/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>基于Python实现ARM随机指令生成器</title>
+        <link>https://www.wenhui.space/docs/09-arm/random-instr-generator/</link>
+        <pubDate>Sun, 09 Aug 2020 14:59:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/09-arm/random-instr-generator/</guid>
+        <description>本文 主要介绍一个基于Python实现的ARM随机指令生成器。 版本 说明 0.1 初版发布 背景 在CPU验证中，出于各种原因，经常需要通过汇编程序来实现定</description>
+      </item>
       
       <item>
         <title>Python简明教程</title>

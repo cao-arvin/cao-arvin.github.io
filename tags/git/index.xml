@@ -24,6 +24,15 @@
       </item>
       
       <item>
+        <title>Git的基本使用命令</title>
+        <link>https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/</link>
+        <pubDate>Thu, 02 Apr 2020 09:08:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/</guid>
+        <description>本文 主要记录对版本控制工具Git的基本使用命令。 版本 说明 0.1 初版发布 学习资源 Git 完整命令手册地址 菜鸟教程-Git教程 廖雪峰-Git教程 新手入门 建</description>
+      </item>
+      
+      <item>
         <title>git的安装</title>
         <link>https://www.wenhui.space/docs/01-software-install/install_git/</link>
         <pubDate>Sun, 20 Oct 2019 22:21:00 +0800</pubDate>

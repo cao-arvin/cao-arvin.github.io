@@ -998,7 +998,7 @@
     "datePublished": "2020-02-24T17:03:00+08:00",
     "dateModified": "2020-02-24T17:03:00+08:00",
     "url" : "https://www.wenhui.space/docs/07-ic-verify/tips/resolve-file-dependencies-for-rtl-compile/",
-    "description": "本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 0.2 修正对-y的理解，-y只是指定库文件目录 关于include 一般在",
+    "description": "本文 主要介绍一种有效解决RTL编译时依赖关系问题的方法。 版本 说明 0.1 初版发布 0.2 修正对-y的理解，-y只是指定库文件目录 0.3 使用-y对覆盖率收集的",
     "keywords": ["Verilog"],
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -1715,6 +1715,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/" class="menu__title " data-depth="1">Git的基本使用命令</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/ep3_tool/" class="menu__title " data-depth="1">代码预处理工具ep3的使用</a>
         </li>
       
@@ -2115,6 +2123,22 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/" class="menu__title " data-depth="1">FPU验证那些事</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/" class="menu__title " data-depth="1">DPU验证环境全套解决方案</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
         </li>
       
@@ -2365,6 +2389,14 @@
     </span>
   </span>
   <ul class="menu__list " data-data=/09-arm/ data-link=https://www.wenhui.space/docs/07-ic-verify/tips/resolve-file-dependencies-for-rtl-compile/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/09-arm/random-instr-generator/" class="menu__title " data-depth="0">基于Python实现ARM随机指令生成器</a>
+        </li>
+      
     
       
         
@@ -3520,6 +3552,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/git-use-tips/" class="menu__title " data-depth="1">Git的基本使用命令</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/06-linux-skills/tools-skills/ep3_tool/" class="menu__title " data-depth="1">代码预处理工具ep3的使用</a>
         </li>
       
@@ -3920,6 +3960,22 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/" class="menu__title " data-depth="1">FPU验证那些事</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/" class="menu__title " data-depth="1">DPU验证环境全套解决方案</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/sv-and-uvm-notes/" class="menu__title " data-depth="1">SV与UVM的问题记录</a>
         </li>
       
@@ -4175,6 +4231,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/09-arm/random-instr-generator/" class="menu__title " data-depth="0">基于Python实现ARM随机指令生成器</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/09-arm/bootloader/" class="menu__title " data-depth="0">一个简易bootloader框架</a>
         </li>
       
@@ -4302,6 +4366,10 @@
 <td>0.2</td>
 <td>修正对-y的理解，-y只是指定库文件目录</td>
 </tr>
+<tr>
+<td>0.3</td>
+<td>使用-y对覆盖率收集的影响</td>
+</tr>
 </tbody>
 </table>
 <h2 id="关于include">关于include</h2>
@@ -4380,6 +4448,10 @@ $PROJ_ENV/other_design_path/other_design2.v
 <li>指明加载的顶层文件，由于指明了库文件目录和include path，工具会自动按需加载。</li>
 <li>目录要使用参数，方便移植。</li>
 </ul>
+<h2 id="补充问题">补充问题</h2>
+<h3 id="使用-y对覆盖率收集的影响">使用-y对覆盖率收集的影响</h3>
+<p>经过实践，使用-y指定库路径的方式，避免了罗列详细的filelist，虽然与详细的filelist相比，编译仿真实现一致，但是对于覆盖率收集时，却无法实现由-y加载模块的代码覆盖率收集（cadence imc工具）。</p>
+<p>所以，最终还是选择项目初期使用-y来加载子模块，避免设计人员添加或删除设计文件，导致验证环境需要对filelist不断更新，如果能够直接引用设计的filelist也可以，但是往往设计的filelist是对整个top去维护的，不方便UT验证环境直接引用，所以我还是习惯自己维护一个filelist。待设计成熟后，不会有模块文件的添加和删减，可以更新为详细的filelist，同时展开回归测试和收集覆盖率工作。</p>
 <hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
@@ -4417,6 +4489,11 @@ $PROJ_ENV/other_design_path/other_design2.v
     <li><a href="#关于include">关于include</a></li>
     <li><a href="#关于filelist">关于filelist</a></li>
     <li><a href="#总结">总结</a></li>
+    <li><a href="#补充问题">补充问题</a>
+      <ul>
+        <li><a href="#使用-y对覆盖率收集的影响">使用-y对覆盖率收集的影响</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
