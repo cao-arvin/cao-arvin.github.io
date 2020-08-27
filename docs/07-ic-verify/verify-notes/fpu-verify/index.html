@@ -998,7 +998,7 @@
     "datePublished": "2020-08-11T22:39:00+08:00",
     "dateModified": "2020-08-11T22:39:00+08:00",
     "url" : "https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/",
-    "description": "本文 主要介绍关于浮点运算单元的一些基础知识，和作为验证师应该关注的点。 版本 说明 0.1 初版发布 专业术语与缩略语 缩写 全称 说明 FPU Floatpoint Unit 浮点运算单元 IEE",
+    "description": "本文 主要介绍关于浮点运算单元的一些基础知识，和作为验证师应该关注的点。 版本 说明 0.1 初版发布 专业术语与缩略语 缩写 全称 说明 FPU Floatpoint Unit 浮点运算单元 LSB least significant",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://www.wenhui.space/"
@@ -2109,7 +2109,7 @@
   
   
   <span class="menu__title--collapse active" data-depth="1">
-    一些记录
+    项目记录
     <span class="menu__title--icon down">
       
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
@@ -2845,7 +2845,7 @@
   
   <li >
     
-      <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/" class="capitalize">一些记录</a>
+      <a href="https://www.wenhui.space/docs/07-ic-verify/verify-notes/" class="capitalize">项目记录</a>
     
   </li>
   
@@ -3946,7 +3946,7 @@
   
   
   <span class="menu__title--collapse active" data-depth="1">
-    一些记录
+    项目记录
     <span class="menu__title--icon down">
       
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z"/></svg>
@@ -4369,26 +4369,443 @@
 <tr>
 <th>缩写</th>
 <th>全称</th>
-<th>说明</th>
+<th align="left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>FPU</td>
 <td>Floatpoint Unit</td>
-<td>浮点运算单元</td>
+<td align="left">浮点运算单元</td>
+</tr>
+<tr>
+<td>LSB</td>
+<td>least significant bit</td>
+<td align="left">最低有效位</td>
+</tr>
+<tr>
+<td>MSB</td>
+<td>most significant bit</td>
+<td align="left">最高有效位</td>
+</tr>
+<tr>
+<td>NaN</td>
+<td>not a number</td>
+<td align="left">非数</td>
+</tr>
+<tr>
+<td>qNaN</td>
+<td>quiet NaN</td>
+<td align="left">一般表示未定义的算术运算结果</td>
+</tr>
+<tr>
+<td>sNaN</td>
+<td>signaling NaN</td>
+<td align="left">一般表示标记未初始化的值</td>
+</tr>
+<tr>
+<td>FMP</td>
+<td>fused Multiply Add</td>
+<td align="left">融合乘加</td>
+</tr>
+<tr>
+<td>RM</td>
+<td>Rounding Mode</td>
+<td align="left">舍入模式</td>
+</tr>
+<tr>
+<td></td>
+<td>Sign</td>
+<td align="left">符号位（浮点格式中的组成部分，0表示正,1表示负）</td>
+</tr>
+<tr>
+<td></td>
+<td>trailing significand field</td>
+<td align="left">尾数有效位（浮点格式中的组成部分，除前导数字外的所有有效数字）</td>
+</tr>
+<tr>
+<td></td>
+<td>biased exponent</td>
+<td align="left">偏指数（浮点格式中的组成部分，指数与偏移量常数的和，目的是biased exponent为非负数）</td>
+</tr>
+<tr>
+<td></td>
+<td>Mantissa</td>
+<td align="left">尾数</td>
+</tr>
+<tr>
+<td></td>
+<td>radix</td>
+<td align="left">基数(进制)</td>
+</tr>
+<tr>
+<td></td>
+<td>precision</td>
+<td align="left">精度</td>
+</tr>
+<tr>
+<td></td>
+<td>infinite</td>
+<td align="left">无穷</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考">参考</h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作者</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>《DDI0487D_b_armv8_arm》</td>
+<td>ARM</td>
+<td>ARM官网</td>
+</tr>
+<tr>
+<td>《IEEE-754-2008》</td>
+<td>IEEE</td>
+<td>IEEE官网</td>
 </tr>
 </tbody>
 </table>
 <h2 id="ieee-754标准">IEEE-754标准</h2>
-<h3 id="双精度">双精度</h3>
+<h3 id="概述">概述</h3>
+<ul>
+<li>浮点数的表示可以理解为实数连续无线集合的有限子集，另外加上一些扩展集（qNaN和sNaN）。</li>
+<li>根据给定的格式（单精度/双精度/其他），通过舍入将实数集合映射到该格式可表示的浮点数。</li>
+<li>浮点数据包含以下类型：有符号零、有限的非零数、有符号无穷大、NaN（非数）。</li>
+<li>将浮点数据的表示映射到固定的比特位，形成浮点数的二进制表示方法，以及相应到运算规则。</li>
+</ul>
+<center>
+<img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-01.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<h3 id="二进制表示">二进制表示</h3>
+<ul>
+<li>1-bit符号位 <strong>S</strong></li>
+<li>w-bit偏指数 <strong>E = e+bias</strong></li>
+<li>(t=p−1)-bit尾数有效位 <strong>T=d1 d2 &hellip; dp−1</strong> ，有效位的首位d0被隐含在偏指数E中，如果E等于0，则d0等于0，如果E非0且非全1，则d0等于1。</li>
+</ul>
+<center>
+<img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-02.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>关于 <strong>k、p、t、w、bias</strong> 在不同精度表示格式下的值，如下图：</li>
+</ul>
+<center>
+<img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-03.png">
+<div style="color:black;"> <b>  </b>  </div>
+</center>
+<ul>
+<li>
+<p>关于 <strong>biased exponent E</strong> 的可取范围：</p>
+<ol>
+<li><strong>1 至 2^w −2</strong> 的整数，也就是E非全0且非全1，用来表示常规的浮点数。</li>
+<li><strong>0</strong> ,用来表示正负0，以及非规格化的小数。</li>
+<li><strong>2^w −1</strong> ，也就是E全1，用来表示正负无穷大。</li>
+</ol>
+</li>
+<li>
+<p>二进制浮点格式 <strong>r</strong> 与十进制浮点值 <strong>v</strong> 的对应关系：</p>
+<ol>
+<li>如果E为 2^w −1，也就是全1，并且T不等于0，则 r 是qNaN或sNaN， v 是NaN（不关心符号位S）。</li>
+<li>如果E为 2^w −1，也就是全1，并且T等于0，则 r 和 v 都是正负无穷大。</li>
+<li>如果E为 1至2^w −2 的整数, 也就是非全0非全1，表示常规浮点数， <strong>v = (−1)^S * 2^(E−bias) * (1 + 2^(1−p)*T)</strong> 。（这里可以看出，隐藏的有效位首位d0是1）</li>
+<li>如果E为 0，并且T不等于0，则 <strong>v = (−1)^S * 2^emin * (0 + 2^(1−p)*T)</strong> 。（这里可以看出，隐藏的有效位首位d0是0）</li>
+<li>如果E为 0，并且T等于0，则 <strong>v = (−1)^S * (+0)</strong> ，也就是正负0。</li>
+<li>（emax = bias = 2^(w−1) − 1； emin = 1 − emax = 2 − 2^(w−1)）</li>
+</ol>
+</li>
+</ul>
+<h3 id="舍入模式">舍入模式</h3>
+<ul>
+<li>
+<p>舍入模式：</p>
+<ol>
+<li><strong>roundTiesToEven</strong> ：就近舍入的向偶数舍入，类似于熟悉的四舍五入，而这里是 <strong>四舍六入五凑偶</strong> ，另外向偶数舍入是规范中默认的舍入模式。</li>
+<li><strong>roundTowardPositive</strong> ：向上舍入，正浮点数，尾数非0，则向前进1，负浮点数，尾数非0，则舍去尾数。</li>
+<li><strong>roundTowardNegative</strong> ：向下舍入，正浮点数，尾数非0，则舍去尾数，负浮点数，尾数非0，则向前进1。</li>
+<li><strong>roundTowardZero</strong> ：向零舍入，也就是无论正负，都舍去尾数。</li>
+<li><strong>roundTiesToAway</strong> ：就近舍入中的向上舍入，也就是四舍五入。roundTiesToAway为十进制提供，而规范中并不建议使用roundTiesToAway舍入模式。</li>
+</ol>
+</li>
+<li>
+<p>举例说明（保留1位小数）：</p>
+<ol>
+<li>保留位(Guard bit)：以保留1位小数为例，保留位即第一位小数。</li>
+<li>近似位(Round bit)：以保留1位小数为例，近似位即保留位的下一位，也就是第二位小数。</li>
+<li>中间值：距两个最近的精确值相等，以保留1位小数为例，十进制2.3和2.4的中间值为2.35，二进制1.0和1.1的中间值为1.01。</li>
+<li>向偶数舍入，所谓四舍六入五凑偶，就是原始值等于中间值，如果当前保留位是奇数，则进1，如果当前保留位是偶数，则舍去。</li>
+</ol>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>原始值</th>
+<th>中间值</th>
+<th>向偶数舍入</th>
+<th>向上舍入</th>
+<th>向下舍入</th>
+<th>向零舍入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+1.1110</td>
+<td>+1.11</td>
+<td>+10.0</td>
+<td>+10.0</td>
+<td>+1.1</td>
+<td>+1.1</td>
+</tr>
+<tr>
+<td>+1.0101</td>
+<td>+1.01</td>
+<td>+1.1</td>
+<td>+1.1</td>
+<td>+1.0</td>
+<td>+1.0</td>
+</tr>
+<tr>
+<td>+1.0010</td>
+<td>+1.01</td>
+<td>+1.0</td>
+<td>+1.1</td>
+<td>+1.0</td>
+<td>+1.0</td>
+</tr>
+<tr>
+<td>+1.1000</td>
+<td>+1.11/+1.01</td>
+<td>+1.1</td>
+<td>+1.1</td>
+<td>+1.1</td>
+<td>+1.1</td>
+</tr>
+<tr>
+<td>+1.1100</td>
+<td>+1.11</td>
+<td>+10.0</td>
+<td>+10.0</td>
+<td>+1.1</td>
+<td>+1.1</td>
+</tr>
+<tr>
+<td>+1.0100</td>
+<td>+1.01</td>
+<td>+1.0</td>
+<td>+1.1</td>
+<td>+1.0</td>
+<td>+1.0</td>
+</tr>
+<tr>
+<td>-1.1110</td>
+<td>-1.11</td>
+<td>-10.0</td>
+<td>-1.1</td>
+<td>-10.0</td>
+<td>-1.1</td>
+</tr>
+<tr>
+<td>-1.0101</td>
+<td>-1.01</td>
+<td>-1.1</td>
+<td>-1.0</td>
+<td>-1.1</td>
+<td>-1.0</td>
+</tr>
+<tr>
+<td>-1.0010</td>
+<td>-1.01</td>
+<td>-1.0</td>
+<td>-1.0</td>
+<td>-1.1</td>
+<td>-1.0</td>
+</tr>
+<tr>
+<td>-1.1000</td>
+<td>-1.11/-1.01</td>
+<td>-1.1</td>
+<td>-1.1</td>
+<td>-1.1</td>
+<td>-1.1</td>
+</tr>
+<tr>
+<td>-1.1100</td>
+<td>-1.11</td>
+<td>-10.0</td>
+<td>-1.1</td>
+<td>-10.0</td>
+<td>-1.1</td>
+</tr>
+<tr>
+<td>-1.0100</td>
+<td>-1.01</td>
+<td>-1.0</td>
+<td>-1.0</td>
+<td>-1.1</td>
+<td>-1.0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>为什么采用向偶数舍入？
+<ol>
+<li>四舍五入：十进制中近似位可能的数字为 1 到 9，1/2/3/4舍去，9/8/7/6进位，毋庸置疑，但是对于5，如果采用进位的话，在进行大量数据的统计时，就会累积比较大的偏差。</li>
+<li>向偶数舍入：在大多数情况下，5舍去还是进位概率相等，统计时产生的偏差也就相应要小一些。</li>
+</ol>
+</li>
+</ul>
+<h3 id="特殊值">特殊值</h3>
+<ul>
+<li>特殊值参与的运算，在规范中有特殊的处理方式，在FPU验证中都要格外关注。</li>
+<li>规格化值虽然不算特殊值，但最大值、最小值、最小精度值在FPU验证中也是需要关注的。</li>
+<li>对于0、无穷大、非数这类特殊值参与运算，可能会产生浮点异常，详见 <strong>浮点异常</strong> 章节。</li>
+<li>本例只对半精度做展示，单精度和双精度与其类似。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>特殊值</th>
+<th>半精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+0</td>
+<td>0_00000_0000000000</td>
+</tr>
+<tr>
+<td>-0</td>
+<td>1_00000_0000000000</td>
+</tr>
+<tr>
+<td>正无穷</td>
+<td>0_11111_0000000000</td>
+</tr>
+<tr>
+<td>负无穷</td>
+<td>1_11111_0000000000</td>
+</tr>
+<tr>
+<td>qNaN</td>
+<td>x_11111_1xxxxxxxxx</td>
+</tr>
+<tr>
+<td>sNaN</td>
+<td>x_11111_0xxxxxxxxx</td>
+</tr>
+<tr>
+<td>非规格化最大值</td>
+<td>0_00000_1111111111</td>
+</tr>
+<tr>
+<td>非规格化最小值</td>
+<td>1_00000_1111111111</td>
+</tr>
+<tr>
+<td>非规格化正最小精度值</td>
+<td>0_00000_0000000001</td>
+</tr>
+<tr>
+<td>非规格化负最小精度值</td>
+<td>1_00000_0000000001</td>
+</tr>
+<tr>
+<td>规格化最大值</td>
+<td>0_11110_1111111111</td>
+</tr>
+<tr>
+<td>规格化最小值</td>
+<td>1_11110_1111111111</td>
+</tr>
+<tr>
+<td>规格化正最小精度值</td>
+<td>0_00001_0000000001</td>
+</tr>
+<tr>
+<td>规格化负最小精度值</td>
+<td>1_00001_0000000001</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>不发生异常的特殊值运算：
+<ol>
+<li><strong>无穷</strong> 加/减 <strong>规格化/非规格化/0</strong></li>
+<li><strong>无穷</strong> 乘 <strong>规格化/非规格化</strong></li>
+<li><strong>无穷</strong> 除 <strong>规格化/非规格化</strong></li>
+<li><strong>正无穷</strong> 开方运算</li>
+<li><strong>规格化/非规格化</strong> 除 <strong>无穷大</strong> 取余</li>
+<li><strong>无穷</strong> 格式转换（如单精度、双精度间的转换）</li>
+<li><strong>0</strong> 加/减/乘 <strong>规格化/非规格化/0</strong></li>
+<li><strong>0</strong> 除 <strong>规格化/非规格化/无穷</strong></li>
+<li><strong>0</strong> 开方运算</li>
+</ol>
+</li>
+</ul>
+<h3 id="浮点异常">浮点异常</h3>
+<ul>
+<li>
+<p>Invalid operation，无效操作输出结果为qNaN：</p>
+<ol>
+<li>操作数为 <strong>NaN</strong> 的运算，格式转换除外，如单/双精度间的转换</li>
+<li><strong>0</strong> 乘 <strong>无穷</strong> ，以及融合乘加中乘法项为 <strong>0</strong> 和 <strong>无穷</strong> 的运算</li>
+<li><strong>正无穷</strong> 加 <strong>负无穷</strong> （包括减法形式），以及融合乘加中最后加法项为 <strong>正无穷</strong> 和 <strong>负无穷</strong> 的运算</li>
+<li><strong>0</strong> 除 <strong>0</strong> ， <strong>无穷</strong> 除 <strong>无穷</strong></li>
+<li>取余，被除数是 <strong>规格化/非规格化值</strong> 除数是 <strong>0</strong> ，或者被除数是 <strong>无穷</strong> 除数是 <strong>规格化/非规格化值</strong></li>
+<li>负数开方</li>
+<li><strong>NaN、无穷</strong> 转换为整数</li>
+<li><strong>NaN、无穷、0</strong> 取对数</li>
+<li><strong>NaN</strong> 参与的比较运算，及正无穷与正无穷的大小比较等</li>
+</ol>
+</li>
+<li>
+<p><strong>Division by zero</strong> ，除零运算输出结果为无穷。</p>
+<ol>
+<li>被除数为 <strong>规格化/非规格化值</strong> 除数是 <strong>0</strong></li>
+<li>logB(0)，对应结果浮点格式为 <strong>负无穷</strong></li>
+</ol>
+</li>
+<li>
+<p><strong>Overflow</strong> ，操作数为 <strong>规格化/非规格化值</strong> ，并且运算结果根据舍入模式进行舍入后，大小超出可表示的最大值，则发生上溢异常。</p>
+<ol>
+<li><strong>roundTiesToEven/roundTiesToAway</strong> 舍入模式下，正溢出输出结果为正无穷，负溢出输出结果为负无穷。</li>
+<li><strong>roundTowardZero</strong> 舍入模式下，正溢出输出结果为最大值，负溢出输出结果为最小值。</li>
+<li><strong>roundTowardNegative</strong> 舍入模式下，正溢出输出结果为最大值，负溢出输出结果为负无穷。</li>
+<li><strong>roundTowardPositive</strong> 舍入模式下，正溢出输出结果为正无穷，负溢出输出结果为最小值。</li>
+<li>另外，在输出运算结果的同时，还要发出上溢和非精确异常。</li>
+</ol>
+</li>
+<li>
+<p><strong>Underflow</strong> ，操作数为 <strong>规格化/非规格化值</strong> ，并且运算结果为非规格化值（小于2^emin），则发生下溢异常。</p>
+<ol>
+<li>运算结果为非规格化值，无需舍入操作，则只发生下溢异常。</li>
+<li>运算结果为非规格化值，并且需舍入操作，则发生下溢异常和非精确异常。</li>
+<li>最终结果要根据舍入模式进行舍入操作，可能为 0、2^emin、非规格化值</li>
+</ol>
+</li>
+<li>
+<p><strong>Inexact</strong> ，运算结果需要根据舍入模式进行舍入操作，择发生非精确异常。</p>
+<ol>
+<li>当浮点格式的精度无法表示运算结果，需要根据舍入模式进行舍入操作，得到近似值，这时要报告非精确异常。</li>
+<li>输出结果为舍入后的结果。</li>
+</ol>
+</li>
+</ul>
 <h2 id="浮点类型指令--armv8-aarch64">浮点类型指令(ARMv8 AArch64)</h2>
-<h3 id="寄存器型浮点数据传输">寄存器型浮点数据传输</h3>
+<h3 id="浮点寄存器型数据传输">浮点寄存器型数据传输</h3>
 <ul>
 <li>FMOV(general)：Floating-point Move to or from general-purpose register without conversion.（设计中一般不存在浮点寄存器和通用寄存器间的通路，需要借用ld/st的通路实现）</li>
 </ul>
@@ -4410,7 +4827,7 @@ FMOV &lt;Xd&gt;, &lt;Vn&gt;.D[1]
 <pre><code class="language-nil" data-lang="nil">FMOV &lt;Hd&gt;, &lt;Hn&gt;
 FMOV &lt;Sd&gt;, &lt;Sn&gt;
 FMOV &lt;Dd&gt;, &lt;Dn&gt;
-</code></pre><h3 id="立即数型浮点数据传输">立即数型浮点数据传输</h3>
+</code></pre><h3 id="浮点立即数型数据传输">浮点立即数型数据传输</h3>
 <ul>
 <li>FMOV(scalar, immediate)：Floating-point move immediate (scalar). 立即数可表示范围以及数据组织结构请参考下文。</li>
 </ul>
@@ -4422,17 +4839,17 @@ FMOV &lt;Dd&gt;, #&lt;imm&gt;
 <li>FMOV(vector, immediate)：Floating-point move immediate (vector). 立即数可表示范围以及数据组织结构请参考下文。</li>
 </ul>
 <!--listend-->
-<pre><code class="language-nil" data-lang="nil">FMOV &lt;Vd&gt;.&lt;T&gt;, #&lt;imm&gt; //&lt;T&gt;: 4H,8H 2S,4S
+<pre><code class="language-nil" data-lang="nil">FMOV &lt;Vd&gt;.&lt;T&gt;, #&lt;imm&gt; //&lt;T&gt;: 4H/8H, 2S/4S
 FMOV &lt;Vd&gt;.2D, #&lt;imm&gt;
 </code></pre><ul>
 <li>imm立即数可表示范围以及数据组织结构：8bit数据{abcdefgh}，{a}为符号位，{bcd}为阶码，({!b, cd} - 3)，{efgh}为尾数。</li>
 </ul>
 <center>
-<img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-01.png">
+<img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-04.png">
 <div style="color:black;"> <b> 8位浮点立即数表示及与半/单/双精度的转换关系 </b>  </div>
 </center>
 <center>
-<img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-02.png">
+<img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-05.png">
 <div style="color:black;"> <b> 8位浮点立即数可表示的十进制范围 </b>  </div>
 </center>
 <h3 id="浮点转换指令">浮点转换指令</h3>
@@ -4618,116 +5035,2013 @@ UCVTF &lt;Dd&gt;, &lt;Xn&gt;
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTAS &lt;Hd&gt;, &lt;Hn&gt;
 FCVTAS &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTAS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTAS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTAU (vector)：Floating-point Convert to  Unsigned integer, rounding to nearest with ties to Away (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTAU &lt;Hd&gt;, &lt;Hn&gt;
 FCVTAU &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTAU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTAU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTMS (vector)：Floating-point Convert to Signed integer, rounding toward Minus infinity (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTMS &lt;Hd&gt;, &lt;Hn&gt;
 FCVTMS &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTMS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTMS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTMU (vector)：Floating-point Convert to Unsigned integer, rounding toward Minus infinity (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTMU &lt;Hd&gt;, &lt;Hn&gt;
 FCVTMU &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTMU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTMU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>C7.2.73 FCVTNS (vector)：Floating-point Convert to Signed integer, rounding to nearest with ties to even (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTNS &lt;Hd&gt;, &lt;Hn&gt;
 FCVTNS &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTNS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTNS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTNU (vector)：Floating-point Convert to Unsigned integer, rounding to nearest with ties to even (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTNU &lt;Hd&gt;, &lt;Hn&gt;
 FCVTNU &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTNU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTNU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTPS (vector)：Floating-point Convert to Signed integer, rounding toward Plus infinity (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTPS &lt;Hd&gt;, &lt;Hn&gt;
 FCVTPS &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTPS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTPS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTPU (vector)：Floating-point Convert to Unsigned integer, rounding toward Plus infinity (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTPU &lt;Hd&gt;, &lt;Hn&gt;
 FCVTPU &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTPU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTPU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTZS (vector, fixed-point)：Floating-point Convert to Signed fixed-point, rounding toward Zero (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">// &lt;fbits&gt; For the scalar variant: is the number of fractional bits, in the range 1 to the operand width
 FCVTZS &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt;, #&lt;fbits&gt; // &lt;V&gt;: S,D
-FCVTZS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #&lt;fbits&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTZS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #&lt;fbits&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTZS (vector, integer)：Floating-point Convert to Signed integer, rounding toward Zero (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTZS &lt;Hd&gt;, &lt;Hn&gt;
 FCVTZS &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTZS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTZS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTZU (vector, fixed-point)：Floating-point Convert to Unsigned fixed-point, rounding toward Zero (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">// &lt;fbits&gt; For the scalar variant: is the number of fractional bits, in the range 1 to the operand width
 FCVTZU &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt;, #&lt;fbits&gt; // &lt;V&gt;: S,D
-FCVTZU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #&lt;fbits&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTZU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #&lt;fbits&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>FCVTZU (vector, integer)：Floating-point Convert to Unsigned integer, rounding toward Zero (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">FCVTZU &lt;Hd&gt;, &lt;Hn&gt;
 FCVTZU &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-FCVTZU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+FCVTZU &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>SCVTF (vector, fixed-point)：Signed fixed-point Convert to Floating-point (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">// &lt;fbits&gt; For the scalar variant: is the number of fractional bits, in the range 1 to the operand width
 SCVTF &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt;, #&lt;fbits&gt;  // &lt;V&gt;: H,S,D
-SCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #&lt;fbits&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+SCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #&lt;fbits&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>SCVTF (vector, integer)：Signed integer Convert to Floating-point (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">SCVTF &lt;Hd&gt;, &lt;Hn&gt;
 SCVTF &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-SCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+SCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>UCVTF (vector, fixed-point)：Unsigned fixed-point Convert to Floating-point (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">// &lt;fbits&gt; For the scalar variant: is the number of fractional bits, in the range 1 to the operand width
 UCVTF &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt;, #&lt;fbits&gt;  // &lt;V&gt;: H,S,D
-UCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #&lt;fbits&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+UCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #&lt;fbits&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><ul>
 <li>UCVTF (vector, integer)：Unsigned integer Convert to Floating-point (vector).</li>
 </ul>
 <!--listend-->
 <pre><code class="language-nil" data-lang="nil">UCVTF &lt;Hd&gt;, &lt;Hn&gt;
 UCVTF &lt;V&gt;&lt;d&gt;, &lt;V&gt;&lt;n&gt; // &lt;V&gt;: S,D
-UCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
+UCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
 </code></pre><h3 id="浮点舍入到整数">浮点舍入到整数</h3>
 <h4 id="scalar类型">scalar类型</h4>
-<h4 id="vector类型">vector类型</h4>
-<h2 id="待补充">待补充</h2>
+<ul>
+<li>C7.2.141 FRINTA (scalar)：Floating-point Round to Integral, to nearest with ties to Away (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTA &lt;Hd&gt;, &lt;Hn&gt;
+FRINTA &lt;Sd&gt;, &lt;Sn&gt;
+FRINTA &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><ul>
+<li>C7.2.143 FRINTI (scalar)：Floating-point Round to Integral, using current rounding mode (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTI &lt;Hd&gt;, &lt;Hn&gt;
+FRINTI &lt;Sd&gt;, &lt;Sn&gt;
+FRINTI &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><ul>
+<li>C7.2.145 FRINTM (scalar)：Floating-point Round to Integral, toward Minus infinity (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTM &lt;Hd&gt;, &lt;Hn&gt;
+FRINTM &lt;Sd&gt;, &lt;Sn&gt;
+FRINTM &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><ul>
+<li>C7.2.147 FRINTN (scalar)：Floating-point Round to Integral, to nearest with ties to even (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTN &lt;Hd&gt;, &lt;Hn&gt;
+FRINTN &lt;Sd&gt;, &lt;Sn&gt;
+FRINTN &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><ul>
+<li>C7.2.149 FRINTP (scalar)：Floating-point Round to Integral, toward Plus infinity (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTP &lt;Hd&gt;, &lt;Hn&gt;
+FRINTP &lt;Sd&gt;, &lt;Sn&gt;
+FRINTP &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><ul>
+<li>C7.2.151 FRINTX (scalar)：Floating-point Round to Integral exact, using current rounding mode (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTX &lt;Hd&gt;, &lt;Hn&gt;
+FRINTX &lt;Sd&gt;, &lt;Sn&gt;
+FRINTX &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><ul>
+<li>C7.2.153 FRINTZ (scalar)：Floating-point Round to Integral, toward Zero (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTZ &lt;Hd&gt;, &lt;Hn&gt;
+FRINTZ &lt;Sd&gt;, &lt;Sn&gt;
+FRINTZ &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><h4 id="vector类型">vector类型</h4>
+<ul>
+<li>C7.2.140 FRINTA (vector)：Floating-point Round to Integral, to nearest with ties to Away (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTA &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.142 FRINTI (vector)：Floating-point Round to Integral, using current rounding mode (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTI &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.144 FRINTM (vector)：Floating-point Round to Integral, toward Minus infinity (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTM &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.146 FRINTN (vector)：Floating-point Round to Integral, to nearest with ties to even (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTN &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.148 FRINTP (vector)：Floating-point Round to Integral, toward Plus infinity (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTP &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.150 FRINTX (vector)：Floating-point Round to Integral exact, using current rounding mode (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTX &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.152 FRINTZ (vector)：Floating-point Round to Integral, toward Zero (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRINTZ &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><h3 id="浮点-融合-乘加指令">浮点（融合）乘加指令</h3>
+<ul>
+<li>C7.2.93 FMADD：Floating-point fused Multiply-Add (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMADD &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;, &lt;Ha&gt;
+FMADD &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;, &lt;Sa&gt;
+FMADD &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;, &lt;Da&gt;
+</code></pre><ul>
+<li>C7.2.126 FMSUB：Floating-point Fused Multiply-Subtract (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMSUB &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;, &lt;Ha&gt;
+FMSUB &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;, &lt;Sa&gt;
+FMSUB &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;, &lt;Da&gt;
+</code></pre><ul>
+<li>C7.2.134 FNMADD：Floating-point Negated fused Multiply-Add (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FNMADD &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;, &lt;Ha&gt;
+FNMADD &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;, &lt;Sa&gt;
+FNMADD &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;, &lt;Da&gt;
+</code></pre><ul>
+<li>C7.2.135 FNMSUB：Floating-point Negated fused Multiply-Subtract (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FNMSUB &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;, &lt;Ha&gt;
+FNMSUB &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;, &lt;Sa&gt;
+FNMSUB &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;, &lt;Da&gt;
+</code></pre><h3 id="浮点一源算数指令">浮点一源算数指令</h3>
+<h4 id="scalar类型">scalar类型</h4>
+<ul>
+<li>C7.2.39 FABS (scalar)：Floating-point Absolute value (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FABS &lt;Hd&gt;, &lt;Hn&gt;
+FABS &lt;Sd&gt;, &lt;Sn&gt;
+FABS &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><ul>
+<li>C7.2.133 FNEG (scalar)：Floating-point Negate (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FNEG &lt;Hd&gt;, &lt;Hn&gt;
+FNEG &lt;Sd&gt;, &lt;Sn&gt;
+FNEG &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><ul>
+<li>C7.2.157 FSQRT (scalar)：Floating-point Square Root (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FSQRT &lt;Hd&gt;, &lt;Hn&gt;
+FSQRT &lt;Sd&gt;, &lt;Sn&gt;
+FSQRT &lt;Dd&gt;, &lt;Dn&gt;
+</code></pre><h4 id="vector类型">vector类型</h4>
+<ul>
+<li>C7.2.38 FABS (vector)：Floating-point Absolute value (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FABS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.132 FNEG (vector)：Floating-point Negate (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FNEG &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.156 FSQRT (vector)：Floating-point Square Root (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FSQRT &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><h3 id="浮点二源算数指令">浮点二源算数指令</h3>
+<h4 id="scalar类型">scalar类型</h4>
+<ul>
+<li>C7.2.43 FADD (scalar)：Floating-point Add (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FADD &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FADD &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FADD &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+</code></pre><ul>
+<li>C7.2.159 FSUB (scalar)：Floating-point Subtract (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FSUB &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FSUB &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FSUB &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+</code></pre><ul>
+<li>C7.2.91 FDIV (scalar)：Floating-point Divide (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FDIV &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FDIV &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FDIV &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+</code></pre><ul>
+<li>C7.2.129 FMUL (scalar)：Floating-point Multiply (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMUL &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FMUL &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FMUL &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+</code></pre><ul>
+<li>C7.2.136 FNMUL (scalar)：Floating-point Multiply-Negate (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FNMUL &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FNMUL &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FNMUL &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+</code></pre><h4 id="vector类型">vector类型</h4>
+<ul>
+<li>C7.2.42 FADD (vector)：Floating-point Add (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FADD &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.158 FSUB (vector)：Floating-point Subtract (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FSUB &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.90 FDIV (vector)：Floating-point Divide (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FDIV &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.128 FMUL (vector)：Floating-point Multiply (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMUL &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><h3 id="浮点最大和最小值">浮点最大和最小值</h3>
+<h4 id="scalar类型">scalar类型</h4>
+<ul>
+<li>C7.2.95 FMAX (scalar)：Floating-point Maximum (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMAX &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FMAX &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FMAX &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+</code></pre><ul>
+<li>C7.2.101 FMAXP (scalar)：Floating-point Maximum of Pair of elements (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMAXP &lt;V&gt;&lt;d&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;V&gt;: H/S/D; &lt;T&gt;:2H/2S/2D
+</code></pre><ul>
+<li>C7.2.97 FMAXNM (scalar)：Floating-point Maximum Number (scalar). If one vector element is numeric and the other is a quiet NaN, the result that is placed in the vector is the numerical value, otherwise the result is identical to FMAX (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMAXNM &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FMAXNM &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FMAXNM &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+</code></pre><ul>
+<li>C7.2.98 FMAXNMP (scalar)：Floating-point Maximum Number of Pair of elements (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMAXNMP &lt;V&gt;&lt;d&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 2H, 2S, 2D
+</code></pre><ul>
+<li>C7.2.105 FMIN (scalar)：Floating-point Minimum (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMIN &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FMIN &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FMIN &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+</code></pre><ul>
+<li>C7.2.111 FMINP (scalar)：Floating-point Minimum of Pair of elements (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMINP &lt;V&gt;&lt;d&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;V&gt;: H/S/D; &lt;T&gt;:2H/2S/2D
+</code></pre><ul>
+<li>C7.2.107 FMINNM (scalar)：Floating-point Minimum Number (scalar).  If one vector element is numeric and the other is a quiet NaN, the result that is placed in the vector is the numerical value, otherwise the result is identical to FMIN (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMINNM &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FMINNM &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FMINNM &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+</code></pre><ul>
+<li>C7.2.108 FMINNMP (scalar)：Floating-point Minimum Number of Pair of elements (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMINNMP &lt;V&gt;&lt;d&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 2H, 2S, 2D
+</code></pre><h4 id="vector类型">vector类型</h4>
+<ul>
+<li>C7.2.94 FMAX (vector)：Floating-point Maximum (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMAX &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.102 FMAXP (vector)：Floating-point Maximum Pairwise (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMAXP &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.96 FMAXNM (vector)：Floating-point Maximum Number (vector).  If one vector element is numeric and the other is a quiet NaN, the result placed in the vector is the numerical value, otherwise the result is identical to FMAX (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMAXNM &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.99 FMAXNMP (vector)：Floating-point Maximum Number Pairwise (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMAXNMP &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.100 FMAXNMV：Floating-point Maximum Number across Vector.</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMAXNMV &lt;V&gt;&lt;d&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4S, 4H/8H  &lt;V&gt;: H, S
+</code></pre><ul>
+<li>C7.2.104 FMIN (vector)：Floating-point minimum (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMIN &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.112 FMINP (vector)：Floating-point Minimum Pairwise (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMINP &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.106 FMINNM (vector)：Floating-point Minimum Number (vector).  If one vector element is numeric and the other is a quiet NaN, the result placed in the vector is the numerical value, otherwise the result is identical to FMIN (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMINNM &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.109 FMINNMP (vector)：Floating-point Minimum Number Pairwise (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMINNMP &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.110 FMINNMV：Floating-point Minimum Number across Vector.</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FMINNMV &lt;V&gt;&lt;d&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4S, 4H/8H  &lt;V&gt;: H, S
+</code></pre><h3 id="浮点比较指令">浮点比较指令</h3>
+<h4 id="scalar类型">scalar类型</h4>
+<ul>
+<li>C7.2.59 FCMP：Floating-point quiet Compare (scalar).It raises an Invalid Operation exception only if either operand is a signaling NaN.</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMP &lt;Hn&gt;, &lt;Hm&gt;
+FCMP &lt;Hn&gt;, #0.0
+FCMP &lt;Sn&gt;, &lt;Sm&gt;
+FCMP &lt;Sn&gt;, #0.0
+FCMP &lt;Dn&gt;, &lt;Dm&gt;
+FCMP &lt;Dn&gt;, #0.0
+</code></pre><ul>
+<li>C7.2.60 FCMPE：Floating-point signaling Compare (scalar).If either operand is any type of NaN, or if either operand is a signaling NaN, the instruction raises an Invalid Operation exception.</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMPE &lt;Hn&gt;, &lt;Hm&gt;
+FCMPE &lt;Hn&gt;, #0.0
+FCMPE &lt;Sn&gt;, &lt;Sm&gt;
+FCMPE &lt;Sn&gt;, #0.0
+FCMPE &lt;Dn&gt;, &lt;Dm&gt;
+FCMPE &lt;Dn&gt;, #0.0
+</code></pre><ul>
+<li>C7.2.47 FCCMP：Floating-point Conditional quiet Compare (scalar). It raises an Invalid Operation exception only if either operand is a signaling NaN.</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCCMP &lt;Hn&gt;, &lt;Hm&gt;, #&lt;nzcv&gt;, &lt;cond&gt;
+FCCMP &lt;Sn&gt;, &lt;Sm&gt;, #&lt;nzcv&gt;, &lt;cond&gt;
+FCCMP &lt;Dn&gt;, &lt;Dm&gt;, #&lt;nzcv&gt;, &lt;cond&gt;
+</code></pre><ul>
+<li>C7.2.48 FCCMPE：Floating-point Conditional signaling Compare (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCCMPE &lt;Hn&gt;, &lt;Hm&gt;, #&lt;nzcv&gt;, &lt;cond&gt;
+FCCMPE &lt;Sn&gt;, &lt;Sm&gt;, #&lt;nzcv&gt;, &lt;cond&gt;
+FCCMPE &lt;Dn&gt;, &lt;Dm&gt;, #&lt;nzcv&gt;, &lt;cond&gt;
+</code></pre><h4 id="vector类型">vector类型</h4>
+<ul>
+<li>C7.2.49 FCMEQ (register)：Floating-point Compare Equal (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMEQ &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FCMEQ &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FCMEQ &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+FCMEQ &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.50 FCMEQ (zero)：Floating-point Compare Equal to zero (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMEQ &lt;Hd&gt;, &lt;Hn&gt;, #0.0
+FCMEQ &lt;Sd&gt;, &lt;Sn&gt;, #0.0
+FCMEQ &lt;Dd&gt;, &lt;Dn&gt;, #0.0
+FCMEQ &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #0.0 //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.51 FCMGE (register)：Floating-point Compare Greater than or Equal (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMGE &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FCMGE &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FCMGE &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+FCMGE &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.52 FCMGE (zero)：Floating-point Compare Greater than or Equal to zero (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMGE &lt;Hd&gt;, &lt;Hn&gt;, #0.0
+FCMGE &lt;Sd&gt;, &lt;Sn&gt;, #0.0
+FCMGE &lt;Dd&gt;, &lt;Dn&gt;, #0.0
+FCMGE &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #0.0 //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.53 FCMGT (register)：Floating-point Compare Greater than (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMGT &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FCMGT &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FCMGT &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+FCMGT &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.54 FCMGT (zero)：Floating-point Compare Greater than zero (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMGE &lt;Hd&gt;, &lt;Hn&gt;, #0.0
+FCMGE &lt;Sd&gt;, &lt;Sn&gt;, #0.0
+FCMGE &lt;Dd&gt;, &lt;Dn&gt;, #0.0
+FCMGE &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #0.0 //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.57 FCMLE (zero)：Floating-point Compare Less than or Equal to zero (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMLE &lt;Hd&gt;, &lt;Hn&gt;, #0.0
+FCMLE &lt;Sd&gt;, &lt;Sn&gt;, #0.0
+FCMLE &lt;Dd&gt;, &lt;Dn&gt;, #0.0
+FCMLE &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #0.0 //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.58 FCMLT (zero)：Floating-point Compare Less than zero (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCMLT &lt;Hd&gt;, &lt;Hn&gt;, #0.0
+FCMLT &lt;Sd&gt;, &lt;Sn&gt;, #0.0
+FCMLT &lt;Dd&gt;, &lt;Dn&gt;, #0.0
+FCMLT &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, #0.0 //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.40 FACGE：Floating-point Absolute Compare Greater than or Equal (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FACGE &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FACGE &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FACGE &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+FACGE &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.41 FACGT：Floating-point Absolute Compare Greater than (vector).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FACGT &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FACGT &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FACGT &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+FACGT &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><h3 id="浮点条件选择指令">浮点条件选择指令</h3>
+<ul>
+<li>C7.2.61 FCSEL：Floating-point Conditional Select (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FCSEL &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;, &lt;cond&gt;
+FCSEL &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;, &lt;cond&gt;
+FCSEL &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;, &lt;cond&gt;
+</code></pre><h3 id="其他指令">其他指令</h3>
+<ul>
+<li>C7.2.137 FRECPE：Floating-point Reciprocal Estimate.</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRECPE &lt;Hd&gt;, &lt;Hn&gt;
+FRECPE &lt;Sd&gt;, &lt;Sn&gt;
+FRECPE &lt;Dd&gt;, &lt;Dn&gt;
+FRECPE &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.138 FRECPS：Floating-point Reciprocal Step.</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRECPS &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FRECPS &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FRECPS &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+FRECPS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.139 FRECPX：Floating-point Reciprocal exponent (scalar).</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FRECPX &lt;Hd&gt;, &lt;Hn&gt;
+FRECPX &lt;Sd&gt;, &lt;Sn&gt;
+FRECPX &lt;Dd&gt;, &lt;Dn&gt;
+FRECPX &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.154 FRSQRTE：Floating-point Reciprocal Square Root Estimate.</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FSQRTE &lt;Hd&gt;, &lt;Hn&gt;
+FSQRTE &lt;Sd&gt;, &lt;Sn&gt;
+FSQRTE &lt;Dd&gt;, &lt;Dn&gt;
+FSQRTE &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><ul>
+<li>C7.2.155 FRSQRTS：Floating-point Reciprocal Square Root Step.</li>
+</ul>
+<!--listend-->
+<pre><code class="language-nil" data-lang="nil">FSQRTS &lt;Hd&gt;, &lt;Hn&gt;, &lt;Hm&gt;
+FSQRTS &lt;Sd&gt;, &lt;Sn&gt;, &lt;Sm&gt;
+FSQRTS &lt;Dd&gt;, &lt;Dn&gt;, &lt;Dm&gt;
+FSQRTS &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt;, &lt;Vm&gt;.&lt;T&gt; //&lt;T&gt;: 4H/8H, 2S/4S, 2D
+</code></pre><h2 id="典型浮点运算--armv8-aarch64">典型浮点运算(ARMv8 AArch64)</h2>
+<h3 id="fpadd">FPAdd</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">//以下代码为FPAdd运算的伪码，摘自ARMARM，意在表示运算规则，这里借用verilog语法高亮，该伪码并非遵循verilog语法规则。
+</span><span class="c1"></span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">FPAdd</span><span class="p">(</span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op1</span><span class="p">,</span> <span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op2</span><span class="p">,</span> <span class="n">FPCRType</span> <span class="n">fpcr</span><span class="p">)</span>
+  <span class="n">assert</span> <span class="n">N</span> <span class="n">IN</span> <span class="p">{</span><span class="mh">16</span><span class="p">,</span><span class="mh">32</span><span class="p">,</span><span class="mh">64</span><span class="p">};</span>
+  <span class="n">rounding</span> <span class="o">=</span> <span class="n">FPRoundingMode</span><span class="p">(</span><span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type1</span><span class="p">,</span><span class="n">sign1</span><span class="p">,</span><span class="n">value1</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type2</span><span class="p">,</span><span class="n">sign2</span><span class="p">,</span><span class="n">value2</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="p">(</span><span class="n">done</span><span class="p">,</span><span class="n">result</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPProcessNaNs</span><span class="p">(</span><span class="n">type1</span><span class="p">,</span> <span class="n">type2</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="o">!</span><span class="n">done</span> <span class="n">then</span>
+    <span class="n">inf1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span>
+    <span class="n">inf2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span>
+    <span class="n">zero1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+    <span class="n">zero2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">inf2</span> <span class="o">&amp;&amp;</span> <span class="n">sign1</span> <span class="o">==</span> <span class="n">NOT</span><span class="p">(</span><span class="n">sign2</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPDefaultNaN</span><span class="p">();</span>
+      <span class="n">FPProcessException</span><span class="p">(</span><span class="n">FPExc_InvalidOp</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">sign1</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">inf2</span> <span class="o">&amp;&amp;</span> <span class="n">sign2</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">sign1</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">inf2</span> <span class="o">&amp;&amp;</span> <span class="n">sign2</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="sc">&#39;1&#39;</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">zero1</span> <span class="o">&amp;&amp;</span> <span class="n">zero2</span> <span class="o">&amp;&amp;</span> <span class="n">sign1</span> <span class="o">==</span> <span class="n">sign2</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">sign1</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">result_value</span> <span class="o">=</span> <span class="n">value1</span> <span class="o">+</span> <span class="n">value2</span><span class="p">;</span>
+      <span class="k">if</span> <span class="n">result_value</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="n">then</span> <span class="c1">// Sign of exact zero result depends on rounding mode
+</span><span class="c1"></span>        <span class="n">result_sign</span> <span class="o">=</span> <span class="k">if</span> <span class="n">rounding</span> <span class="o">==</span> <span class="n">FPRounding_NEGINF</span> <span class="n">then</span> <span class="sc">&#39;1&#39;</span> <span class="k">else</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">result_sign</span><span class="p">);</span>
+      <span class="k">else</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">FPRound</span><span class="p">(</span><span class="n">result_value</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">,</span> <span class="n">rounding</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="fpsub">FPSub</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">//以下代码为FPSub运算的伪码，摘自ARMARM，意在表示运算规则，这里借用verilog语法高亮，该伪码并非遵循verilog语法规则。
+</span><span class="c1"></span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">FPSub</span><span class="p">(</span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op1</span><span class="p">,</span> <span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op2</span><span class="p">,</span> <span class="n">FPCRType</span> <span class="n">fpcr</span><span class="p">)</span>
+  <span class="n">assert</span> <span class="n">N</span> <span class="n">IN</span> <span class="p">{</span><span class="mh">16</span><span class="p">,</span><span class="mh">32</span><span class="p">,</span><span class="mh">64</span><span class="p">};</span>
+  <span class="n">rounding</span> <span class="o">=</span> <span class="n">FPRoundingMode</span><span class="p">(</span><span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type1</span><span class="p">,</span><span class="n">sign1</span><span class="p">,</span><span class="n">value1</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type2</span><span class="p">,</span><span class="n">sign2</span><span class="p">,</span><span class="n">value2</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="p">(</span><span class="n">done</span><span class="p">,</span><span class="n">result</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPProcessNaNs</span><span class="p">(</span><span class="n">type1</span><span class="p">,</span> <span class="n">type2</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="o">!</span><span class="n">done</span> <span class="n">then</span>
+    <span class="n">inf1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span>
+    <span class="n">inf2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span>
+    <span class="n">zero1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+    <span class="n">zero2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">inf2</span> <span class="o">&amp;&amp;</span> <span class="n">sign1</span> <span class="o">==</span> <span class="n">sign2</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPDefaultNaN</span><span class="p">();</span>
+      <span class="n">FPProcessException</span><span class="p">(</span><span class="n">FPExc_InvalidOp</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">sign1</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">inf2</span> <span class="o">&amp;&amp;</span> <span class="n">sign2</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">sign1</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">inf2</span> <span class="o">&amp;&amp;</span> <span class="n">sign2</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="sc">&#39;1&#39;</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">zero1</span> <span class="o">&amp;&amp;</span> <span class="n">zero2</span> <span class="o">&amp;&amp;</span> <span class="n">sign1</span> <span class="o">==</span> <span class="n">NOT</span><span class="p">(</span><span class="n">sign2</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">sign1</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">result_value</span> <span class="o">=</span> <span class="n">value1</span> <span class="o">-</span> <span class="n">value2</span><span class="p">;</span>
+      <span class="k">if</span> <span class="n">result_value</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="n">then</span> <span class="c1">// Sign of exact zero result depends on rounding mode
+</span><span class="c1"></span>        <span class="n">result_sign</span> <span class="o">=</span> <span class="k">if</span> <span class="n">rounding</span> <span class="o">==</span> <span class="n">FPRounding_NEGINF</span> <span class="n">then</span> <span class="sc">&#39;1&#39;</span> <span class="k">else</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">result_sign</span><span class="p">);</span>
+      <span class="k">else</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">FPRound</span><span class="p">(</span><span class="n">result_value</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">,</span> <span class="n">rounding</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="fpmul">FPMul</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">//以下代码为FPMul运算的伪码，摘自ARMARM，意在表示运算规则，这里借用verilog语法高亮，该伪码并非遵循verilog语法规则。
+</span><span class="c1"></span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">FPMul</span><span class="p">(</span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op1</span><span class="p">,</span> <span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op2</span><span class="p">,</span> <span class="n">FPCRType</span> <span class="n">fpcr</span><span class="p">)</span>
+  <span class="n">assert</span> <span class="n">N</span> <span class="n">IN</span> <span class="p">{</span><span class="mh">16</span><span class="p">,</span><span class="mh">32</span><span class="p">,</span><span class="mh">64</span><span class="p">};</span>
+  <span class="p">(</span><span class="n">type1</span><span class="p">,</span><span class="n">sign1</span><span class="p">,</span><span class="n">value1</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type2</span><span class="p">,</span><span class="n">sign2</span><span class="p">,</span><span class="n">value2</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="p">(</span><span class="n">done</span><span class="p">,</span><span class="n">result</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPProcessNaNs</span><span class="p">(</span><span class="n">type1</span><span class="p">,</span> <span class="n">type2</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="o">!</span><span class="n">done</span> <span class="n">then</span>
+    <span class="n">inf1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span>
+    <span class="n">inf2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span>
+    <span class="n">zero1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+    <span class="n">zero2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">zero2</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">zero1</span> <span class="o">&amp;&amp;</span> <span class="n">inf2</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPDefaultNaN</span><span class="p">();</span>
+      <span class="n">FPProcessException</span><span class="p">(</span><span class="n">FPExc_InvalidOp</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">inf1</span> <span class="o">||</span> <span class="n">inf2</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="n">sign1</span> <span class="n">EOR</span> <span class="n">sign2</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">zero1</span> <span class="o">||</span> <span class="n">zero2</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">sign1</span> <span class="n">EOR</span> <span class="n">sign2</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPRound</span><span class="p">(</span><span class="n">value1</span><span class="o">*</span><span class="n">value2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="fpdiv">FPDiv</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">//以下代码为FPDiv运算的伪码，摘自ARMARM，意在表示运算规则，这里借用verilog语法高亮，该伪码并非遵循verilog语法规则。
+</span><span class="c1"></span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">FPDiv</span><span class="p">(</span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op1</span><span class="p">,</span> <span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op2</span><span class="p">,</span> <span class="n">FPCRType</span> <span class="n">fpcr</span><span class="p">)</span>
+  <span class="n">assert</span> <span class="n">N</span> <span class="n">IN</span> <span class="p">{</span><span class="mh">16</span><span class="p">,</span><span class="mh">32</span><span class="p">,</span><span class="mh">64</span><span class="p">};</span>
+  <span class="p">(</span><span class="n">type1</span><span class="p">,</span><span class="n">sign1</span><span class="p">,</span><span class="n">value1</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type2</span><span class="p">,</span><span class="n">sign2</span><span class="p">,</span><span class="n">value2</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="p">(</span><span class="n">done</span><span class="p">,</span><span class="n">result</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPProcessNaNs</span><span class="p">(</span><span class="n">type1</span><span class="p">,</span> <span class="n">type2</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="o">!</span><span class="n">done</span> <span class="n">then</span>
+    <span class="n">inf1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span>
+    <span class="n">inf2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span>
+    <span class="n">zero1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+    <span class="n">zero2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">inf2</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">zero1</span> <span class="o">&amp;&amp;</span> <span class="n">zero2</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPDefaultNaN</span><span class="p">();</span>
+      <span class="n">FPProcessException</span><span class="p">(</span><span class="n">FPExc_InvalidOp</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">inf1</span> <span class="o">||</span> <span class="n">zero2</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="n">sign1</span> <span class="n">EOR</span> <span class="n">sign2</span><span class="p">);</span>
+      <span class="k">if</span> <span class="o">!</span><span class="n">inf1</span> <span class="n">then</span> <span class="n">FPProcessException</span><span class="p">(</span><span class="n">FPExc_DivideByZero</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">zero1</span> <span class="o">||</span> <span class="n">inf2</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">sign1</span> <span class="n">EOR</span> <span class="n">sign2</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPRound</span><span class="p">(</span><span class="n">value1</span><span class="o">/</span><span class="n">value2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="fpsqrt">FPSqrt</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">//以下代码为FPSqrt运算的伪码，摘自ARMARM，意在表示运算规则，这里借用verilog语法高亮，该伪码并非遵循verilog语法规则。
+</span><span class="c1"></span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">FPSqrt</span><span class="p">(</span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op</span><span class="p">,</span> <span class="n">FPCRType</span> <span class="n">fpcr</span><span class="p">)</span>
+  <span class="n">assert</span> <span class="n">N</span> <span class="n">IN</span> <span class="p">{</span><span class="mh">16</span><span class="p">,</span><span class="mh">32</span><span class="p">,</span><span class="mh">64</span><span class="p">};</span>
+  <span class="p">(</span><span class="n">fptype</span><span class="p">,</span><span class="n">sign</span><span class="p">,</span><span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="n">fptype</span> <span class="o">==</span> <span class="n">FPType_SNaN</span> <span class="o">||</span> <span class="n">fptype</span> <span class="o">==</span> <span class="n">FPType_QNaN</span> <span class="n">then</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">FPProcessNaN</span><span class="p">(</span><span class="n">fptype</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="n">fptype</span> <span class="o">==</span> <span class="n">FPType_Zero</span> <span class="n">then</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">sign</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="n">fptype</span> <span class="o">==</span> <span class="n">FPType_Infinity</span> <span class="o">&amp;&amp;</span> <span class="n">sign</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span> <span class="n">then</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="n">sign</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="n">sign</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span> <span class="n">then</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">FPDefaultNaN</span><span class="p">();</span>
+    <span class="n">FPProcessException</span><span class="p">(</span><span class="n">FPExc_InvalidOp</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">FPRound</span><span class="p">(</span><span class="n">Sqrt</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="fpmuladd">FPMulAdd</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">//以下代码为FPMulAdd运算的伪码，摘自ARMARM，意在表示运算规则，这里借用verilog语法高亮，该伪码并非遵循verilog语法规则。
+</span><span class="c1"></span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">FPMulAdd</span><span class="p">(</span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">addend</span><span class="p">,</span> <span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op1</span><span class="p">,</span> <span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op2</span><span class="p">,</span> <span class="n">FPCRType</span> <span class="n">fpcr</span><span class="p">)</span>
+  <span class="n">assert</span> <span class="n">N</span> <span class="n">IN</span> <span class="p">{</span><span class="mh">16</span><span class="p">,</span><span class="mh">32</span><span class="p">,</span><span class="mh">64</span><span class="p">};</span>
+  <span class="n">rounding</span> <span class="o">=</span> <span class="n">FPRoundingMode</span><span class="p">(</span><span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">typeA</span><span class="p">,</span><span class="n">signA</span><span class="p">,</span><span class="n">valueA</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">addend</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type1</span><span class="p">,</span><span class="n">sign1</span><span class="p">,</span><span class="n">value1</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type2</span><span class="p">,</span><span class="n">sign2</span><span class="p">,</span><span class="n">value2</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="n">inf1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span> <span class="n">zero1</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+  <span class="n">inf2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span> <span class="n">zero2</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+
+  <span class="p">(</span><span class="n">done</span><span class="p">,</span><span class="n">result</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPProcessNaNs3</span><span class="p">(</span><span class="n">typeA</span><span class="p">,</span> <span class="n">type1</span><span class="p">,</span> <span class="n">type2</span><span class="p">,</span> <span class="n">addend</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="n">typeA</span> <span class="o">==</span> <span class="n">FPType_QNaN</span> <span class="o">&amp;&amp;</span> <span class="p">((</span><span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">zero2</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">zero1</span> <span class="o">&amp;&amp;</span> <span class="n">inf2</span><span class="p">))</span> <span class="n">then</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">FPDefaultNaN</span><span class="p">();</span>
+    <span class="n">FPProcessException</span><span class="p">(</span><span class="n">FPExc_InvalidOp</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="o">!</span><span class="n">done</span> <span class="n">then</span>
+    <span class="n">infA</span> <span class="o">=</span> <span class="p">(</span><span class="n">typeA</span> <span class="o">==</span> <span class="n">FPType_Infinity</span><span class="p">);</span>
+    <span class="n">zeroA</span> <span class="o">=</span> <span class="p">(</span><span class="n">typeA</span> <span class="o">==</span> <span class="n">FPType_Zero</span><span class="p">);</span>
+    <span class="c1">// Determine sign and type product will have if it does not cause an Invalid
+</span><span class="c1"></span>    <span class="c1">// Operation.
+</span><span class="c1"></span>    <span class="n">signP</span> <span class="o">=</span> <span class="n">sign1</span> <span class="n">EOR</span> <span class="n">sign2</span><span class="p">;</span>
+    <span class="n">infP</span> <span class="o">=</span> <span class="n">inf1</span> <span class="o">||</span> <span class="n">inf2</span><span class="p">;</span>
+    <span class="n">zeroP</span> <span class="o">=</span> <span class="n">zero1</span> <span class="o">||</span> <span class="n">zero2</span><span class="p">;</span>
+    <span class="c1">// Non SNaN-generated Invalid Operation cases are multiplies of zero by infinity and
+</span><span class="c1"></span>    <span class="c1">// additions of opposite-signed infinities.
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">inf1</span> <span class="o">&amp;&amp;</span> <span class="n">zero2</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">zero1</span> <span class="o">&amp;&amp;</span> <span class="n">inf2</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">infA</span> <span class="o">&amp;&amp;</span> <span class="n">infP</span> <span class="o">&amp;&amp;</span> <span class="n">signA</span> <span class="o">!=</span> <span class="n">signP</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPDefaultNaN</span><span class="p">();</span>
+      <span class="n">FPProcessException</span><span class="p">(</span><span class="n">FPExc_InvalidOp</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+    <span class="c1">// Other cases involving infinities produce an infinity of the same sign.
+</span><span class="c1"></span>    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">infA</span> <span class="o">&amp;&amp;</span> <span class="n">signA</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">infP</span> <span class="o">&amp;&amp;</span> <span class="n">signP</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">infA</span> <span class="o">&amp;&amp;</span> <span class="n">signA</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">infP</span> <span class="o">&amp;&amp;</span> <span class="n">signP</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="sc">&#39;1&#39;</span><span class="p">);</span>
+    <span class="c1">// Cases where the result is exactly zero and its sign is not determined by the
+</span><span class="c1"></span>    <span class="c1">// rounding mode are additions of same-signed zeros.
+</span><span class="c1"></span>    <span class="k">else</span> <span class="k">if</span> <span class="n">zeroA</span> <span class="o">&amp;&amp;</span> <span class="n">zeroP</span> <span class="o">&amp;&amp;</span> <span class="n">signA</span> <span class="o">==</span> <span class="n">signP</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">signA</span><span class="p">);</span>
+    <span class="c1">// Otherwise calculate numerical result and round it.
+</span><span class="c1"></span>    <span class="k">else</span>
+      <span class="n">result_value</span> <span class="o">=</span> <span class="n">valueA</span> <span class="o">+</span> <span class="p">(</span><span class="n">value1</span> <span class="o">*</span> <span class="n">value2</span><span class="p">);</span>
+      <span class="k">if</span> <span class="n">result_value</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="n">then</span> <span class="c1">// Sign of exact zero result depends on rounding mode
+</span><span class="c1"></span>        <span class="n">result_sign</span> <span class="o">=</span> <span class="k">if</span> <span class="n">rounding</span> <span class="o">==</span> <span class="n">FPRounding_NEGINF</span> <span class="n">then</span> <span class="sc">&#39;1&#39;</span> <span class="k">else</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">result_sign</span><span class="p">);</span>
+      <span class="k">else</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">FPRound</span><span class="p">(</span><span class="n">result_value</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="fpmax">FPMax</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">//以下代码为FPMax运算的伪码，摘自ARMARM，意在表示运算规则，这里借用verilog语法高亮，该伪码并非遵循verilog语法规则。
+</span><span class="c1"></span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">FPMax</span><span class="p">(</span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op1</span><span class="p">,</span> <span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op2</span><span class="p">,</span> <span class="n">FPCRType</span> <span class="n">fpcr</span><span class="p">)</span>
+  <span class="n">assert</span> <span class="n">N</span> <span class="n">IN</span> <span class="p">{</span><span class="mh">16</span><span class="p">,</span><span class="mh">32</span><span class="p">,</span><span class="mh">64</span><span class="p">};</span>
+  <span class="p">(</span><span class="n">type1</span><span class="p">,</span><span class="n">sign1</span><span class="p">,</span><span class="n">value1</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type2</span><span class="p">,</span><span class="n">sign2</span><span class="p">,</span><span class="n">value2</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="p">(</span><span class="n">done</span><span class="p">,</span><span class="n">result</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPProcessNaNs</span><span class="p">(</span><span class="n">type1</span><span class="p">,</span> <span class="n">type2</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="o">!</span><span class="n">done</span> <span class="n">then</span>
+    <span class="k">if</span> <span class="n">value1</span> <span class="o">&gt;</span> <span class="n">value2</span> <span class="n">then</span>
+      <span class="p">(</span><span class="n">fptype</span><span class="p">,</span><span class="n">sign</span><span class="p">,</span><span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span><span class="p">,</span><span class="n">sign1</span><span class="p">,</span><span class="n">value1</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="p">(</span><span class="n">fptype</span><span class="p">,</span><span class="n">sign</span><span class="p">,</span><span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span><span class="p">,</span><span class="n">sign2</span><span class="p">,</span><span class="n">value2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">fptype</span> <span class="o">==</span> <span class="n">FPType_Infinity</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="n">sign</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">fptype</span> <span class="o">==</span> <span class="n">FPType_Zero</span> <span class="n">then</span>
+      <span class="n">sign</span> <span class="o">=</span> <span class="n">sign1</span> <span class="n">AND</span> <span class="n">sign2</span><span class="p">;</span> <span class="c1">// Use most positive sign
+</span><span class="c1"></span>      <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">sign</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="c1">// The use of FPRound() covers the case where there is a trapped underflow exception
+</span><span class="c1"></span>      <span class="c1">// for a denormalized number even though the result is exact.
+</span><span class="c1"></span>      <span class="n">result</span> <span class="o">=</span> <span class="n">FPRound</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="fpmin">FPMin</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-verilog" data-lang="verilog"><span class="c1">//以下代码为FPMin运算的伪码，摘自ARMARM，意在表示运算规则，这里借用verilog语法高亮，该伪码并非遵循verilog语法规则。
+</span><span class="c1"></span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">FPMin</span><span class="p">(</span><span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op1</span><span class="p">,</span> <span class="n">bits</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">op2</span><span class="p">,</span> <span class="n">FPCRType</span> <span class="n">fpcr</span><span class="p">)</span>
+  <span class="n">assert</span> <span class="n">N</span> <span class="n">IN</span> <span class="p">{</span><span class="mh">16</span><span class="p">,</span><span class="mh">32</span><span class="p">,</span><span class="mh">64</span><span class="p">};</span>
+  <span class="p">(</span><span class="n">type1</span><span class="p">,</span><span class="n">sign1</span><span class="p">,</span><span class="n">value1</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">type2</span><span class="p">,</span><span class="n">sign2</span><span class="p">,</span><span class="n">value2</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPUnpack</span><span class="p">(</span><span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="p">(</span><span class="n">done</span><span class="p">,</span><span class="n">result</span><span class="p">)</span> <span class="o">=</span> <span class="n">FPProcessNaNs</span><span class="p">(</span><span class="n">type1</span><span class="p">,</span> <span class="n">type2</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="o">!</span><span class="n">done</span> <span class="n">then</span>
+    <span class="k">if</span> <span class="n">value1</span> <span class="o">&lt;</span> <span class="n">value2</span> <span class="n">then</span>
+      <span class="p">(</span><span class="n">fptype</span><span class="p">,</span><span class="n">sign</span><span class="p">,</span><span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">type1</span><span class="p">,</span><span class="n">sign1</span><span class="p">,</span><span class="n">value1</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="p">(</span><span class="n">fptype</span><span class="p">,</span><span class="n">sign</span><span class="p">,</span><span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">type2</span><span class="p">,</span><span class="n">sign2</span><span class="p">,</span><span class="n">value2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">fptype</span> <span class="o">==</span> <span class="n">FPType_Infinity</span> <span class="n">then</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">FPInfinity</span><span class="p">(</span><span class="n">sign</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">fptype</span> <span class="o">==</span> <span class="n">FPType_Zero</span> <span class="n">then</span>
+      <span class="n">sign</span> <span class="o">=</span> <span class="n">sign1</span> <span class="n">OR</span> <span class="n">sign2</span><span class="p">;</span> <span class="c1">// Use most negative sign
+</span><span class="c1"></span>      <span class="n">result</span> <span class="o">=</span> <span class="n">FPZero</span><span class="p">(</span><span class="n">sign</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="c1">// The use of FPRound() covers the case where there is a trapped underflow exception
+</span><span class="c1"></span>      <span class="c1">// for a denormalized number even though the result is exact.
+</span><span class="c1"></span>      <span class="n">result</span> <span class="o">=</span> <span class="n">FPRound</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">fpcr</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="浮点运算功能点">浮点运算功能点</h2>
+<h3 id="关注的操作数">关注的操作数</h3>
+<ul>
+<li>关注的操作数主要指特殊值，以及规格化的最大值、最小值、正负经典值、正负精度值，这些值在浮点运算中往往涉及特殊运算规则，需要格外关注。</li>
+<li>二进制表示形式以半精度浮点为例，并注意，NaN值尾数非全零。</li>
+<li>经典值指典型的常规值，可以添加多个经典值作为操作数的覆盖。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作数类型</th>
+<th>二进制形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+0</td>
+<td>0_00000_0000000000</td>
+</tr>
+<tr>
+<td>-0</td>
+<td>1_00000_0000000000</td>
+</tr>
+<tr>
+<td>正无穷</td>
+<td>0_11111_0000000000</td>
+</tr>
+<tr>
+<td>负无穷</td>
+<td>1_11111_0000000000</td>
+</tr>
+<tr>
+<td>qNaN</td>
+<td>x_11111_1xxxxxxxxx</td>
+</tr>
+<tr>
+<td>sNaN</td>
+<td>x_11111_0xxxxxxxxx</td>
+</tr>
+<tr>
+<td>非规格化最大值</td>
+<td>0_00000_1111111111</td>
+</tr>
+<tr>
+<td>非规格化最小值</td>
+<td>1_00000_1111111111</td>
+</tr>
+<tr>
+<td>非规格化正最小精度值</td>
+<td>0_00000_0000000001</td>
+</tr>
+<tr>
+<td>非规格化负最小精度值</td>
+<td>1_00000_0000000001</td>
+</tr>
+<tr>
+<td>非规格化正经典值</td>
+<td>0_00000_1001011010</td>
+</tr>
+<tr>
+<td>非规格化负经典值</td>
+<td>1_00000_0110100101</td>
+</tr>
+<tr>
+<td>规格化最大值</td>
+<td>0_11110_1111111111</td>
+</tr>
+<tr>
+<td>规格化最小值</td>
+<td>1_11110_1111111111</td>
+</tr>
+<tr>
+<td>规格化正最小精度值</td>
+<td>0_00001_0000000001</td>
+</tr>
+<tr>
+<td>规格化负最小精度值</td>
+<td>1_00001_0000000001</td>
+</tr>
+<tr>
+<td>规格化正经典值</td>
+<td>0_10110_1001011010</td>
+</tr>
+<tr>
+<td>规格化负经典值</td>
+<td>1_01001_0110100101</td>
+</tr>
+</tbody>
+</table>
+<h3 id="加减指令">加减指令</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Sub_Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作数类型</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>关注的操作数组合遍历</td>
+</tr>
+<tr>
+<td></td>
+<td>通过遍历，可覆盖结果为NaN、结果为0、结果为无穷、结果为非规格化，以及特殊值运算优先级等场景</td>
+</tr>
+<tr>
+<td></td>
+<td>后面是以结果角度分析，对功能点的补充。</td>
+</tr>
+<tr>
+<td>结果为非规格化</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果为0</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果上溢</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果下溢</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果非精确</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>上溢且非精确</td>
+</tr>
+<tr>
+<td></td>
+<td>下溢且非精确</td>
+</tr>
+<tr>
+<td></td>
+<td>结果正非精确</td>
+</tr>
+<tr>
+<td></td>
+<td>结果负非精确</td>
+</tr>
+<tr>
+<td>结果为最大值</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果为最小值</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td>结果为正/负normal</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="乘法指令">乘法指令</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Sub_Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作数类型</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>关注的操作数组合遍历</td>
+</tr>
+<tr>
+<td></td>
+<td>通过遍历，可覆盖结果为NaN、结果为0、结果为无穷、结果为非规格化，以及特殊值运算优先级等场景</td>
+</tr>
+<tr>
+<td></td>
+<td>后面是以结果角度分析，对功能点的补充。</td>
+</tr>
+<tr>
+<td>结果为非规格化</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果上溢</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果下溢</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果非精确</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>上溢且非精确</td>
+</tr>
+<tr>
+<td></td>
+<td>下溢且非精确</td>
+</tr>
+<tr>
+<td></td>
+<td>结果正非精确</td>
+</tr>
+<tr>
+<td></td>
+<td>结果负非精确</td>
+</tr>
+<tr>
+<td>结果为最大值</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果为最小值</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td>结果为正/负normal</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="除法指令">除法指令</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Sub_Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作数类型</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>关注的操作数组合遍历</td>
+</tr>
+<tr>
+<td></td>
+<td>通过遍历，可覆盖结果为NaN、结果为0、结果为无穷、结果为非规格化，以及特殊值运算优先级等场景</td>
+</tr>
+<tr>
+<td></td>
+<td>后面是以结果角度分析，对功能点的补充。</td>
+</tr>
+<tr>
+<td>结果为非规格化</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果上溢</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果下溢</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果非精确</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>上溢且非精确</td>
+</tr>
+<tr>
+<td></td>
+<td>下溢且非精确</td>
+</tr>
+<tr>
+<td></td>
+<td>结果正非精确</td>
+</tr>
+<tr>
+<td></td>
+<td>结果负非精确</td>
+</tr>
+<tr>
+<td>结果为最大值</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td>结果为最小值</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td>结果为正/负normal</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为正normal值, opb为负normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>opa为负normal值, opb为负normal值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="比较指令">比较指令</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Sub_Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作数类型</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>关注的操作数组合遍历</td>
+</tr>
+<tr>
+<td></td>
+<td>通过遍历，可覆盖结果为NaN、结果为0、结果为无穷、结果为非规格化，以及特殊值运算优先级等场景</td>
+</tr>
+</tbody>
+</table>
+<h3 id="开方指令">开方指令</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Sub_Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作数类型</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>关注的操作数组合遍历</td>
+</tr>
+<tr>
+<td></td>
+<td>通过遍历，可覆盖结果为NaN、结果为0、结果为无穷、结果为非规格化，以及特殊值运算优先级等场景</td>
+</tr>
+<tr>
+<td></td>
+<td>后面是以结果角度分析，对功能点的补充。</td>
+</tr>
+<tr>
+<td>结果为非规格化</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>被开方数为正normal值</td>
+</tr>
+<tr>
+<td>结果下溢</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>被开方数为正normal值</td>
+</tr>
+<tr>
+<td>结果非精确</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>被开方数为正normal值</td>
+</tr>
+<tr>
+<td>结果为正normal</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>被开方数为正normal值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="转换指令">转换指令</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Sub_Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作数类型</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>关注的操作数组合遍历</td>
+</tr>
+<tr>
+<td></td>
+<td>通过遍历，可覆盖结果为NaN、结果为0、结果为无穷、结果为非规格化，以及特殊值运算优先级等场景</td>
+</tr>
+<tr>
+<td></td>
+<td>后面是以结果角度分析，对功能点的补充。</td>
+</tr>
+<tr>
+<td>结果上溢</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>被转换数为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>被转换数为负normal值</td>
+</tr>
+<tr>
+<td>结果下溢</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>被转换数为正normal值</td>
+</tr>
+<tr>
+<td></td>
+<td>被转换数为负normal值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fmov指令">FMOV指令</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Sub_Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作数类型</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>关注的操作数组合遍历</td>
+</tr>
+<tr>
+<td></td>
+<td>通过遍历，可覆盖结果为NaN、结果为0、结果为无穷、结果为非规格化，以及特殊值运算优先级等场景</td>
+</tr>
+</tbody>
+</table>
+<h3 id="舍入模式">舍入模式</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Sub_Feature</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>就近舍入</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位不全为0</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位全为0，最低有效位为奇数</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位全为0，最低有效位为偶数</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位不全为0</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位全为0，最低有效位为奇数</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位全为0，最低有效位为偶数</td>
+<td>舍</td>
+</tr>
+<tr>
+<td>向上舍入</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为0</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位不全为0</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位全为0，最低有效位为奇数</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位全为0，最低有效位为偶数</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位不全为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位全为0，最低有效位为奇数</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位全为0，最低有效位为偶数</td>
+<td>舍</td>
+</tr>
+<tr>
+<td>向下舍入</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位不全为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位全为0，最低有效位为奇数</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位全为0，最低有效位为偶数</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为0</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位不全为0</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位全为0，最低有效位为奇数</td>
+<td>入</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位全为0，最低有效位为偶数</td>
+<td>入</td>
+</tr>
+<tr>
+<td>向0舍入</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位不全为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位全为0，最低有效位为奇数</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为正，最低有效位的后一位为1,且后面数位全为0，最低有效位为偶数</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位不全为0</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位全为0，最低有效位为奇数</td>
+<td>舍</td>
+</tr>
+<tr>
+<td></td>
+<td>结果为负，最低有效位的后一位为1,且后面数位全为0，最低有效位为偶数</td>
+<td>舍</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
@@ -4763,15 +7077,20 @@ UCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
   <ul>
     <li><a href="#本文">本文</a></li>
     <li><a href="#专业术语与缩略语">专业术语与缩略语</a></li>
+    <li><a href="#参考">参考</a></li>
     <li><a href="#ieee-754标准">IEEE-754标准</a>
       <ul>
-        <li><a href="#双精度">双精度</a></li>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#二进制表示">二进制表示</a></li>
+        <li><a href="#舍入模式">舍入模式</a></li>
+        <li><a href="#特殊值">特殊值</a></li>
+        <li><a href="#浮点异常">浮点异常</a></li>
       </ul>
     </li>
     <li><a href="#浮点类型指令--armv8-aarch64">浮点类型指令(ARMv8 AArch64)</a>
       <ul>
-        <li><a href="#寄存器型浮点数据传输">寄存器型浮点数据传输</a></li>
-        <li><a href="#立即数型浮点数据传输">立即数型浮点数据传输</a></li>
+        <li><a href="#浮点寄存器型数据传输">浮点寄存器型数据传输</a></li>
+        <li><a href="#浮点立即数型数据传输">浮点立即数型数据传输</a></li>
         <li><a href="#浮点转换指令">浮点转换指令</a>
           <ul>
             <li><a href="#scalar类型">scalar类型</a></li>
@@ -4784,9 +7103,60 @@ UCVTF &lt;Vd&gt;.&lt;T&gt;, &lt;Vn&gt;.&lt;T&gt; //&lt;T&gt;: 4H,8H 2S,4S 2D
             <li><a href="#vector类型">vector类型</a></li>
           </ul>
         </li>
+        <li><a href="#浮点-融合-乘加指令">浮点（融合）乘加指令</a></li>
+        <li><a href="#浮点一源算数指令">浮点一源算数指令</a>
+          <ul>
+            <li><a href="#scalar类型">scalar类型</a></li>
+            <li><a href="#vector类型">vector类型</a></li>
+          </ul>
+        </li>
+        <li><a href="#浮点二源算数指令">浮点二源算数指令</a>
+          <ul>
+            <li><a href="#scalar类型">scalar类型</a></li>
+            <li><a href="#vector类型">vector类型</a></li>
+          </ul>
+        </li>
+        <li><a href="#浮点最大和最小值">浮点最大和最小值</a>
+          <ul>
+            <li><a href="#scalar类型">scalar类型</a></li>
+            <li><a href="#vector类型">vector类型</a></li>
+          </ul>
+        </li>
+        <li><a href="#浮点比较指令">浮点比较指令</a>
+          <ul>
+            <li><a href="#scalar类型">scalar类型</a></li>
+            <li><a href="#vector类型">vector类型</a></li>
+          </ul>
+        </li>
+        <li><a href="#浮点条件选择指令">浮点条件选择指令</a></li>
+        <li><a href="#其他指令">其他指令</a></li>
       </ul>
     </li>
-    <li><a href="#待补充">待补充</a></li>
+    <li><a href="#典型浮点运算--armv8-aarch64">典型浮点运算(ARMv8 AArch64)</a>
+      <ul>
+        <li><a href="#fpadd">FPAdd</a></li>
+        <li><a href="#fpsub">FPSub</a></li>
+        <li><a href="#fpmul">FPMul</a></li>
+        <li><a href="#fpdiv">FPDiv</a></li>
+        <li><a href="#fpsqrt">FPSqrt</a></li>
+        <li><a href="#fpmuladd">FPMulAdd</a></li>
+        <li><a href="#fpmax">FPMax</a></li>
+        <li><a href="#fpmin">FPMin</a></li>
+      </ul>
+    </li>
+    <li><a href="#浮点运算功能点">浮点运算功能点</a>
+      <ul>
+        <li><a href="#关注的操作数">关注的操作数</a></li>
+        <li><a href="#加减指令">加减指令</a></li>
+        <li><a href="#乘法指令">乘法指令</a></li>
+        <li><a href="#除法指令">除法指令</a></li>
+        <li><a href="#比较指令">比较指令</a></li>
+        <li><a href="#开方指令">开方指令</a></li>
+        <li><a href="#转换指令">转换指令</a></li>
+        <li><a href="#fmov指令">FMOV指令</a></li>
+        <li><a href="#舍入模式">舍入模式</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
