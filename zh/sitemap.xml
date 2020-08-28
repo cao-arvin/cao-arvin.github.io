@@ -123,6 +123,16 @@
   </url>
   
   <url>
+    <loc>https://www.wenhui.space/tags/cpu/</loc>
+    <lastmod>2020-08-28T10:54:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/</loc>
+    <lastmod>2020-08-28T10:54:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/</loc>
     <lastmod>2020-08-11T22:39:00+08:00</lastmod>
   </url>
@@ -150,11 +160,6 @@
   <url>
     <loc>https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/</loc>
     <lastmod>2020-07-24T15:52:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.wenhui.space/tags/cpu/</loc>
-    <lastmod>2020-07-22T15:45:00+08:00</lastmod>
   </url>
   
   <url>

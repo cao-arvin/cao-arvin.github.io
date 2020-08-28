@@ -998,7 +998,8 @@
     "datePublished": "2020-07-24T15:52:00+08:00",
     "dateModified": "2020-07-24T15:52:00+08:00",
     "url" : "https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/",
-    "description": "本文 主要针对CPU的两个漏洞熔断（Meltdown）和幽灵（Spectre），谈谈自己的理解。 版本 说明 0.1 初版发布 参考 名称 作者 来源 谈谈幽灵和熔",
+    "description": "本文 主要针对CPU的两个漏洞熔断（Meltdown）和幽灵（Spectre），谈谈自己的理解。 版本 说明 0.1 初版发布 参考 名称 作者 来源 《谈谈幽灵和",
+    "keywords": ["CPU"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://www.wenhui.space/"
@@ -2231,6 +2232,14 @@
     </span>
   </span>
   <ul class="menu__list active" data-data=/cpu/ data-link=https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" class="menu__title " data-depth="1">初识多核体系结构</a>
+        </li>
+      
     
       
         
@@ -4073,6 +4082,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" class="menu__title " data-depth="1">初识多核体系结构</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/" class="menu__title active" data-depth="1">浅谈熔断和幽灵</a>
         </li>
       
@@ -4374,7 +4391,7 @@
 </thead>
 <tbody>
 <tr>
-<td>谈谈幽灵和熔断两兄弟</td>
+<td>《谈谈幽灵和熔断两兄弟》</td>
 <td>看雪学院-ixiaohuo</td>
 <td>简书</td>
 </tr>
@@ -4513,7 +4530,7 @@ endfunction
 <li>第三步执行function3，扫描array1的所有元素，记录返回时间，由于之前清除了array1的所有缓存区，function2也只是元素0添加至了缓存区，ldr指令从cache和内存拿数据有明显的时间差，如果扫描结果为某index元素访问最快，则目标地址的数据byte值为index。</li>
 </ul>
 <h2 id="解决方案">解决方案</h2>
-<p>熔断是关键，</p>
+<p>待补充</p>
 <hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
@@ -4523,6 +4540,13 @@ endfunction
 <div class="grow"></div>
 <nav class="pagination-single">
   
+    
+      <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" title="初识多核体系结构" class="pagination-single__left">
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
+        </div>
+        <div class="pagination-single__right-title">初识多核体系结构</div>
+      </a>
     
     <div class="grow"></div>
     

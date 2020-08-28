@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>初识多核体系结构</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/</link>
+        <pubDate>Fri, 28 Aug 2020 10:54:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/</guid>
+        <description>本文 主要介绍多核体系结构，包括多核体系结构的由来，以及多和体系结构中的几大关键技术。 版本 说明 0.1 初版发布 参考 名称 作者 来源 《多核体系结构概览》 赵</description>
+      </item>
+      
+      <item>
         <title>FPU验证那些事</title>
         <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/</link>
         <pubDate>Tue, 11 Aug 2020 22:39:00 +0800</pubDate>
@@ -47,7 +56,7 @@
         <pubDate>Fri, 24 Jul 2020 15:52:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/08-ic-design/cpu/meltdown-and-spectre/</guid>
-        <description>本文 主要针对CPU的两个漏洞熔断（Meltdown）和幽灵（Spectre），谈谈自己的理解。 版本 说明 0.1 初版发布 参考 名称 作者 来源 谈谈幽灵和熔</description>
+        <description>本文 主要针对CPU的两个漏洞熔断（Meltdown）和幽灵（Spectre），谈谈自己的理解。 版本 说明 0.1 初版发布 参考 名称 作者 来源 《谈谈幽灵和</description>
       </item>
       
       <item>
