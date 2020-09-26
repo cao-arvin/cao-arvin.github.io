@@ -7,12 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy;2019-{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 28 Aug 2020 10:54:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2020 11:58:00 +0800</lastBuildDate>
     
         <atom:link href="https://www.wenhui.space/tags/cpu/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>多周期CPU设计</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/</link>
+        <pubDate>Sun, 30 Aug 2020 11:58:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/</guid>
+        <description>本文 主要介绍一个基于MIPS架构的多周期处理器，本项目来自计算机组成原理课程设计。 版本 说明 0.1 初版发布 专业术语与缩略语 缩写 全称 说明 ISA Instruction Set Architecture 指令</description>
+      </item>
       
       <item>
         <title>初识多核体系结构</title>
@@ -21,6 +30,24 @@
         
         <guid>https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/</guid>
         <description>本文 主要介绍多核体系结构，包括多核体系结构的由来，以及多和体系结构中的几大关键技术。 版本 说明 0.1 初版发布 参考 名称 作者 来源 《多核体系结构概览》 赵</description>
+      </item>
+      
+      <item>
+        <title>FPU验证那些事</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/</link>
+        <pubDate>Tue, 11 Aug 2020 22:39:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/</guid>
+        <description>本文 主要介绍关于浮点运算单元的一些基础知识，和作为验证师应该关注的点。 版本 说明 0.1 初版发布 专业术语与缩略语 缩写 全称 说明 FPU Floatpoint Unit 浮点运算单元 LSB least significant</description>
+      </item>
+      
+      <item>
+        <title>DPU验证环境全套解决方案</title>
+        <link>https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/</link>
+        <pubDate>Thu, 06 Aug 2020 18:14:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/07-ic-verify/verify-notes/dpu-ut/</guid>
+        <description>本文 主要介绍一个关于处理器中DPU模块的验证环境。 版本 说明 0.1 初版发布 专业术语与缩略语 缩写 全称 说明 IFU Instruction Fetch Unit 取指令部件 DPU Data Processing Unit 数据运算部件 DCU/LSU Data Cache</description>
       </item>
       
       <item>

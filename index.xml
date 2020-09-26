@@ -15,6 +15,15 @@
     
       
       <item>
+        <title>多周期CPU设计</title>
+        <link>https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/</link>
+        <pubDate>Sun, 30 Aug 2020 11:58:00 +0800</pubDate>
+        
+        <guid>https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/</guid>
+        <description>本文 主要介绍一个基于MIPS架构的多周期处理器，本项目来自计算机组成原理课程设计。 版本 说明 0.1 初版发布 专业术语与缩略语 缩写 全称 说明 ISA Instruction Set Architecture 指令</description>
+      </item>
+      
+      <item>
         <title>初识多核体系结构</title>
         <link>https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/</link>
         <pubDate>Fri, 28 Aug 2020 10:54:00 +0800</pubDate>
@@ -596,7 +605,7 @@
         <pubDate>Wed, 08 Jan 2020 20:50:00 +0800</pubDate>
         
         <guid>https://www.wenhui.space/docs/07-ic-verify/formal/formal/</guid>
-        <description>本文 主要介绍本人使用形式化验证的一些经验总结。 版本 说明 0.1 初版发布 背景 验证工具： Cadence 公司的 JasperGold 写在前头 形式化验证是一种验证方法，而实际应用方向主要</description>
+        <description>本文 主要介绍本人使用形式化验证的一些经验总结。 版本 说明 0.1 初版发布 0.2 添加JasperGold的tcl脚本启动环境 背景 验证工具： Cadence 公司的 JasperGold 写在前</description>
       </item>
       
       <item>

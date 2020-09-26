@@ -2237,6 +2237,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/" class="menu__title " data-depth="1">多周期CPU设计</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" class="menu__title " data-depth="1">初识多核体系结构</a>
         </li>
       
@@ -4082,6 +4090,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/" class="menu__title " data-depth="1">多周期CPU设计</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" class="menu__title " data-depth="1">初识多核体系结构</a>
         </li>
       
@@ -5361,6 +5377,7 @@ LDR R5, [R8]
 <center>
 <img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-60.png">
 <div style="color:black;"> <b>  </b>  </div>
+<br>
 </center>
 <ul>
 <li>组相连：
@@ -5374,6 +5391,17 @@ LDR R5, [R8]
 </ul>
 <center>
 <img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-61.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-145.png">
+<div style="color:black;"> <b> 此图是上图的另一种表现形式 </b>  </div>
+<br>
+</center>
+<h3 id="cache的tag-index-offest">Cache的Tag、Index、offest</h3>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-144.png">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h3 id="arm-cache-and-cache-policy">ARM Cache &amp; Cache Policy</h3>
@@ -5518,7 +5546,7 @@ LDR R5, [R8]
 </center>
 <ul>
 <li>在没有一致性机制的系统里（如Mali GPU），软件必须保证所访问的L1/L2数据是clean。</li>
-<li>ACE-Lite接口允许没有cache的处理器去窥探其他处理器的cache，确保自己访问的数据是clean状态。</li>
+<li>ACE-Lite接口允许没有cache的处理器去监测其他处理器的cache，确保自己访问的数据是clean状态。</li>
 </ul>
 <center>
 <img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-75.png">
@@ -5608,7 +5636,7 @@ LDR R5, [R8]
 <ul>
 <li>以上讲的是cluster内core与core之间的cache一致性，那么cluster与cluster之间是如何保存cache一致性呢？请看下图。</li>
 <li>以下是Big.little结构，大核是A15，小核是A7，A15与A7内都有4个core。</li>
-<li>cluster与cluster之间保持cache一致性，是通过总线来实现的。首先每个cluster内存在一个ACE接口，会互相窥探（snoop）对方cache的数据，如果对方cache不存在所访问的数据，则从下一级存储去取，如果对方cache存在所访问的数据，则从对方cache去获取。</li>
+<li>cluster与cluster之间保持cache一致性，是通过总线来实现的。首先每个cluster内存在一个ACE接口，会互相监测（snoop）对方cache的数据，如果对方cache不存在所访问的数据，则从下一级存储去取，如果对方cache存在所访问的数据，则从对方cache去获取。</li>
 <li>目的就是减少主存（DDR）的访问，一是减少访存时间，二是减少BUS访问阻塞，三是减少Memory controler的访问请求，四是减少功耗。</li>
 </ul>
 <center>
@@ -5650,7 +5678,7 @@ LDR R5, [R8]
 <img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-88.png">
 <div style="color:black;"> <b>   </b>  </div>
 </center>
-<p>Cache Coherent Interconnection窥探Master1和Master2，看Master1和Master2有没有Master0访问的数据。</p>
+<p>Cache Coherent Interconnection监测Master1和Master2，看Master1和Master2有没有Master0访问的数据。</p>
 <center>
 <img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-89.png">
 <div style="color:black;"> <b>   </b>  </div>
@@ -5678,7 +5706,7 @@ LDR R5, [R8]
 <img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-93.png">
 <div style="color:black;"> <b>   </b>  </div>
 </center>
-<p>Cache Coherent Interconnection窥探Master1和Master2。</p>
+<p>Cache Coherent Interconnection监测Master1和Master2。</p>
 <center>
 <img width="80%" align=center src="/image/08-IC-Design/CPU-Design/ARM-CPU-Introduction-94.png">
 <div style="color:black;"> <b>   </b>  </div>
@@ -6480,6 +6508,7 @@ STREX Rx, Ry, [Rz]
         <li><a href="#cache-size">cache size</a></li>
         <li><a href="#cache-organisation">cache organisation</a></li>
         <li><a href="#cache-type">cache Type</a></li>
+        <li><a href="#cache的tag-index-offest">Cache的Tag、Index、offest</a></li>
         <li><a href="#arm-cache-and-cache-policy">ARM Cache &amp; Cache Policy</a></li>
         <li><a href="#further-understand-cache-type">Further Understand Cache Type</a></li>
       </ul>

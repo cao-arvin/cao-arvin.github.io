@@ -999,6 +999,7 @@
     "dateModified": "2020-08-11T22:39:00+08:00",
     "url" : "https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/",
     "description": "本文 主要介绍关于浮点运算单元的一些基础知识，和作为验证师应该关注的点。 版本 说明 0.1 初版发布 专业术语与缩略语 缩写 全称 说明 FPU Floatpoint Unit 浮点运算单元 LSB least significant",
+    "keywords": ["CPU"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://www.wenhui.space/"
@@ -2231,6 +2232,14 @@
     </span>
   </span>
   <ul class="menu__list " data-data=/cpu/ data-link=https://www.wenhui.space/docs/07-ic-verify/verify-notes/fpu-verify/>
+    
+      
+        
+        
+        <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/" class="menu__title " data-depth="1">多周期CPU设计</a>
+        </li>
+      
     
       
         
@@ -4081,6 +4090,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/" class="menu__title " data-depth="1">多周期CPU设计</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" class="menu__title " data-depth="1">初识多核体系结构</a>
         </li>
       
@@ -4504,6 +4521,7 @@
 <center>
 <img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-01.png">
 <div style="color:black;"> <b>  </b>  </div>
+<br>
 </center>
 <h3 id="二进制表示">二进制表示</h3>
 <ul>
@@ -4514,6 +4532,7 @@
 <center>
 <img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-02.png">
 <div style="color:black;"> <b>  </b>  </div>
+<br>
 </center>
 <ul>
 <li>关于 <strong>k、p、t、w、bias</strong> 在不同精度表示格式下的值，如下图：</li>
@@ -4521,6 +4540,7 @@
 <center>
 <img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-03.png">
 <div style="color:black;"> <b>  </b>  </div>
+<br>
 </center>
 <ul>
 <li>
@@ -4863,10 +4883,12 @@ FMOV &lt;Vd&gt;.2D, #&lt;imm&gt;
 <center>
 <img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-04.png">
 <div style="color:black;"> <b> 8位浮点立即数表示及与半/单/双精度的转换关系 </b>  </div>
+<br>
 </center>
 <center>
 <img width="80%" src="/image/07-IC-Verify/verify-notes/FPU-verify-05.png">
 <div style="color:black;"> <b> 8位浮点立即数可表示的十进制范围 </b>  </div>
+<br>
 </center>
 <h3 id="浮点转换指令">浮点转换指令</h3>
 <h4 id="scalar类型">scalar类型</h4>

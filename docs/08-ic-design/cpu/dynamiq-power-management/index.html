@@ -2237,6 +2237,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/" class="menu__title " data-depth="1">多周期CPU设计</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" class="menu__title " data-depth="1">初识多核体系结构</a>
         </li>
       
@@ -4082,6 +4090,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/" class="menu__title " data-depth="1">多周期CPU设计</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" class="menu__title " data-depth="1">初识多核体系结构</a>
         </li>
       
@@ -5049,8 +5065,176 @@
 <li>PACCEPT表示接受请求，PDENY表示拒绝请求。</li>
 <li>PACCEPT，PDENY，PREQ，PSTATE，必须是从寄存器直接输出。</li>
 </ul>
-<h3 id="其他">其他</h3>
-<p>待补充</p>
+<h3 id="p-channel接口握手状态">P_Channel接口握手状态</h3>
+<ul>
+<li>
+<p>对P_Channel的接口，arm也定义了一些握手状态:</p>
+<ol>
+<li>P_RESET： device处于reset状态</li>
+<li>P_STABLE： device处于非reset状态，并且PMU没有发送power状态切换请求</li>
+<li>P_REQUEST： PMU向device发送power状态切换请求</li>
+<li>P_ACCEPT： device接受PMU的power状态切换请求</li>
+<li>P_DENIED： device拒绝PMU的power状态切换请求</li>
+<li>P_COMPLETE： device接受PMU的power状态切换请求后，PMU取消power状态切换请求</li>
+<li>P_CONTINUE: device拒绝PMU的power状态切换请求后，PMU取消power状态切换请求</li>
+</ol>
+</li>
+<li>
+<p>编码规则：</p>
+</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-22.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<ul>
+<li>状态转移图：</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-23.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<ul>
+<li>握手协议规则：
+<ol>
+<li>PREQ只有在PACCEPT和PDENY都为低情况下，才可以从低变为高</li>
+<li>PREQ要满足以下的任意条件，才可以从高变为低：1）PACCETP是高，PDENY为低；2）PACCEPT为低，PDENY为高。</li>
+<li>PSTATE满足以下的任意条件，才可以变化：1）PREQ，PACCEPT，PDENY都为低；2）PREQ和PDENY为高，PACCEPT为低。</li>
+<li>PACCEPT只有在PREQ为高，并且PDENY为低，才可以从低变为高。</li>
+<li>PACCETP只有在PREQ为低，并且PDENY为低，才可以从高变为低。</li>
+<li>PDENY只有在PREQ为高，并且PACCEPT为低，才可以从低变为高。</li>
+<li>PDENY只有在PREQ为低，并且PACCEPT为低，才可以从高变为低。</li>
+</ol>
+</li>
+</ul>
+<h3 id="p-channel的握手协议">P_Channel的握手协议</h3>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-24.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<ul>
+<li>device接受power状态切换：
+<ol>
+<li>在T2时刻之前，P_Channel处于P_STATBLE状态。</li>
+<li>T2时刻，PMU拉高PREQ，将PSTATE置为STATE B。向device发送power状态切换请求，请求将device切换到STATE B的power状态。P_Channel进入P_REQUEST状态。</li>
+<li>T3时刻，device将PACCEPT拉高，表示接受PMU的power状态切换请求。P_Channel进入P_ACCEPT状态。</li>
+<li>T4时刻，PMU接收device的PACCEPT响应，拉低PREQ，取消请求。P_Channel进入P_COMPLETE状态。</li>
+<li>T5时刻，device将PACCEPT拉低，表示完成power状态切换。P_Channel进入P_STABLE状态。</li>
+</ol>
+</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-25.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<ul>
+<li>device拒绝power状态切换：
+<ol>
+<li>T2时刻以前，P_Channel处于P_STABLE状态。</li>
+<li>T2时刻，PMU将PREQ拉高，将PSTATE置为STATE B。向device发送power状态切换请求，请求将device切换到STATE B的power状态。P_Channel进入P_REQUEST状态。</li>
+<li>T3时刻，device将PDENY拉高，表示拒绝PMU的power切换请求。P_Channel进入P_DENIED状态。</li>
+<li>T4时刻，PMU接收到device的PDENY响应，将PREQ拉低，取消请求，并且把PSTATE置为STATE A。P_Channel进入P_CONTINUE状态。</li>
+<li>T5时刻，device将PDENY拉低，P_Channel进入P_STABLE状态。</li>
+</ol>
+</li>
+</ul>
+<h3 id="device的复位和初始化">device的复位和初始化</h3>
+<p>device在复位时，必须将PACCEPT和PDENY置为低，但对PACTIVE没有要求。P_Channel的状态为P_STABLE时，device的复位信号，才可以设置为有效。当device的复位无效时，device要进入初始化，此时PMU要设置PSTATE信号值，device会在复位之后，采样该信号值，从而采用合适的初始化流程。PSTATE要在复位信号无效后要保持稳定。device，要提供一个初始化周期时间，tinit。用来表示，复位之后，PSTATE需要保持多久时间，供device初始化使用。PSTATE在tinit时间之内，必须要保持稳定。</p>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-26.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<ul>
+<li>上面是时序图：
+<ol>
+<li>T1时刻之前，RESETn为低，复位有效，P_Channel处于P_RESET状态。</li>
+<li>T1时刻，RESETn为高，PMU将PSTATE置为STATE A。P_Channel进入P_STABLE状态。</li>
+<li>T2时刻，由于tinit的限制，PMU要将PSTATE一直保持在STATE A，以便device正确的初始化。device必须要在tinit时间内，采样PSTATE。此后，PMU就可以发送power切换请求了。</li>
+<li>T3时刻，PMU将PREQ置高，并且将PSTATE置为STATE B，发送power切换请求。P_Channel进入P_REQUEST状态。</li>
+<li>T4时刻，device将PACCEPT拉高，表示接受PMU的power状态切换请求。P_Channel进入P_ACCEPT状态。</li>
+<li>T5时刻，PMU接收device的PACCEPT响应，拉低PREQ，取消请求。P_Channel进入P_COMPLETE状态。</li>
+<li>T6时刻，device将PACCEPT拉低，表示完成power状态切换。P_Channel进入P_STABLE状态。</li>
+<li>T7时刻，P_Channel在P_STATBLE状态，可以进行复位，外部拉低RESETn，P_Channel进入P_RESET状态。</li>
+</ol>
+</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-27.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<ul>
+<li>上图展示了，当复位时，PMU发送power切换情况的时序图。
+<ol>
+<li>T1时刻，PMU将PREQ拉高，并置PSTATE为STATE A，但是复位信号有效，device不接收PMU请求。P_Channel保持为P_RESET状态。</li>
+<li>T2时刻，复位信号释放，因为PREQ为高，P_Channel进入P_REQUEST状态。device接收PMU的power切换请求。</li>
+<li>之后的就和上面的分析原理是一样的了。</li>
+</ol>
+</li>
+</ul>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-28.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<ul>
+<li>上图展示了，复位后，PMU发送使device进入STATE A的power状态请求，当该转换完成后，PMU又继续发送使device进入STATE B的power状态请求。</li>
+<li>PMU在发送下一个power切换请求前，必须保证上一个power切换请求，传输完毕。</li>
+</ul>
+<h3 id="多个power状态切换">多个power状态切换</h3>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-29.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<ol>
+<li>在T0，device处于STATE A状态。</li>
+<li>在T1到T4，通过P_Channel，使device进入STATE B状态。在T4，P_Channel进入P_STABLE状态。</li>
+<li>在T5-T8，通过P_Channel，使device进入STATE C状态。在T8，P_Channel进入P_STABLE状态。</li>
+</ol>
+<h3 id="pactive">PACTIVE</h3>
+<p>PACTIVE，提供给device给PMU发送请求。PACTIVE的每一个bit，表示一种请求。bit为高，表示device发送请求给PMU，让PMU处理，bit为低，表示device没有发送请求给PMU处理。PACTIVE和握手协议，是独立开的。PACTIVE是设计自定义的，请求完全自己定义。当然，也可以不使用PACTIVE，如果不是用PACTIVE，需要将PACTIVE置为0。</p>
+<center>
+<img width="80%" align=center src="/image/08-IC-Design/CPU-Design/DynamIQ-Power-Management-30.png">
+<div style="color:black;"> <b>  </b>  </div>
+<br>
+</center>
+<ul>
+<li>上图是PACTIVE的例子：
+<ol>
+<li>PACTIVE有3个bit，每个bit，映射到一个power状态，MSB具有高优先级：1）PACTIVE[2]：STATE C；2）PACTIVE[1]: STATE B；3）PACTIVE[0]: STATE A。</li>
+<li>T1时刻，device将PACTIVE设置为3&rsquo;b011，表示device向PMU发送power切换请求，将自己切换为STATE B。</li>
+<li>PMU接收到device的请求后，从T2到T5，向device发送power切换请求，并且切换到STATE B状态。最后P_Channel进入P_STABLE状态。</li>
+<li>T6时刻，device将PACTIVE设置为3&rsquo;b111，表示device向PMU发送power切换请求，将自己切换为STATE C。</li>
+<li>PMU接收到device的请求后，从T7到T10，向device发送power切换请求，并且切换到STATE C状态。最后P_Channel进入P_STABLE状态。</li>
+</ol>
+</li>
+</ul>
+<h3 id="device需要提供的信息">device需要提供的信息</h3>
+<p>为了PMU的设计的正确性，device需要向PMU提供以下的一些信息：</p>
+<ul>
+<li>device支持的power状态，包括以下：
+<ol>
+<li>PSTATE定义和编码</li>
+<li>PACTIVE每个bit代表的请求</li>
+<li>用于初始化power状态，推荐的PACTIVE输出</li>
+<li>PACTIVE需要被忽略，或者一直置0的bit信息</li>
+</ol>
+</li>
+<li>power状态的切换，包括以下：
+<ol>
+<li>power状态切换之后的device行为</li>
+<li>device拒绝power状态切换的条件</li>
+<li>复位释放后，用于初始化device的PSTATE的合理值</li>
+<li>T_init的值</li>
+</ol>
+</li>
+</ul>
 <hr />
 <p><strong><em>文章原创，可能存在部分错误，欢迎指正，联系邮箱 cao_arvin@163.com。</em></strong></p>
 
@@ -5160,7 +5344,12 @@
       <ul>
         <li><a href="#概述">概述</a></li>
         <li><a href="#接口">接口</a></li>
-        <li><a href="#其他">其他</a></li>
+        <li><a href="#p-channel接口握手状态">P_Channel接口握手状态</a></li>
+        <li><a href="#p-channel的握手协议">P_Channel的握手协议</a></li>
+        <li><a href="#device的复位和初始化">device的复位和初始化</a></li>
+        <li><a href="#多个power状态切换">多个power状态切换</a></li>
+        <li><a href="#pactive">PACTIVE</a></li>
+        <li><a href="#device需要提供的信息">device需要提供的信息</a></li>
       </ul>
     </li>
   </ul>

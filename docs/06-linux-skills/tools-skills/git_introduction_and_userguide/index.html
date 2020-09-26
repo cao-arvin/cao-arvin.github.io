@@ -2237,6 +2237,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/" class="menu__title " data-depth="1">多周期CPU设计</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" class="menu__title " data-depth="1">初识多核体系结构</a>
         </li>
       
@@ -4082,6 +4090,14 @@
         
         
         <li>
+          <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-cycle-cpu/" class="menu__title " data-depth="1">多周期CPU设计</a>
+        </li>
+      
+    
+      
+        
+        
+        <li>
           <a href="https://www.wenhui.space/docs/08-ic-design/cpu/multi-core/" class="menu__title " data-depth="1">初识多核体系结构</a>
         </li>
       
@@ -4394,7 +4410,7 @@
 <p>总结：开发团队中的每个人向中央仓库主动提交自己的改动和同步别人的改动，并在需要的时候查看和操作历史版本，这就是版本控制系统。</p>
 <h3 id="中央式版本控制系统">中央式版本控制系统</h3>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-0.png">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-0.png">
 <div style="color:black;"> <b> 中央式版本控制系统 </b>  </div>
 </center>
 <p>假设你在一个三人团队，你们计划开发一个软件或者系统，并决定使用中央式 VCS 来管理代码。于是：</p>
@@ -4414,7 +4430,7 @@
 <p>这样，一个三人的团队就成功做到了各自在自己的电脑上开发同一个项目，并且互不影响，就好像你们三个人是在同一台电脑上操作一样。</p>
 <h3 id="分布式版本控制系统">分布式版本控制系统</h3>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-1.png">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-1.png">
 <div style="color:black;"> <b> 分布式版本控制系统 </b>  </div>
 </center>
 <p>分布式与中央式相比多了本地仓库，一部分版本历史保存在本地仓库，代码同步和版本历史保存在中央仓库。</p>
@@ -4517,7 +4533,7 @@
 <p>HEAD 是 Git 中一个独特的引用，它是唯一的。而除了 HEAD 之外，Git 还有一种引用，叫做 branch（分支）。HEAD 除了可以指向 commit，还可以指向一个 branch，当它指向某个 branch 的时候，会通过这个 branch 来间接地指向某个 commit；另外，当 HEAD 在提交时自动向前移动的时候，它会像一个拖钩一样带着它所指向的 branch 一起移动。</p>
 <p>“git log”显示结果中，HEAD -&gt; master 中的 master 就是一个 branch 的名字，而它左边的箭头 -&gt; 表示 HEAD 正指向它（当然，也会间接地指向它所指向的 commit）。如果我在这时创建一个 commit，那么 HEAD 会带着 master 一起移动到最新的。</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-2.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-2.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h3 id="master-默认的-branch">master:默认的 branch</h3>
@@ -4528,7 +4544,7 @@
 <li>当有人使用 git clone 时，除了从远程仓库把 .git 这个仓库目录下载到工作目录中，还会 checkout （签出） master（checkout 的意思就是把某个 commit 作为当前 commit，把 HEAD 移动过去，并把工作目录的文件内容替换成这个 commit 所对应的内容）。</li>
 </ul>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-3.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-3.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 另外，需要说一下的是，大多数的开发团队会规定开发以 master 为核心，所有的分支都在一定程度上围绕着 master 来开发。这个在事实上构成了 master 和其它分支在地位上的一个额外的区别。
@@ -4538,37 +4554,37 @@
 <li>所有的 branch 之间都是平等的，如下图，branch1 是 1 2 5 6 的串，而不要理解为 2 5 6 或者 5 6 。其实，起点在哪里并不是最重要的，重要的是你要知道，所有 branch 之间是平等的，master 除了上面我说的那几点之外，并不比其他 branch 高级。这个认知的理解对于 branch 的正确使用非常重要。</li>
 </ul>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-4.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-4.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <ul>
 <li>branch 包含了从初始 commit 到它的所有路径，而不是一条路径。并且，这些路径之间也是彼此平等的。如下图，master 在合并了 branch1 之后，从初始 commit 到 master 有了两条路径。这时，master 的串就包含了 1 2 3 4 7 和 1 2 5 6 7 这两条路径。而且，这两条路径是平等的，1 2 3 4 7 这条路径并不会因为它是「原生路径」而拥有任何的特别之处。</li>
 </ul>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-5.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-5.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h3 id="branch-的创建-切换和删除">branch 的创建、切换和删除</h3>
 <h4 id="创建-branch">创建 branch：</h4>
 <p>如果你想在某处创建 branch ，只需要输入一行 git branch 名称。例如“git branch feature1”</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-6.png">
+<img width="60%" src="/image/06-Linux-Skills/Tools-Skills/git-6.png">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h4 id="切换-branch">切换 branch：</h4>
 <p>新建的 branch 并不会自动切换，你的 HEAD 在这时依然是指向 master 的。你需要用 checkout 来主动切换到你的新 branch 去“git checkout feature1”。（也可以使用git checkout -b 名称 来把上面两步操作合并执行）</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-7.png">
+<img width="60%" src="/image/06-Linux-Skills/Tools-Skills/git-7.png">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 在切换到新的 branch 后，再次 commit 时 HEAD 就会带着新的 branch 移动了：
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-8.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-8.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 而这个时候，如果你再切换到 master 去 commit，就会真正地出现分叉了：
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-9.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-9.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h4 id="删除-branch">删除 branch：</h4>
@@ -4606,7 +4622,7 @@
 <p>实质上，push 做的事是：把当前 branch 的位置（即它指向哪个 commit）上传到远端仓库，并把它的路径上的 commits 一并上传。</p>
 <p>例如，我现在的本地仓库有一个 master ，它超前了远程仓库两个提交；另外还有一个新建的 branch 叫 feature1，远程仓库还没有记载过它。这时我执行 git push，就会把 master 的最新位置更新到远端，并且把它的路径上的 5 6 两个 commits 上传：</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-10.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-10.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 而如果这时候我再切到 feature1 去后再执行一次 push，就会把 feature1 以及它的 commit 4 上传到远程仓库。
@@ -4623,7 +4639,7 @@ git push origin feature1
 </div><p>这里的 git push 和之前有点不同：多了 origin feature1 这两个参数。其中 origin 是远程仓库的别名，是你在 git clone 的时候 Git 自动帮你起的；feature1 是远程仓库中目标 branch 的名字。这两个参数合起来指定了你要 push 到的目标仓库和目标分支，意思是「我要 push 到 origin 这个仓库的 feature1 分支」。</p>
 <p>在 Git 中（2.0 及它之后的版本），默认情况下，你用不加参数的 git push 只能上传那些之前从远端 clone 下来或者 pull 下来的分支，而如果需要 push 你本地的自己创建的分支，则需要手动指定目标仓库和目标分支（并且目标分支的名称必须和本地分支完全相同），就像上面这样。你也可以通过 git config 指令来设置 push.default 的值来改变 push 的行为逻辑，例如可以设置为「所有分支都可以用 git push 来直接 push，目标自动指向 origin 仓库的同名分支」（对应的 push.default 值：current）。</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-11.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-11.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 细心的人可能会发现，在 feature1 被 push 时，远程仓库的 HEAD 并没有和本地仓库的 HEAD 一样指向 feature1。这是因为，push 的时候只会上传当前的 branch 的指向，并不会把本地的 HEAD 的指向也一起上传到远程仓库。事实上，远程仓库的 HEAD 是永远指向它的默认分支（即 master，如果不修改它的名称的话），并会随着默认分支的移动而移动的。
@@ -4637,7 +4653,7 @@ git push origin feature1
 <h3 id="含义和用法">含义和用法</h3>
 <p>merge 的意思是「合并」，它做的事也是合并：指定一个 commit，把它合并到当前的 commit 来。具体来讲，merge 做的事是： 从目标 commit 和当前 commit （即 HEAD 所指向的 commit）分叉的位置起，把目标 commit 的路径上的所有 commit 的内容一并应用到当前 commit，然后自动生成一个新的 commit。merge命令为“git merge branch1”。如下图，Git 会把 5 和 6 这两个 commit 的内容一并应用到 4 上，然后生成一个新的提交，并跳转到提交信息填写的界面，merge 操作会帮你自动地填写简要的提交信息。在提交信息修改完成后（或者你打算不修改默认的提交信息），就可以退出这个界面，然后这次 merge 就算完成了。</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-12.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-12.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h3 id="适用场景">适用场景</h3>
@@ -4649,7 +4665,7 @@ git push origin feature1
 <h4 id="为什么产生冲突">为什么产生冲突</h4>
 <p>merge 在做合并的时候，是有一定的自动合并能力的：如果一个分支改了 A 文件，另一个分支改了 B 文件，那么合并后就是既改 A 也改 B，这个动作会自动完成；如果两个分支都改了同一个文件，但一个改的是第 1 行，另一个改的是第 2 行，那么合并后就是第 1 行和第 2 行都改，也是自动完成。</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-13.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-13.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 但，如果两个分支修改了同一部分内容，merge 的自动算法就搞不定了。这种情况 Git 称之为：冲突（Conflict）。直白点说就是，你的两个分支改了相同的内容，Git 不知道应该以哪个为准。如果在 merge 的时候发生了这种情况，Git 就会把问题交给你来决定。具体地，它会告诉你 merge 失败，以及失败的原因。这时候需要做两件事：决掉冲突，手动commit 一下。
@@ -4662,18 +4678,18 @@ git push origin feature1
 <h3 id="特殊情况-2-head-领先于目标-commit">特殊情况 2：HEAD 领先于目标 commit</h3>
 <p>如果 merge 时的目标 commit 和 HEAD 处的 commit 并不存在分叉，而是 HEAD 领先于目标 commit，那么 merge 就没必要再创建一个新的 commit 来进行合并操作，因为并没有什么需要合并的。在这种情况下， Git 什么也不会做，merge 是一个空操作。</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-14.png">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-14.png">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h3 id="特殊情况-3-head-落后于-目标-commit-fast-forward">特殊情况 3：HEAD 落后于 目标 commit——fast-forward</h3>
 <p>而另一种情况：如果 HEAD 和目标 commit 依然是不存在分叉，但 HEAD 不是领先于目标 commit，而是落后于目标 commit，那么 Git 会直接把 HEAD（以及它所指向的 branch，如果有的话）移动到目标 commit。这种操作有一个专有称谓，叫做 &ldquo;fast-forward&rdquo;（快速前移）。</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-15.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-15.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 一般情况下，创建新的 branch 都是会和原 branch （例如上图中的 master ）并行开发的，不然没必要开 branch ，直接在原 branch 上开发就好。但事实上，上图中的情形其实很常见，因为这其实是 pull 操作的一种经典情形：本地的 master 没有新提交，而远端仓库中有同事提交了新内容到 master。那么这时如果在本地执行一次 pull 操作，就会由于 HEAD 落后于目标 commit （也就是远端的 master）而造成 "fast-forward"。
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-16.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-16.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 简单解释一下上图中的 origin/master 和 origin/HEAD 是什么鬼：它们是对远端仓库的 master 和 HEAD 的本地镜像，在 git pull 的「两步走」中的第一步——git fetch 下载远端仓库内容时，这两个镜像引用得到了更新，也就是上面这个动图中的第一步：origin/master 和 origin/HEAD 移动到了最新的 commit。而 git pull 的第二步操作 merge 的目标 commit ，是远端仓库的 HEAD，也就是 origin/HEAD ，所以 git pull 的第二步的完整内容是“git merge origin/HEAD”。因此 HEAD 就会带着 master 一起，也指向图中绿色的最新 commit 了。
@@ -4707,7 +4723,7 @@ git push origin feature1
 <li>branch 写完后，合并到 master，然后删掉这个 branch。</li>
 </ul>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-17.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-17.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 这就是这种工作流最基本的模型。从上面的动图来看，这种工作流似乎没什么特别之处。但实质上，Feature Branching 这种工作流，为团队开发时两个关键的问题——代码分享和一人多任务——提供了解决方案。
@@ -4732,7 +4748,7 @@ git push origin feature1
 </code></pre></td></tr></table>
 </div>
 </div><center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-18.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-18.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 然后你的同事小明正好有空，他就从中央仓库拉下来了你的代码开始读
@@ -4761,7 +4777,7 @@ git merge books
 </code></pre></td></tr></table>
 </div>
 </div><center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-19.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-19.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 紧接着，你把合并后的结果 push 到了中央仓库，并删掉了 books 这个 branch
@@ -4778,7 +4794,7 @@ git push origin -d books <span class="c1"># 用 -d 参数把远程仓库的 bran
 </code></pre></td></tr></table>
 </div>
 </div><center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-20.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-20.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h4 id="如果同事有意见">如果同事有意见</h4>
@@ -4876,7 +4892,7 @@ git rebase master
 </code></pre></td></tr></table>
 </div>
 </div><center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-21.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-21.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 可以看出，通过 rebase，5 和 6 两条 commits 把基础点从 2 换成了 4 。通过这样的方式，就让本来分叉了的提交历史重新回到了一条线。这种「重新设置基础点」的操作，就是 rebase 的含义。另外，在 rebase 之后，记得切回 master 再 merge 一下，把 master 移到最新的 commit：
@@ -4891,17 +4907,17 @@ git merge branch1
 </code></pre></td></tr></table>
 </div>
 </div><center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-22.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-22.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <p>为什么要从 branch1 来 rebase，然后再切回 master 再 merge 一下这么麻烦，而不是直接在 master 上执行 rebase？从图中可以看出，rebase 后的 commit 虽然内容和 rebase 之前相同，但它们已经是不同的 commits 了。如果直接从 master 执行 rebase 的话，就会是下面这样：</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-23.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-23.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 这就导致 master 上之前的两个最新 commit 被剔除了。如果这两个 commit 之前已经在中央仓库存在，这就会导致没法 push 了：
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-24.png">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-24.png">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 所以，为了避免和远端仓库发生冲突，一般不要从 master 向其他 branch 执行 rebase 操作。而如果是 master 以外的 branch 之间的 rebase（比如 branch1 和 branch2 之间），就不必这么多费一步，直接 rebase 就好。（你想保留哪个分支就rebase到哪个分支）
@@ -4931,7 +4947,7 @@ git commit --amend
 </div>
 </div><p>Git 会把你带到提交信息编辑界面。可以看到，提交信息默认是当前提交的提交信息。你可以修改或者保留它，然后保存退出。然后，你的最新 commit 就被更新了。</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-25.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-25.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h3 id="总结">总结</h3>
@@ -4967,12 +4983,12 @@ git commit --amend
 </ul>
 <p>上面这行代码表示，把当前 commit （ HEAD 所指向的 commit） rebase 到 HEAD 之前 2 个的 commit 上：</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-26.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-26.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <p>如果没有 -i 参数的话，这种「原地 rebase」相当于空操作，会直接结束。而在加了 -i 后，就会跳到一个编辑界面。</p>
 <center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-27.png">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-27.png">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h3 id="编辑界面-选择-commit-和对应的操作">编辑界面：选择 commit 和对应的操作</h3>
@@ -5002,7 +5018,7 @@ git commit --amend
 </code></pre></td></tr></table>
 </div>
 </div><center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-28.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-28.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 <h3 id="总结">总结</h3>
@@ -5024,7 +5040,7 @@ git commit --amend
 </code></pre></td></tr></table>
 </div>
 </div><center>
-<img width="600" src="/image/06-Linux-Skills/Tools-Skills/git-29.gif">
+<img width="80%" src="/image/06-Linux-Skills/Tools-Skills/git-29.gif">
 <div style="color:black;"> <b>  </b>  </div>
 </center>
 不过，就像图上显示的，你被撤销的那条提交并没有消失，只是你不再用到它了。如果你在撤销它之前记下了它的 SHA-1 码，那么你还可以通过 SHA-1 来找到他它。
